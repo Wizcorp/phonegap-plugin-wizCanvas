@@ -1,0 +1,14 @@
+# OSX hidden files
+.DS_Store
+
+# Xcode files
+build/
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+
+xcuserdata
+
+# Intelij files
+.idea
