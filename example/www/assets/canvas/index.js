@@ -72,3 +72,17 @@ ctx.fillRect( 0, 0, w, h );
 ctx.globalAlpha = 0.05;
 ctx.lineWidth = 2;
 setInterval( animate, 16 );
+
+// Old messaging system
+function wizMessageReceiver (e) {
+    // Event data object comes in here 
+    console.log("Recieved message - " + e);   
+    var parsedData = JSON.parse(e);
+    if (parsedData.color) {
+        console.log(parsedData.color);
+    }
+    
+}
+
+document.addEventListener( 'message', wizMessageReceiver );
+window.addEventListener( 'message', wizMessageReceiver );

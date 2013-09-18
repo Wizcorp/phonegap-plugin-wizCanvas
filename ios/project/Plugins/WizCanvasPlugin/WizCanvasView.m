@@ -159,12 +159,9 @@ static WizCanvasView * ejectaInstance = NULL;
         // Load the initial JavaScript source files
 	    [self loadScriptAtPath:EJECTA_BOOT_JS];
         
-        // Load wizViewManager JS plugin
-	    // [self loadScriptAtPath:WIZVIEWMANAGER_BOOT_JS];
-        
-        // Push ViewManager to Window
-        // [self evaluateScript:[NSString stringWithFormat:@"window.wizViewManager = new Ejecta.WizViewManager('%@');", viewName]];
-        
+        // Load wizViewMessenger
+	    // [self loadScriptAtPath:WIZ_VIEW_MESSENGER_JS];
+
         // Additional boot file
         if (![src isEqualToString:@""]) {
             [self loadScriptAtPath:src];
@@ -331,6 +328,10 @@ static WizCanvasView * ejectaInstance = NULL;
     isPaused = false;
 }
 
+- (void)message:(id)message {
+    [windowEventsDelegate message:message];
+}
+
 - (void)clearCaches {
     JSGarbageCollect(jsGlobalContext);
 }
@@ -469,6 +470,10 @@ static WizCanvasView * ejectaInstance = NULL;
     JSStringRelease( jsFilePropertyName );
 }
 
+- (void)postMessage:(id)message {
+    NSLog(@"posting message");
+    [self message:message];
+}
 
 
 #pragma mark -

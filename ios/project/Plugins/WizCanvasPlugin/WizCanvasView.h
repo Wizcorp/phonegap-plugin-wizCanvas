@@ -25,8 +25,8 @@
 #define EJECTA_VERSION @"1.3"
 #define EJECTA_APP_FOLDER @"www/"
 
-#define EJECTA_BOOT_JS @"phonegap/plugin/wizViewManager/ejecta.js"
-#define WIZVIEWMANAGER_BOOT_JS @"phonegap/plugin/wizViewManager/wizViewCanvasManager.js"
+#define EJECTA_BOOT_JS @"phonegap/plugin/wizCanvas/ejecta.js"
+#define WIZ_VIEW_MESSENGER_JS @"phonegap/plugin/wizViewMessenger/wizViewMessenger.js"
 #define EJECTA_MAIN_JS @"index.js"
 
 @protocol EJTouchDelegate
@@ -41,6 +41,7 @@
 - (void)resume;
 - (void)pause;
 - (void)resize;
+- (void)message:(id)message;
 @end
 
 @class EJTimerCollection;
@@ -113,6 +114,8 @@
 - (void)loadScriptAtPath:(NSString *)path;
 - (JSValueRef)evaluateScript:(NSString *)script;
 - (JSValueRef)evaluateScript:(NSString *)script sourceURL:(NSString *)sourceURL;
+
+- (void)postMessage:(id)message;
 
 - (void)clearCaches;
 

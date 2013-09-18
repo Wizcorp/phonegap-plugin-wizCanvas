@@ -1240,37 +1240,36 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         return NO;
         
  	} else if ([(NSString *)[prefixer objectAtIndex:0] caseInsensitiveCompare:@"wizPostMessage"] == 0) {
-        
+
+        NSMutableDictionary *viewList = [[NSMutableDictionary alloc] initWithDictionary:[WizCanvasPlugin getViews]];
+
         NSArray *requestComponents = [requestString componentsSeparatedByString:@"://"];
         NSString *postMessage = [[NSString alloc] initWithString:(NSString*)[requestComponents objectAtIndex:1]];
-        
+
         NSArray *messageComponents = [postMessage componentsSeparatedByString:@"?"];
-        
+
         NSString *originView = [[NSString alloc] initWithString:(NSString*)[messageComponents objectAtIndex:0]];
         NSString *targetView = [[NSString alloc] initWithString:(NSString*)[messageComponents objectAtIndex:1]];
-        NSString *data = [[NSString alloc] initWithString:(NSString*)[messageComponents objectAtIndex:2]];
-        
-        NSLog(@"[WizWebView] ******* targetView is:  %@", targetView );
-               
-        // NSLog(@"[AppDelegate wizMessageView()] ******* postData is:  %@", postData );
-        
-        NSMutableDictionary *viewList = [[NSMutableDictionary alloc] initWithDictionary:[WizCanvasPlugin getViews]];
-        
         if ([viewList objectForKey:targetView]) {
+
+            NSString *data = [[NSString alloc] initWithString:(NSString*)[messageComponents objectAtIndex:2]];
+            NSString *type = [[NSString alloc] initWithString:(NSString*)[messageComponents objectAtIndex:3]];
             NSString *postDataEscaped = [data stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-            
+
             UIView *targetCanvasView = [viewList objectForKey:targetView];
             WizCanvasView *canvasController = targetCanvasView.nextResponder;
-            [canvasController evaluateScript:[NSString stringWithFormat:@"wizMessageReceiver(window.decodeURIComponent('%@'));", postDataEscaped]];
+            NSString *js = [NSString stringWithFormat:@"wizViewMessenger.__triggerMessageEvent( window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), '%@' );", originView, targetView, postDataEscaped, type];
+            // [canvasController evaluateScript:js];
+            NSLog(@"data: %@", data);
+            [canvasController postMessage:data];
 
-            // WizLog(@"[AppDelegate wizMessageView()] ******* current views... %@", viewList);
+            [data release];
         }
         
         [postMessage release];
         postMessage = nil;
         [originView release];
         [targetView release];
-        [data release];
         [viewList release];
         
         

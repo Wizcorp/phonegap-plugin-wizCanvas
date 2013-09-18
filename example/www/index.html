@@ -415,8 +415,9 @@
            
     function messageCanvasView() {
         var params = { color: "blue :)" };
-        
-        wizViewMessenger.message("newCanvas", JSON.stringify(params));
+        params = "string test";
+        // wizViewMessenger.message("newCanvas", JSON.stringify(params));
+        wizViewMessenger.postMessage(params, "newCanvas");
     }
     
     window.addEventListener('message', wizMessageReceiver, false);
