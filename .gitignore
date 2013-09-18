@@ -10,5 +10,9 @@ build/
 
 xcuserdata
 
+# Example www folder for iOS
+example/ios/www/*
+!example/ios/www/cordova-2.7.0.js
+
 # Intelij files
 .idea

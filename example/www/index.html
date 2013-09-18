@@ -309,7 +309,7 @@
 	<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
 	-->
 	<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
-	<script type="text/javascript" charset="utf-8" src="cordova-2.7.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="phonegap/plugin/wizCanvas/wizCanvas.js"></script>
     <script type="text/javascript" charset="utf-8" src="phonegap/plugin/wizViewMessenger/wizViewMessenger.js"></script>
     <script type="text/javascript">
@@ -356,7 +356,7 @@
     }
         
     function createCanvasView() {
-        wizCanvas.create("newCanvas", { type: "canvas", src: "assets/canvas/index.js", height: 300, width: 320, y: 0 }, onCanvasSuccess, onFail);
+        wizCanvas.create("newCanvas", { src: "assets/canvas/index.js", height: 300, width: 320, y: 0 }, onCanvasSuccess, onFail);
     }
     
     var onCanvasSuccess = function() {
@@ -366,27 +366,40 @@
         showCanvasView();
     }
     
-    function showCanvasView() {
-        wizCanvas.show("newCanvas", { animation: { type: "fadeIn", duration: 500 } }, console.log("Show canvas success"), onFail);
+    function removeCanvasView() {
+        wizCanvas.remove("newCanvas",
+        function () { console.log("Remove canvas success") }, 
+        function () { console.log("Remove canvas failure") });
     }
     
-           
+    function showCanvasView() {
+        wizCanvas.show("newCanvas",
+         { animation: { type: "fadeIn", duration: 500 } }, 
+         function () { console.log("Show canvas success") }, 
+         function () { console.log("Show canvas failure") });
+    }
+    
+	var currentLayout = 1; 
     function layoutCanvasView() {
-    	var i = Math.floor(Math.random()*4);
-    	
+		var i = currentLayout;
+		while (i == currentLayout) {
+		   i = Math.floor(Math.random()*4);
+		}
+		currentLayout = i;
         var params = [
+        	{ height: 300, width: 320, y: 0 },
         	{ height: 200, width: 320, y: 50 }, 
-        	{ height: 300, width: 200, y: 0 }, 
         	{ height: 250, width: 320, y: -100 }, 
         	{ height: 350, width: 320, y: 20 }
         ];
-        console.log("i is : " + i);
-        var param = params[i];
-        wizCanvas.setLayout("newCanvas", param , null, null);
+        wizCanvas.setLayout("newCanvas", params[i], null, null);
     }
     
     function hideCanvasView() {
-        wizCanvas.hide("newCanvas", { animation: { type: "zoomOut", duration: 500 } }, console.log("Hide canvas success"), null);
+        wizCanvas.hide("newCanvas",
+        { animation: { type: "fadeOut", duration: 500 } }, 
+        function () { console.log("Hide canvas success") }, 
+        function () { console.log("Hide canvas failure") });
     }
     
     function loadIntoCanvasView() {
@@ -452,6 +465,8 @@
 	            <button onclick="hideCanvasView();">Hide Canvas</button>
 	            <p>Make the canvas view visible to the user...</p>
 	            <button onclick="showCanvasView();">Show Canvas</button>
+	            <p>Remove the canvas view...</p>
+	            <button onclick="removeCanvasView();">Remove Canvas</button>
 			</section>
 	    </div>
     </body>

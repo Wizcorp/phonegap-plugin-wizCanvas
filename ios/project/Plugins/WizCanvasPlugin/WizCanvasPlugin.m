@@ -37,7 +37,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     wizViewList = [[NSMutableDictionary alloc ] initWithObjectsAndKeys: theWebView, @"mainView", nil];
     
     // Tell our mainView it IS mainView
-    // (We dont need to do this earlier,only for the name mainView
+    // (We don't need to do this earlier,only for the name mainView
     // to window.name when we are using wizViewManager)
     NSString *js = [NSString stringWithFormat:@"window.name = '%@'", @"mainView"];
     [theWebView stringByEvaluatingJavaScriptFromString:js];   
@@ -82,8 +82,9 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         
         /*
         // updated wizViewManager.views in type canvas
-        WizCanvasView *targetCanvasView = [wizViewList objectForKey:key];
-        [targetCanvasView evaluateScript:
+        UIView *targetCanvasView = [wizViewList objectForKey:key];
+        WizCanvasView *canvasController = targetCanvasView.nextResponder;
+        [canvasController evaluateScript:
               [NSString stringWithFormat:@"window.wizViewManager.updateViewList([%@]);", viewNamesString]];
         */
     }
@@ -339,7 +340,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
                     int animateTimeInMilliSecs   = [[animationDict objectForKey:@"duration"] intValue];
                     CGFloat animateTime          = (CGFloat)animateTimeInMilliSecs / 1000;
                     if (!animateTime) {
-                        //default
+                        // default
                         animateTime = 0.3f;
                     }
                     WizLog(@"[WizCanvas] ******* showView animateTime : %f ", animateTime);
@@ -477,10 +478,10 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     if ([wizViewList objectForKey:viewName]) {
 
         // Get the view from the view list
-        WizCanvasView *targetCanvasView = [wizViewList objectForKey:viewName];
+        UIView *targetCanvasView = [wizViewList objectForKey:viewName];
 
         // remove the view!
-        [targetCanvasView.window removeFromSuperview];
+        [targetCanvasView removeFromSuperview];
         [targetCanvasView release];
         // targetCanvasView.window.delegate = nil;
         targetCanvasView = nil;
@@ -622,8 +623,9 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         NSString *postDataEscaped = [message stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
         
         // Message canvas view
-        WizCanvasView *targetCanvasView = [wizViewList objectForKey:viewName];
-        [targetCanvasView evaluateScript:[NSString stringWithFormat:@"wizMessageReceiver(window.decodeURIComponent('%@'));", postDataEscaped]];
+        UIView *targetCanvasView = [wizViewList objectForKey:viewName];
+        WizCanvasView *canvasController = targetCanvasView.nextResponder;
+        [canvasController evaluateScript:[NSString stringWithFormat:@"wizMessageReceiver(window.decodeURIComponent('%@'));", postDataEscaped]];
 
     } else {
         NSLog(@"Message failed! View not found!");
@@ -1225,10 +1227,9 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         if ([viewList objectForKey:targetView]) {
             NSString *postDataEscaped = [postData stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
 
-            WizCanvasView *targetCanvasView = [viewList objectForKey:targetView];
-            [targetCanvasView evaluateScript:[NSString stringWithFormat:@"wizMessageReceiver(window.decodeURIComponent('%@'));", postDataEscaped]];
-
-            // WizLog(@"[AppDelegate wizMessageView()] ******* current views... %@", viewList);
+            UIView *targetCanvasView = [viewList objectForKey:targetView];
+            WizCanvasView *canvasController = targetCanvasView.nextResponder;
+            [canvasController evaluateScript:[NSString stringWithFormat:@"wizMessageReceiver(window.decodeURIComponent('%@'));", postDataEscaped]];
         }
         
         [messageData release];
@@ -1258,8 +1259,9 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         if ([viewList objectForKey:targetView]) {
             NSString *postDataEscaped = [data stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
             
-            WizCanvasView *targetCanvasView = [viewList objectForKey:targetView];
-            [targetCanvasView evaluateScript:[NSString stringWithFormat:@"wizMessageReceiver(window.decodeURIComponent('%@'));", postDataEscaped]];
+            UIView *targetCanvasView = [viewList objectForKey:targetView];
+            WizCanvasView *canvasController = targetCanvasView.nextResponder;
+            [canvasController evaluateScript:[NSString stringWithFormat:@"wizMessageReceiver(window.decodeURIComponent('%@'));", postDataEscaped]];
 
             // WizLog(@"[AppDelegate wizMessageView()] ******* current views... %@", viewList);
         }

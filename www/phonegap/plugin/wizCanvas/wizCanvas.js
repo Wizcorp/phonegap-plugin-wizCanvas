@@ -96,7 +96,10 @@
 
 			views[name] = view;
 
-			success(view);
+			if (typeof(success) === 'function') {
+				success(view);	
+			}
+			
 		}
 
 		View.create(name, options, successWrapper, failure);
@@ -134,6 +137,14 @@
 		}
 	
 		this.views[name].load(source, success, failure);
+  	};
+  	
+  	WizCanvas.prototype.remove = function (name, success, failure) {
+		if (!this.views[name]) {
+			return this.throwError(failure, new Error('Remove Error with view name: ' + name + '. View does not exist'));
+		}
+	
+		this.views[name].remove(success, failure);
   	};
 
 	WizCanvas.prototype.updateViewList = function (list) {
