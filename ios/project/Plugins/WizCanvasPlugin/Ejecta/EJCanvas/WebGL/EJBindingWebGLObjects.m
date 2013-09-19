@@ -23,7 +23,7 @@
 }
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)view
+	scriptView:(WizCanvasView *)view
 	webglContext:(EJBindingCanvasContextWebGL *)webglContext
 	index:(GLuint)index
 {
@@ -86,7 +86,7 @@
 }
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)view
+	scriptView:(WizCanvasView *)view
 	webglContext:(EJBindingCanvasContextWebGL *)webglContext
 {
 	id native = [[self alloc] initWithWebGLContext:webglContext];
@@ -145,7 +145,7 @@ EJ_BIND_GET(type, ctx) { return JSValueMakeNumber(ctx, type); }
 EJ_BIND_GET(name, ctx) { return NSStringToJSValue(ctx, name); }
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)view
+	scriptView:(WizCanvasView *)view
 	size:(GLint)sizep type:(GLenum)typep name:(NSString *)namep
 {
 	id native = [[self alloc] initWithSize:sizep type:typep name:namep];
@@ -174,7 +174,7 @@ EJ_BIND_GET(rangeMax, ctx) { return JSValueMakeNumber(ctx, rangeMax); }
 EJ_BIND_GET(precision, ctx) { return JSValueMakeNumber(ctx, precision); }
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)view
+	scriptView:(WizCanvasView *)view
 	rangeMin:(GLint)rangeMin rangeMax:(GLint)rangeMax precision:(GLint)precision
 {
 	id native = [[self alloc] initWithRangeMin:rangeMin rangeMax:rangeMax precision:precision];

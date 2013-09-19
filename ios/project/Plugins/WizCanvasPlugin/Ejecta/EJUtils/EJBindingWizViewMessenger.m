@@ -1,50 +1,54 @@
-#import <JavaScriptCore/JSTypedArray.h>
-#import "EJBindingWindowEvents.h"
-#import "WizCanvasView.h"
+//
+// Created by Ally on 9/18/13.
+//
+// To change the template use AppCode | Preferences | File Templates.
+//
 
-@implementation EJBindingWindowEvents
+
+#import <JavaScriptCore/JSTypedArray.h>
+#import "EJBindingWizViewMessenger.h"
+
+
+@implementation EJBindingWizViewMessenger {
+
+}
 
 - (id)initWithContext:(JSContextRef)ctx argc:(size_t)argc argv:(const JSValueRef [])argv {
     if (self = [super initWithContext:ctx argc:argc argv:argv]) {
+        if( argc > 0 ) {
+            // Get args
+            // example = [JSValueToNSString(ctx, argv[0]) retain];
+        } else {
+
+        }
+
         jsDataObject = JSObjectMake(ctx, NULL, NULL);
         JSValueProtect(ctx, jsObject);
-        // Create the name of the object we will send back in the message event
+        // Create the name of the object we will send back
         jsDataName = JSStringCreateWithUTF8CString("data");
     }
     return self;
 }
 
 - (void)createWithJSObject:(JSObjectRef)obj scriptView:(WizCanvasView *)view {
-	[super createWithJSObject:obj scriptView:view];
-	scriptView.windowEventsDelegate = self;
-}
-
-- (void)pause {
-	[self triggerEvent:@"pagehide"];
-}
-
-- (void)resume {
-	[self triggerEvent:@"pageshow"];
-}
-
-- (void)resize {
-	[self triggerEvent:@"resize"];
+    [super createWithJSObject:obj scriptView:view];
+    scriptView.windowEventsDelegate = self;
 }
 
 - (void)message:(id)message {
-    NSLog(@"message me: %@", message);
 
-    // A fake post message event
     JSValueRef jsMessage = NULL;
     JSContextRef ctx = scriptView.jsGlobalContext;
 
     // String?
-    if ( [message isKindOfClass:[NSString class]] ) {
-        NSLog(@"jsDataObject: %@", jsDataObject);
+    if( [message isKindOfClass:[NSString class]] ){
         jsMessage = NSStringToJSValue(ctx, message);
-    } else if ( [message isKindOfClass:[NSData class]] ) {
-        // TypedArray
+    }
+
+    // TypedArray
+    else if( [message isKindOfClass:[NSData class]] ) {
         NSData *data = (NSData *)message;
+
 
         if ( binaryType == kJSTypedArrayTypeArrayBuffer ) {
             jsMessage = JSTypedArrayMake(ctx, kJSTypedArrayTypeArrayBuffer, data.length);
@@ -60,9 +64,6 @@
 
 }
 
-EJ_BIND_EVENT(pagehide);
-EJ_BIND_EVENT(pageshow);
-EJ_BIND_EVENT(resize);
 EJ_BIND_EVENT(message);
 
 @end

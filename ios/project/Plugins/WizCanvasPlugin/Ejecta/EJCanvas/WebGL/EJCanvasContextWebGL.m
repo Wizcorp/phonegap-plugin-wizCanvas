@@ -99,6 +99,7 @@
 		glview = [[EAGLView alloc] initWithFrame:frame contentScale:contentScale retainedBacking:YES];
 		
 		// Append the OpenGL view to Ejecta's main view
+        // Modification for WizCanvasView
 		[scriptView.view addSubview:glview];
 	}
 	else {
@@ -126,8 +127,8 @@
 	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderBuffer);
 	
 	// Clear
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, width, height);
+	[self clear];
 	
 	// Reset to the previously bound frame and renderbuffers
 	glBindFramebuffer(GL_FRAMEBUFFER, previousFrameBuffer);
@@ -178,6 +179,16 @@
 	if( boundTextureCube ) { glBindTexture(GL_TEXTURE_CUBE_MAP, boundTextureCube); }
 }
 
+- (void)clear {
+	GLfloat c[4];
+	glGetFloatv(GL_COLOR_CLEAR_VALUE, c);
+	
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
+	glClearColor(c[0], c[1], c[2], c[3]);
+}
+
 - (void)bindRenderbuffer {
 	glBindRenderbuffer(GL_RENDERBUFFER, viewRenderBuffer);
 }
@@ -187,12 +198,20 @@
 }
 
 - (void)setWidth:(short)newWidth {
-	if( newWidth == width ) { return; }
+	if( newWidth == width ) {
+		// Same width as before? Just clear the canvas, as per the spec
+		[self clear];
+		return;
+	}
 	[self resizeToWidth:newWidth height:height];
 }
 
 - (void)setHeight:(short)newHeight {
-	if( newHeight == height ) { return; }
+	if( newHeight == height ) {
+		// Same height as before? Just clear the canvas, as per the spec
+		[self clear];
+		return;
+	}
 	[self resizeToWidth:width height:newHeight];
 }
 

@@ -1,5 +1,4 @@
 #import "EJBindingImage.h"
-#import "WizCanvasView.h"
 #import "EJNonRetainingProxy.h"
 
 @implementation EJBindingImage
@@ -47,7 +46,7 @@
 	[loadCallback release];
 	loadCallback = nil;
 	
-	[self triggerEvent:(texture.textureId ? @"load" : @"error") argc:0 argv:NULL];		
+	[self triggerEvent:(texture.textureId ? @"load" : @"error")];
 	JSValueUnprotect(scriptView.jsGlobalContext, jsObject);
 }
 
@@ -78,7 +77,7 @@ EJ_BIND_SET(src, ctx, value) {
 		texture = nil;
 	}
 	
-	if( [newPath length] ) {
+	if( !JSValueIsNull(ctx, value) && [newPath length] ) {
 		path = [newPath retain];
 		[self beginLoad];
 	}

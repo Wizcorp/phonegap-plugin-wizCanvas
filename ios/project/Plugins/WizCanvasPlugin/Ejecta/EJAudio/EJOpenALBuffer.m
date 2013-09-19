@@ -2,7 +2,6 @@
 
 #import <AudioToolbox/AudioToolbox.h>
 #import <AudioToolbox/ExtendedAudioFile.h>
-// #import "EJAppViewController.h"
 #import "WizCanvasView.h"
 
 @implementation EJOpenALBuffer

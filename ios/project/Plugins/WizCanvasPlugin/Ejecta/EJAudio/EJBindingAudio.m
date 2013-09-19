@@ -24,7 +24,8 @@
 - (void)dealloc {
 	[loadCallback cancel];
 	[loadCallback release];
-
+	
+	source.delegate = nil;
 	[source release];
 	[path release];
 	[super dealloc];
@@ -100,15 +101,15 @@
 	}
 	
 	loading = NO;
-	[self triggerEvent:@"canplaythrough" argc:0 argv:NULL];
-	[self triggerEvent:@"loadedmetadata" argc:0 argv:NULL];
+	[self triggerEvent:@"canplaythrough"];
+	[self triggerEvent:@"loadedmetadata"];
 	
 	JSValueUnprotectSafe(scriptView.jsGlobalContext, jsObject);
 }
 
 - (void)sourceDidFinishPlaying:(NSObject<EJAudioSource> *)source {
 	ended = true;
-	[self triggerEvent:@"ended" argc:0 argv:NULL];
+	[self triggerEvent:@"ended"];
 }
 
 - (void)setPreload:(EJAudioPreload)preloadp {

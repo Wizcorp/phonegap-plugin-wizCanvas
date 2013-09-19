@@ -23,7 +23,7 @@ typedef struct {
 	JSObjectRef jsCubeMap;
 } EJCanvasContextTextureUnit;
 
-@class EJJavaScriptView;
+@class WizCanvasView;
 @interface EJBindingCanvasContextWebGL : EJBindingBase {
 	
 	BOOL unpackFlipY;

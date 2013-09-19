@@ -12,7 +12,7 @@
 	
 	GLint bufferWidth, bufferHeight;
 	EAGLView *glview;
-	WizCanvasView *scriptView;
+    WizCanvasView *scriptView;
 	
 	float backingStoreRatio;
 	BOOL useRetinaResolution;
@@ -27,6 +27,7 @@
 - (void)finish;
 - (void)create;
 - (void)prepare;
+- (void)clear;
 
 @property (nonatomic) CGRect style;
 

@@ -1,5 +1,4 @@
 #import "EJCanvasGradient.h"
-// #import "EJAppViewController.h"
 
 @implementation EJCanvasGradient
 

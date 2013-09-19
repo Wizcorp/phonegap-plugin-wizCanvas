@@ -87,7 +87,6 @@
 		41CF5EA7178D06CF00001BC8 /* EJNonRetainingProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E38178D06CF00001BC8 /* EJNonRetainingProxy.m */; };
 		41CF5EA8178D06CF00001BC8 /* EJSharedOpenGLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E3A178D06CF00001BC8 /* EJSharedOpenGLContext.m */; };
 		41CF5EA9178D06CF00001BC8 /* EJTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E3C178D06CF00001BC8 /* EJTimer.m */; };
-		41CF5EAA178D06CF00001BC8 /* EJBindingAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E3F178D06CF00001BC8 /* EJBindingAccelerometer.m */; };
 		41CF5EAB178D06CF00001BC8 /* EJBindingAdBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E41178D06CF00001BC8 /* EJBindingAdBanner.m */; };
 		41CF5EAC178D06CF00001BC8 /* EJBindingDeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E43178D06CF00001BC8 /* EJBindingDeviceMotion.m */; };
 		41CF5EAD178D06CF00001BC8 /* EJBindingGameCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E45178D06CF00001BC8 /* EJBindingGameCenter.m */; };
@@ -263,8 +262,6 @@
 		41CF5E3A178D06CF00001BC8 /* EJSharedOpenGLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJSharedOpenGLContext.m; sourceTree = "<group>"; };
 		41CF5E3B178D06CF00001BC8 /* EJTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJTimer.h; sourceTree = "<group>"; };
 		41CF5E3C178D06CF00001BC8 /* EJTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJTimer.m; sourceTree = "<group>"; };
-		41CF5E3E178D06CF00001BC8 /* EJBindingAccelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingAccelerometer.h; sourceTree = "<group>"; };
-		41CF5E3F178D06CF00001BC8 /* EJBindingAccelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingAccelerometer.m; sourceTree = "<group>"; };
 		41CF5E40178D06CF00001BC8 /* EJBindingAdBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingAdBanner.h; sourceTree = "<group>"; };
 		41CF5E41178D06CF00001BC8 /* EJBindingAdBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingAdBanner.m; sourceTree = "<group>"; };
 		41CF5E42178D06CF00001BC8 /* EJBindingDeviceMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingDeviceMotion.h; sourceTree = "<group>"; };
@@ -690,8 +687,6 @@
 		41CF5E3D178D06CF00001BC8 /* EJUtils */ = {
 			isa = PBXGroup;
 			children = (
-				41CF5E3E178D06CF00001BC8 /* EJBindingAccelerometer.h */,
-				41CF5E3F178D06CF00001BC8 /* EJBindingAccelerometer.m */,
 				41CF5E40178D06CF00001BC8 /* EJBindingAdBanner.h */,
 				41CF5E41178D06CF00001BC8 /* EJBindingAdBanner.m */,
 				41CF5E42178D06CF00001BC8 /* EJBindingDeviceMotion.h */,
@@ -943,7 +938,6 @@
 				41CF5EA7178D06CF00001BC8 /* EJNonRetainingProxy.m in Sources */,
 				41CF5EA8178D06CF00001BC8 /* EJSharedOpenGLContext.m in Sources */,
 				41CF5EA9178D06CF00001BC8 /* EJTimer.m in Sources */,
-				41CF5EAA178D06CF00001BC8 /* EJBindingAccelerometer.m in Sources */,
 				41CF5EAB178D06CF00001BC8 /* EJBindingAdBanner.m in Sources */,
 				41CF5EAC178D06CF00001BC8 /* EJBindingDeviceMotion.m in Sources */,
 				41CF5EAD178D06CF00001BC8 /* EJBindingGameCenter.m in Sources */,

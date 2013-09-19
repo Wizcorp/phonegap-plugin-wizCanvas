@@ -28,7 +28,7 @@ const int EJWebGLExtensionsCount = sizeof(EJWebGLExtensions) / sizeof(EJWebGLExt
 }
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)view
+	scriptView:(WizCanvasView *)view
 	webglContext:(EJBindingCanvasContextWebGL *)webglContext
 {
 	id native = [[self alloc] initWithWebGLContext:webglContext];

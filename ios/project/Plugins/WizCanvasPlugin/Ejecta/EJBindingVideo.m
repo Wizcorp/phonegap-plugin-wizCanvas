@@ -135,19 +135,19 @@ EJ_BIND_SET(src, ctx, value) {
 - (void)preparedToPlayChange:(MPMoviePlayerController *)moviePlayer {
 	if( player.isPreparedToPlay && !loaded ) {
 		loaded = YES;
-		[self triggerEvent:@"canplaythrough" argc:0 argv:NULL];
-		[self triggerEvent:@"loadedmetadata" argc:0 argv:NULL];
+		[self triggerEvent:@"canplaythrough"];
+		[self triggerEvent:@"loadedmetadata"];
 	}
 }
 
 - (void)didTap:(UIGestureRecognizer *)gestureRecognizer {
-	[self triggerEvent:@"click" argc:0 argv:NULL];
+	[self triggerEvent:@"click"];
 }
 
 - (void)didFinish:(MPMoviePlayerController *)moviePlayer {
 	player.fullscreen = NO;
 	[player.view removeFromSuperview];
-	[self triggerEvent:@"ended" argc:0 argv:NULL];
+	[self triggerEvent:@"ended"];
 }
 
 EJ_BIND_GET(ended, ctx) {
@@ -163,9 +163,15 @@ EJ_BIND_FUNCTION(play, ctx, argc, argv) {
 		// Already playing. Nothing to do here.
 		return NULL;
 	}
-	
-	player.view.frame = scriptView.view.bounds;
-	[scriptView.view addSubview:player.view];
+
+    // Modification for WizCanvasView
+
+	// player.view.frame = scriptView.bounds;
+	// [scriptView addSubview:player.view];
+
+    player.view.frame = scriptView.view.bounds;
+    [scriptView.view addSubview:player.view];
+
 	player.scalingMode = EJVideoToMPMovieScalingMode[scalingMode];
 	player.controlStyle = showControls ? MPMovieControlStyleEmbedded : MPMovieControlStyleNone;
 	[player play];

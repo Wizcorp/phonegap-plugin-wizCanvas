@@ -81,6 +81,7 @@
 		glview = [[EAGLView alloc] initWithFrame:frame contentScale:contentScale retainedBacking:YES];
 		
 		// Append the OpenGL view to Ejecta's main view
+        // Modification for WizCanvasView
 		[scriptView.view addSubview:glview];
 	}
 	else {

@@ -1,17 +1,14 @@
 /* WizCanvasView - Setup and deploy an Ejecta canvas.
  *
  * @author Ally Ogilvie 
- * @copyright WizCorp Inc. [ Incorporated Wizards ] 2012
+ * @copyright WizCorp Inc. [ Incorporated Wizards ] 2013
  * @file WizCanvasView.m for PhoneGap
  *
  */ 
 
 #import "WizCanvasView.h"
 #import "EJTimer.h"
-#import "EJBindingBase.h"
 #import "EJClassLoader.h"
-#import "EJBindingTouchInput.h"
-#import <objc/runtime.h>
 
 
 // Block function callbacks
@@ -214,6 +211,7 @@ static WizCanvasView * ejectaInstance = NULL;
 
     [openGLContext release];
     [appFolder release];
+    [proxy release];
     [super dealloc];
 }
 
@@ -311,6 +309,7 @@ static WizCanvasView * ejectaInstance = NULL;
 
 
 - (void)pause {
+    NSLog(@"pause");
     if( isPaused ) { return; }
 
     [windowEventsDelegate pause];
@@ -329,6 +328,7 @@ static WizCanvasView * ejectaInstance = NULL;
 }
 
 - (void)message:(id)message {
+    NSLog(@"sending message to Events Delegate...");
     [windowEventsDelegate message:message];
 }
 

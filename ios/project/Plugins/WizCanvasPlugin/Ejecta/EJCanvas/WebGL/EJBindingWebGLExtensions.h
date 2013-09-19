@@ -18,7 +18,7 @@ extern const int EJWebGLExtensionsCount;
 - (id)initWithWebGLContext:(EJBindingCanvasContextWebGL *)webglContext;
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)view
+	scriptView:(WizCanvasView *)view
 	webglContext:(EJBindingCanvasContextWebGL *)webglContext;
 
 @end

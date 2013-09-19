@@ -1,8 +1,8 @@
-/* WizWebView - Creates Instance of wizard UIWebView.
+/* WizCanvasView - Setup and deploy an Ejecta canvas.
  *
  * @author WizCorp Inc. [ Incorporated Wizards ] 
- * @copyright 2011
- * @file WizWebView.h for PhoneGap
+ * @copyright 2013
+ * @file WizCanvasView.h for PhoneGap
  *
  */ 
 
@@ -22,7 +22,7 @@
 #import "EJSharedOpenGLContext.h"
 #import "EJNonRetainingProxy.h"
 
-#define EJECTA_VERSION @"1.3"
+#define EJECTA_VERSION @"1.4"
 #define EJECTA_APP_FOLDER @"www/"
 
 #define EJECTA_BOOT_JS @"phonegap/plugin/wizCanvas/ejecta.js"

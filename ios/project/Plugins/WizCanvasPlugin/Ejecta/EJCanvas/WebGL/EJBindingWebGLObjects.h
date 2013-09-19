@@ -9,7 +9,7 @@
 - (id)initWithWebGLContext:(EJBindingCanvasContextWebGL *)webglContext index:(GLuint)index;
 + (GLuint)indexFromJSValue:(JSValueRef)value;
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)scriptView
+	scriptView:(WizCanvasView *)scriptView
 	webglContext:(EJBindingCanvasContextWebGL *)webglContext
 	index:(GLuint)index;
 @end
@@ -32,7 +32,7 @@
 }
 + (EJTexture *)textureFromJSValue:(JSValueRef)value;
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)scriptView
+	scriptView:(WizCanvasView *)scriptView
 	webglContext:(EJBindingCanvasContextWebGL *)webglContext;
 @end
 
@@ -58,7 +58,7 @@
 }
 - (id)initWithSize:(GLint)sizep type:(GLenum)typep name:(NSString *)namep;
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)scriptView
+	scriptView:(WizCanvasView *)scriptView
 	size:(GLint)sizep type:(GLenum)typep name:(NSString *)namep;
 @end
 
@@ -70,7 +70,7 @@
 }
 - (id)initWithRangeMin:(GLint)rangeMin rangeMax:(GLint)rangeMax precision:(GLint)precision;
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-	scriptView:(EJJavaScriptView *)scriptView
+	scriptView:(WizCanvasView *)scriptView
 	rangeMin:(GLint)rangeMin rangeMax:(GLint)rangeMax precision:(GLint)precision;
 @end
 

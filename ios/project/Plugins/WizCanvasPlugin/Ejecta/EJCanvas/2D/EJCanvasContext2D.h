@@ -128,8 +128,8 @@ static inline EJColorRGBA EJCanvasBlendStrokeColor( EJCanvasState *state ) {
 	float backingStoreRatio;
 	
 	NSCache *fontCache;
-	
-	WizCanvasView *scriptView;
+
+    WizCanvasView *scriptView;
 	EJGLProgram2D *currentProgram;
 	EJSharedOpenGLContext *sharedGLContext;
 }

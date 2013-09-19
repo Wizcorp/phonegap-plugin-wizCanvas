@@ -6,6 +6,7 @@
 
 // Make 'window' the global scope
 self = window = this;
+window.top = window.parent = window;
 
 (function(window) {
 
@@ -23,12 +24,17 @@ window.screen = {
 };
 
 window.navigator = {
+	language: ej.language,
 	userAgent: ej.userAgent,
-	appVersion: ej.appVersion
+	appVersion: ej.appVersion,
+	platform: ej.platform,
+	get onLine() { return ej.onLine; } // re-evaluate on each get
 };
 
 // Create the default screen canvas
 window.canvas = new Ejecta.Canvas();
+window.canvas.type = 'canvas';
+window.canvas.style = {};
 
 // The console object
 window.console = {
@@ -51,27 +57,47 @@ window.console.debug =
 	window.console.error =
 	window.console.log;
 
-console.log("Width " + window.screen.availWidth + " height " + window.screen.availHeight);
+// CommonJS style require()
+var loadedModules = {};
+window.require = function( name ) {
+	var id = name.replace(/\.js$/,'');
+	if( !loadedModules[id] ) {
+		var exports = {};
+		var module = { id: id, uri: id + '.js', exports: exports };
+		ejecta.requireModule( id, module, exports );
+		// Some modules override module.exports, so use the module.exports reference only after loading the module
+		loadedModules[id] = module.exports;
+	}
+	
+	return loadedModules[id];
+};
 
 // Timers
+window.performance = {now: function() {return ej.performanceNow();} };
 window.setTimeout = function(cb, t){ return ej.setTimeout(cb, t); };
 window.setInterval = function(cb, t){ return ej.setInterval(cb, t); };
 window.clearTimeout = function(id){ return ej.clearTimeout(id); };
 window.clearInterval = function(id){ return ej.clearInterval(id); };
-window.requestAnimationFrame = function(cb, element){ return ej.setTimeout(cb, 16); };
+window.requestAnimationFrame = function(cb, element){
+	return ej.setTimeout(function(){ cb(ej.performanceNow()); }, 16);
+};
+
 
 
 // The native Image, Audio, HttpRequest and LocalStorage class mimic the real elements
 window.Image = Ejecta.Image;
 window.Audio = Ejecta.Audio;
+window.Video = Ejecta.Video;
 window.XMLHttpRequest = Ejecta.HttpRequest;
 window.localStorage = new Ejecta.LocalStorage();
+window.WebSocket = Ejecta.WebSocket;
 
 
 // Set up a "fake" HTMLElement
 HTMLElement = function( tagName ){ 
 	this.tagName = tagName;
 	this.children = [];
+	this.style = {};
 };
 
 HTMLElement.prototype.appendChild = function( element ) {
@@ -80,7 +106,7 @@ HTMLElement.prototype.appendChild = function( element ) {
 	// If the child is a script element, begin to load it
 	if( element.tagName == 'script' ) {
 		ej.setTimeout( function(){
-			ej.require( element.src );
+			ej.include( element.src );
 			if( element.onload ) {
 				element.onload();
 			}
@@ -100,14 +126,23 @@ window.document = {
 	
 	createElement: function( name ) {
 		if( name === 'canvas' ) {
-			return new Ejecta.Canvas();
+			var canvas = new Ejecta.Canvas();
+			canvas.type = 'canvas';
+			canvas.style = {};
+			return canvas;
 		}
 		else if( name == 'audio' ) {
 			return new Ejecta.Audio();
 		}
+		else if( name == 'video' ) {
+			return new Ejecta.Video();
+		}
 		else if( name === 'img' ) {
 			return new window.Image();
 		}
+		else if (name === 'input' || name === 'textarea') {
+  			return new Ejecta.KeyInput();
+ 		}
 		return new HTMLElement( name );
 	},
 	
@@ -157,8 +192,8 @@ window.document = {
 	},
 	
 	_eventInitializers: {},
-	_publishEvent: function( type, event ) {
-		var listeners = this.events[ type ];
+	dispatchEvent: function( event ) {
+		var listeners = this.events[ event.type ];
 		if( !listeners ) { return; }
 		
 		for( var i = 0; i < listeners.length; i++ ) {
@@ -173,9 +208,14 @@ window.canvas.removeEventListener = window.removeEventListener = function( type,
 	window.document.removeEventListener(type,callback); 
 };
 
+var eventInit = document._eventInitializers;
+
 
 
 // Touch events
+
+// Set touch event properties for feature detection
+window.ontouchstart = window.ontouchend = window.ontouchmove = null;
 
 // Setting up the 'event' object for touch events in native code is quite
 // a bit of work, so instead we do it here in JavaScript and have the native
@@ -191,50 +231,132 @@ var touchEvent = {
 	stopPropagation: function(){}
 };
 
-var publishTouchEvent = function( type, all, changed ) {
+var dispatchTouchEvent = function( type, all, changed ) {
 	touchEvent.touches = all;
 	touchEvent.targetTouches = all;
 	touchEvent.changedTouches = changed;
 	touchEvent.type = type;
 	
-	document._publishEvent( type, touchEvent );
+	document.dispatchEvent( touchEvent );
 };
-window.document._eventInitializers.touchstart =
-	window.document._eventInitializers.touchend =
-	window.document._eventInitializers.touchmove = function() {
-	if( !touchInput ) {
-		touchInput = new Ejecta.TouchInput();
-		touchInput.ontouchstart = function( all, changed ){ publishTouchEvent( 'touchstart', all, changed ); };
-		touchInput.ontouchend = function( all, changed ){ publishTouchEvent( 'touchend', all, changed ); };
-		touchInput.ontouchmove = function( all, changed ){ publishTouchEvent( 'touchmove', all, changed ); };
-	}
+eventInit.touchstart = eventInit.touchend = eventInit.touchmove = function() {
+	if( touchInput ) { return; }
+
+	touchInput = new Ejecta.TouchInput();
+	touchInput.ontouchstart = function( all, changed ){ dispatchTouchEvent( 'touchstart', all, changed ); };
+	touchInput.ontouchend = function( all, changed ){ dispatchTouchEvent( 'touchend', all, changed ); };
+	touchInput.ontouchmove = function( all, changed ){ dispatchTouchEvent( 'touchmove', all, changed ); };
 };
 
 
 
-// Devicemotion events
+// DeviceMotion and DeviceOrientation events
 
-var accelerometer = null;
+var deviceMotion = null;
 var deviceMotionEvent = {
 	type: 'devicemotion', 
-	target: {type:'canvas'},
+	target: canvas,
+	interval: 16,
 	acceleration: {x: 0, y: 0, z: 0},
 	accelerationIncludingGravity: {x: 0, y: 0, z: 0},
+	rotationRate: {alpha: 0, beta: 0, gamma: 0},
 	preventDefault: function(){},
 	stopPropagation: function(){}
 };
 
-window.document._eventInitializers.devicemotion = function() {
-	if( !accelerometer ) {
-		accelerometer = new Ejecta.Accelerometer();
-		accelerometer.ondevicemotion = function( x, y, z ){
-			deviceMotionEvent.accelerationIncludingGravity.x = x;
-			deviceMotionEvent.accelerationIncludingGravity.y = y;
-			deviceMotionEvent.accelerationIncludingGravity.z = z;
-			document._publishEvent( 'devicemotion', deviceMotionEvent );
-		};
+var deviceOrientationEvent = {
+	type: 'deviceorientation', 
+	target: canvas,
+	alpha: null,
+	beta: null,
+	gamma: null,
+	absolute: true,
+	preventDefault: function(){},
+	stopPropagation: function(){}
+};
+
+eventInit.deviceorientation = eventInit.devicemotion = function() {
+	if( deviceMotion ) { return; }
+	
+	deviceMotion = new Ejecta.DeviceMotion();
+	deviceMotionEvent.interval = deviceMotion.interval;
+	
+	// Callback for Devices that have a Gyro
+	deviceMotion.ondevicemotion = function( agx, agy, agz, ax, ay, az, rx, ry, rz, ox, oy, oz ) {
+		deviceMotionEvent.accelerationIncludingGravity.x = agx;
+		deviceMotionEvent.accelerationIncludingGravity.y = agy;
+		deviceMotionEvent.accelerationIncludingGravity.z = agz;
+	
+		deviceMotionEvent.acceleration.x = ax;
+		deviceMotionEvent.acceleration.y = ay;
+		deviceMotionEvent.acceleration.z = az;
+
+		deviceMotionEvent.rotationRate.alpha = rx;
+		deviceMotionEvent.rotationRate.beta = ry;
+		deviceMotionEvent.rotationRate.gamma = rz;
+
+		document.dispatchEvent( deviceMotionEvent );
+
+
+		deviceOrientationEvent.alpha = ox;
+		deviceOrientationEvent.beta = oy;
+		deviceOrientationEvent.gamma = oz;
+
+		document.dispatchEvent( deviceOrientationEvent );
+	};
+	
+	// Callback for Devices that only have an accelerometer
+	deviceMotion.onacceleration = function( agx, agy, agz ) {
+		deviceMotionEvent.accelerationIncludingGravity.x = agx;
+		deviceMotionEvent.accelerationIncludingGravity.y = agy;
+		deviceMotionEvent.accelerationIncludingGravity.z = agz;
+	
+		deviceMotionEvent.acceleration = null;
+		deviceMotionEvent.rotationRate = null;
+	
+		document.dispatchEvent( deviceMotionEvent );
 	}
 };
 
+
+
+// Window events (resize/pagehide/pageshow)
+
+var windowEvents = null;
+
+var lifecycleEvent = {
+	type: 'pagehide',
+	target: window.document,
+	preventDefault: function(){},
+	stopPropagation: function(){}
+};
+
+var resizeEvent = {
+	type: 'resize',
+	target: window,
+	preventDefault: function(){},
+	stopPropagation: function(){}
+};
+
+eventInit.pagehide = eventInit.pageshow = eventInit.resize = function() {
+	if( windowEvents ) { return; }
+	
+	windowEvents = new Ejecta.WindowEvents();
+	
+	windowEvents.onpagehide = function() {
+		lifecycleEvent.type = 'pagehide';
+		document.dispatchEvent( lifecycleEvent );
+	};
+	windowEvents.onpageshow = function() {
+		lifecycleEvent.type = 'pageshow';
+		document.dispatchEvent( lifecycleEvent );
+	};
+
+	windowEvents.onresize = function() {
+		window.innerWidth = ej.screenWidth;
+		window.innerHeight = ej.screenHeight;
+		document.dispatchEvent(resizeEvent);
+	};
+};
 
 })(this);
