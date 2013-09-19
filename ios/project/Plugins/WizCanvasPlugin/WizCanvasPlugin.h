@@ -43,11 +43,7 @@
  INTERNALS
  
  **/
-- (void)sendMessage:(NSString*)viewName withMessage:(NSString *)message;
-- (void)showWebView:(CDVInvokedUrlCommand *)command;
-- (void)showCanvasView:(CDVInvokedUrlCommand *)command;
-- (void)hideWebView:(CDVInvokedUrlCommand *)command;
-- (void)hideCanvasView:(CDVInvokedUrlCommand *)command;
+- (void)postMessage:(NSString *)targetView withMessage:(NSString *)message andMessageType:(NSString *)type fromView:(NSString *)originView;
 - (void)updateViewList;
 
 /**

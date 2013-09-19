@@ -11,6 +11,8 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1F2F135E4DA317EED60E6C87 /* EJBindingWizViewMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F1568499487E8346B6695 /* EJBindingWizViewMessenger.m */; };
+		1F2F1DFA2BE53E56C786DC09 /* EJBindingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F18D5B4F7B1507CAC45B7 /* EJBindingWebSocket.m */; };
 		1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDC13BBADB100FB74C0 /* Localizable.strings */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		301BF570109A69640062928A /* www in Resources */ = {isa = PBXBuildFile; fileRef = 301BF56E109A69640062928A /* www */; };
@@ -94,9 +96,7 @@
 		41CF5EAF178D06CF00001BC8 /* EJBindingKeyInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E49178D06CF00001BC8 /* EJBindingKeyInput.m */; };
 		41CF5EB0178D06CF00001BC8 /* EJBindingLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E4B178D06CF00001BC8 /* EJBindingLocalStorage.m */; };
 		41CF5EB1178D06CF00001BC8 /* EJBindingTouchInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E4D178D06CF00001BC8 /* EJBindingTouchInput.m */; };
-		41CF5EB2178D06CF00001BC8 /* EJBindingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E4F178D06CF00001BC8 /* EJBindingWebSocket.m */; };
 		41CF5EB3178D06CF00001BC8 /* EJBindingWindowEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E51178D06CF00001BC8 /* EJBindingWindowEvents.m */; };
-		41CF5EB4178D06CF00001BC8 /* EJBindingWizViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E53178D06CF00001BC8 /* EJBindingWizViewManager.m */; };
 		41CF5EB5178D06CF00001BC8 /* EJBindingIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E56178D06CF00001BC8 /* EJBindingIAPManager.m */; };
 		41CF5EB6178D06CF00001BC8 /* EJBindingIAPProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E58178D06CF00001BC8 /* EJBindingIAPProduct.m */; };
 		41CF5EB7178D06CF00001BC8 /* EJBindingIAPTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E5A178D06CF00001BC8 /* EJBindingIAPTransaction.m */; };
@@ -133,6 +133,10 @@
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* exampleWizViewManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exampleWizViewManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1F2F1568499487E8346B6695 /* EJBindingWizViewMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWizViewMessenger.m; sourceTree = "<group>"; };
+		1F2F18D5B4F7B1507CAC45B7 /* EJBindingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebSocket.m; sourceTree = "<group>"; };
+		1F2F19183C69045468E4175F /* EJBindingWizViewMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWizViewMessenger.h; sourceTree = "<group>"; };
+		1F2F1F2B3D6C0726F921D9C4 /* EJBindingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebSocket.h; sourceTree = "<group>"; };
 		1F766FDD13BBADB100FB74C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		1F766FE013BBADB100FB74C0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -276,12 +280,8 @@
 		41CF5E4B178D06CF00001BC8 /* EJBindingLocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingLocalStorage.m; sourceTree = "<group>"; };
 		41CF5E4C178D06CF00001BC8 /* EJBindingTouchInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingTouchInput.h; sourceTree = "<group>"; };
 		41CF5E4D178D06CF00001BC8 /* EJBindingTouchInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingTouchInput.m; sourceTree = "<group>"; };
-		41CF5E4E178D06CF00001BC8 /* EJBindingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebSocket.h; sourceTree = "<group>"; };
-		41CF5E4F178D06CF00001BC8 /* EJBindingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebSocket.m; sourceTree = "<group>"; };
 		41CF5E50178D06CF00001BC8 /* EJBindingWindowEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWindowEvents.h; sourceTree = "<group>"; };
 		41CF5E51178D06CF00001BC8 /* EJBindingWindowEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWindowEvents.m; sourceTree = "<group>"; };
-		41CF5E52178D06CF00001BC8 /* EJBindingWizViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWizViewManager.h; sourceTree = "<group>"; };
-		41CF5E53178D06CF00001BC8 /* EJBindingWizViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWizViewManager.m; sourceTree = "<group>"; };
 		41CF5E55178D06CF00001BC8 /* EJBindingIAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPManager.h; sourceTree = "<group>"; };
 		41CF5E56178D06CF00001BC8 /* EJBindingIAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingIAPManager.m; sourceTree = "<group>"; };
 		41CF5E57178D06CF00001BC8 /* EJBindingIAPProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPProduct.h; sourceTree = "<group>"; };
@@ -701,13 +701,13 @@
 				41CF5E4B178D06CF00001BC8 /* EJBindingLocalStorage.m */,
 				41CF5E4C178D06CF00001BC8 /* EJBindingTouchInput.h */,
 				41CF5E4D178D06CF00001BC8 /* EJBindingTouchInput.m */,
-				41CF5E4E178D06CF00001BC8 /* EJBindingWebSocket.h */,
-				41CF5E4F178D06CF00001BC8 /* EJBindingWebSocket.m */,
 				41CF5E50178D06CF00001BC8 /* EJBindingWindowEvents.h */,
 				41CF5E51178D06CF00001BC8 /* EJBindingWindowEvents.m */,
-				41CF5E52178D06CF00001BC8 /* EJBindingWizViewManager.h */,
-				41CF5E53178D06CF00001BC8 /* EJBindingWizViewManager.m */,
 				41CF5E54178D06CF00001BC8 /* IAP */,
+				1F2F1568499487E8346B6695 /* EJBindingWizViewMessenger.m */,
+				1F2F19183C69045468E4175F /* EJBindingWizViewMessenger.h */,
+				1F2F18D5B4F7B1507CAC45B7 /* EJBindingWebSocket.m */,
+				1F2F1F2B3D6C0726F921D9C4 /* EJBindingWebSocket.h */,
 			);
 			path = EJUtils;
 			sourceTree = "<group>";
@@ -945,9 +945,7 @@
 				41CF5EAF178D06CF00001BC8 /* EJBindingKeyInput.m in Sources */,
 				41CF5EB0178D06CF00001BC8 /* EJBindingLocalStorage.m in Sources */,
 				41CF5EB1178D06CF00001BC8 /* EJBindingTouchInput.m in Sources */,
-				41CF5EB2178D06CF00001BC8 /* EJBindingWebSocket.m in Sources */,
 				41CF5EB3178D06CF00001BC8 /* EJBindingWindowEvents.m in Sources */,
-				41CF5EB4178D06CF00001BC8 /* EJBindingWizViewManager.m in Sources */,
 				41CF5EB5178D06CF00001BC8 /* EJBindingIAPManager.m in Sources */,
 				41CF5EB6178D06CF00001BC8 /* EJBindingIAPProduct.m in Sources */,
 				41CF5EB7178D06CF00001BC8 /* EJBindingIAPTransaction.m in Sources */,
@@ -956,6 +954,8 @@
 				41CF5EBB178D06CF00001BC8 /* SRWebSocket.m in Sources */,
 				41CF5EBC178D06D000001BC8 /* WizCanvasView.m in Sources */,
 				41CF5EBD178D06D000001BC8 /* WizCanvasPlugin.m in Sources */,
+				1F2F135E4DA317EED60E6C87 /* EJBindingWizViewMessenger.m in Sources */,
+				1F2F1DFA2BE53E56C786DC09 /* EJBindingWebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

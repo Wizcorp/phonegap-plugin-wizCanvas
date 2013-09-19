@@ -415,8 +415,11 @@
            
     function messageCanvasView() {
         var params = { color: "blue :)" };
-        params = "string test";
-        // wizViewMessenger.message("newCanvas", JSON.stringify(params));
+        // params = "string test";
+        // params = true;
+        // params = 1;
+        // params = function () { console.log("I am a function"); };
+        // params = ["l", 3, 3, 7];
         wizViewMessenger.postMessage(params, "newCanvas");
     }
     
@@ -424,11 +427,8 @@
     
      
     function wizMessageReceiver(e) {
-        alert("Recieved message from " + e.origin);
-        var parsedData = JSON.parse(e.data);
-        if (parsedData.message) {
-            alert(parsedData.message);
-        }
+        alert("Sent a message and received a reply from " + e.origin);
+        alert(e.data);
     }
     
     window.addEventListener('message', handleMessageFromNewView, false);

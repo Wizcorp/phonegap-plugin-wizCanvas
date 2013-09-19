@@ -1,67 +1,147 @@
-//
-// Created by Ally on 9/18/13.
-//
-// To change the template use AppCode | Preferences | File Templates.
-//
-
-
 #import <JavaScriptCore/JSTypedArray.h>
 #import "EJBindingWizViewMessenger.h"
-
+#import "WizCanvasPlugin.h"
 
 @implementation EJBindingWizViewMessenger {
 
 }
 
-- (id)initWithContext:(JSContextRef)ctx argc:(size_t)argc argv:(const JSValueRef [])argv {
-    if (self = [super initWithContext:ctx argc:argc argv:argv]) {
+- (id)initWithContext:(JSContextRef)ctxp argc:(size_t)argc argv:(const JSValueRef [])argv {
+    NSLog(@"Creating WizViewMessenger for Ejecta");
+    if (self = [super initWithContext:ctxp argc:argc argv:argv]) {
         if( argc > 0 ) {
-            // Get args
-            // example = [JSValueToNSString(ctx, argv[0]) retain];
+            // Get viewName from constructor
+            viewName = [JSValueToNSString(ctxp, argv[0]) retain];
         } else {
 
         }
-
-        jsDataObject = JSObjectMake(ctx, NULL, NULL);
-        JSValueProtect(ctx, jsObject);
-        // Create the name of the object we will send back
-        jsDataName = JSStringCreateWithUTF8CString("data");
     }
     return self;
 }
 
-- (void)createWithJSObject:(JSObjectRef)obj scriptView:(WizCanvasView *)view {
-    [super createWithJSObject:obj scriptView:view];
-    scriptView.windowEventsDelegate = self;
+// For sending messages into Ejecta and dispatching 'message' event
+EJ_BIND_FUNCTION(__triggerMessageEvent, ctx, argc, argv) {
+    NSString *origin;
+    NSString *targetView;
+    NSString *data;
+    NSString *type;
+    if( argc > 3 ) {
+        // Get args
+        // 0: originView, 1: targetView, 2: postDataEscaped, 3:type
+
+        origin = [JSValueToNSString(ctx, argv[0]) retain];
+        targetView = [JSValueToNSString(ctx, argv[1]) retain];
+        data = [JSValueToNSString(ctx, argv[2]) retain];
+        type = [JSValueToNSString(ctx, argv[3]) retain];
+        NSLog(@"type: %@", type);
+    } else {
+        NSLog(@"WizViewMessenger for Ejecta - Error missing arguments in postMessage");
+        return NULL;
+    }
+
+    NSLog(@"Sending message into Ejecta");
+
+    if([type isEqualToString:@"Array"]) {
+        NSLog(@"Message as Array");
+        JSValueRef arrayData = JSValueMakeFromJSONString(ctx, JSStringCreateWithCFString((__bridge CFStringRef)data));
+        [self triggerEvent:@"message" properties:(JSEventProperty[]) {
+                {"data", arrayData},
+                {"origin", NSStringToJSValue(ctx, origin)},
+                {"source", JSValueMakeBoolean(ctx, targetView)},
+                {NULL, NULL},
+        }];
+
+    } else if( [type isEqualToString:@"String"] ) {
+        NSLog(@"Message as String");
+        [self triggerEvent:@"message" properties:(JSEventProperty[]) {
+                {"data", NSStringToJSValue(ctx, data)},
+                {"origin", NSStringToJSValue(ctx, origin)},
+                {"source", JSValueMakeBoolean(ctx, targetView)},
+                {NULL, NULL},
+        }];
+
+    } else if( [type isEqualToString:@"Number"] ) {
+        NSLog(@"Message as Number");
+        [self triggerEvent:@"message" properties:(JSEventProperty[]) {
+                {"data", JSValueMakeNumber(ctx, [data doubleValue])},
+                {"origin", NSStringToJSValue(ctx, origin)},
+                {"source", JSValueMakeBoolean(ctx, targetView)},
+                {NULL, NULL},
+        }];
+
+
+    } else if( [type isEqualToString:@"Boolean"] ) {
+        NSLog(@"Message as Boolean");
+        [self triggerEvent:@"message" properties:(JSEventProperty[]) {
+                {"data", JSValueMakeBoolean(ctx, data)},
+                {"origin", NSStringToJSValue(ctx, origin)},
+                {"source", JSValueMakeBoolean(ctx, targetView)},
+                {NULL, NULL},
+        }];
+
+    } else if( [type isEqualToString:@"Function"] ) {
+        NSLog(@"Message as Function");
+        // W3C says nothing about functions, will be returned as String type.
+        [self triggerEvent:@"message" properties:(JSEventProperty[]) {
+                {"data", NSStringToJSValue(ctx, data)},
+                {"origin", NSStringToJSValue(ctx, origin)},
+                {"source", JSValueMakeBoolean(ctx, targetView)},
+                {NULL, NULL},
+        }];
+
+    } else if( [type isEqualToString:@"Object"] ) {
+        NSLog(@"Message as Object");
+        JSValueRef objData = JSValueMakeFromJSONString(ctx, JSStringCreateWithCFString((__bridge CFStringRef) data));
+        [self triggerEvent:@"message" properties:(JSEventProperty[]) {
+                {"data", objData},
+                {"origin", NSStringToJSValue(ctx, origin)},
+                {"source", JSValueMakeBoolean(ctx, targetView)},
+                {NULL, NULL},
+        }];
+    }
+
+    return NULL;
 }
 
-- (void)message:(id)message {
+// For sending out messages
+EJ_BIND_FUNCTION(postMessage, ctx, argc, argv ) {
 
-    JSValueRef jsMessage = NULL;
-    JSContextRef ctx = scriptView.jsGlobalContext;
-
-    // String?
-    if( [message isKindOfClass:[NSString class]] ){
-        jsMessage = NSStringToJSValue(ctx, message);
+    NSLog(@"postMessage from Ejecta");
+    if( argc < 2 ) {
+        NSLog(@"WizViewMessenger Error : Not enough params supplied to wizViewMessenger.postMessage(<target>, <data>)");
+        return NULL;
     }
 
-    // TypedArray
-    else if( [message isKindOfClass:[NSData class]] ) {
-        NSData *data = (NSData *)message;
+    JSType *js_type = JSValueGetType(ctx, argv[0]);
 
-
-        if ( binaryType == kJSTypedArrayTypeArrayBuffer ) {
-            jsMessage = JSTypedArrayMake(ctx, kJSTypedArrayTypeArrayBuffer, data.length);
-            memcpy(JSTypedArrayGetDataPtr(ctx, jsMessage, NULL), data.bytes, data.length);
-        } else {
-            NSLog(@"WizViewMessenger Error: unsupported or unknown arrayType. Use 'arraybuffer' instead?");
-            return;
-        }
+    // Check raw data type
+    NSString *type;
+    if (js_type == kJSTypeBoolean) {
+        type = @"Boolean";
+    } else if (js_type == kJSTypeNumber) {
+        type = @"Number";
+    } else if (js_type == kJSTypeString) {
+        type = @"String";
+    } else if (js_type == kJSTypeObject) {
+        type = @"Object";
     }
 
-    JSObjectSetProperty(ctx, jsDataObject, jsDataName, jsMessage, kJSPropertyAttributeNone, NULL);
-    [self triggerEvent:@"message" argc:1 argv:(JSValueRef[]){ jsDataObject }];
+    NSString *message = (__bridge NSString *)JSValueCreateJSONString(ctx, argv[0], 0, NULL);
 
+    /*
+    // Escape the string as we pass it over
+    message = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+            NULL,
+            (CFStringRef)message,
+            NULL,
+            CFSTR("!*'();:@&=+$,/?%#[]"),
+            kCFStringEncodingUTF8);
+    */
+    NSString *targetName = JSValueToNSString( ctx, argv[1] );
+
+    WizCanvasPlugin *wizCanvasView = [WizCanvasPlugin instance];
+    [wizCanvasView postMessage:targetName withMessage:message andMessageType:type fromView:viewName];
+    return NULL;
 }
 
 EJ_BIND_EVENT(message);

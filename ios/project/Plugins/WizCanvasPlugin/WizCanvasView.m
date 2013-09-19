@@ -9,6 +9,7 @@
 #import "WizCanvasView.h"
 #import "EJTimer.h"
 #import "EJClassLoader.h"
+#import "EJBindingWizViewMessenger.h"
 
 
 // Block function callbacks
@@ -157,7 +158,7 @@ static WizCanvasView * ejectaInstance = NULL;
 	    [self loadScriptAtPath:EJECTA_BOOT_JS];
         
         // Load wizViewMessenger
-	    // [self loadScriptAtPath:WIZ_VIEW_MESSENGER_JS];
+	    [self evaluateScript:[NSString stringWithFormat:@"wizViewMessenger = new Ejecta.WizViewMessenger(\"%@\");", viewName]];
 
         // Additional boot file
         if (![src isEqualToString:@""]) {
@@ -327,11 +328,6 @@ static WizCanvasView * ejectaInstance = NULL;
     isPaused = false;
 }
 
-- (void)message:(id)message {
-    NSLog(@"sending message to Events Delegate...");
-    [windowEventsDelegate message:message];
-}
-
 - (void)clearCaches {
     JSGarbageCollect(jsGlobalContext);
 }
@@ -469,12 +465,6 @@ static WizCanvasView * ejectaInstance = NULL;
     JSStringRelease( jsLinePropertyName );
     JSStringRelease( jsFilePropertyName );
 }
-
-- (void)postMessage:(id)message {
-    NSLog(@"posting message");
-    [self message:message];
-}
-
 
 #pragma mark -
 #pragma mark Touch handlers

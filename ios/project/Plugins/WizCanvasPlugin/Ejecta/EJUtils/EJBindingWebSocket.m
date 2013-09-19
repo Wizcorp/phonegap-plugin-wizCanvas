@@ -4,6 +4,7 @@
 @implementation EJBindingWebSocket
 
 - (id)initWithContext:(JSContextRef)ctx argc:(size_t)argc argv:(const JSValueRef [])argv {
+    NSLog(@"init WebSocket Delegate");
 	if (self = [super initWithContext:ctx argc:argc argv:argv]) {
 		if( argc > 0 ) {
 			url = [JSValueToNSString(ctx, argv[0]) retain];
@@ -31,6 +32,7 @@
 }
 
 - (void)createWithJSObject:(JSObjectRef)obj scriptView:(WizCanvasView *)view {
+    NSLog(@"create WebSocket Delegate");
 	[super createWithJSObject:obj scriptView:view];
 	
 	if( readyState != kEJWebSocketReadyStateClosed ) {

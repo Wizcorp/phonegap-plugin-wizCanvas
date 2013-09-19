@@ -73,16 +73,14 @@ ctx.globalAlpha = 0.05;
 ctx.lineWidth = 2;
 setInterval( animate, 16 );
 
-// Old messaging system
 function wizMessageReceiver (e) {
     // Event data object comes in here 
-    console.log("Recieved message - " + e);   
-    var parsedData = JSON.parse(e);
-    if (parsedData.color) {
-        console.log(parsedData.color);
-    }
+    console.log("Message data - " + e.data.color);   
+    console.log("Message from - " + e.origin);
     
+    // wizViewMessenger.postMessage("reply", "mainView");
+    wizViewMessenger.postMessage({ message: "thanks!"}, "mainView");
 }
 
-document.addEventListener( 'message', wizMessageReceiver );
-window.addEventListener( 'message', wizMessageReceiver );
+wizViewMessenger.addEventListener( 'message', wizMessageReceiver );
+

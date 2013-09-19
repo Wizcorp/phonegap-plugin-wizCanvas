@@ -5,6 +5,7 @@
 @implementation EJBindingHttpRequest
 
 - (id)initWithContext:(JSContextRef)ctxp argc:(size_t)argc argv:(const JSValueRef [])argv {
+    NSLog(@"create HTTP Request");
 	if( self = [super initWithContext:ctxp argc:argc argv:argv] ) {
 		requestHeaders = [[NSMutableDictionary alloc] init];
 	}

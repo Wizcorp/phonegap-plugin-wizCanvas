@@ -26,8 +26,6 @@
 #define EJECTA_APP_FOLDER @"www/"
 
 #define EJECTA_BOOT_JS @"phonegap/plugin/wizCanvas/ejecta.js"
-#define WIZ_VIEW_MESSENGER_JS @"phonegap/plugin/wizViewMessenger/wizViewMessenger.js"
-#define EJECTA_MAIN_JS @"index.js"
 
 @protocol EJTouchDelegate
 - (void)triggerEvent:(NSString *)name all:(NSSet *)all changed:(NSSet *)changed remaining:(NSSet *)remaining;
@@ -41,7 +39,6 @@
 - (void)resume;
 - (void)pause;
 - (void)resize;
-- (void)message:(id)message;
 @end
 
 @class EJTimerCollection;
