@@ -126,19 +126,15 @@ EJ_BIND_FUNCTION(postMessage, ctx, argc, argv ) {
         type = @"Object";
     }
 
-    NSString *message = (__bridge NSString *)JSValueCreateJSONString(ctx, argv[0], 0, NULL);
+    // Stringify our data using JavaScriptCore
+    JSStringRef scriptJS = JSStringCreateWithUTF8CString("return JSON.stringify( arguments[0] )");
+    JSObjectRef fn = JSObjectMakeFunction(ctx, NULL, 0, NULL, scriptJS, NULL, 1, NULL);
+    JSValueRef result = JSObjectCallAsFunction(ctx, fn, NULL, 1, argv, NULL);
+    NSString *message = JSValueToNSString(ctx, result);
 
-    /*
-    // Escape the string as we pass it over
-    message = (NSString *)CFURLCreateStringByAddingPercentEscapes(
-            NULL,
-            (CFStringRef)message,
-            NULL,
-            CFSTR("!*'();:@&=+$,/?%#[]"),
-            kCFStringEncodingUTF8);
-    */
     NSString *targetName = JSValueToNSString( ctx, argv[1] );
 
+    // Send our message to the target view
     WizCanvasPlugin *wizCanvasView = [WizCanvasPlugin instance];
     [wizCanvasView postMessage:targetName withMessage:message andMessageType:type fromView:viewName];
     return NULL;

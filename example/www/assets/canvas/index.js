@@ -78,8 +78,8 @@ function wizMessageReceiver (e) {
     console.log("Message data - " + e.data.color);   
     console.log("Message from - " + e.origin);
     
-    // wizViewMessenger.postMessage("reply", "mainView");
-    wizViewMessenger.postMessage({ message: "thanks!"}, "mainView");
+    // Send back a message
+    wizViewMessenger.postMessage({ message: ["thanks", "dude"] }, "mainView");
 }
 
 wizViewMessenger.addEventListener( 'message', wizMessageReceiver );

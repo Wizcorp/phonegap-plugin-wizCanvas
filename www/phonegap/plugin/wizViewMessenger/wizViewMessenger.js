@@ -1,45 +1,15 @@
-/* WizViewMessenger for cordova - Handle Popup UIViews communtications.
+/* WizViewMessenger for cordova - Handle Cross Native Window Comms
  *
- * @author Chris Wynn
- * @copyright WizCorp Inc. [ Incorporated Wizards ] 2011
+ * @author Ally Ogilvie
+ * @copyright Wizcorp Inc. [ Incorporated Wizards ] 2013
  * @file - wizViewMessenger.js
  * @about - JavaScript for wizViewManager communications
  *
  *
  */
-/*
-// Helper
-if (typeof(CustomEvent) !== 'function') {
-	// polyfil the CustomEvent() constructor
-	console.log("polyfilling the CustomEvent() constructor");
-	(function () {
-		function CustomEvent ( event, params ) {
-			params = params || { bubbles: false, cancelable: false, detail: undefined };
-			var evt = document.createEvent( 'CustomEvent' );
-			evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
-			return evt;
-		};
-		
-		// CustomEvent.prototype = document.CustomEvent.prototype;
-		
-		window.CustomEvent = CustomEvent;
-	})();
-}
-    	*/
+
 var wizViewMessenger = {
-/*
-	message: function(targetView, message) { 
-		//
-		// Deprecated! Use postMessage event system
-		//
-		console.warn("wizViewMessenger.message is deprecated. Use postMessage instead.");
-		var iframe = document.createElement('IFRAME');
-		iframe.setAttribute('src', 'wizMessageView://'+ window.encodeURIComponent(targetView)+ '?'+ window.encodeURIComponent(message) );
-		document.documentElement.appendChild(iframe);
-		iframe.parentNode.removeChild(iframe);
-		iframe = null;
-    },
-*/
+
     postMessage: function(message, targetView) { 
     	// for more information on the MessageEvent API, see:
 		// http://www.w3.org/TR/2008/WD-html5-20080610/comms.HTMLElement
@@ -89,7 +59,7 @@ var wizViewMessenger = {
         } else if (type === "Boolean") {
 	        data = Boolean(data);
         } else if (type === "Function") {
-	        // w3c says nothing about functions, will be returned as string.
+	        // W3C says nothing about functions, will be returned as string.
         } else if (type === "Object") {
 	        data = JSON.parse(data);
         } else {

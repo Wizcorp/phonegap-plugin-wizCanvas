@@ -428,7 +428,7 @@
      
     function wizMessageReceiver(e) {
         alert("Sent a message and received a reply from " + e.origin);
-        alert(e.data);
+        alert(e.data.message[0]);
     }
     
     window.addEventListener('message', handleMessageFromNewView, false);
