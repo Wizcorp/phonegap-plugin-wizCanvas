@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
-		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1F2F135E4DA317EED60E6C87 /* EJBindingWizViewMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F1568499487E8346B6695 /* EJBindingWizViewMessenger.m */; };
@@ -39,6 +38,7 @@
 		308D05381370CCF300D202BF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D052F1370CCF300D202BF /* icon.png */; };
 		308D05391370CCF300D202BF /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D05301370CCF300D202BF /* icon@2x.png */; };
 		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		414DBF6717F94E9100DA3A50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		41CF5DD1178D008300001BC8 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5DD0178D008300001BC8 /* libstdc++.dylib */; };
 		41CF5E78178D06CF00001BC8 /* EJAudioSourceAVAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DD9178D06CF00001BC8 /* EJAudioSourceAVAudio.m */; };
 		41CF5E79178D06CF00001BC8 /* EJAudioSourceOpenAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DDB178D06CF00001BC8 /* EJAudioSourceOpenAL.m */; };
@@ -109,12 +109,6 @@
 		41CF5EC1178D0B3B00001BC8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5EC0178D0B3B00001BC8 /* Security.framework */; };
 		41CF5EC3178D0B6C00001BC8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5EC2178D0B6C00001BC8 /* StoreKit.framework */; };
 		41CF5EC5178D0B8700001BC8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5EC4178D0B8700001BC8 /* CoreMotion.framework */; };
-		41CF5EC7178D32E500001BC8 /* AlphaTexture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 41CF5E0E178D06CF00001BC8 /* AlphaTexture.fsh */; };
-		41CF5EC8178D32E500001BC8 /* Flat.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 41CF5E0F178D06CF00001BC8 /* Flat.fsh */; };
-		41CF5EC9178D32E500001BC8 /* Pattern.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 41CF5E10178D06CF00001BC8 /* Pattern.fsh */; };
-		41CF5ECA178D32E500001BC8 /* RadialGradient.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 41CF5E11178D06CF00001BC8 /* RadialGradient.fsh */; };
-		41CF5ECB178D32E500001BC8 /* Texture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 41CF5E12178D06CF00001BC8 /* Texture.fsh */; };
-		41CF5ECC178D32E500001BC8 /* Vertex.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 41CF5E13178D06CF00001BC8 /* Vertex.vsh */; };
 		41DC39FD17E30F7A00FB6416 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DC39FC17E30F7A00FB6416 /* Cordova.framework */; };
 		41DC39FF17E3107E00FB6416 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DC39FE17E3107E00FB6416 /* AssetsLibrary.framework */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
@@ -131,7 +125,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* exampleWizViewManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exampleWizViewManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* exampleWizCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exampleWizCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1F2F1568499487E8346B6695 /* EJBindingWizViewMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWizViewMessenger.m; sourceTree = "<group>"; };
 		1F2F18D5B4F7B1507CAC45B7 /* EJBindingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebSocket.m; sourceTree = "<group>"; };
@@ -140,7 +134,7 @@
 		1F766FDD13BBADB100FB74C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		1F766FE013BBADB100FB74C0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/example/ios/exampleWizCanvas/main.m"; sourceTree = "<absolute>"; };
 		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 		301BF5B4109A6A2B0062928A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		301BF5B6109A6A2B0062928A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
@@ -168,7 +162,7 @@
 		30A0434414DC770100060A13 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Localizable.strings; sourceTree = "<group>"; };
 		30A0434714DC770100060A13 /* se */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = se; path = Localizable.strings; sourceTree = "<group>"; };
 		30E5649113A7FCAF007403D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		32CA4F630368D1EE00C91783 /* exampleWizViewManager-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "exampleWizViewManager-Prefix.pch"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* exampleWizCanvas-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "exampleWizCanvas-Prefix.pch"; path = "../exampleWizCanvas/exampleWizCanvas-Prefix.pch"; sourceTree = "<group>"; };
 		41CF5DD0178D008300001BC8 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		41CF5DD7178D06CF00001BC8 /* EJAudioSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJAudioSource.h; sourceTree = "<group>"; };
 		41CF5DD8178D06CF00001BC8 /* EJAudioSourceAVAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJAudioSourceAVAudio.h; sourceTree = "<group>"; };
@@ -316,7 +310,7 @@
 		41CF5EC4178D0B8700001BC8 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		41DC39FC17E30F7A00FB6416 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cordova.framework; path = CordovaLib/Cordova.framework; sourceTree = "<group>"; };
 		41DC39FE17E3107E00FB6416 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		8D1107310486CEB800E47090 /* exampleWizViewManager-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "exampleWizViewManager-Info.plist"; path = "../exampleWizViewManager-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* exampleWizCanvas-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "exampleWizCanvas-Info.plist"; path = "../exampleWizCanvas-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		F6FA7CDE16AFDEC200AD8974 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		F6FA7CE016AFDEF000AD8974 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -324,7 +318,7 @@
 		F6FA7CE416AFDF1C00AD8974 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		F6FA7CE616AFDF6200AD8974 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		F6FA7CE816AFDFA300AD8974 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = exampleWizViewManager/config.xml; sourceTree = "<group>"; };
+		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = exampleWizCanvas/config.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,13 +369,13 @@
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 			);
 			name = Classes;
-			path = exampleWizViewManager/Classes;
+			path = exampleWizCanvas/Classes;
 			sourceTree = SOURCE_ROOT;
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* exampleWizViewManager.app */,
+				1D6058910D05DD3D006BFB54 /* exampleWizCanvas.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -420,7 +414,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* exampleWizViewManager-Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* exampleWizCanvas-Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -437,10 +431,10 @@
 				3072F99613A8081B00425683 /* Capture.bundle */,
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
-				8D1107310486CEB800E47090 /* exampleWizViewManager-Info.plist */,
+				8D1107310486CEB800E47090 /* exampleWizCanvas-Info.plist */,
 			);
 			name = Resources;
-			path = exampleWizViewManager/Resources;
+			path = exampleWizCanvas/Resources;
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -537,8 +531,8 @@
 				41CF5E74178D06CF00001BC8 /* WizCanvasPlugin.m */,
 			);
 			name = WizCanvasPlugin;
-			path = ../../../../ios/project/Plugins/WizCanvasPlugin;
-			sourceTree = "<group>";
+			path = "/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin";
+			sourceTree = "<absolute>";
 		};
 		41CF5DD3178D06CF00001BC8 /* Ejecta */ = {
 			isa = PBXGroup;
@@ -769,9 +763,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* exampleWizViewManager */ = {
+		1D6058900D05DD3D006BFB54 /* exampleWizCanvas */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "exampleWizViewManager" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "exampleWizCanvas" */;
 			buildPhases = (
 				F6FA7BE416AFD70C00AD8974 /* Copy content to www folder */,
 				304B58A110DAC018002A0835 /* Touch www folder */,
@@ -783,9 +777,9 @@
 			);
 			dependencies = (
 			);
-			name = exampleWizViewManager;
+			name = exampleWizCanvas;
 			productName = exampleWizViewManager;
-			productReference = 1D6058910D05DD3D006BFB54 /* exampleWizViewManager.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* exampleWizCanvas.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -796,7 +790,7 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "exampleWizViewManager" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "exampleWizCanvas" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -814,7 +808,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* exampleWizViewManager */,
+				1D6058900D05DD3D006BFB54 /* exampleWizCanvas */,
 			);
 		};
 /* End PBXProject section */
@@ -824,12 +818,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41CF5EC7178D32E500001BC8 /* AlphaTexture.fsh in Resources */,
-				41CF5EC8178D32E500001BC8 /* Flat.fsh in Resources */,
-				41CF5EC9178D32E500001BC8 /* Pattern.fsh in Resources */,
-				41CF5ECA178D32E500001BC8 /* RadialGradient.fsh in Resources */,
-				41CF5ECB178D32E500001BC8 /* Texture.fsh in Resources */,
-				41CF5ECC178D32E500001BC8 /* Vertex.vsh in Resources */,
 				F840E1F1165FE0F500CFE078 /* config.xml in Resources */,
 				301BF570109A69640062928A /* www in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
@@ -886,7 +874,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				414DBF6717F94E9100DA3A50 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				41CF5E78178D06CF00001BC8 /* EJAudioSourceAVAudio.m in Sources */,
@@ -1011,23 +999,23 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "exampleWizViewManager/exampleWizViewManager-Prefix.pch";
+				GCC_PREFIX_HEADER = "exampleWizCanvas/exampleWizCanvas-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUGGER=1";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizViewManagerPlugin/Ejecta",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizViewManager/ios/project/Plugins/WizViewManagerPlugin/lib",
+					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
+					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/lib",
 				);
-				INFOPLIST_FILE = "exampleWizViewManager/exampleWizViewManager-Info.plist";
+				INFOPLIST_FILE = "exampleWizCanvas/exampleWizCanvas-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(inherited)\"",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizViewManager/ios/project/Plugins/WizViewManagerPlugin/Ejecta",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizViewManager/ios/project/Plugins/WizViewManagerPlugin/lib",
+					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/Ejecta",
+					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/lib",
 				);
-				PRODUCT_NAME = exampleWizViewManager;
+				PRODUCT_NAME = exampleWizCanvas;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
 			};
@@ -1045,23 +1033,23 @@
 					"\"$(SRCROOT)/CordovaLib\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "exampleWizViewManager/exampleWizViewManager-Prefix.pch";
+				GCC_PREFIX_HEADER = "exampleWizCanvas/exampleWizCanvas-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUGGER=1";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizViewManagerPlugin/Ejecta",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizViewManager/ios/project/Plugins/WizViewManagerPlugin/lib",
+					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
+					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/lib",
 				);
-				INFOPLIST_FILE = "exampleWizViewManager/exampleWizViewManager-Info.plist";
+				INFOPLIST_FILE = "exampleWizCanvas/exampleWizCanvas-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(inherited)\"",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizViewManager/ios/project/Plugins/WizViewManagerPlugin/Ejecta",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizViewManager/ios/project/Plugins/WizViewManagerPlugin/lib",
+					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/Ejecta",
+					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/lib",
 				);
-				PRODUCT_NAME = exampleWizViewManager;
+				PRODUCT_NAME = exampleWizCanvas;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
 			};
@@ -1132,7 +1120,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "exampleWizViewManager" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "exampleWizCanvas" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -1141,7 +1129,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "exampleWizViewManager" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "exampleWizCanvas" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
