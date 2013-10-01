@@ -162,7 +162,16 @@ static WizCanvasView * ejectaInstance = NULL;
 
         // Additional boot file
         if (![src isEqualToString:@""]) {
-            [self loadScriptAtPath:src];
+            if ([self validateUrl:src]) {
+                if ([self loadRequest:src]) {
+                    NSLog(@"Loaded source");
+                    
+                } else {
+                    NSLog(@"FAILED to load source on create");
+                }
+            } else {
+                [self loadScriptAtPath:src];
+            }
         }
         
 	}
@@ -362,6 +371,24 @@ static WizCanvasView * ejectaInstance = NULL;
 #pragma mark -
 #pragma mark Script loading and execution
 
+- (BOOL)loadCommonScript:(NSString *)script withPath:(NSString *)path {
+	if( !script ) {
+		NSLog(@"Error: Can't Find Script %@", path );
+		return NO;
+	}
+    
+    JSStringRef scriptJS = JSStringCreateWithCFString((CFStringRef)script);
+	JSStringRef pathJS = JSStringCreateWithCFString((CFStringRef)path);
+    
+	JSValueRef exception = NULL;
+	JSEvaluateScript( jsGlobalContext, scriptJS, NULL, pathJS, 0, &exception );
+	[self logException:exception ctx:jsGlobalContext];
+    
+	JSStringRelease( scriptJS );
+    
+    return YES;
+}
+
 - (void)evaluateScript:(NSString *)script {
 
 	if( !script ) {
@@ -398,6 +425,22 @@ static WizCanvasView * ejectaInstance = NULL;
 	[self logException:exception ctx:jsGlobalContext];
     
 	JSStringRelease( scriptJS );
+}
+
+- (BOOL)loadRequest:(NSString *)url {
+	NSLog(@"Loading Script: %@", url );
+    
+    NSError *error;
+    NSData *urlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url] options:0 error:&error];
+    
+	if( !urlData ) {
+		NSLog(@"Error: Can't Find Script %@", url );
+		return NO;
+	}
+    
+    NSString *script = [NSString stringWithCString:[urlData bytes] encoding:NSUTF8StringEncoding];
+    
+    return [self loadCommonScript:script withPath:url];
 }
 
 - (JSValueRef)loadModuleWithId:(NSString *)moduleId module:(JSValueRef)module exports:(JSValueRef)exports {
@@ -526,6 +569,11 @@ static WizCanvasView * ejectaInstance = NULL;
     }
 
     return JSObjectMake( jsGlobalContext, jsBlockFunctionClass, (void *)Block_copy(block) );
+}
+
+- (BOOL)validateUrl:(NSString *)candidate {
+    NSString* lowerCased = [candidate lowercaseString];
+    return [lowerCased hasPrefix:@"http://"] || [lowerCased hasPrefix:@"https://"];
 }
 
 @end

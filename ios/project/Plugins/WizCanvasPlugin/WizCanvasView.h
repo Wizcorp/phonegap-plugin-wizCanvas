@@ -108,6 +108,7 @@
 - (id)initWithFrame:(CGRect)frame;
 - (id)initWithWindow:(UIView *)window name:(NSString*)viewName sourceToLoad:(NSString*)src;
 
+- (BOOL)loadRequest:(NSString *)url;
 - (void)loadScriptAtPath:(NSString *)path;
 - (JSValueRef)evaluateScript:(NSString *)script;
 - (JSValueRef)evaluateScript:(NSString *)script sourceURL:(NSString *)sourceURL;

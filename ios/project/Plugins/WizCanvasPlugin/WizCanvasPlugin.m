@@ -29,7 +29,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         
         self.webviewDelegate = theWebView.delegate;
         theWebView.delegate = self;
-        
+
         wizViewManagerInstance = self;
     }
     
@@ -416,7 +416,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
 
         } else {
             // Target already showing
-            WizLog(@"[WizViewManager] ******* target already shown! ");
+            WizLog(@"[WizCanvas] ******* target already shown! ");
             CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
             [self writeJavascript: [result toErrorCallbackString:command.callbackId]];
             // self.showViewCallbackId = nil;
@@ -459,10 +459,17 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
             WizCanvasView *canvasController = targetCanvasView.nextResponder;
             if ([self validateUrl:src]) {
                 // Source is url
-                WizLog(@"Load Error: source not compatible with type canvas view");
-                CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:
-                                           CDVCommandStatus_ERROR messageAsString:@"Load Error: source not compatible with type canvas view"];
-                [self writeJavascript: [pluginResult toErrorCallbackString:command.callbackId]];
+                if ([canvasController loadRequest:src]) {
+                    
+                    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+                    [self writeJavascript: [pluginResult toSuccessCallbackString:command.callbackId]];
+                    
+                } else {
+                    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:
+                                                     CDVCommandStatus_ERROR messageAsString:[NSString stringWithFormat:@"Error: Can't Find Script %@", src]];
+                    [self writeJavascript: [pluginResult toErrorCallbackString:command.callbackId]];
+                }
+             
             } else {
                 [canvasController loadScriptAtPath:src];
 
