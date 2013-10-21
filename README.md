@@ -45,7 +45,7 @@ Currently, only 1 canvas view can be created. View is hidden after creation.
 Options list;
 
 	{
-	    src: "my/local/script.js" [relative to www/assets/]
+	    src: "my/local/script.js" [relative to www/]
 	    height: 300, [accepts "300px", "30%" - default : fills height] 
 	    width: 300, [accepts "300px", "30%" - default : fills width] 
 	    x: 0,
