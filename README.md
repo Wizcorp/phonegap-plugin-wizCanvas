@@ -19,7 +19,7 @@ PhoneGap plugin for creating and manipulating native canvas without UIWebView fo
 	phonegap local plugin add https://github.com/Wizcorp/phonegap-plugin-wizSpinner
 	phonegap build ios
 
-## Additional Steps in Xcode
+### Additional Steps in Xcode
 
 In Xcode Build Settings, add the following 2 lines in the Header Path
 
