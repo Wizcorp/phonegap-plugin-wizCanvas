@@ -636,32 +636,26 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     if ([wizViewList objectForKey:targetView]) {
         // Found view send message
 
-        NSString* viewType = [self checkView:[wizViewList objectForKey:targetView]];
-        NSLog(@"Sending message");
+        NSString *viewType = [self checkView:[wizViewList objectForKey:targetView]];
+        NSLog(@"Sending message: %@ targetView: %@", viewType, targetView);
 
+        NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent( '%@', '%@', %@, '%@' );",
+                        originView,
+                        targetView,
+                        message,
+                        type];
+        
         if ([viewType isEqualToString:@"canvas"]) {
 
             UIView *targetCanvasView = [wizViewList objectForKey:targetView];
             WizCanvasView *canvasController = targetCanvasView.nextResponder;
-            // NSString *js = [NSString stringWithFormat:@"wizViewMessenger.__triggerMessageEvent( window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), '%@' );", originView, targetView, message, type];
-            NSString *js = [NSString stringWithFormat:@"wizViewMessenger.__triggerMessageEvent( '%@', '%@', %@, '%@' );", originView, targetView, message, type];
             [canvasController evaluateScript:js];
 
         } else if ([viewType isEqualToString:@"webview"]) {
             // Treat as UIWebView
             UIWebView *targetWebView = [wizViewList objectForKey:targetView];
-            // NSString *js = [NSString stringWithFormat:@"wizViewMessenger.__triggerMessageEvent( window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), '%@' );", originView, targetView, message, type];
-            NSString *js = [NSString stringWithFormat:@"wizViewMessenger.__triggerMessageEvent( '%@', '%@', '%@', '%@' );", originView, targetView, message, type];
             [targetWebView stringByEvaluatingJavaScriptFromString:js];
         }
-
-        // Escape the message
-        NSString *postDataEscaped = [message stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
-        
-        // Message canvas view
-        UIView *targetCanvasView = [wizViewList objectForKey:targetView];
-        WizCanvasView *canvasController = targetCanvasView.nextResponder;
-        [canvasController evaluateScript:[NSString stringWithFormat:@"wizMessageReceiver(window.decodeURIComponent('%@'));", postDataEscaped]];
 
     } else {
         NSLog(@"Error : Message failed! View not found!");
@@ -1260,7 +1254,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
 
             UIView *targetCanvasView = [viewList objectForKey:targetView];
             WizCanvasView *canvasController = targetCanvasView.nextResponder;
-            NSString *js = [NSString stringWithFormat:@"wizViewMessenger.__triggerMessageEvent( window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), '%@' );", originView, targetView, postDataEscaped, type];
+            NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent( window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), '%@' );", originView, targetView, postDataEscaped, type];
             [canvasController evaluateScript:js];
 
             [data release];

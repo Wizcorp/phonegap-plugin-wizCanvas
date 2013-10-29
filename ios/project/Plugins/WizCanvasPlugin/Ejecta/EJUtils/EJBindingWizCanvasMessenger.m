@@ -1,8 +1,8 @@
 #import <JavaScriptCore/JSTypedArray.h>
-#import "EJBindingWizViewMessenger.h"
+#import "EJBindingWizCanvasMessenger.h"
 #import "WizCanvasPlugin.h"
 
-@implementation EJBindingWizViewMessenger {
+@implementation EJBindingWizCanvasMessenger {
 
 }
 

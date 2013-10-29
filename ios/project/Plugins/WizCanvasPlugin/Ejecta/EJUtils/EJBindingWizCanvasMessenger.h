@@ -2,7 +2,7 @@
 #import "WizCanvasView.h"
 #import "EJBindingEventedBase.h"
 
-@interface EJBindingWizViewMessenger : EJBindingEventedBase {
+@interface EJBindingWizCanvasMessenger : EJBindingEventedBase {
     NSString *viewName;
 }
 
