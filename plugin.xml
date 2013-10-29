@@ -21,7 +21,7 @@
     <js-module src="www/phonegap/plugin/wizCanvas/wizCanvas.js" name="wizCanvasPlugin" target="phonegap/plugin/wizCanvas/wizCanvas.js">
         <clobbers target="window.wizCanvas" />
     </js-module>
-    <js-module src="www/phonegap/plugin/wizCanvas/wizCanvasMessenger.js" name="wizViewMessenger" target="phonegap/plugin/wizCanvas/wizCanvasMessenger.js">
+    <js-module src="www/phonegap/plugin/wizCanvas/wizCanvasMessenger.js" name="wizCanvasMessenger" target="phonegap/plugin/wizCanvas/wizCanvasMessenger.js">
         <clobbers target="window.wizCanvasMessenger" />
     </js-module>
     
