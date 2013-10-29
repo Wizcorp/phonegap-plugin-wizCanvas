@@ -1,23 +1,25 @@
 # phonegap-plugin-wizCanvas
 
 - PhoneGap Version : 3.0
-- last update : 01/10/2013
+- last update : 29/10/2013
 
 ## Description
 
 PhoneGap plugin for creating and manipulating native canvas without UIWebView for ultra performance.
 
-*NOTE* - This plugin is currently iOS only.
-
 ## Install (with Plugman) 
 
-	cordova plugin add https://github.com/Wizcorp/phonegap-plugin-wizSpinner/tree/v3.0
-	cordova build ios
+	cordova plugin add https://github.com/Wizcorp/phonegap-plugin-wizCanvas
+	cordova build
 	
 	< or >
 	
-	phonegap local plugin add https://github.com/Wizcorp/phonegap-plugin-wizSpinner
-	phonegap build ios
+	phonegap local plugin add https://github.com/Wizcorp/phonegap-plugin-wizCanvas
+	phonegap build
+
+## Booting
+
+wizCanvas looks automatically for an index.js file in ```www/assets/canvas/``` if you wish to ignore this and load from another relative location, use ```wizCanvas.load()```.
 
 ### Additional Steps in Xcode
 
@@ -69,7 +71,7 @@ See `create` API for a list of options.
 
 ### Show
 
-	wizCanvas.show(String viewName, JSONObject animOptions, Function success, Function fail);
+	wizCanvas.show(String viewName, JSONObject options, Function success, Function fail);
 
 A list of animations;
 
@@ -81,14 +83,18 @@ A list of animations;
 
 Example animation Object;
 
-	animOptions : {
-	    type: "fadeIn", 
-	    duration: "300"
+	options : {
+		animation: {
+	    	type: "fadeIn", 
+	    	duration: "300"
+	    }
 	};
+	
+** NOTE : Animation options not yet fully supported! **
 
 ### Hide
 
-	wizCanvas.hide(String viewName, JSONObject animOptions, Function success, Function fail);
+	wizCanvas.hide(String viewName, JSONObject options, Function success, Function fail);
 
 A list of animations;
 
@@ -100,10 +106,14 @@ A list of animations;
 
 Example animation Object;
 
-	animOptions : {
-    	type: "fadeOut",
-    	duration: "300" 
+	options : {
+		animation: {
+    		type: "fadeOut",
+    		duration: "300"
+    	}
 	}; 
+
+** NOTE : Animation options not yet fully supported! **
 
 ### Messaging
 
@@ -117,10 +127,13 @@ To send a messsage to a view based on W3C post message API... for more informati
 
 Add an event listener in the html that wishes to receive the message...
 
-	window.addEventListener('message', wizMessageReceiver);
+	window.addEventListener('message', wizMessageReceiver, false);
 
 Example receiver;
 
-	function wizMessageReceiver (event) {
-	    // Event data object comes in here    
+	function wizMessageReceiver (e) {
+	    // Event data object comes in here
+	    // e.data - message data
+		// e.origin - the origin of the data
+		// e.target - the target for the data
 	}
