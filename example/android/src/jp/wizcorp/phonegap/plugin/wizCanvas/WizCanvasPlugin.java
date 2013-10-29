@@ -183,7 +183,13 @@ public class WizCanvasPlugin extends CordovaPlugin {
 			try {
 				// Get view name
 				canvasName = args.getString(0);
-				settings = args.optJSONObject(1);
+                if (args.optJSONObject(1) != null) {
+                    settings = args.optJSONObject(1);
+                } else {
+                    settings = new JSONObject();
+                    settings.put("width", cordova.getActivity().getWindowManager().getDefaultDisplay().getWidth());
+                    settings.put("height", cordova.getActivity().getWindowManager().getDefaultDisplay().getHeight());
+                }
 				Log.d(TAG, "Create view with settings : " + settings);
 				
 			} catch (Exception e) {

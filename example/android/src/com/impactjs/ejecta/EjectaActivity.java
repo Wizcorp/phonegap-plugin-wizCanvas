@@ -14,7 +14,6 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import com.phonegap.hello_world.R;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -48,7 +47,8 @@ public class EjectaActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
         mActivity = this;
-        setContentView(R.layout.wiz_canvas_layout);
+        int layout_id = getResources().getIdentifier("wiz_canvas_layout", "layout", this.getPackageName());
+        setContentView(layout_id);
 
         /*
         if ((width == -1) || (height == -1) ) {
@@ -143,8 +143,6 @@ public class EjectaActivity extends Activity {
                             "}" +
                         "};";
                 ((EjectaGLSurfaceView) mGLView).evaluateScript(js);
-                //((EjectaGLSurfaceView) mGLView).evaluateScript("var wizCanvasMessenger = new Ejecta.WizCanvasMessenger('" + viewName + "');".toString());
-
                 ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("index.js");
             }
             @Override
@@ -173,8 +171,9 @@ public class EjectaActivity extends Activity {
         WindowManager.LayoutParams wmlp = getWindow().getAttributes();
         wmlp.gravity = Gravity.TOP | Gravity.LEFT;
 
-        FrameLayout activityView = (FrameLayout) findViewById(R.id.frame).getRootView();
-        RelativeLayout frame = (RelativeLayout) findViewById(R.id.frame);
+        int frame_id = getResources().getIdentifier("frame", "id", this.getPackageName());
+        FrameLayout activityView = (FrameLayout) findViewById(frame_id).getRootView();
+        RelativeLayout frame = (RelativeLayout) findViewById(frame_id);
 
         FrameLayout.LayoutParams activityLp = (FrameLayout.LayoutParams) frame.getLayoutParams();
         assert activityLp != null;
@@ -183,7 +182,8 @@ public class EjectaActivity extends Activity {
         assert activityView != null;
         activityView.setLayoutParams(activityLp);
 
-        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
+        int container_id = getResources().getIdentifier("container", "id", this.getPackageName());
+        RelativeLayout container = (RelativeLayout) findViewById(container_id);
         // Add view to layout
         container.addView(mGLView);
 
@@ -243,7 +243,8 @@ public class EjectaActivity extends Activity {
 
     private void hideActivity(Context context, String type, Long duration) {
 
-        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
+        int container_id = getResources().getIdentifier("container", "id", this.getPackageName());
+        RelativeLayout container = (RelativeLayout) findViewById(container_id);
 
         if (container.getVisibility() == View.VISIBLE) {
 
@@ -259,7 +260,8 @@ public class EjectaActivity extends Activity {
 
     private void showActivity(Context context, String type, Long duration) {
 
-        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
+        int container_id = getResources().getIdentifier("container", "id", this.getPackageName());
+        RelativeLayout container = (RelativeLayout) findViewById(container_id);
 
         if (container.getVisibility() == View.INVISIBLE) {
             container.setVisibility(View.VISIBLE);
@@ -284,7 +286,8 @@ public class EjectaActivity extends Activity {
         int right = intent.getIntExtra("EXTRA_RIGHT", -1);
         int bottom = intent.getIntExtra("EXTRA_BOTTOM", -1);
 
-        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
+        int container_id = getResources().getIdentifier("container", "id", this.getPackageName());
+        RelativeLayout container = (RelativeLayout) findViewById(container_id);
 
         // Get layout of container parent
         RelativeLayout.LayoutParams frame_layout = (RelativeLayout.LayoutParams) container.getLayoutParams();

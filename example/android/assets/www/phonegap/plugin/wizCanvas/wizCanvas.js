@@ -23,6 +23,7 @@ function propsToString(obj) {
 
 var WizCanvas = function (name) {
 	this.name = name;
+	window.name = name;
 	this.views = {};
 };
 
