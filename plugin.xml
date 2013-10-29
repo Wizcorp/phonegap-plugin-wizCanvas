@@ -103,7 +103,7 @@
         <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSBase.h" target-dir="lib/JavaScriptCore" />
         <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSContextRef.h" target-dir="lib/JavaScriptCore" />
         <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSObjectRef.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSStringRef.h"target-dir="lib/JavaScriptCore" />
+        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSStringRef.h" target-dir="lib/JavaScriptCore" />
         <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSStringRefCF.h" target-dir="lib/JavaScriptCore" />
         <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSTypedArray.h" target-dir="lib/JavaScriptCore" />
         <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSValueRef.h" target-dir="lib/JavaScriptCore" />
@@ -196,7 +196,7 @@
         <resource-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Texture.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
         <resource-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Vertex.vsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EAGLView.h" target-dir="Ejecta" target-dir="Ejecta/EJCanvas" />
+        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EAGLView.h" target-dir="Ejecta/EJCanvas" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EAGLView.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
         
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvas.h" target-dir="Ejecta/EJCanvas" />
