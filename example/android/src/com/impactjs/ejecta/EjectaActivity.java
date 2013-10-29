@@ -10,13 +10,10 @@ import android.util.Log;
 import android.view.*;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-import com.impactjs.ejecta.EjectaGLSurfaceView;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import com.impactjs.ejecta.EjectaRenderer;
-import com.impactjs.ejecta.Utils;
 import com.phonegap.hello_world.R;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -38,16 +35,20 @@ public class EjectaActivity extends Activity {
 	private GLSurfaceView mGLView;
     private Activity mActivity;
     private static String TAG = "ejecta";
+    private static String viewName;
+
+    static {
+        //System.loadLibrary("corefoundation");
+        System.loadLibrary("JavaScriptCore");
+        System.loadLibrary("ejecta");
+    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-        // Set theme for a transparent background
-        setTheme(R.style.WizCanvas);
 		super.onCreate(savedInstanceState);
 
         mActivity = this;
         setContentView(R.layout.wiz_canvas_layout);
-
 
         /*
         if ((width == -1) || (height == -1) ) {
@@ -92,11 +93,11 @@ public class EjectaActivity extends Activity {
         }
         */
 
-
         // Get extra layout user data
         Intent intent = getIntent();
         int width = intent.getIntExtra("EXTRA_WIDTH", -1);
         int height = intent.getIntExtra("EXTRA_HEIGHT", -1);
+        viewName = intent.getStringExtra("EXTRA_NAME");
 
         mGLView = new EjectaGLSurfaceView(this, width, height);
 
@@ -104,6 +105,63 @@ public class EjectaActivity extends Activity {
             @Override
             public void onCanvasCreated() {
                 Log.d("ejecta", "Canvas created!");
+                // Evaluate script
+                ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("ejecta.js");
+                String js = "var wizCanvasMessenger = null; " +
+                        "window.document._eventInitializers.message = function () {" +
+                            "if (!wizCanvasMessenger) {" +
+                                "wizCanvasMessenger = new Ejecta.WizCanvasMessenger('" + viewName + "');" +
+                                "wizCanvasMessenger.onmessage = function (origin, target, data, type) {" +
+                                    "origin = decodeURIComponent(origin);" +
+                                    "target = decodeURIComponent(target);" +
+                                    "data = decodeURIComponent(data);" +
+                                    "if (type === 'Array') {" +
+                                        "data = JSON.parse(data);" +
+                                    "} else if (type === 'String') {" +
+                                        "/* Stringy String String */" +
+                                    "} else if (type === 'Number') {" +
+                                        "data = JSON.parse(data);" +
+                                    "} else if (type === 'Boolean') {" +
+                                        "data = Boolean(data);" +
+                                    "} else if (type === 'Function') {" +
+                                        "/* W3C says nothing about functions, will be returned as string. */" +
+                                    "} else if (type === 'Object') {" +
+                                        "data = JSON.parse(data);" +
+                                    "} else {" +
+                                        "console.error('Message Event received unknown type!');" +
+                                        "return;" +
+                                    "}" +
+                                    "var ev = {};" +
+                                    "ev.eventName = 'message';" +
+                                    "ev.origin = origin;" +
+                                    "ev.target = target;" +
+                                    "ev.data = data;" +
+                                    "ev.memo = {};" +
+                                    // "console.log('ev:' + ev.data );" +
+                                    "document._publishEvent('message', ev);" +
+                                "};" +
+                            "}" +
+                        "};";
+                ((EjectaGLSurfaceView) mGLView).evaluateScript(js);
+                //((EjectaGLSurfaceView) mGLView).evaluateScript("var wizCanvasMessenger = new Ejecta.WizCanvasMessenger('" + viewName + "');".toString());
+
+                ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("index.js");
+            }
+            @Override
+            public void onPostMessageReceived(String target, String message, String type, String source) {
+                // Log.d("ejecta", "To: " + target);
+                // Log.d("ejecta", "Type: " + type);
+                // Log.d("ejecta", "Message: " + message);
+                // Log.d("ejecta", "From: " + source);
+
+                // Send message to Cordova Plugin
+                Intent i = new Intent("android.intent.action.MESSAGE");
+                i.putExtra("MESSAGE", "postMessage");
+                i.putExtra("TARGET", target);
+                i.putExtra("TYPE", type);
+                i.putExtra("POSTMESSAGE", message);
+                i.putExtra("SOURCE", source);
+                sendBroadcast(i);
             }
         });
 
@@ -114,7 +172,6 @@ public class EjectaActivity extends Activity {
 
         WindowManager.LayoutParams wmlp = getWindow().getAttributes();
         wmlp.gravity = Gravity.TOP | Gravity.LEFT;
-
 
         FrameLayout activityView = (FrameLayout) findViewById(R.id.frame).getRootView();
         RelativeLayout frame = (RelativeLayout) findViewById(R.id.frame);
@@ -129,9 +186,6 @@ public class EjectaActivity extends Activity {
         RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
         // Add view to layout
         container.addView(mGLView);
-
-        // Set the layout of the container
-        setLayout(this, intent);
 
         IntentFilter intentFilter = new IntentFilter("android.intent.action.MESSAGE");
 
@@ -167,6 +221,17 @@ public class EjectaActivity extends Activity {
                     String type = intent.getStringExtra("ANIMATION_TYPE");
                     Long duration = intent.getLongExtra("ANIMATION_DURATION", 500);
                     showActivity(context, type, duration);
+                    return;
+                }
+                if (command.contains("postMessage")) {
+                    String message = intent.getStringExtra("DATA");
+                    String type = intent.getStringExtra("TYPE");
+                    String target = intent.getStringExtra("TARGET");
+                    // Make sure the target is this Activity, in case there are other Activities listening
+                    if (target.equalsIgnoreCase(viewName)) {
+                        // ((EjectaGLSurfaceView)mGLView).evaluateScript(message);
+                        ((EjectaGLSurfaceView)mGLView).triggerMessage(message, type);
+                    }
                     return;
                 }
             }
@@ -253,12 +318,6 @@ public class EjectaActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onConfigurationChanged(newConfig);
 	}
-	
-	static {
-    	//System.loadLibrary("corefoundation");
-    	System.loadLibrary("JavaScriptCore");
-        System.loadLibrary("ejecta");
-    }
 
     public void load(String source) {
         // Check remote or local source
@@ -279,7 +338,7 @@ public class EjectaActivity extends Activity {
             // Copies the file to data/data/<package_name>/filename
             // Allows the file to be readable from Ejecta-X
             String mainBundle = "/data/data/" + this.getPackageName();
-            Utils.copyDatFile(this, mainBundle + "/files/build/", source);
+            new Utils().copyDatFile(this, mainBundle + "/files/build/", source);
 
             File f = new File("file:///android_asset/" + source);
 
@@ -292,7 +351,7 @@ public class EjectaActivity extends Activity {
             // Copies the file to data/data/<package_name>/filename
             // Allows the file to be readable from Ejecta-X
             String mainBundle = "/data/data/" + this.getPackageName();
-            Utils.copyDatFile(this, mainBundle + "/files/build/", source);
+            new Utils().copyDatFile(this, mainBundle + "/files/build/", source);
 
             File f = new File("file:///android_asset/" + source);
 
@@ -300,11 +359,9 @@ public class EjectaActivity extends Activity {
 
             f = null;
         }
-
-
     }
 
-    private RelativeLayout.LayoutParams setupLayout(RelativeLayout.LayoutParams rl, int parentHeight, int parentWidth, int width, int height, int x, int y, int top, int left, int right, int bottom) {
+    private RelativeLayout.LayoutParams setupLayout(RelativeLayout.LayoutParams rl, int parentWidth, int parentHeight, int width, int height, int x, int y, int top, int left, int right, int bottom) {
         Log.d(TAG, "Setting up layout...");
 
         // Size
@@ -379,7 +436,6 @@ public class EjectaActivity extends Activity {
 
     private class asyncDownload extends AsyncTask<File, String , String> {
 
-        private String dirName;
         private URL url;
         private Activity activity;
 

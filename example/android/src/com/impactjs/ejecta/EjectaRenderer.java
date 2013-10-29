@@ -8,28 +8,27 @@ import android.opengl.GLSurfaceView.Renderer;
 
 public class EjectaRenderer implements Renderer {
 	
-    private Context mContext;
     public static String mainBundle;
     private int screen_width;
     private int screen_height;
     private EjectaEventListener ejectaEventListener = null;
 
     public EjectaRenderer(Context ctx, int width, int height) {
-		mainBundle = "/data/data/" + ctx.getPackageName();
-        mContext = ctx;
-        System.out.println(mainBundle);
+        mainBundle = "/data/data/" + ctx.getPackageName();
+        // Copy app files
         Utils.copyDatFiles(ctx, mainBundle + "/files/build/", "www/assets/canvas");
+
         screen_width = width;
         screen_height = height;
 	}
 
 	@Override
-	public void onDrawFrame(GL10 gl) {  
+	public void onDrawFrame(GL10 gl) {
 		nativeRender(); 
 	}
 
 	@Override
-	public void onSurfaceChanged(GL10 gl, int width, int height) { 
+	public void onSurfaceChanged(GL10 gl, int width, int height) {
 		
 		// TODO Auto-generated method stub
 		 
@@ -57,7 +56,9 @@ public class EjectaRenderer implements Renderer {
 	public native void nativeResume();
 
     public native void nativeLoadJavaScriptFile(String filename);
-    
+    public native void nativeEvaluateScript(String script);
+    public native void nativeTriggerMessage(String message, String type);
+
 	public native void nativeTouch(int action, int x, int y);
 	public native void nativeOnSensorChanged(float accle_x, float accle_y, float accle_z);
 	public native void nativeOnKeyDown(int key_code);
@@ -71,13 +72,21 @@ public class EjectaRenderer implements Renderer {
         }
     };
 
+    private void onPostMessageReceived(String target, String message, String type, String origin) {
+        if (ejectaEventListener != null) {
+            // Trigger event
+            ejectaEventListener.onPostMessageReceived(target, message, type, origin);
+        }
+    };
+
     // Set listener public interface
-    public void setOnCanvasCreatedListener(EjectaEventListener listener) {
+    public void setOnCanvasListener(EjectaEventListener listener) {
         ejectaEventListener = listener;
     }
 
     public interface EjectaEventListener {
         public abstract void onCanvasCreated();
+        public abstract void onPostMessageReceived(String target, String message, String type, String origin);
     }
 
 }

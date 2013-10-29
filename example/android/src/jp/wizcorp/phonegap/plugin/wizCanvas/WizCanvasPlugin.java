@@ -12,7 +12,10 @@
 */
 package jp.wizcorp.phonegap.plugin.wizCanvas;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.view.ViewGroup;
 import android.webkit.WebResourceResponse;
 import android.widget.LinearLayout;
@@ -24,33 +27,83 @@ import org.json.JSONObject;
 
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 
 import java.io.ByteArrayInputStream;
 
 public class WizCanvasPlugin extends CordovaPlugin {
 
 	private static String TAG = "WizCanvasPlugin";
+    private static String viewName = "mainView";
 	static JSONObject viewList = new JSONObject();
     static CordovaInterface _cordova;
     static CordovaWebView _webView;
 
     @Override
-    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+    public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
         _cordova = cordova;
         _webView = webView;
         Log.d(TAG, "Initialize Plugin");
         // By default, get a pointer to mainView and add mainView to the viewList as it always exists (hold phonegap's view)
-        if (!viewList.has("mainView")) {
+        if (!viewList.has(viewName)) {
             // Cordova view is not in the viewList so add it.
             try {
-                viewList.put("mainView", webView);
+                viewList.put(viewName, webView);
                 Log.d(TAG, "Found CordovaView ****** " + webView);
             } catch (JSONException e) {
                 // Error handle (this should never happen!)
                 Log.e(TAG, "Critical error. Failed to retrieve Cordova's view");
             }
-       }
+        }
+
+        IntentFilter intentFilter = new IntentFilter("android.intent.action.MESSAGE");
+
+        BroadcastReceiver mReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // Extract our message from intent
+                String command = intent.getStringExtra("MESSAGE");
+
+                // Check command
+                assert command != null;
+
+                if (command.contains("postMessage")) {
+                    // Receiving postMessage
+                    String targetView = intent.getStringExtra("TARGET");
+                    if (targetView.equalsIgnoreCase(viewName)) {
+                        // postmessage is for mainView
+                        String message = intent.getStringExtra("POSTMESSAGE");
+                        String type = intent.getStringExtra("TYPE");
+                        String source = intent.getStringExtra("SOURCE");
+
+                        try {
+                            final CordovaWebView _targetView = (CordovaWebView) viewList.get(targetView);
+                            // __triggerMessageEvent: function(origin, target, data, type) { }
+                            final String js = String.format(
+                                    "window.wizCanvasMessenger.__triggerMessageEvent('%s', '%s', '%s', '%s');",
+                                    source,
+                                    targetView,
+                                    message,
+                                    type);
+                            Log.d(TAG, "Sending messsage into: " + targetView);
+                            cordova.getActivity().runOnUiThread(
+                                    new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            _targetView.sendJavascript(js);
+                                        }
+                                    }
+                            );
+                        } catch (JSONException e) {
+                            Log.e(TAG, "Could not find target view in viewList");
+                        }
+                    }
+                }
+            }
+        };
+
+        // Registering our receiver
+        cordova.getActivity().registerReceiver(mReceiver, intentFilter);
+
         super.initialize(cordova, webView);
     }
 
@@ -60,7 +113,6 @@ public class WizCanvasPlugin extends CordovaPlugin {
         this.onOverrideUrlLoading(url);
         return new WebResourceResponse("text/plain", "UTF-8", stream);
     }
-
 
     @Override
     public boolean onOverrideUrlLoading(String url) {
@@ -72,8 +124,7 @@ public class WizCanvasPlugin extends CordovaPlugin {
 
         // Split url by only 2 in the event "://" occurs elsewhere (SHOULD be impossible because you string encoded right!?)
         urlArray = url.split(splitter,2);
-
-        if (urlArray[0].equalsIgnoreCase("wizmessageview") ) {
+        if (urlArray[0].equalsIgnoreCase("wizpostmessage") ) {
 
             String[] msgData;
             splitter = "\\?";
@@ -81,33 +132,40 @@ public class WizCanvasPlugin extends CordovaPlugin {
             // Split url by only 2 again to make sure we only spit at the first "?"
             msgData = urlArray[1].split(splitter);
 
+            // Target View is msgData[1] and message is msgData[2]
 
-            // target View = msgData[0] and message = msgData[1]
-
-            // Get webview list from View Manager
+            // Get WebView list from viewList
             JSONObject viewList = WizCanvasPlugin.getViews();
 
-            if (viewList.has(msgData[0]) ) {
-
-                WebView targetView;
-                try {
-                    targetView = (WebView) viewList.get(msgData[0]);
-
-                    // send data to mainView
-                    String data2send = msgData[1];
+            if (viewList.has(msgData[1]) ) {
+                if (msgData[1].equalsIgnoreCase(viewName)) {
+                    // Message for self? ignore...
+                    Log.e(TAG, "Ignoring message for self");
+                } else {
+                    // Send message to canvas
+                    String data2send = msgData[2];
                     data2send = data2send.replace("'", "\\'");
-                    Log.d(TAG, "[wizMessage] targetView ****** is " + msgData[0]+ " -> " + targetView + " with data -> "+data2send );
-                    targetView.loadUrl("javascript:(wizMessageReceiver('"+data2send+"'))");
+                    final String _target = msgData[1];
+                    final String _type = msgData[3];
+                    final String _data = String.format("%s", data2send);
+                    cordova.getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Send post message to activity
+                            Intent intent = new Intent("android.intent.action.MESSAGE");
+                            intent.putExtra("MESSAGE", "postMessage");
+                            intent.putExtra("TYPE", _type);
+                            intent.putExtra("TARGET", _target);
+                            intent.putExtra("DATA", _data);
 
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                            cordova.getActivity().sendBroadcast(intent);
+                        }
+                    });
                 }
             }
-            // app will handle this url, don't change the browser url
+            // App will handle this url, don't allow the WebView to change url
             return true;
         }
-
         return super.onOverrideUrlLoading(url);
     }
 
@@ -120,11 +178,11 @@ public class WizCanvasPlugin extends CordovaPlugin {
 			// Create a new view
 			Log.d(TAG, "[createView] ****** " + args.toString() );
 
-			final String viewName;
+			final String canvasName;
 			final JSONObject settings;
 			try {
 				// Get view name
-				viewName = args.getString(0);
+				canvasName = args.getString(0);
 				settings = args.optJSONObject(1);
 				Log.d(TAG, "Create view with settings : " + settings);
 				
@@ -144,14 +202,15 @@ public class WizCanvasPlugin extends CordovaPlugin {
                     new Runnable() {
                         @Override
                         public void run() {
-                            // WizCanvas wizWebView = new WizCanvas(viewName, settings, cordova.getActivity(), create_cb);
                             Intent intent = new Intent(cordova.getActivity(), EjectaActivity.class);
                             try {
+                                intent.putExtra("EXTRA_NAME", canvasName);
+
                                 if (settings.has("width")) {
-                                    intent.putExtra("EXTRA_HEIGHT", settings.getInt("width"));
+                                    intent.putExtra("EXTRA_WIDTH", settings.getInt("width"));
                                 }
                                 if (settings.has("height")) {
-                                    intent.putExtra("EXTRA_WIDTH", settings.getInt("height"));
+                                    intent.putExtra("EXTRA_HEIGHT", settings.getInt("height"));
                                 }
                                 if (settings.has("x")) {
                                     intent.putExtra("EXTRA_X", settings.getInt("x"));
@@ -181,9 +240,8 @@ public class WizCanvasPlugin extends CordovaPlugin {
 
                             // Put our new view into viewList
                             try {
-                                viewList.put(viewName, "wizCanvas");
+                                viewList.put(canvasName, "wizCanvas");
                                 updateViewList();
-
 
                             } catch (JSONException e) {
                                 // Error handle
@@ -212,38 +270,38 @@ public class WizCanvasPlugin extends CordovaPlugin {
             // Remove a view from the application
             Log.d(TAG, "[removeView] ****** " + args.toString() );
 
-            final String viewName;
+            final String canvasName;
             try {
                 // Get view name
-                viewName = args.getString(0);
+                canvasName = args.getString(0);
             } catch (Exception e) {
                 Log.e(TAG, "Cannot remove view. Missing view name parameter");
                 callbackContext.error("Cannot remove view. Missing view name parameter");
                 return true;
             }
 
-            if (viewName.equalsIgnoreCase("mainView")) {
+            if (canvasName.equalsIgnoreCase(viewName)) {
                 // Cannot remove this view
                 callbackContext.error("Cannot remove the view: " + viewName);
                 return true;
             }
 
             // Find WebView by this name and remove it
-            if (viewList.has(viewName) ) {
+            if (viewList.has(canvasName) ) {
 
                 cordova.getActivity().runOnUiThread(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                // Send destroy message to activity
-                                Intent intent = new Intent("android.intent.action.MESSAGE");
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                intent.putExtra("MESSAGE", "DESTROY");
-                                cordova.getActivity().sendBroadcast(intent);
-                            }
-                        });
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            // Send destroy message to activity
+                            Intent intent = new Intent("android.intent.action.MESSAGE");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            intent.putExtra("MESSAGE", "DESTROY");
+                            cordova.getActivity().sendBroadcast(intent);
+                        }
+                    });
 
-                viewList.remove(viewName);
+                viewList.remove(canvasName);
                 updateViewList();
 
                 // Remove is running on a different thread, but for now assume view was removed
@@ -251,8 +309,8 @@ public class WizCanvasPlugin extends CordovaPlugin {
                 return true;
             } else {
                 // Cannot find view
-                Log.e(TAG, "Cannot remove view. " + viewName + " not found");
-                callbackContext.error("Cannot remove view. " + viewName + " not found");
+                Log.e(TAG, "Cannot remove view. " + canvasName + " not found");
+                callbackContext.error("Cannot remove view. " + canvasName + " not found");
                 return true;
             }
 
@@ -264,14 +322,14 @@ public class WizCanvasPlugin extends CordovaPlugin {
                 // Hide a particular view...
                 Log.d(TAG, "[hideView] ****** " + args.toString());
 
-                final String viewName;
+                final String canvasName;
 
                 // Set defaults for animations
                 long animDuration = 500;
                 String animType = "none";
 
                 try {
-                    viewName = args.getString(0);
+                    canvasName = args.getString(0);
                     // Analyse settings object
                     try {
 
@@ -293,13 +351,13 @@ public class WizCanvasPlugin extends CordovaPlugin {
                         // no settings, use default
                     }
 
-                    // Find WebView by this name and hide it
-                    if (viewList.has(viewName)) {
+                    // Find Canvas view by this name and hide it
+                    if (viewList.has(canvasName)) {
 
                         final long duration = animDuration;
                         final String type = animType;
 
-                        if (viewName.equals("mainView")) {
+                        if (canvasName.equals(viewName)) {
                             final CordovaWebView targetView = (CordovaWebView) viewList.get(viewName);
 
                             cordova.getActivity().runOnUiThread(
@@ -321,18 +379,18 @@ public class WizCanvasPlugin extends CordovaPlugin {
                         } else {
                             // Send message to hide canvas view
                             cordova.getActivity().runOnUiThread(
-                                    new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            // Send destroy message to activity
-                                            Intent intent = new Intent("android.intent.action.MESSAGE");
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                            intent.putExtra("MESSAGE", "HIDE");
-                                            intent.putExtra("ANIMATION_TYPE", type);
-                                            intent.putExtra("ANIMATION_DURATION", duration);
-                                            cordova.getActivity().sendBroadcast(intent);
-                                        }
-                                    });
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Send destroy message to activity
+                                        Intent intent = new Intent("android.intent.action.MESSAGE");
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        intent.putExtra("MESSAGE", "HIDE");
+                                        intent.putExtra("ANIMATION_TYPE", type);
+                                        intent.putExtra("ANIMATION_DURATION", duration);
+                                        cordova.getActivity().sendBroadcast(intent);
+                                    }
+                                });
                         }
 
                         callbackContext.success();
@@ -356,14 +414,14 @@ public class WizCanvasPlugin extends CordovaPlugin {
                 // Show a particular view...
                 Log.d(TAG, "[showView] ****** " + args.toString());
 
-                final String viewName;
+                final String canvasName;
 
                 // Set defaults for animations
                 long animDuration = 500;
                 String animType = "none";
 
                 try {
-                    viewName = args.getString(0);
+                    canvasName = args.getString(0);
                     // Analyse settings object
                     try {
 
@@ -385,51 +443,51 @@ public class WizCanvasPlugin extends CordovaPlugin {
                         // no settings, use default
                     }
 
-                    // Find WebView by this name and hide it
-                    if (viewList.has(viewName)) {
+                    // Find canvas view by this name and hide it
+                    if (viewList.has(canvasName)) {
 
                         final long duration = animDuration;
                         final String type = animType;
 
-                        if (viewName.equals("mainView")) {
+                        if (canvasName.equals(viewName)) {
                             final CordovaWebView targetView = (CordovaWebView) viewList.get(viewName);
 
                             cordova.getActivity().runOnUiThread(
-                                    new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            if (targetView.getPaddingLeft() == 0) {
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (targetView.getPaddingLeft() == 0) {
 
-                                                targetView.setVisibility(View.INVISIBLE);
-                                                targetView.setPadding(999, 0, 0, 0);
+                                            targetView.setVisibility(View.INVISIBLE);
+                                            targetView.setPadding(999, 0, 0, 0);
 
-                                            } else {
-                                                // Already hidden, just call back
-                                                Log.d(TAG, "[show - view already invisible]");
-                                            }
+                                        } else {
+                                            // Already hidden, just call back
+                                            Log.d(TAG, "[show - view already invisible]");
                                         }
                                     }
+                                }
                             );
                         } else {
-                            // Send message to hide canvas view
+                            // Send message to show canvas view
                             cordova.getActivity().runOnUiThread(
-                                    new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            // Send destroy message to activity
-                                            Intent intent = new Intent("android.intent.action.MESSAGE");
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                            intent.putExtra("MESSAGE", "SHOW");
-                                            intent.putExtra("ANIMATION_TYPE", type);
-                                            intent.putExtra("ANIMATION_DURATION", duration);
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Send destroy message to activity
+                                        Intent intent = new Intent("android.intent.action.MESSAGE");
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        intent.putExtra("MESSAGE", "SHOW");
+                                        intent.putExtra("ANIMATION_TYPE", type);
+                                        intent.putExtra("ANIMATION_DURATION", duration);
 
-                                            Intent intent1 = new Intent(cordova.getActivity(), EjectaActivity.class);
-                                            intent1.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
-                                            cordova.getActivity().startActivity(intent1);
-                                            cordova.getActivity().sendBroadcast(intent);
+                                        Intent intent1 = new Intent(cordova.getActivity(), EjectaActivity.class);
+                                        intent1.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
+                                        cordova.getActivity().startActivity(intent1);
+                                        cordova.getActivity().sendBroadcast(intent);
 
-                                        }
-                                    });
+                                    }
+                                });
                         }
 
                         callbackContext.success();
@@ -447,90 +505,66 @@ public class WizCanvasPlugin extends CordovaPlugin {
                     return true;
                 }
 
-
-            } else if (action.equals("setIndex")) {
-
-                Log.d("ejecta", "setIndex");
-
-                // Get view name
-                String viewName = args.getString(0);
-                String index = args.getString(1);
-                if (viewName.equals("mainView")) {
-                    if (index.equalsIgnoreCase("bringToFront")) {
-                        cordova.getActivity().startActivity(new Intent(cordova.getActivity(), cordova.getActivity().getClass()).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-                    } else if (index.equalsIgnoreCase("sendToBack")) {
-                        cordova.getActivity().startActivity(new Intent(cordova.getActivity(), EjectaActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-                    }
-                } else {
-                    if (index.equalsIgnoreCase("bringToFront")) {
-                        cordova.getActivity().startActivity(new Intent(cordova.getActivity(), EjectaActivity.class).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-                    } else if (index.equalsIgnoreCase("sendToBack")) {
-                        cordova.getActivity().startActivity(new Intent(cordova.getActivity(), cordova.getActivity().getClass()).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
-                    }
-                }
-                // Set no animation on activity
-                cordova.getActivity().overridePendingTransition(0, 0);
-                return true;
-
             } else {
                 if (action.equals("setLayout")) {
 
                     try {
-                        String viewName = args.getString(0);
+                        final String canvasName = args.getString(0);
                         final JSONObject options = args.getJSONObject(1);
 
-                        if (viewName.equals("mainView")) {
+                        if (viewName.equals(viewName)) {
                             final CordovaWebView targetView = (CordovaWebView) viewList.get(viewName);
 
                             cordova.getActivity().runOnUiThread(
-                                    new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            WizCanvasPlugin.setLayout(targetView, options);
-                                        }
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        WizCanvasPlugin.setLayout(targetView, options);
                                     }
+                                }
                             );
                         } else {
 
                             cordova.getActivity().runOnUiThread(
-                                    new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            // Send destroy message to activity
-                                            Intent intent = new Intent("android.intent.action.MESSAGE");
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                            intent.putExtra("MESSAGE", "LAYOUT");
-                                            try {
-                                                if (options.has("width")) {
-                                                    intent.putExtra("EXTRA_HEIGHT", options.getInt("width"));
-                                                }
-                                                if (options.has("height")) {
-                                                    intent.putExtra("EXTRA_WIDTH", options.getInt("height"));
-                                                }
-                                                if (options.has("x")) {
-                                                    intent.putExtra("EXTRA_X", options.getInt("x"));
-                                                }
-                                                if (options.has("y")) {
-                                                    intent.putExtra("EXTRA_Y", options.getInt("y"));
-                                                }
-                                                if (options.has("top")) {
-                                                    intent.putExtra("EXTRA_TOP", options.getInt("top"));
-                                                }
-                                                if (options.has("left")) {
-                                                    intent.putExtra("EXTRA_LEFT", options.getInt("left"));
-                                                }
-                                                if (options.has("right")) {
-                                                    intent.putExtra("EXTRA_RIGHT", options.getInt("right"));
-                                                }
-                                                if (options.has("bottom")) {
-                                                    intent.putExtra("EXTRA_BOTTOM", options.getInt("bottom"));
-                                                }
-                                            } catch (JSONException e) {
-                                                // Ignore exception
+                                new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // Send destroy message to activity
+                                        Intent intent = new Intent("android.intent.action.MESSAGE");
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                        intent.putExtra("MESSAGE", "LAYOUT");
+                                        try {
+                                            if (options.has("width")) {
+                                                intent.putExtra("EXTRA_HEIGHT", options.getInt("width"));
                                             }
-                                            cordova.getActivity().sendBroadcast(intent);
+                                            if (options.has("height")) {
+                                                intent.putExtra("EXTRA_WIDTH", options.getInt("height"));
+                                            }
+                                            if (options.has("x")) {
+                                                intent.putExtra("EXTRA_X", options.getInt("x"));
+                                            }
+                                            if (options.has("y")) {
+                                                intent.putExtra("EXTRA_Y", options.getInt("y"));
+                                            }
+                                            if (options.has("top")) {
+                                                intent.putExtra("EXTRA_TOP", options.getInt("top"));
+                                            }
+                                            if (options.has("left")) {
+                                                intent.putExtra("EXTRA_LEFT", options.getInt("left"));
+                                            }
+                                            if (options.has("right")) {
+                                                intent.putExtra("EXTRA_RIGHT", options.getInt("right"));
+                                            }
+                                            if (options.has("bottom")) {
+                                                intent.putExtra("EXTRA_BOTTOM", options.getInt("bottom"));
+                                            }
+                                            intent.putExtra("EXTRA_NAME", canvasName);
+                                        } catch (JSONException e) {
+                                            // Ignore exception
                                         }
-                                    });
+                                        cordova.getActivity().sendBroadcast(intent);
+                                    }
+                                });
                         }
 
                     } catch (Exception e) {
@@ -544,7 +578,7 @@ public class WizCanvasPlugin extends CordovaPlugin {
                 } else if (action.equals("load")) {
                     Log.d(TAG, "[load] ****** ");
 
-                    String viewName;
+                    String canvasName;
                     try {
                         viewName = args.getString(0);
                     } catch (JSONException e) {
@@ -553,7 +587,7 @@ public class WizCanvasPlugin extends CordovaPlugin {
                         return true;
                     }
 
-                    // Find WebView by this name and show it
+                    // Find canvas view by this name and show it
                     if (viewList.has(viewName)) {
 
                         JSONObject options = args.getJSONObject(1);
@@ -563,16 +597,16 @@ public class WizCanvasPlugin extends CordovaPlugin {
                             Log.d(TAG, "[load] url>> " + url);
                             final CallbackContext load_cb = callbackContext;
                             cordova.getActivity().runOnUiThread(
-                                    new Runnable() {
-                                        public void run() {
-                                            // Send load message to activity
-                                            Intent intent = new Intent("android.intent.action.MESSAGE");
-                                            intent.putExtra("MESSAGE", "LOAD");
-                                            intent.putExtra("SOURCE", url);
-                                            cordova.getActivity().sendBroadcast(intent);
-                                            // targetView.load(url, load_cb);
-                                        }
+                                new Runnable() {
+                                    public void run() {
+                                        // Send load message to activity
+                                        Intent intent = new Intent("android.intent.action.MESSAGE");
+                                        intent.putExtra("MESSAGE", "LOAD");
+                                        intent.putExtra("SOURCE", url);
+                                        cordova.getActivity().sendBroadcast(intent);
+                                        // targetView.load(url, load_cb);
                                     }
+                                }
                             );
                         } else {
                             Log.e(TAG, "Cannot load into view. No source to load.");
@@ -600,17 +634,17 @@ public class WizCanvasPlugin extends CordovaPlugin {
 		return false;
 	}
 
-	private static JSONObject getViews() {
+	public static JSONObject getViews() {
 		return viewList;
 	}
 
 
-    private static void updateViewList() {
+    public static void updateViewList() {
         CordovaWebView targetView = null;
         String jsString = "";
         try {
             // Build JS execution String form all view names in viewList
-            targetView = (CordovaWebView) viewList.get("mainView");
+            targetView = (CordovaWebView) viewList.get(viewName);
             JSONArray viewListNameArray = viewList.names();
             jsString += "window.wizCanvas.updateViewList(" + viewListNameArray.toString() + "); ";
             Log.d("wizCanvas", "Execute JS: " + jsString);
@@ -622,13 +656,13 @@ public class WizCanvasPlugin extends CordovaPlugin {
         final String _jsString = jsString;
 
         _cordova.getActivity().runOnUiThread(
-                new Runnable() {
-                    public void run() {
-                        if (_targetView != null) {
-                            _targetView.loadUrl("javascript:" + _jsString);
-                        }
+            new Runnable() {
+                public void run() {
+                    if (_targetView != null) {
+                        _targetView.loadUrl("javascript:" + _jsString);
                     }
                 }
+            }
         );
 
         // Clean up references
@@ -636,9 +670,9 @@ public class WizCanvasPlugin extends CordovaPlugin {
         jsString = null;
     }
 
-    private static void setLayout(CordovaWebView webView, JSONObject settings) {
+    private static void setLayout(final CordovaWebView webView, JSONObject settings) {
 
-        Log.d(TAG, "Setting up mainView layout...");
+        Log.d(TAG, "Setting up new layout...");
         Log.d(TAG, webView.toString());
 
         String url;
@@ -736,13 +770,7 @@ public class WizCanvasPlugin extends CordovaPlugin {
                 _bottom = 0 - _y;
             }
         }
-/*
-        ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams) webView.getLayoutParams();
-        Log.d("WizViewManager", marginParams.toString());
-        marginParams.setMargins(_left, _top, _right, _bottom);
 
-        webView.setLayoutParams(marginParams);
-*/
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) webView.getLayoutParams();
         Log.d(TAG, layoutParams.toString());
         layoutParams.setMargins(_left, _top, _right, _bottom);
@@ -753,5 +781,4 @@ public class WizCanvasPlugin extends CordovaPlugin {
 
         Log.d(TAG, "new layout -> width: " + layoutParams.width + " - height: " + layoutParams.height + " - margins: " + layoutParams.leftMargin + "," + layoutParams.topMargin + "," + layoutParams.rightMargin + "," + layoutParams.bottomMargin);
     }
-
 }

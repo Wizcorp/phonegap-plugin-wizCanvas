@@ -28,7 +28,7 @@ for( var i = 0; i < 200; i++ ) {
 var p = [0,0, 0,0, 0,0, 0,0];
 var animate = function() {
 	// Clear the screen - note that .globalAlpha is still honored,
-	// so this will only "darken" the sceen a bit
+	// so this will only "darken" the screen a bit
 	ctx.globalCompositeOperation = 'source-over';
 	ctx.fillRect(0,0,w,h);
 
@@ -64,8 +64,6 @@ document.addEventListener( 'touchmove', function( ev ) {
 	maxCurves = Math.floor((ev.touches[0].pageY/h) * curves.length);
 }, false );
 
-
-
 ctx.fillStyle = '#000000';
 ctx.fillRect( 0, 0, w, h );
 
@@ -73,14 +71,11 @@ ctx.fillRect( 0, 0, w, h );
 ctx.lineWidth = 2;
 setInterval( animate, 16 );
 
-function wizMessageReceiver (e) {
-    // Event data object comes in here 
-    console.log("Message data - " + e.data.color);   
+window.addEventListener( 'message', function( e ) {
+	console.log("Message data - " + e.data.color);   
     console.log("Message from - " + e.origin);
     
     // Send back a message
-    wizViewMessenger.postMessage({ message: ["thanks", "dude"] }, "mainView");
-}
-
-wizViewMessenger.addEventListener( 'message', wizMessageReceiver );
+   	wizCanvasMessenger.postMessage({ message: ["thanks", "dude"] }, "mainView");
+}, false );
 
