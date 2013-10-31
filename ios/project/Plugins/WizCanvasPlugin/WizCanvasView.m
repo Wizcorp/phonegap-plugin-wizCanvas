@@ -9,7 +9,7 @@
 #import "WizCanvasView.h"
 #import "EJTimer.h"
 #import "EJClassLoader.h"
-#import "EJBindingWizViewMessenger.h"
+#import "EJBindingWizCanvasMessenger.h"
 
 
 // Block function callbacks
