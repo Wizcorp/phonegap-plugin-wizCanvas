@@ -131,7 +131,6 @@ EJ_BIND_FUNCTION(postMessage, ctx, argc, argv ) {
     JSObjectRef fn = JSObjectMakeFunction(ctx, NULL, 0, NULL, scriptJS, NULL, 1, NULL);
     JSValueRef result = JSObjectCallAsFunction(ctx, fn, NULL, 1, argv, NULL);
     NSString *message = JSValueToNSString(ctx, result);
-
     NSString *targetName = JSValueToNSString( ctx, argv[1] );
 
     // Send our message to the target view

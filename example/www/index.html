@@ -299,8 +299,6 @@
 	-->
 	<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <!-- <script type="text/javascript" charset="utf-8" src="phonegap/plugin/wizCanvas/wizCanvas.js"></script>-->
-    <script type="text/javascript" charset="utf-8" src="phonegap/plugin/wizViewMessenger/wizViewMessenger.js"></script>
     
     <script type="text/javascript">
 
@@ -339,8 +337,8 @@
             alert("Could not find wizCanvas");
         }
 
-        if (!window.wizViewMessenger) {
-            alert("Could not find wizViewMessenger");
+        if (!window.wizCanvasMessenger) {
+            alert("Could not find wizCanvasMessenger");
         }
         
     }
@@ -410,7 +408,7 @@
         // params = 1;
         // params = function () { console.log("I am a function"); };
         // params = ["l", 3, 3, 7];
-        wizViewMessenger.postMessage(params, "newCanvas");
+        wizCanvasMessenger.postMessage(params, "newCanvas");
     }
     
     window.addEventListener('message', wizMessageReceiver, false);

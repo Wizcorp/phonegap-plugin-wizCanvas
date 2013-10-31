@@ -35,7 +35,7 @@ JSObjectRef EJCallAsConstructor(JSContextRef ctx, JSObjectRef constructor, size_
 	// Unpack the class and scriptView from the constructor's private data
 	EJClassWithScriptView *classWithScriptView = (EJClassWithScriptView *)JSObjectGetPrivate(constructor);
 	Class class = classWithScriptView->class;
-	EJJavaScriptView *scriptView = classWithScriptView->scriptView;
+	WizCanvasView *scriptView = classWithScriptView->scriptView;
 	
 	// Init the native class and create the JSObject with it
 	EJBindingBase *instance = [(EJBindingBase *)[class alloc] initWithContext:ctx argc:argc argv:argv];

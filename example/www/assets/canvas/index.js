@@ -79,8 +79,8 @@ function wizMessageReceiver (e) {
     console.log("Message from - " + e.origin);
     
     // Send back a message
-    wizViewMessenger.postMessage({ message: ["thanks", "dude"] }, "mainView");
+    wizCanvasMessenger.postMessage({ message: ["thanks", "dude"] }, "mainView");
 }
 
-wizViewMessenger.addEventListener( 'message', wizMessageReceiver );
+wizCanvasMessenger.addEventListener( 'message', wizMessageReceiver );
 

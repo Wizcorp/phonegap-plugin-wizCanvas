@@ -13,7 +13,6 @@
 		1F2F1DFA2BE53E56C786DC09 /* EJBindingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F18D5B4F7B1507CAC45B7 /* EJBindingWebSocket.m */; };
 		1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDC13BBADB100FB74C0 /* Localizable.strings */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		301BF570109A69640062928A /* www in Resources */ = {isa = PBXBuildFile; fileRef = 301BF56E109A69640062928A /* www */; };
 		301BF5B5109A6A2B0062928A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B4109A6A2B0062928A /* AddressBook.framework */; };
 		301BF5B7109A6A2B0062928A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B6109A6A2B0062928A /* AddressBookUI.framework */; };
 		301BF5B9109A6A2B0062928A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B8109A6A2B0062928A /* AudioToolbox.framework */; };
@@ -36,7 +35,8 @@
 		308D05381370CCF300D202BF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D052F1370CCF300D202BF /* icon.png */; };
 		308D05391370CCF300D202BF /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D05301370CCF300D202BF /* icon@2x.png */; };
 		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		4123E041181FA25800CED5CD /* EJBindingWizCanvasMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4123E040181FA25800CED5CD /* EJBindingWizCanvasMessenger.m */; };
+		411A32B91822483300940391 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 411A32B81822483300940391 /* www */; };
+		411A32BC1822487600940391 /* EJBindingWizCanvasMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 411A32BB1822487600940391 /* EJBindingWizCanvasMessenger.m */; };
 		414DBF6717F94E9100DA3A50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		414DBFAF17F97CBD00DA3A50 /* EJBindingCanvasContext2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF6B17F97CBD00DA3A50 /* EJBindingCanvasContext2D.m */; };
 		414DBFB017F97CBD00DA3A50 /* EJBindingCanvasGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF6D17F97CBD00DA3A50 /* EJBindingCanvasGradient.m */; };
@@ -137,7 +137,6 @@
 		1F766FDD13BBADB100FB74C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/example/ios/exampleWizCanvas/main.m"; sourceTree = "<absolute>"; };
-		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 		301BF5B4109A6A2B0062928A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		301BF5B6109A6A2B0062928A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		301BF5B8109A6A2B0062928A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -162,8 +161,9 @@
 		308D05301370CCF300D202BF /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		30E5649113A7FCAF007403D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* exampleWizCanvas-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "exampleWizCanvas-Prefix.pch"; path = "../exampleWizCanvas/exampleWizCanvas-Prefix.pch"; sourceTree = "<group>"; };
-		4123E03F181FA25800CED5CD /* EJBindingWizCanvasMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingWizCanvasMessenger.h; path = ../../../../../../../testing/plugman/myApp/platforms/ios/HelloWorld/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/EJBindingWizCanvasMessenger.h; sourceTree = "<group>"; };
-		4123E040181FA25800CED5CD /* EJBindingWizCanvasMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingWizCanvasMessenger.m; path = ../../../../../../../testing/plugman/myApp/platforms/ios/HelloWorld/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/EJBindingWizCanvasMessenger.m; sourceTree = "<group>"; };
+		411A32B81822483300940391 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		411A32BA1822487600940391 /* EJBindingWizCanvasMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWizCanvasMessenger.h; sourceTree = "<group>"; };
+		411A32BB1822487600940391 /* EJBindingWizCanvasMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWizCanvasMessenger.m; sourceTree = "<group>"; };
 		414DBF6A17F97CBD00DA3A50 /* EJBindingCanvasContext2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasContext2D.h; sourceTree = "<group>"; };
 		414DBF6B17F97CBD00DA3A50 /* EJBindingCanvasContext2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasContext2D.m; sourceTree = "<group>"; };
 		414DBF6C17F97CBD00DA3A50 /* EJBindingCanvasGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasGradient.h; sourceTree = "<group>"; };
@@ -392,6 +392,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				411A32B81822483300940391 /* www */,
 				F840E1F0165FE0F500CFE078 /* config.xml */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				307C750510C5A3420062BCA9 /* Plugins */,
@@ -399,7 +400,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
-				301BF56E109A69640062928A /* www */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -670,9 +670,9 @@
 				41CF5E4D178D06CF00001BC8 /* EJBindingTouchInput.m */,
 				41CF5E50178D06CF00001BC8 /* EJBindingWindowEvents.h */,
 				41CF5E51178D06CF00001BC8 /* EJBindingWindowEvents.m */,
+				411A32BA1822487600940391 /* EJBindingWizCanvasMessenger.h */,
+				411A32BB1822487600940391 /* EJBindingWizCanvasMessenger.m */,
 				41CF5E54178D06CF00001BC8 /* IAP */,
-				4123E03F181FA25800CED5CD /* EJBindingWizCanvasMessenger.h */,
-				4123E040181FA25800CED5CD /* EJBindingWizCanvasMessenger.m */,
 				1F2F18D5B4F7B1507CAC45B7 /* EJBindingWebSocket.m */,
 				1F2F1F2B3D6C0726F921D9C4 /* EJBindingWebSocket.h */,
 			);
@@ -798,8 +798,8 @@
 				414DBFD617F97F1300DA3A50 /* Texture.fsh in Resources */,
 				414DBFD717F97F1300DA3A50 /* Vertex.vsh in Resources */,
 				F840E1F1165FE0F500CFE078 /* config.xml in Resources */,
-				301BF570109A69640062928A /* www in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
+				411A32B91822483300940391 /* www in Resources */,
 				308D05381370CCF300D202BF /* icon.png in Resources */,
 				308D05391370CCF300D202BF /* icon@2x.png in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
@@ -919,7 +919,7 @@
 				414DBFCD17F97CBD00DA3A50 /* EJBindingCanvasContextWebGL.m in Sources */,
 				414DBFCE17F97CBD00DA3A50 /* EJBindingWebGLExtensions.m in Sources */,
 				414DBFCF17F97CBD00DA3A50 /* EJBindingWebGLObjects.m in Sources */,
-				4123E041181FA25800CED5CD /* EJBindingWizCanvasMessenger.m in Sources */,
+				411A32BC1822487600940391 /* EJBindingWizCanvasMessenger.m in Sources */,
 				414DBFD017F97CBD00DA3A50 /* EJCanvasContextWebGL.m in Sources */,
 				414DBFD117F97CBD00DA3A50 /* EJConvertWebGL.m in Sources */,
 			);

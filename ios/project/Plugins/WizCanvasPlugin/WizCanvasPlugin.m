@@ -639,7 +639,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         NSString *viewType = [self checkView:[wizViewList objectForKey:targetView]];
         NSLog(@"Sending message: %@ targetView: %@", viewType, targetView);
 
-        NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent( '%@', '%@', %@, '%@' );",
+        NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent( '%@', '%@', '%@', '%@' );",
                         originView,
                         targetView,
                         message,

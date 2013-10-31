@@ -9,7 +9,7 @@
 #import "WizCanvasView.h"
 #import "EJTimer.h"
 #import "EJClassLoader.h"
-#import "EJBindingWizViewMessenger.h"
+#import "EJBindingWizCanvasMessenger.h"
 
 
 // Block function callbacks
@@ -158,7 +158,7 @@ static WizCanvasView * ejectaInstance = NULL;
 	    [self loadScriptAtPath:EJECTA_BOOT_JS];
         
         // Load wizViewMessenger
-	    [self evaluateScript:[NSString stringWithFormat:@"wizViewMessenger = new Ejecta.WizViewMessenger(\"%@\");", viewName]];
+	    [self evaluateScript:[NSString stringWithFormat:@"wizCanvasMessenger = new Ejecta.WizCanvasMessenger(\"%@\");", viewName]];
 
         // Additional boot file
         if (![src isEqualToString:@""]) {
