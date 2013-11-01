@@ -25,13 +25,13 @@ wizCanvas looks automatically for an index.js file in ```www/assets/canvas/``` i
 
 In Xcode Build Settings, add the following 2 lines in the Header Path
 
-	"$(SRCROOT)/<your project name>/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin"
-	"$(SRCROOT)/<your project name>/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/JavaScriptCore"
+	"$(SRCROOT)/<your project name>/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib"
+	"$(SRCROOT)/<your project name>/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore"
 
 In Xcode Build Settings, add the following 2 lines in the Library Search Path
 
-	"$(SRCROOT)/<your project name>/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin"
-	"$(SRCROOT)/<your project name>/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/JavaScriptCore"
+	"$(SRCROOT)/<your project name>/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib"
+	"$(SRCROOT)/<your project name>/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore"
 
 In Xcode Build Settings remove `armv7s` from valid architectures.
 
