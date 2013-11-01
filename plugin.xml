@@ -92,7 +92,7 @@
         <source-file src="ios/project/Plugins/WizCanvasPlugin/WizCanvasView.m" compiler-flags="-fno-objc-arc" target-dir="WizCanvas" />
         	
         <!-- Ejecta lib -->
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/libJavaScriptCore.a" framework="true" target-dir="lib/JavaScriptCore" />
+        <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/libJavaScriptCore.a" framework="true" target-dir="lib" />
         	
         <!-- Ejecta lib headers -->
         <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JavaScript.h" target-dir="lib/JavaScriptCore" />
