@@ -9,6 +9,7 @@
 #import "WizCanvasPlugin.h"
 #import "WizCanvasView.h"
 #import "WizDebugLog.h"
+#import "EAGLView.h"
 
 @implementation WizCanvasPlugin
 
@@ -146,12 +147,28 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     WizCanvasView *canvas = [[WizCanvasView alloc] initWithWindow:canvasView name:viewName sourceToLoad:src];
 
     // Defaults
-    canvasView.backgroundColor        = [UIColor blackColor];
-    // canvasView.opaque                 = NO;
+    canvasView.backgroundColor          = [UIColor blackColor];
+    canvasView.opaque                   = YES; // Default to YES, this makes for faster rendering
     // canvasView.autoresizesSubviews    = YES;
     // canvasView.alpha                  = 1;
     // canvasView.multipleTouchEnabled   = YES;
     // canvasView.userInteractionEnabled = YES;
+    if (![[options objectForKey:@"backgroundColor"] isKindOfClass:(NSNull *) NULL]) {
+        if ([[options objectForKey:@"backgroundColor"] isEqualToString:@"transparent"]) {
+            canvasView.opaque                 = NO;
+            canvasView.backgroundColor        = [UIColor clearColor];
+            for(id view in canvasView.subviews){
+                if([view isKindOfClass:NSClassFromString(@"EAGLView")]){
+                    // Turn off opaque property on GL view
+                    CAEAGLLayer *eaglLayer = (CAEAGLLayer *)view;
+                    eaglLayer.opaque = FALSE;
+                }
+            }
+        } else {
+            // Get out the colour calculator
+            canvasView.backgroundColor        = [self colorWithHexString:[options objectForKey:@"backgroundColor"]];
+        }
+    }
 
     // move view out of display
     [canvasView setFrame:CGRectMake(

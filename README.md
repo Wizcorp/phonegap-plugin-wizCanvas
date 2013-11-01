@@ -56,6 +56,7 @@ Options list;
 	    bottom: 0, [string, pixels or percent - default : 0]
 	    left: 0, [pixels or percent - default : 0]    
 	    right:0, [string, pixels or percent - default : 0]
+	    backgroundColor: [Colour as hex ###/####/###### or "transparent"]
 	}; 
 
 ### Load
