@@ -280,8 +280,8 @@
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWindowEvents.h" target-dir="Ejecta/EJUtils" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWindowEvents.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWizViewMessenger.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWizViewMessenger.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWizCanvasMessenger.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWizCanvasMessenger.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPManager.h" target-dir="Ejecta/EJUtils/IAP" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPManager.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils/IAP" />
@@ -309,6 +309,16 @@
         
 
         <!-- iOS Frameworks -->
+        <framework src="AVFoundation.framework" />
+	<framework src="AudioToolbox.framework" />
+	<framework src="OpenAL.framework" />
+	<framework src="Foundation.framework" />
+	<framework src="UIKit.framework" />
+	<framework src="QuartzCore.framework" />
+	<framework src="SystemConfiguration.framework" />
+	<framework src="CFNetwork.framework" />
+	<framework src="CoreGraphics.framework" />
+	<framework src="mediaplayer" />
         <framework src="CoreMotion.framework" />
         <framework src="OpenGLES.framework" />
         <framework src="iAd.framework" />
