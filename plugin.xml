@@ -306,6 +306,16 @@
         
 
         <!-- iOS Frameworks -->
+        <framework src="AVFoundation.framework" />
+	<framework src="AudioToolbox.framework" />
+	<framework src="OpenAL.framework" />
+	<framework src="Foundation.framework" />
+	<framework src="UIKit.framework" />
+	<framework src="QuartzCore.framework" />
+	<framework src="SystemConfiguration.framework" />
+	<framework src="CFNetwork.framework" />
+	<framework src="CoreGraphics.framework" />
+	<framework src="mediaplayer" />
         <framework src="CoreMotion.framework" />
         <framework src="OpenGLES.framework" />
         <framework src="iAd.framework" />
