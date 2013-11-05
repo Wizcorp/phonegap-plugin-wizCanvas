@@ -59,6 +59,8 @@ Options list;
 	    backgroundColor: [Colour as hex RGB/ARGB/RRGGBB or "transparent"]
 	}; 
 
+** Note - Android does not yet support String " px" values or " %" values ** 
+
 ### Load
 
 	wizCanvas.load(String viewName, String URI or URL, Function success, Function fail);
