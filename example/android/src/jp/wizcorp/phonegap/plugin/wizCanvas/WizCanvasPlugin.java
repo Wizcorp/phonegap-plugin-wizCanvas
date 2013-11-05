@@ -212,6 +212,9 @@ public class WizCanvasPlugin extends CordovaPlugin {
                             try {
                                 intent.putExtra("EXTRA_NAME", canvasName);
 
+                                if (settings.has("backgroundColor")) {
+                                    intent.putExtra("BACKGROUND_COLOR", settings.getString("backgroundColor"));
+                                }
                                 if (settings.has("width")) {
                                     intent.putExtra("EXTRA_WIDTH", settings.getInt("width"));
                                 }
