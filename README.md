@@ -1,7 +1,7 @@
 # phonegap-plugin-wizCanvas
 
 - PhoneGap Version : 3.0
-- last update : 29/10/2013
+- last update : 5/11/2013
 
 ## Description
 
@@ -56,7 +56,7 @@ Options list;
 	    bottom: 0, [string, pixels or percent - default : 0]
 	    left: 0, [pixels or percent - default : 0]    
 	    right:0, [string, pixels or percent - default : 0]
-	    backgroundColor: [Colour as hex ###/####/###### or "transparent"]
+	    backgroundColor: [Colour as hex RGB/ARGB/RRGGBB or "transparent"]
 	}; 
 
 ### Load
