@@ -2,7 +2,11 @@ package com.impactjs.ejecta;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
+import android.os.Build;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,12 +19,74 @@ public class EjectaGLSurfaceView extends GLSurfaceView {
 	}
 	
 	EjectaRenderer mRenderer;
-	public EjectaGLSurfaceView(Context context, int width, int height) {
+	public EjectaGLSurfaceView(Context context, int width, int height, String backgroundColor) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		mRenderer = new EjectaRenderer(context, width, height);
-        setRenderer(mRenderer);
+        if (backgroundColor != null) {
+            if (backgroundColor.equalsIgnoreCase("transparent")) {
+                setZOrderOnTop(true);
+                setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+                getHolder().setFormat(PixelFormat.RGBA_8888);
+            } else {
+                // Set new background colour
+                String hash = backgroundColor.substring(0,1);
+                String color = backgroundColor.substring(1);
+                if (hash.equalsIgnoreCase("#")) {
+                    setZOrderOnTop(true);
+                    setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+                    getHolder().setFormat(PixelFormat.RGBA_8888);
 
+                    String a, r, g, b;
+                    switch (color.length()) {
+                        case 8:
+                            // #AARRGGBB
+                            setBackgroundColor(Color.parseColor(backgroundColor));
+                            int argb8 = Color.parseColor(backgroundColor);
+                            float alpha8 = argb8 >>> 24;
+                            if (Build.VERSION.SDK_INT >= 11) {
+                                // Safe for Honeycomb only
+                                setAlpha(alpha8);
+                            }
+                            break;
+                        case 6:
+                            // #RRGGBB
+                            setBackgroundColor(Color.parseColor(backgroundColor));
+                            break;
+                        case 4:
+                            // #ARGB
+                            a = color.substring(0, 1);
+                            r = color.substring(1, 2);
+                            g = color.substring(2, 3);
+                            b = color.substring(3, 4);
+                            setBackgroundColor(Color.parseColor("#" + r + r + g + g + b + b));
+                            // Set alpha
+                            int argb4 = Color.parseColor("#" + a + a + r + r + g + g + b + b);
+                            float alpha4 = argb4 >>> 24;
+                            if (Build.VERSION.SDK_INT >= 11) {
+                                // Safe for Honeycomb only
+                                setAlpha(alpha4);
+                            }
+                            break;
+                        case 3:
+                            // #RGB
+                            r = color.substring(0, 1);
+                            g = color.substring(1, 2);
+                            b = color.substring(2, 3);
+                            setBackgroundColor(Color.parseColor("#" + r + r + g + g + b + b));
+                            break;
+                        default:
+                            // Unknown hex length
+                            Log.e("ejecta", "Unknown colour hex length");
+                    }
+                } else {
+                    Log.e("ejecta", "Unknown colour hex. Forget '#'?");
+                    // else invalid colour hex
+                }
+            }
+        }
+
+        setRenderer(mRenderer);
         super.setOnTouchListener(new OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {

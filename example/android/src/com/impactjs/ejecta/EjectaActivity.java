@@ -98,13 +98,15 @@ public class EjectaActivity extends Activity {
         int width = intent.getIntExtra("EXTRA_WIDTH", -1);
         int height = intent.getIntExtra("EXTRA_HEIGHT", -1);
         viewName = intent.getStringExtra("EXTRA_NAME");
+        String backgroundColor = intent.getStringExtra("BACKGROUND_COLOR");
 
-        mGLView = new EjectaGLSurfaceView(this, width, height);
+        mGLView = new EjectaGLSurfaceView(this, width, height, backgroundColor);
 
         ((EjectaGLSurfaceView)mGLView).setEjectaEventListener(new EjectaRenderer.EjectaEventListener() {
             @Override
             public void onCanvasCreated() {
                 Log.d("ejecta", "Canvas created!");
+
                 // Evaluate script
                 ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("ejecta.js");
                 String js = "var wizCanvasMessenger = null; " +
@@ -145,6 +147,7 @@ public class EjectaActivity extends Activity {
                 ((EjectaGLSurfaceView) mGLView).evaluateScript(js);
                 ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("index.js");
             }
+
             @Override
             public void onPostMessageReceived(String target, String message, String type, String source) {
                 // Log.d("ejecta", "To: " + target);
