@@ -240,6 +240,7 @@ public class WizCanvasPlugin extends CordovaPlugin {
                                     intent.putExtra("EXTRA_BOTTOM", settings.getInt("bottom"));
                                 }
                             } catch (JSONException e) {
+                                Log.e(TAG, "Settings error: " + e);
                                 e.printStackTrace();
                             }
 
