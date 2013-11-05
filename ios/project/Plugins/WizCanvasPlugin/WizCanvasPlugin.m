@@ -154,19 +154,21 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     // canvasView.multipleTouchEnabled   = YES;
     // canvasView.userInteractionEnabled = YES;
     if (![[options objectForKey:@"backgroundColor"] isKindOfClass:(NSNull *) NULL]) {
-        if ([[options objectForKey:@"backgroundColor"] isEqualToString:@"transparent"]) {
-            canvasView.opaque                 = NO;
-            canvasView.backgroundColor        = [UIColor clearColor];
-            for(id view in canvasView.subviews){
-                if([view isKindOfClass:NSClassFromString(@"EAGLView")]){
-                    // Turn off opaque property on GL view
-                    CAEAGLLayer *eaglLayer = (CAEAGLLayer *)view;
+
+        for(id view in canvasView.subviews){
+            if([view isKindOfClass:NSClassFromString(@"EAGLView")]){
+                // Turn off opaque property on GL view
+                CAEAGLLayer *eaglLayer = (CAEAGLLayer *)view;
+                if ([[options objectForKey:@"backgroundColor"] isEqualToString:@"transparent"]) {
+                    canvasView.opaque                 = NO;
+                    canvasView.backgroundColor        = [UIColor clearColor];
                     eaglLayer.opaque = FALSE;
+                } else {
+                    canvasView.backgroundColor        = [UIColor clearColor];
+                    // Get out the colour calculator
+                    eaglLayer.backgroundColor        = [self colorWithHexString:[options objectForKey:@"backgroundColor"]];
                 }
             }
-        } else {
-            // Get out the colour calculator
-            canvasView.backgroundColor        = [self colorWithHexString:[options objectForKey:@"backgroundColor"]];
         }
     }
 
