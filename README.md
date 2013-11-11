@@ -122,7 +122,7 @@ Example animation Object;
 
 To send a messsage to a view based on W3C post message API... for more information on the MessageEvent API, see: [http://www.w3.org/TR/2008/WD-html5-20080610/comms.HTMLElement](http://www.w3.org/TR/2008/WD-html5-20080610/comms.HTMLElement)
 
-	wizViewMessenger.postMessage(Data message, String targetView);
+	wizCanvasMessenger.postMessage(Data message, String targetView);
 
 - `message` is Data as Array, String, Number, Object
 - `targetView` is the string name of the target view.
