@@ -16,20 +16,25 @@
     NSString *fullPath = @"";
     
 	NSLog(@"Loading Image: %@", path);
-    if ( [path rangeOfString:@"http"].location == NSNotFound || [path rangeOfString:@"https"].location == NSNotFound) {
+
+    NSURL *url = [NSURL URLWithString:path];
+
+    if ([url.scheme isEqualToString:@"http"] || [url.scheme isEqualToString:@"https"]) {
         // Is likely to be a remote source
-        NSURL *url = [NSURL URLWithString:path];
-        
+
         NSData *urlData = [NSData dataWithContentsOfURL:url];
         if ( urlData ) {
             
             // Split the path string
-            NSMutableArray *pathSpliter = [[NSMutableArray alloc] initWithArray:[path componentsSeparatedByString:@"/"] copyItems:YES];
+            NSMutableArray *pathSpliter = [[NSMutableArray alloc] initWithArray:[url.path componentsSeparatedByString:@"/"] copyItems:YES];
             NSString *fileName = [pathSpliter lastObject];
             // Remove last object (filename)
             [pathSpliter removeLastObject];
             // Join all dir(s)
-            NSString *storePath = [pathSpliter componentsJoinedByString:@"/"];
+            NSString *storePath = @"";
+            if ([pathSpliter count] > 1) {
+                storePath = [pathSpliter componentsJoinedByString:@"/"];
+            }
             [pathSpliter release];
             
             NSFileManager *filemgr;
@@ -46,7 +51,6 @@
             if ([filemgr createDirectoryAtPath:fullDir withIntermediateDirectories:YES attributes:nil error: NULL] == YES) {
                 // Success to create directory download data to temp and move to library/cache when complete
                 [urlData writeToFile:filePath atomically:YES];
-                
                 fullPath = filePath;
                 
             } else {

@@ -153,20 +153,21 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     // canvasView.alpha                  = 1;
     // canvasView.multipleTouchEnabled   = YES;
     // canvasView.userInteractionEnabled = YES;
-    if (![[options objectForKey:@"backgroundColor"] isKindOfClass:(NSNull *) NULL]) {
+    NSString *backgroundColor = [options objectForKey:@"backgroundColor"];
+    if (![backgroundColor isKindOfClass:[NSNull class]] && backgroundColor != nil) {
 
         for(id view in canvasView.subviews){
             if([view isKindOfClass:NSClassFromString(@"EAGLView")]){
                 // Turn off opaque property on GL view
                 CAEAGLLayer *eaglLayer = (CAEAGLLayer *)view;
-                if ([[options objectForKey:@"backgroundColor"] isEqualToString:@"transparent"]) {
+                if ([backgroundColor isEqualToString:@"transparent"]) {
                     canvasView.opaque                 = NO;
                     canvasView.backgroundColor        = [UIColor clearColor];
                     eaglLayer.opaque = FALSE;
                 } else {
                     canvasView.backgroundColor        = [UIColor clearColor];
                     // Get out the colour calculator
-                    eaglLayer.backgroundColor        = [self colorWithHexString:[options objectForKey:@"backgroundColor"]];
+                    eaglLayer.backgroundColor        = [self colorWithHexString:backgroundColor];
                 }
             }
         }
@@ -186,7 +187,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     // [wizViewList setObject:canvas forKey:viewName];
     [wizViewList setObject:canvasView forKey:viewName];
 
-    // add view to parent webview
+    // add view to parent UIWebView
     [self.webView.superview addSubview:canvasView];
 
     [self updateViewList];
