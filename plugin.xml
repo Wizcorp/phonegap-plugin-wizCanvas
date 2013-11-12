@@ -315,7 +315,7 @@
 	<framework src="SystemConfiguration.framework" />
 	<framework src="CFNetwork.framework" />
 	<framework src="CoreGraphics.framework" />
-	<framework src="mediaplayer" />
+	<framework src="MediaPlayer.framework" />
         <framework src="CoreMotion.framework" />
         <framework src="OpenGLES.framework" />
         <framework src="iAd.framework" />
