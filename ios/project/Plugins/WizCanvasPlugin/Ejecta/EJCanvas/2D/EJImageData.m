@@ -14,7 +14,7 @@
 }
 
 - (void)dealloc {
-    pixels setLength:0];
+    [pixels setLength:0];
 	[pixels release];
     pixels = nil;
     [texture release];
