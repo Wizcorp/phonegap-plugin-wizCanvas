@@ -414,6 +414,7 @@ typedef struct {
 		CGContextRelease(context);
 		CGColorSpaceRelease(colorSpace);
 		[tmpImage release];
+		tmpImage = NULL;
 	}
 	
 	return pixels;

@@ -209,6 +209,7 @@ static inline EJColorRGBA EJCanvasBlendStrokeColor( EJCanvasState *state ) {
 
 @property (nonatomic) EJCanvasState *state;
 @property (nonatomic) EJCompositeOperation globalCompositeOperation;
+@property (nonatomic, retain) EJImageData *temp;
 @property (nonatomic, retain) EJFontDescriptor *font;
 @property (nonatomic, retain) NSObject<EJFillable> *fillObject;
 @property (nonatomic, assign) float backingStoreRatio;
