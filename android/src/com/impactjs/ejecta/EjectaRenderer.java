@@ -16,7 +16,7 @@ public class EjectaRenderer implements Renderer {
     public EjectaRenderer(Context ctx, int width, int height) {
         mainBundle = "/data/data/" + ctx.getPackageName();
         // Copy app files
-        Utils.copyDatFiles(ctx, mainBundle + "/files/build/", "www/assets/canvas");
+        Utils.copyDatFiles(ctx, mainBundle + "/cache/", "www");
 
         screen_width = width;
         screen_height = height;

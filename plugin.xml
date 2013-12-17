@@ -67,7 +67,7 @@
         <source-file src="android/res/layout/wiz_canvas_layout.xml" 
             target-dir="res/layout"/>
             
-    	<asset src="www/phonegap/plugin/wizCanvas/android/ejecta.js" target="assets/canvas/ejecta.js" />
+        <asset src="www/phonegap/plugin/wizCanvas/android/ejecta.js" target="ejecta.js" />
     
     </platform>
 
