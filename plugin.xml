@@ -68,6 +68,8 @@
             target-dir="res/layout"/>
             
         <asset src="www/phonegap/plugin/wizCanvas/android/ejecta.js" target="ejecta.js" />
+        <asset src="www/phonegap/plugin/wizCanvas/shaders/" target="shaders/" />
+
     
     </platform>
 
