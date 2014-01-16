@@ -22,6 +22,7 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 @synthesize backingStoreRatio;
 @synthesize useRetinaResolution;
 @synthesize imageSmoothingEnabled;
+@synthesize temp;
 
 - (id)initWithScriptView:(WizCanvasView *)scriptViewp width:(short)widthp height:(short)heightp {
 	if( self = [super init] ) {
@@ -697,7 +698,7 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 	
 	// Fast case - no scaling, no flipping
 	if( scale == 1 && !flipped ) {
-		pixels = [NSMutableData dataWithLength:sw * sh * 4 * sizeof(GLubyte)];
+		pixels = [[NSMutableData alloc] initWithLength:sw * sh * 4 * sizeof(GLubyte)];
 		glReadPixels(sx, sy, sw, sh, GL_RGBA, GL_UNSIGNED_BYTE, pixels.mutableBytes);
 	}
 	
@@ -722,12 +723,26 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 				index++;
 			}
 		}
-		free(internalPixels);
 	
-		pixels = [NSMutableData dataWithBytesNoCopy:scaledPixels length:size];
+		pixels = [[NSMutableData alloc] initWithBytesNoCopy:scaledPixels length:size];
+        
+        free(internalPixels);
+        // free(scaledPixels);
 	}
 	
-	return [[[EJImageData alloc] initWithWidth:sw height:sh pixels:pixels] autorelease];
+    if (temp) {
+        [temp release];
+        temp = nil;
+    }
+    
+	temp = [[EJImageData alloc] initWithWidth:sw height:sh pixels:pixels];
+    if ([pixels length] > 0) {
+        [pixels setLength:0];
+        [pixels release];
+        pixels = nil;
+    }
+    
+    return temp;
 }
 
 - (EJImageData*)getImageDataSx:(short)sx sy:(short)sy sw:(short)sw sh:(short)sh {

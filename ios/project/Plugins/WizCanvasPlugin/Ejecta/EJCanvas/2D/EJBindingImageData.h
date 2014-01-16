@@ -9,7 +9,7 @@
 
 - (id)initWithImageData:(EJImageData *)data;
 
-@property (readonly, nonatomic) EJImageData *imageData;
+@property (nonatomic, retain) EJImageData *imageData;
 @property (readonly, nonatomic) EJTexture *texture;
 
 @end

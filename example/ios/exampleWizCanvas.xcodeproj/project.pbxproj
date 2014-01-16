@@ -54,12 +54,6 @@
 		414DBFBC17F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8617F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.m */; };
 		414DBFBD17F97CBD00DA3A50 /* EJImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8817F97CBD00DA3A50 /* EJImageData.m */; };
 		414DBFBE17F97CBD00DA3A50 /* EJPath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8A17F97CBD00DA3A50 /* EJPath.mm */; };
-		414DBFBF17F97CBD00DA3A50 /* AlphaTexture.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8C17F97CBD00DA3A50 /* AlphaTexture.fsh */; };
-		414DBFC017F97CBD00DA3A50 /* Flat.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8D17F97CBD00DA3A50 /* Flat.fsh */; };
-		414DBFC117F97CBD00DA3A50 /* Pattern.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8E17F97CBD00DA3A50 /* Pattern.fsh */; };
-		414DBFC217F97CBD00DA3A50 /* RadialGradient.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8F17F97CBD00DA3A50 /* RadialGradient.fsh */; };
-		414DBFC317F97CBD00DA3A50 /* Texture.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9017F97CBD00DA3A50 /* Texture.fsh */; };
-		414DBFC417F97CBD00DA3A50 /* Vertex.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9117F97CBD00DA3A50 /* Vertex.vsh */; };
 		414DBFC517F97CBD00DA3A50 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9317F97CBD00DA3A50 /* EAGLView.m */; };
 		414DBFC617F97CBD00DA3A50 /* EJBindingCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9517F97CBD00DA3A50 /* EJBindingCanvas.m */; };
 		414DBFC717F97CBD00DA3A50 /* EJBindingCanvasStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9717F97CBD00DA3A50 /* EJBindingCanvasStyle.m */; };
@@ -73,12 +67,6 @@
 		414DBFCF17F97CBD00DA3A50 /* EJBindingWebGLObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFAA17F97CBD00DA3A50 /* EJBindingWebGLObjects.m */; };
 		414DBFD017F97CBD00DA3A50 /* EJCanvasContextWebGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFAC17F97CBD00DA3A50 /* EJCanvasContextWebGL.m */; };
 		414DBFD117F97CBD00DA3A50 /* EJConvertWebGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFAE17F97CBD00DA3A50 /* EJConvertWebGL.m */; };
-		414DBFD217F97F1300DA3A50 /* AlphaTexture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8C17F97CBD00DA3A50 /* AlphaTexture.fsh */; };
-		414DBFD317F97F1300DA3A50 /* Flat.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8D17F97CBD00DA3A50 /* Flat.fsh */; };
-		414DBFD417F97F1300DA3A50 /* Pattern.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8E17F97CBD00DA3A50 /* Pattern.fsh */; };
-		414DBFD517F97F1300DA3A50 /* RadialGradient.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8F17F97CBD00DA3A50 /* RadialGradient.fsh */; };
-		414DBFD617F97F1300DA3A50 /* Texture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF9017F97CBD00DA3A50 /* Texture.fsh */; };
-		414DBFD717F97F1300DA3A50 /* Vertex.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF9117F97CBD00DA3A50 /* Vertex.vsh */; };
 		41CF5DD1178D008300001BC8 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5DD0178D008300001BC8 /* libstdc++.dylib */; };
 		41CF5E78178D06CF00001BC8 /* EJAudioSourceAVAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DD9178D06CF00001BC8 /* EJAudioSourceAVAudio.m */; };
 		41CF5E79178D06CF00001BC8 /* EJAudioSourceOpenAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DDB178D06CF00001BC8 /* EJAudioSourceOpenAL.m */; };
@@ -116,6 +104,12 @@
 		41CF5EC5178D0B8700001BC8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5EC4178D0B8700001BC8 /* CoreMotion.framework */; };
 		41DC39FD17E30F7A00FB6416 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DC39FC17E30F7A00FB6416 /* Cordova.framework */; };
 		41DC39FF17E3107E00FB6416 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DC39FE17E3107E00FB6416 /* AssetsLibrary.framework */; };
+		C6DAF3BD183DE79300F4F624 /* AlphaTexture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8C17F97CBD00DA3A50 /* AlphaTexture.fsh */; };
+		C6DAF3BE183DE79300F4F624 /* Flat.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8D17F97CBD00DA3A50 /* Flat.fsh */; };
+		C6DAF3BF183DE79300F4F624 /* Pattern.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8E17F97CBD00DA3A50 /* Pattern.fsh */; };
+		C6DAF3C0183DE79300F4F624 /* RadialGradient.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8F17F97CBD00DA3A50 /* RadialGradient.fsh */; };
+		C6DAF3C1183DE79300F4F624 /* Texture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF9017F97CBD00DA3A50 /* Texture.fsh */; };
+		C6DAF3C2183DE79300F4F624 /* Vertex.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF9117F97CBD00DA3A50 /* Vertex.vsh */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F6FA7CDF16AFDEC200AD8974 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FA7CDE16AFDEC200AD8974 /* iAd.framework */; };
 		F6FA7CE116AFDEF000AD8974 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FA7CE016AFDEF000AD8974 /* CoreText.framework */; };
@@ -136,7 +130,7 @@
 		1F2F1F2B3D6C0726F921D9C4 /* EJBindingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebSocket.h; sourceTree = "<group>"; };
 		1F766FDD13BBADB100FB74C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/example/ios/exampleWizCanvas/main.m"; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		301BF5B4109A6A2B0062928A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		301BF5B6109A6A2B0062928A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		301BF5B8109A6A2B0062928A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -160,7 +154,7 @@
 		308D052F1370CCF300D202BF /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		308D05301370CCF300D202BF /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		30E5649113A7FCAF007403D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		32CA4F630368D1EE00C91783 /* exampleWizCanvas-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "exampleWizCanvas-Prefix.pch"; path = "../exampleWizCanvas/exampleWizCanvas-Prefix.pch"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* exampleWizCanvas-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "exampleWizCanvas-Prefix.pch"; sourceTree = "<group>"; };
 		411A32B81822483300940391 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		411A32BA1822487600940391 /* EJBindingWizCanvasMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWizCanvasMessenger.h; sourceTree = "<group>"; };
 		411A32BB1822487600940391 /* EJBindingWizCanvasMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWizCanvasMessenger.m; sourceTree = "<group>"; };
@@ -197,12 +191,12 @@
 		414DBF8817F97CBD00DA3A50 /* EJImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJImageData.m; sourceTree = "<group>"; };
 		414DBF8917F97CBD00DA3A50 /* EJPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJPath.h; sourceTree = "<group>"; };
 		414DBF8A17F97CBD00DA3A50 /* EJPath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EJPath.mm; sourceTree = "<group>"; };
-		414DBF8C17F97CBD00DA3A50 /* AlphaTexture.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = AlphaTexture.fsh; sourceTree = "<group>"; };
-		414DBF8D17F97CBD00DA3A50 /* Flat.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Flat.fsh; sourceTree = "<group>"; };
-		414DBF8E17F97CBD00DA3A50 /* Pattern.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Pattern.fsh; sourceTree = "<group>"; };
-		414DBF8F17F97CBD00DA3A50 /* RadialGradient.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = RadialGradient.fsh; sourceTree = "<group>"; };
-		414DBF9017F97CBD00DA3A50 /* Texture.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Texture.fsh; sourceTree = "<group>"; };
-		414DBF9117F97CBD00DA3A50 /* Vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Vertex.vsh; sourceTree = "<group>"; };
+		414DBF8C17F97CBD00DA3A50 /* AlphaTexture.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = AlphaTexture.fsh; sourceTree = "<group>"; };
+		414DBF8D17F97CBD00DA3A50 /* Flat.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Flat.fsh; sourceTree = "<group>"; };
+		414DBF8E17F97CBD00DA3A50 /* Pattern.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Pattern.fsh; sourceTree = "<group>"; };
+		414DBF8F17F97CBD00DA3A50 /* RadialGradient.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = RadialGradient.fsh; sourceTree = "<group>"; };
+		414DBF9017F97CBD00DA3A50 /* Texture.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Texture.fsh; sourceTree = "<group>"; };
+		414DBF9117F97CBD00DA3A50 /* Vertex.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Vertex.vsh; sourceTree = "<group>"; };
 		414DBF9217F97CBD00DA3A50 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
 		414DBF9317F97CBD00DA3A50 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
 		414DBF9417F97CBD00DA3A50 /* EJBindingCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvas.h; sourceTree = "<group>"; };
@@ -411,7 +405,7 @@
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
-			path = exampleWizViewManager;
+			path = exampleWizCanvas;
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -465,7 +459,7 @@
 				41CF5DD2178D06CF00001BC8 /* WizCanvasPlugin */,
 			);
 			name = Plugins;
-			path = exampleWizViewManager/Plugins;
+			path = ../../ios/project/Plugins;
 			sourceTree = SOURCE_ROOT;
 		};
 		308D052D1370CCF300D202BF /* icons */ = {
@@ -601,9 +595,8 @@
 				41CF5E73178D06CF00001BC8 /* WizCanvasPlugin.h */,
 				41CF5E74178D06CF00001BC8 /* WizCanvasPlugin.m */,
 			);
-			name = WizCanvasPlugin;
-			path = "/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin";
-			sourceTree = "<absolute>";
+			path = WizCanvasPlugin;
+			sourceTree = "<group>";
 		};
 		41CF5DD3178D06CF00001BC8 /* Ejecta */ = {
 			isa = PBXGroup;
@@ -791,12 +784,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				414DBFD217F97F1300DA3A50 /* AlphaTexture.fsh in Resources */,
-				414DBFD317F97F1300DA3A50 /* Flat.fsh in Resources */,
-				414DBFD417F97F1300DA3A50 /* Pattern.fsh in Resources */,
-				414DBFD517F97F1300DA3A50 /* RadialGradient.fsh in Resources */,
-				414DBFD617F97F1300DA3A50 /* Texture.fsh in Resources */,
-				414DBFD717F97F1300DA3A50 /* Vertex.vsh in Resources */,
+				C6DAF3BD183DE79300F4F624 /* AlphaTexture.fsh in Resources */,
+				C6DAF3BE183DE79300F4F624 /* Flat.fsh in Resources */,
+				C6DAF3BF183DE79300F4F624 /* Pattern.fsh in Resources */,
+				C6DAF3C0183DE79300F4F624 /* RadialGradient.fsh in Resources */,
+				C6DAF3C1183DE79300F4F624 /* Texture.fsh in Resources */,
+				C6DAF3C2183DE79300F4F624 /* Vertex.vsh in Resources */,
 				F840E1F1165FE0F500CFE078 /* config.xml in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
 				411A32B91822483300940391 /* www in Resources */,
@@ -902,12 +895,6 @@
 				414DBFBC17F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.m in Sources */,
 				414DBFBD17F97CBD00DA3A50 /* EJImageData.m in Sources */,
 				414DBFBE17F97CBD00DA3A50 /* EJPath.mm in Sources */,
-				414DBFBF17F97CBD00DA3A50 /* AlphaTexture.fsh in Sources */,
-				414DBFC017F97CBD00DA3A50 /* Flat.fsh in Sources */,
-				414DBFC117F97CBD00DA3A50 /* Pattern.fsh in Sources */,
-				414DBFC217F97CBD00DA3A50 /* RadialGradient.fsh in Sources */,
-				414DBFC317F97CBD00DA3A50 /* Texture.fsh in Sources */,
-				414DBFC417F97CBD00DA3A50 /* Vertex.vsh in Sources */,
 				414DBFC517F97CBD00DA3A50 /* EAGLView.m in Sources */,
 				414DBFC617F97CBD00DA3A50 /* EJBindingCanvas.m in Sources */,
 				414DBFC717F97CBD00DA3A50 /* EJBindingCanvasStyle.m in Sources */,
@@ -960,14 +947,14 @@
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}",
 					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/lib",
+					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/lib",
 				);
 				INFOPLIST_FILE = "exampleWizCanvas/exampleWizCanvas-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(inherited)\"",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/Ejecta",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/lib",
+					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
+					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/lib",
 				);
 				PRODUCT_NAME = exampleWizCanvas;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -994,14 +981,14 @@
 				HEADER_SEARCH_PATHS = (
 					"${SOURCE_ROOT}",
 					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/lib",
+					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/lib",
 				);
 				INFOPLIST_FILE = "exampleWizCanvas/exampleWizCanvas-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(inherited)\"",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/Ejecta",
-					"/Users/Ally/Documents/Wizcorp/phonegap-plugin-wizCanvas/ios/project/Plugins/WizCanvasPlugin/lib",
+					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
+					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/lib",
 				);
 				PRODUCT_NAME = exampleWizCanvas;
 				TARGETED_DEVICE_FAMILY = "1,2";

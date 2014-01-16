@@ -49,6 +49,8 @@ public class EjectaActivity extends Activity {
         mActivity = this;
         int layout_id = getResources().getIdentifier("wiz_canvas_layout", "layout", this.getPackageName());
         setContentView(layout_id);
+        int screenWidth = getWindowManager().getDefaultDisplay().getWidth();
+        int screenHeight = getWindowManager().getDefaultDisplay().getHeight();
 
         /*
         if ((width == -1) || (height == -1) ) {
@@ -95,10 +97,11 @@ public class EjectaActivity extends Activity {
 
         // Get extra layout user data
         Intent intent = getIntent();
-        int width = intent.getIntExtra("EXTRA_WIDTH", -1);
-        int height = intent.getIntExtra("EXTRA_HEIGHT", -1);
+        int width = intent.getIntExtra("EXTRA_WIDTH", screenWidth);
+        int height = intent.getIntExtra("EXTRA_HEIGHT", screenHeight);
         viewName = intent.getStringExtra("EXTRA_NAME");
         String backgroundColor = intent.getStringExtra("BACKGROUND_COLOR");
+        final String source = intent.getStringExtra("EXTRA_SOURCE");
 
         mGLView = new EjectaGLSurfaceView(this, width, height, backgroundColor);
 
@@ -145,7 +148,11 @@ public class EjectaActivity extends Activity {
                             "}" +
                         "};";
                 ((EjectaGLSurfaceView) mGLView).evaluateScript(js);
-                ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("index.js");
+                if(source != null) {
+                    ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile(source);
+                } else {
+                    ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("index.js");
+                }
             }
 
             @Override

@@ -326,6 +326,11 @@ EJ_BIND_FUNCTION(putImageData, ctx, argc, argv) {
 	EJ_UNPACK_ARGV_OFFSET(1, float dx, float dy);
 	
 	scriptView.currentRenderingContext = renderingContext;
+
+	// Fix a graphic glitch when there is consecutive calls to image data and canvas drawing on itself
+	// A better solution may exist
+	[renderingContext setTexture:NULL];
+    
 	[renderingContext putImageData:jsImageData.imageData dx:dx dy:dy];
 	return NULL;
 }
@@ -358,6 +363,11 @@ EJ_BIND_FUNCTION(putImageDataHD, ctx, argc, argv) {
 	EJ_UNPACK_ARGV_OFFSET(1, float dx, float dy);
 	
 	scriptView.currentRenderingContext = renderingContext;
+
+	// Fix a graphic glitch when there is consecutive calls to image data and canvas drawing on itself
+	// A better solution may exist
+	[renderingContext setTexture:NULL];
+
 	[renderingContext putImageDataHD:jsImageData.imageData dx:dx dy:dy];
 	return NULL;
 }

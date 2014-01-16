@@ -365,6 +365,19 @@ static WizCanvasView * ejectaInstance = NULL;
 }
 
 - (NSString *)pathForResource:(NSString *)path {
+    // Path to cache
+    NSArray  *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *gameDir = [[[NSBundle mainBundle] infoDictionary]   objectForKey:@"CFBundleName"];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", documentsDirectory, gameDir, path];
+
+    // Check if there is a file at this path
+    BOOL isFileInCache = [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:NO];
+
+    if(isFileInCache) {
+        return filePath;
+    }
+
+    // Returns the path to local resources if the file is not in the cache
 	return [NSString stringWithFormat:@"%@/" EJECTA_APP_FOLDER "%@", [[NSBundle mainBundle] resourcePath], path];
 }
 

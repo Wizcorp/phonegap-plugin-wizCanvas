@@ -23,7 +23,7 @@ public class Utils {
 			return;
 		}
 		File mWorkingPath = new File(dest);
-		if (mWorkingPath.exists()) {
+		if (mWorkingPath.isFile() && mWorkingPath.exists()) {
 			return;
 		} else {
 			if (!mWorkingPath.mkdirs()) {

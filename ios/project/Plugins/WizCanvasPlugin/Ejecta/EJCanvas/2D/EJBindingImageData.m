@@ -7,7 +7,7 @@
 
 - (id)initWithImageData:(EJImageData *)data {
 	if( self = [super initWithContext:NULL argc:0 argv:NULL] ) {
-		imageData = [data retain];
+		imageData = [[EJImageData alloc] initWithWidth:data.width height:data.height pixels:data.pixels];
 		dataArray = NULL;
 	}
 	return self;
@@ -19,6 +19,7 @@
 	}
 	
 	[imageData release];
+	imageData = nil;
 	[super dealloc];
 }
 
