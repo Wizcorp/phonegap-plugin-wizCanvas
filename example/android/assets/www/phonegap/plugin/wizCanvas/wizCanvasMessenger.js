@@ -42,9 +42,12 @@ WizCanvasMessenger.prototype.postMessage = function (message, targetView) {
     
 	var iframe = document.createElement('IFRAME');
 	iframe.setAttribute('src', 'wizPostMessage://'+ window.encodeURIComponent(window.name) + '?' + window.encodeURIComponent(targetView) + '?' + window.encodeURIComponent(message) + '?' + type );
-	document.documentElement.appendChild(iframe);
-	iframe.parentNode.removeChild(iframe);
-	iframe = null;		
+	// In case of heavy load or multiple views add a setTimeout
+    setTimeout(function () {
+        document.documentElement.appendChild(iframe);
+        iframe.parentNode.removeChild(iframe);
+        iframe = null;
+    }, 1);
 };
     
 WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, data, type) { 
