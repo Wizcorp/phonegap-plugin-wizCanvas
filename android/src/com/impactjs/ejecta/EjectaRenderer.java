@@ -24,23 +24,18 @@ public class EjectaRenderer implements Renderer {
 
 	@Override
 	public void onDrawFrame(GL10 gl) {
-		nativeRender(); 
+        nativeRender();
 	}
 
 	@Override
 	public void onSurfaceChanged(GL10 gl, int width, int height) {
-		
-		// TODO Auto-generated method stub
-		 
-		 nativeChanged(width, height);
-		 
-		 screen_width = width;
-		 screen_height = height;
+        nativeChanged(width, height);
+        screen_width = width;
+        screen_height = height;
 	}
 
 	@Override
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-		// TODO Auto-generated method stub
 		nativeCreated(mainBundle, screen_width, screen_height);
         onCanvasCreated();
 	}
@@ -89,5 +84,4 @@ public class EjectaRenderer implements Renderer {
         public abstract void onCanvasCreated();
         public abstract void onPostMessageReceived(String target, String message, String type, String origin);
     }
-
 }
