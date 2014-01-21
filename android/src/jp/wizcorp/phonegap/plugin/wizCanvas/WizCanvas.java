@@ -13,168 +13,277 @@
 package jp.wizcorp.phonegap.plugin.wizCanvas;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.os.Build;
+import android.content.Intent;
+import android.opengl.GLSurfaceView;
+import android.os.AsyncTask;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import com.impactjs.ejecta.EjectaGLSurfaceView;
+import com.impactjs.ejecta.EjectaRenderer;
+import com.impactjs.ejecta.Utils;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.PluginResult;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.zip.GZIPInputStream;
+
+import static jp.wizcorp.phonegap.plugin.wizCanvas.WizCanvasPlugin.getViews;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class WizCanvas extends WebView  {
+public class WizCanvas extends View {
 
-	private String TAG = "WizCanvas";
-    private CallbackContext create_cb;
-    private CallbackContext load_cb;
-
+    private String TAG = "WizCanvas";
+    private GLSurfaceView mGLView;
     static final FrameLayout.LayoutParams COVER_SCREEN_GRAVITY_CENTER =
             new FrameLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     Gravity.CENTER);
 
-    public WizCanvas(String viewName, JSONObject settings, Context context, CallbackContext callbackContext) {
+    static {
+        //System.loadLibrary("corefoundation");
+        System.loadLibrary("JavaScriptCore");
+        System.loadLibrary("ejecta");
+    }
+
+    public WizCanvas(String viewName, JSONObject settings, Activity act, CallbackContext callbackContext) {
         // Constructor method
-        super(context);
+        super(act);
 
         Log.d(TAG, " *************************************");
         Log.d(TAG, " building - new Wizard View");
         Log.d(TAG, " -> " + viewName);
         Log.d(TAG, " *************************************");
 
-        // Hold create callback and execute after page load
-        this.create_cb = callbackContext;
+        int screenWidth = act.getWindowManager().getDefaultDisplay().getWidth();
+        int screenHeight = act.getWindowManager().getDefaultDisplay().getHeight();
+
+        int width = screenWidth;
+        int height = screenHeight;
+        String backgroundColor = "#fff";
+        String source = null;
+
+        // Get extra layout (optional) settings
+        try {
+            if (settings.has("width")) {
+                width = settings.getInt("width");
+            }
+            if (settings.has("height")) {
+                height = settings.getInt("height");
+            }
+            if (settings.has("backgroundColor")) {
+                backgroundColor = settings.getString("backgroundColor");
+            }
+            if (settings.has("src")) {
+                source = settings.getString("src");
+                // Remove source from settings as it will be loaded
+                // in onCanvasCreated() after loading ejecta.js
+                // Otherwise setLayout will try to load source for
+                // a second time
+                settings.remove("src");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         // Set invisible by default, developer MUST call show to see the view
         this.setVisibility(View.INVISIBLE);
 
-        // 	WizWebView Settings
-        this.getSettings().setJavaScriptEnabled(true);
-        this.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        final String _source = source;
+        final String _viewName = viewName;
+        final Activity _act = act;
+        final CallbackContext _callbackContext = callbackContext;
 
-
-        ViewGroup frame = (ViewGroup) ((Activity) context).findViewById(android.R.id.content);
-
-        // Creating a new RelativeLayout fill its parent by default
-        RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.FILL_PARENT,
-                RelativeLayout.LayoutParams.FILL_PARENT);
-
-        // Default full screen
-        frame.addView(this, rlp);
-
-        this.setPadding(999, 0, 0, 0);
-
-        // Set a transparent background
-        this.setBackgroundColor(Color.TRANSPARENT);
-        if (Build.VERSION.SDK_INT >= 11) this.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
-
-        /*
-		 *	Override url loading on WebViewClient
-		 */
-        this.setWebViewClient(new WebViewClient(){
+        mGLView = new EjectaGLSurfaceView(act, width, height, backgroundColor);
+        ((EjectaGLSurfaceView)mGLView).setEjectaEventListener(new EjectaRenderer.EjectaEventListener() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView wView, String url)
-            {
-                Log.d(TAG, "[WizWebView] ****** "+ url);
+            public void onCanvasCreated() {
+                Log.d("ejecta", "Canvas created!");
 
-                String[] urlArray;
-                String splitter = "://";
-
-                // Split url by only 2 in the event "://" occurs elsewhere (SHOULD be impossible because you string encoded right!?)
-                urlArray = url.split(splitter,2);
-
-                if (urlArray[0].equalsIgnoreCase("wizmessageview") ) {
-
-                    String[] msgData;
-                    splitter = "\\?";
-
-                    // Split url by only 2 again to make sure we only spit at the first "?"
-                    msgData = urlArray[1].split(splitter);
-
-
-                    // target View = msgData[0] and message = msgData[1]
-
-                    // Get webview list from View Manager
-                    JSONObject viewList = WizCanvasPlugin.getViews();
-
-                    if (viewList.has(msgData[0]) ) {
-
-                        WebView targetView;
-                        try {
-                            targetView = (WebView) viewList.get(msgData[0]);
-
-                            // send data to mainView
-                            String data2send = msgData[1];
-                            data2send = data2send.replace("'", "\\'");
-                            Log.d(TAG, "[wizMessage] targetView ****** is " + msgData[0]+ " -> " + targetView + " with data -> "+data2send );
-                            targetView.loadUrl("javascript:(wizMessageReceiver('"+data2send+"'))");
-
-                        } catch (JSONException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                    }
-                    // app will handle this url, don't change the browser url
-                    return true;
+                // Evaluate script
+                ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("ejecta.js");
+                String js = "var wizCanvasMessenger = null; " +
+                        "window.document._eventInitializers.message = function () {" +
+                        "if (!wizCanvasMessenger) {" +
+                        "wizCanvasMessenger = new Ejecta.WizCanvasMessenger('" + _viewName + "');" +
+                        "wizCanvasMessenger.onmessage = function (origin, target, data, type) {" +
+                        "origin = decodeURIComponent(origin);" +
+                        "target = decodeURIComponent(target);" +
+                        "data = decodeURIComponent(data);" +
+                        "if (type === 'Array') {" +
+                        "data = JSON.parse(data);" +
+                        "} else if (type === 'String') {" +
+                        "/* Stringy String String */" +
+                        "} else if (type === 'Number') {" +
+                        "data = JSON.parse(data);" +
+                        "} else if (type === 'Boolean') {" +
+                        "data = Boolean(data);" +
+                        "} else if (type === 'Function') {" +
+                        "/* W3C says nothing about functions, will be returned as string. */" +
+                        "} else if (type === 'Object') {" +
+                        "data = JSON.parse(data);" +
+                        "} else {" +
+                        "console.error('Message Event received unknown type!');" +
+                        "return;" +
+                        "}" +
+                        "var ev = {};" +
+                        "ev.eventName = 'message';" +
+                        "ev.origin = origin;" +
+                        "ev.target = target;" +
+                        "ev.data = data;" +
+                        "ev.memo = {};" +
+                        // "console.log('ev:' + ev.data );" +
+                        "document._publishEvent('message', ev);" +
+                        "};" +
+                        "}" +
+                        "};";
+                ((EjectaGLSurfaceView) mGLView).evaluateScript(js);
+                if(_source != null) {
+                    ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile(_source);
+                } else {
+                    ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("index.js");
                 }
-                // allow all other url requests
-                return false;
+                // Callback success now
+                PluginResult result = new PluginResult(PluginResult.Status.OK);
+                _callbackContext.sendPluginResult(result);
             }
 
             @Override
-            public void onPageFinished(WebView wView, String url) {
+            public void onPostMessageReceived(String target, String message, String type, String source) {
+                final String _target = target;
+                final String _origin = source;
+                final String _message = message;
+                final String _type = type;
 
-                WizCanvasPlugin.updateViewList();
+                if (target.equalsIgnoreCase("mainView")) {
+                    // WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, data, type) {
+                    _act.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
 
-                if (create_cb != null) {
-                    create_cb.success();
-                    Log.d(TAG, "View created and loaded");
-                    // Callback used, don't call it again.
-                    create_cb = null;
-                }
-
-                if (load_cb != null) {
-                    load_cb.success();
-                    Log.d(TAG, "View finished load");
-                    // Callback used, don't call it again.
-                    load_cb = null;
+                            JSONObject viewList = getViews();
+                            if (viewList.has(_target)) {
+                                if (_target.equalsIgnoreCase("mainView")) {
+                                    try {
+                                        CordovaWebView wv = (CordovaWebView) viewList.get(_target);
+                                        wv.loadUrl("javascript:(function () { wizCanvasMessenger.__triggerMessageEvent('" + _origin + "', '" + _target + "', '" + _message + "', '" + _type + "'); })()");
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+                    });
                 }
             }
         });
 
+        ViewGroup frame = (ViewGroup) act.findViewById(android.R.id.content);
+
+        // Creating a new RelativeLayout fill its parent by default
+        RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        // Default full screen
+        frame.addView(mGLView, rlp);
+
         // Analyse settings object
         if (settings != null) {
-            this.setLayout(settings);
+            setLayout(settings, act);
         } else {
             // Apply Defaults
-            this.setLayoutParams(COVER_SCREEN_GRAVITY_CENTER);
+            mGLView.setLayoutParams(COVER_SCREEN_GRAVITY_CENTER);
         }
-
-        Log.d(TAG, "Create complete");
     } // ************ END CONSTRUCTOR **************
 
-    public void setLayout(JSONObject settings) {
+    public void load(Activity act, String source) {
+        // Check remote or local source
+        try {
+            URL u = new URL(source);    // Check for the protocol
+            u.toURI();                  // Extra checking required for validation of URI
+
+            // If we did not fall out here then source is a valid URI
+            Log.d(TAG, "load URL: " + source);
+
+            // Download URL source to data/data/<package_name>/filename then call load()
+            // again with local path
+            new asyncDownload(u, act).execute();
+
+        } catch (MalformedURLException ex1) {
+            // Missing protocol
+
+            // Copies the file to data/data/<package_name>/filename
+            // Allows the file to be readable from Ejecta-X
+            String mainBundle = "/data/data/" + act.getPackageName();
+            new Utils().copyDatFile(act, mainBundle + "/cache/", source);
+
+            File f = new File("file:///android_asset/" + source);
+
+            ((EjectaGLSurfaceView)mGLView).loadJavaScriptFile(f.getName());
+
+            f = null;
+
+        } catch (URISyntaxException ex2) {
+
+            // Copies the file to data/data/<package_name>/filename
+            // Allows the file to be readable from Ejecta-X
+            String mainBundle = "/data/data/" + act.getPackageName();
+            new Utils().copyDatFile(act, mainBundle + "/cache/", source);
+
+            File f = new File("file:///android_asset/" + source);
+
+            ((EjectaGLSurfaceView)mGLView).loadJavaScriptFile(f.getName());
+
+            f = null;
+        }
+    }
+
+    public void hide(Activity act, String type, Long duration) {
+        setVisibility(View.INVISIBLE);
+        FrameLayout.LayoutParams newLayoutParams = (FrameLayout.LayoutParams) mGLView.getLayoutParams();
+        newLayoutParams.leftMargin = 99999;
+
+        mGLView.setLayoutParams(newLayoutParams);
+    }
+
+    public void show(Activity act, String type, Long duration) {
+        setVisibility(View.VISIBLE);
+        FrameLayout.LayoutParams newLayoutParams = (FrameLayout.LayoutParams) mGLView.getLayoutParams();
+        newLayoutParams.leftMargin = 0;
+
+        mGLView.setLayoutParams(newLayoutParams);
+    }
+
+    public void setLayout(JSONObject settings, Activity act) {
         Log.d(TAG, "Setting up layout...");
 
         String url;
 
         // Set default settings to max screen
-        ViewGroup parent = (ViewGroup) this.getParent();
+        ViewGroup parent = (ViewGroup) mGLView.getParent();
 
         // Size
         int _parentHeight = parent.getHeight();
@@ -279,19 +388,19 @@ public class WizCanvas extends WebView  {
             }
         }
 
-        FrameLayout.LayoutParams newLayoutParams = (FrameLayout.LayoutParams) this.getLayoutParams();
+        FrameLayout.LayoutParams newLayoutParams = (FrameLayout.LayoutParams) mGLView.getLayoutParams();
         newLayoutParams.setMargins(_left, _top, _right, _bottom);
         newLayoutParams.height = _height;
         newLayoutParams.width = _width;
 
-        this.setLayoutParams(newLayoutParams);
+        mGLView.setLayoutParams(newLayoutParams);
 
         Log.d(TAG, "new layout -> width: " + newLayoutParams.width + " - height: " + newLayoutParams.height + " - margins: " + newLayoutParams.leftMargin + "," + newLayoutParams.topMargin + "," + newLayoutParams.rightMargin + "," + newLayoutParams.bottomMargin);
 
         if (settings.has("src")) {
             try {
                 url = settings.getString("src");
-                this.loadUrl(url);
+                load(act, url);
             } catch (JSONException e) {
                 // default
                 // nothing to load
@@ -302,25 +411,103 @@ public class WizCanvas extends WebView  {
         }
     }
 
-    public void load(String source, CallbackContext callbackContext) {
-        // Link up our callback
-        load_cb = callbackContext;
+    public void postMessage(String targetView, String data, String type) {
+        // Send data into canvas
+        Log.d(TAG, "[postMessage] to -> " + targetView + " with data -> " + data );
+        ((EjectaGLSurfaceView)mGLView).triggerMessage(data, type);
+    }
 
-        // Check source
-        try {
-            URL u = new URL(source);    // Check for the protocol
-            u.toURI();                  // Extra checking required for validation of URI
+    public void destroy() {
+        ((ViewGroup) mGLView.getParent()).removeView(mGLView);
+        ((EjectaGLSurfaceView)mGLView).onDestroy();
+    }
 
-            // If we did not fall out here then source is a valid URI
-            Log.d(TAG, "load URL: " + source);
-            this.loadUrl(source);
-        } catch (MalformedURLException ex1) {
-            // Missing protocol
-            Log.d(TAG, "load file://" + source);
-            this.loadUrl("file://" + source);
-        } catch (URISyntaxException ex2) {
-            Log.d(TAG, "load file://" + source);
-            this.loadUrl("file://" + source);
+    private class asyncDownload extends AsyncTask<File, String , String> {
+
+        private URL url;
+        private Activity activity;
+
+        // Constructor
+        public asyncDownload(URL url, Activity activity) {
+            // Assign class vars
+            this.url = url;
+            this.activity = activity;
+        }
+
+        @Override
+        protected String doInBackground(File... params) {
+            // Run async download task
+            String filename;
+            try {
+                filename = new File(this.url.toURI().getPath()).getName();
+
+            } catch (URISyntaxException e) {
+                Log.e("ejecta", "URL ERROR");
+                return "";
+            }
+
+            File file = new File("/data/data/" + this.activity.getPackageName() + "/cache/" + filename);
+            if (!file.exists()) {
+                // Create the directory if not existing
+                file.mkdirs();
+            }
+
+            Log.d(TAG, "[downloadUrl] *********** /data/data/" + this.activity.getPackageName() + "/cache/" + filename + " > " + file.getAbsolutePath());
+
+            try {
+                URL url = this.url;
+                HttpGet httpRequest = null;
+                httpRequest = new HttpGet(url.toURI());
+
+                HttpClient httpclient = new DefaultHttpClient();
+
+                // Credential check
+                String credentials = url.getUserInfo();
+                if (credentials != null) {
+                    // Add Basic Authentication header
+                    httpRequest.setHeader("Authorization", "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP));
+                }
+
+                HttpResponse response = httpclient.execute(httpRequest);
+                HttpEntity entity = response.getEntity();
+
+                InputStream is;
+
+                Header contentHeader = entity.getContentEncoding();
+                if (contentHeader != null) {
+                    if (contentHeader.getValue().contains("gzip")) {
+                        Log.d(TAG, "GGGGGGGGGZIIIIIPPPPPED!");
+                        is = new GZIPInputStream(entity.getContent());
+                    } else {
+                        BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
+                        is = bufHttpEntity.getContent();
+                    }
+                } else {
+                    BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
+                    is = bufHttpEntity.getContent();
+                }
+                byte[] buffer = new byte[1024];
+
+                int len1 = 0;
+
+                FileOutputStream fos = new FileOutputStream(file);
+
+                while ( (len1 = is.read(buffer)) > 0 ) {
+                    fos.write(buffer,0, len1);
+                }
+
+                fos.close();
+                is.close();
+
+                // Tell Ejecta-X to load file from downloaded path
+                load(activity, filename);
+
+            } catch (MalformedURLException e) {
+                Log.e("ejecta", "Bad url : ", e);
+            } catch (Exception e) {
+                Log.e("ejecta", "Error : " + e);
+            }
+            return null;
         }
     }
 }

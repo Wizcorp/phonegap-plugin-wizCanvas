@@ -31,24 +31,12 @@
 				<url-filter value="wizpostmessage://"/>
 			</feature>
 		</config-file>
-    
-		<config-file target="AndroidManifest.xml" parent="/manifest/application">
-	        <activity android:name="com.impactjs.ejecta.EjectaActivity" android:configChanges="orientation|keyboardHidden"
-                  android:label="@string/app_name"  android:icon="@drawable/icon" android:theme="@style/WizCanvas"
-                  android:windowSoftInputMode="adjustPan" android:launchMode="singleInstance">
-	            <intent-filter>
-	                <action android:name="android.intent.action.MESSAGE" />
-	            </intent-filter>
-            </activity>
-	    </config-file>
 	    
 	    <source-file src="android/src/jp/wizcorp/phonegap/plugin/wizCanvas/WizCanvasPlugin.java" 
             target-dir="src/jp/wizcorp/phonegap/plugin/wizCanvas"/>
         <source-file src="android/src/jp/wizcorp/phonegap/plugin/wizCanvas/WizCanvas.java" 
             target-dir="src/jp/wizcorp/phonegap/plugin/wizCanvas"/>
             
-        <source-file src="android/src/com/impactjs/ejecta/EjectaActivity.java" 
-            target-dir="src/com/impactjs/ejecta"/>
         <source-file src="android/src/com/impactjs/ejecta/EjectaGLSurfaceView.java" 
             target-dir="src/com/impactjs/ejecta"/>
         <source-file src="android/src/com/impactjs/ejecta/EjectaRenderer.java" 
@@ -60,14 +48,9 @@
             target-dir="libs"/>
         <source-file src="android/libs/armeabi-v7a/" 
             target-dir="libs"/>
-    
-        <source-file src="android/res/values/wiz_canvas_style.xml"
-            target-dir="res/values"/>
-            
-        <source-file src="android/res/layout/wiz_canvas_layout.xml" 
-            target-dir="res/layout"/>
-            
+             
         <asset src="www/phonegap/plugin/wizCanvas/android/ejecta.js" target="ejecta.js" />
+        <asset src="www/phonegap/plugin/wizCanvas/shaders/" target="shaders/" />
     
     </platform>
 

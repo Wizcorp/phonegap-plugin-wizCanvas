@@ -7,13 +7,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import android.content.Context;
+import android.util.Log;
 
 public class Utils {
-	public static void copyDatFiles(Context context, String dest,String source) {
+	public static void copyDatFiles(Context context, String dest, String source) {
 		copyDatFile( context,  dest, source );
 	}
 	
-	public static void copyDatFile(Context context, String dest,String source) {
+	public static void copyDatFile(Context context, String dest, String source) {
 		String[] files;
 		InputStream in = null;
 		OutputStream out = null;
@@ -32,10 +33,12 @@ public class Utils {
 		for (int i = 0; i < files.length; i++) {
 			String fileName = files[i];
 			try {
-				if (0 != source.length())
-					in = context.getAssets().open(source + "/" + fileName);
-				else
+				if (0 != source.length()) {
+                    Log.d("ejecta", "filename: " + fileName);
+                    in = context.getAssets().open(source + "/" + fileName);
+                } else {
 					in = context.getAssets().open(fileName);
+                }
 			} catch (IOException e) {
 				e.printStackTrace();
 				if (0 == source.length()) {
@@ -74,5 +77,4 @@ public class Utils {
 			}
 		}
 	}
-
 }
