@@ -19,6 +19,12 @@
     return self;
 }
 
+- (void)dealloc {
+	[viewName release];
+    viewName = nil;
+	[super dealloc];
+}
+
 // For sending messages into Ejecta and dispatching 'message' event
 EJ_BIND_FUNCTION(__triggerMessageEvent, ctx, argc, argv) {
     NSString *origin;
@@ -29,10 +35,10 @@ EJ_BIND_FUNCTION(__triggerMessageEvent, ctx, argc, argv) {
         // Get args
         // 0: originView, 1: targetView, 2: postDataEscaped, 3:type
 
-        origin = [JSValueToNSString(ctx, argv[0]) retain];
-        targetView = [JSValueToNSString(ctx, argv[1]) retain];
-        data = [JSValueToNSString(ctx, argv[2]) retain];
-        type = [JSValueToNSString(ctx, argv[3]) retain];
+        origin = JSValueToNSString(ctx, argv[0]);
+        targetView = JSValueToNSString(ctx, argv[1]);
+        data = JSValueToNSString(ctx, argv[2]);
+        type = JSValueToNSString(ctx, argv[3]);
         NSLog(@"type: %@", type);
     } else {
         NSLog(@"WizViewMessenger for Ejecta - Error missing arguments in postMessage");
