@@ -1,5 +1,4 @@
-cordova.define("jp.wizcorp.phonegap.plugin.wizCanvasPlugin", function(require, exports, module) {
-/* WizCanvas for cordova - Create a native canvas view.
+cordova.define("jp.wizcorp.phonegap.plugin.wizCanvasPlugin", function(require, exports, module) {/* WizCanvas for cordova - Create a native canvas view.
 *
  * @author Ally Ogilvie  
  * @copyright Wizcorp Inc. [ Incorporated Wizards ] 2013
@@ -29,7 +28,7 @@ var WizCanvas = function (name) {
 // View for Cordova
 var View = function (name) {
 	this.name = name;
-}
+};
 
 
 View.create = function (name, options, success, failure) {
@@ -122,7 +121,7 @@ WizCanvas.prototype.updateViewList = function (list) {
 
 	// check for new views
 	for (var i = 0; i < list.length; i++) {
-		var name = list[i];
+		name = list[i];
 
 		if (!this.views[name]) {
 			this.views[name] = new View(name);
@@ -163,15 +162,19 @@ WizCanvasMessenger.prototype.postMessage = function (message, targetView) {
         type = "Object";
         message = JSON.stringify(message);
     } else {
-    	console.error("WizCanvasMessenger posted unknown type!");
+        console.error("WizCanvasMessenger posted unknown type!");
         return;
     }
     
 	var iframe = document.createElement('IFRAME');
 	iframe.setAttribute('src', 'wizPostMessage://'+ window.encodeURIComponent(window.name) + '?' + window.encodeURIComponent(targetView) + '?' + window.encodeURIComponent(message) + '?' + type );
-	document.documentElement.appendChild(iframe);
-	iframe.parentNode.removeChild(iframe);
-	iframe = null;		
+	// In case of heavy load or multiple views add a setTimeout
+	setTimeout(function () {
+        document.documentElement.appendChild(iframe);
+        iframe.parentNode.removeChild(iframe);
+        iframe = null;
+	}, 1);
+
 };
     
 WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, data, type) { 
@@ -190,7 +193,7 @@ WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, d
     } else if (type === "Object") {
         data = JSON.parse(data);
     } else {
-    	console.error("Message Event received unknown type!");
+        console.error("Message Event received unknown type!");
         return;
     }
 	
@@ -204,6 +207,4 @@ WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, d
 	dispatchEvent(event);
 };
 	
-window.wizCanvasMessenger = new WizCanvasMessenger();
-
-});
+window.wizCanvasMessenger = new WizCanvasMessenger();});
