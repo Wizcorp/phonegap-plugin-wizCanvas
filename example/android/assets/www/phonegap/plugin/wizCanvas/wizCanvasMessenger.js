@@ -81,5 +81,4 @@ WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, d
 };
 	
 window.wizCanvasMessenger = new WizCanvasMessenger();
-module.exports = wizCanvasMessenger;
 
