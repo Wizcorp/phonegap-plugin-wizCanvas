@@ -130,11 +130,15 @@ To send a messsage to a view based on W3C post message API... for more informati
 
 Add an event listener in the html that wishes to receive the message...
 
-	window.addEventListener('message', wizMessageReceiver, false);
+	window.addEventListener('message', listeningFunction, false);
+
+In canvas use the following to receive messages from Cordova's page
+
+	wizCanvasMessenger.addEventListener('message', listeningFunction);
 
 Example receiver;
 
-	function wizMessageReceiver (e) {
+	function listeningFunction (e) {
 	    // Event data object comes in here
 	    // e.data - message data
 		// e.origin - the origin of the data
