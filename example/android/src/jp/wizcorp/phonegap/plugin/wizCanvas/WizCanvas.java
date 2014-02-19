@@ -163,17 +163,16 @@ public class WizCanvas extends View {
                     ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("index.js");
                 }
                 // Callback success now
-                Log.d(TAG, "callback create");
                 PluginResult result = new PluginResult(PluginResult.Status.OK);
                 _callbackContext.sendPluginResult(result);
             }
 
             @Override
             public void onPostMessageReceived(String target, String message, String type, String source) {
-                Log.d("ejecta", "To: " + target);
-                Log.d("ejecta", "Type: " + type);
-                Log.d("ejecta", "Message: " + message);
-                Log.d("ejecta", "From: " + source);
+                Log.d(TAG, "To: " + target);
+                Log.d(TAG, "Type: " + type);
+                Log.d(TAG, "Message: " + message);
+                Log.d(TAG, "From: " + source);
 
                 // Send message to Cordova Plugin
                 Intent i = new Intent("android.intent.action.MESSAGE");
@@ -429,7 +428,7 @@ public class WizCanvas extends View {
                 filename = new File(this.url.toURI().getPath()).getName();
 
             } catch (URISyntaxException e) {
-                Log.e("ejecta", "URL ERROR");
+                Log.e(TAG, "URL ERROR");
                 return "";
             }
 
@@ -490,9 +489,9 @@ public class WizCanvas extends View {
                 load(activity, filename);
 
             } catch (MalformedURLException e) {
-                Log.e("ejecta", "Bad url : ", e);
+                Log.e(TAG, "Bad url : ", e);
             } catch (Exception e) {
-                Log.e("ejecta", "Error : " + e);
+                Log.e(TAG, "Error : " + e);
             }
             return null;
         }

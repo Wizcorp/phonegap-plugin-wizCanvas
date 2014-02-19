@@ -237,12 +237,13 @@ public class WizCanvasPlugin extends CordovaPlugin {
             if (viewList.has(canvasName) ) {
 
                 cordova.getActivity().runOnUiThread(
-                        new Runnable() {
-                            @Override
-                            public void run() {
-                                canvas.destroy();
-                            }
-                        });
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            canvas.destroy();
+                        }
+                    }
+                );
 
                 viewList.remove(canvasName);
                 updateViewList();
@@ -396,12 +397,13 @@ public class WizCanvasPlugin extends CordovaPlugin {
                         final JSONObject options = args.getJSONObject(1);
 
                         cordova.getActivity().runOnUiThread(
-                                new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        canvas.setLayout(options, cordova.getActivity());
-                                    }
-                                });
+                            new Runnable() {
+                                @Override
+                                public void run() {
+                                    canvas.setLayout(options, cordova.getActivity());
+                                }
+                            }
+                        );
 
                     } catch (Exception e) {
                         Log.e(TAG, "Error: " + e);
@@ -475,8 +477,8 @@ public class WizCanvasPlugin extends CordovaPlugin {
             targetView = (CordovaWebView) viewList.get(mainView);
             JSONArray viewListNameArray = viewList.names();
             jsString += "window.wizCanvas.updateViewList(" + viewListNameArray.toString() + "); ";
-            Log.d("wizCanvas", "Execute JS: " + jsString);
-            Log.d("wizCanvas", "Updated view list");
+            Log.d(TAG, "Execute JS: " + jsString);
+            Log.d(TAG, "Updated view list");
         } catch (JSONException ex) {
             return;
         }
