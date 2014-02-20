@@ -13,7 +13,7 @@
     <keywords>canvas, ejecta, view, wizard, wizcorp</keywords>
 	
 	<engines>
-	    <engine name="cordova" version=">=3.0" />
+	    <engine name="cordova" version=">=3.3" />
 	</engines>
 
     <license>MIT</license>

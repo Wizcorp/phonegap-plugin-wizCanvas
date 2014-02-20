@@ -19,7 +19,7 @@
 
 //
 //  MainViewController.h
-//  exampleWizSpinner
+//  exampleWizCanvas
 //
 //  Created by ___FULLUSERNAME___ on ___DATE___.
 //  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
@@ -93,7 +93,7 @@
 /* Comment out the block below to over-ride */
 
 /*
-- (CDVCordovaView*) newCordovaViewWithFrame:(CGRect)bounds
+- (UIWebView*) newCordovaViewWithFrame:(CGRect)bounds
 {
     return[super newCordovaViewWithFrame:bounds];
 }
