@@ -13,7 +13,7 @@
     <keywords>canvas, ejecta, view, wizard, wizcorp</keywords>
 	
 	<engines>
-	    <engine name="cordova" version=">=3.0" />
+	    <engine name="cordova" version=">=3.3" />
 	</engines>
 
     <license>MIT</license>
@@ -28,7 +28,6 @@
     	<config-file target="res/xml/config.xml" parent="/*">
 			<feature name="WizCanvasPlugin">
 				<param name="android-package" value="jp.wizcorp.phonegap.plugin.wizCanvas.WizCanvasPlugin" />
-				<url-filter value="wizpostmessage://"/>
 			</feature>
 		</config-file>
 	    

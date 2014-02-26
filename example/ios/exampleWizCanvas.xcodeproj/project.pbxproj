@@ -7,21 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021C11E4545D483291B4BB93 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5101D7CD77D84C0682E01D5B /* GameKit.framework */; };
+		09102A6E3E0D4EF691A9CE34 /* EJBindingEjectaCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C3119F27E545DC93F066B4 /* EJBindingEjectaCore.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		094ADE21F47545C1B19AB443 /* Vertex.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4F242A11E9B94E939011F568 /* Vertex.vsh */; };
+		0C5BD579A8544639A83ED69E /* EJConvertColorRGBA.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0211A2CA2A4EF3B394320C /* EJConvertColorRGBA.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0CDDC4B2B574417DAE5CF68F /* EJBindingBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C83C75631B40BFB05EF40D /* EJBindingBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0F74247BEB314466B480F46F /* EJBindingAdBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 83FC7B75BD8541E99A80FC95 /* EJBindingAdBanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		126F736A082A4F7FAE2B37D0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE7A837E094A42908C69C71E /* CoreText.framework */; };
+		17888DA91C734644904DAFAD /* EJBindingWindowEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 31D0326E7C094B7390E8E301 /* EJBindingWindowEvents.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		17FEC5CBEAC54D4090AEAE35 /* EJSharedOpenALManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB97E8CEFFD44FB9F00A431 /* EJSharedOpenALManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
-		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		1F2F1DFA2BE53E56C786DC09 /* EJBindingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F2F18D5B4F7B1507CAC45B7 /* EJBindingWebSocket.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1F766FDC13BBADB100FB74C0 /* Localizable.strings */; };
+		272A11CA9D0641F2B3CBFEAF /* EJTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = C58FC4D4173E4678A231148A /* EJTimer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		301BF5B5109A6A2B0062928A /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B4109A6A2B0062928A /* AddressBook.framework */; };
-		301BF5B7109A6A2B0062928A /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B6109A6A2B0062928A /* AddressBookUI.framework */; };
-		301BF5B9109A6A2B0062928A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5B8109A6A2B0062928A /* AudioToolbox.framework */; };
-		301BF5BB109A6A2B0062928A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5BA109A6A2B0062928A /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		301BF5BD109A6A2B0062928A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5BC109A6A2B0062928A /* CFNetwork.framework */; };
-		301BF5BF109A6A2B0062928A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5BE109A6A2B0062928A /* CoreLocation.framework */; };
-		301BF5C1109A6A2B0062928A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5C0109A6A2B0062928A /* MediaPlayer.framework */; };
-		301BF5C3109A6A2B0062928A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5C2109A6A2B0062928A /* QuartzCore.framework */; };
-		301BF5C5109A6A2B0062928A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF5C4109A6A2B0062928A /* SystemConfiguration.framework */; };
+		2C747E4633D64432B7B6F621 /* EJGLProgram2DRadialGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B34DD5ED944FB1AACDD878 /* EJGLProgram2DRadialGradient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2CC6ACA686F843CC8E2A5076 /* EJBindingAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C66A25DDDA74E62A3D10418 /* EJBindingAudio.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
 		302D95F114D2391D003F00A1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302D95EF14D2391D003F00A1 /* MainViewController.m */; };
 		302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 302D95F014D2391D003F00A1 /* MainViewController.xib */; };
 		305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */; };
@@ -34,112 +36,151 @@
 		308D05371370CCF300D202BF /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D052E1370CCF300D202BF /* icon-72.png */; };
 		308D05381370CCF300D202BF /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D052F1370CCF300D202BF /* icon.png */; };
 		308D05391370CCF300D202BF /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 308D05301370CCF300D202BF /* icon@2x.png */; };
-		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		411A32B91822483300940391 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 411A32B81822483300940391 /* www */; };
-		411A32BC1822487600940391 /* EJBindingWizCanvasMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 411A32BB1822487600940391 /* EJBindingWizCanvasMessenger.m */; };
-		414DBF6717F94E9100DA3A50 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		414DBFAF17F97CBD00DA3A50 /* EJBindingCanvasContext2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF6B17F97CBD00DA3A50 /* EJBindingCanvasContext2D.m */; };
-		414DBFB017F97CBD00DA3A50 /* EJBindingCanvasGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF6D17F97CBD00DA3A50 /* EJBindingCanvasGradient.m */; };
-		414DBFB117F97CBD00DA3A50 /* EJBindingCanvasPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF6F17F97CBD00DA3A50 /* EJBindingCanvasPattern.m */; };
-		414DBFB217F97CBD00DA3A50 /* EJBindingImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF7117F97CBD00DA3A50 /* EJBindingImageData.m */; };
-		414DBFB317F97CBD00DA3A50 /* EJBindingTextMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF7317F97CBD00DA3A50 /* EJBindingTextMetrics.m */; };
-		414DBFB417F97CBD00DA3A50 /* EJCanvasContext2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF7617F97CBD00DA3A50 /* EJCanvasContext2D.m */; };
-		414DBFB517F97CBD00DA3A50 /* EJCanvasContext2DScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF7817F97CBD00DA3A50 /* EJCanvasContext2DScreen.m */; };
-		414DBFB617F97CBD00DA3A50 /* EJCanvasContext2DTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF7A17F97CBD00DA3A50 /* EJCanvasContext2DTexture.m */; };
-		414DBFB717F97CBD00DA3A50 /* EJCanvasGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF7C17F97CBD00DA3A50 /* EJCanvasGradient.m */; };
-		414DBFB817F97CBD00DA3A50 /* EJCanvasPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF7E17F97CBD00DA3A50 /* EJCanvasPattern.m */; };
-		414DBFB917F97CBD00DA3A50 /* EJConvertColorRGBA.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8017F97CBD00DA3A50 /* EJConvertColorRGBA.m */; };
-		414DBFBA17F97CBD00DA3A50 /* EJFont.mm in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8217F97CBD00DA3A50 /* EJFont.mm */; };
-		414DBFBB17F97CBD00DA3A50 /* EJGLProgram2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8417F97CBD00DA3A50 /* EJGLProgram2D.m */; };
-		414DBFBC17F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8617F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.m */; };
-		414DBFBD17F97CBD00DA3A50 /* EJImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8817F97CBD00DA3A50 /* EJImageData.m */; };
-		414DBFBE17F97CBD00DA3A50 /* EJPath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF8A17F97CBD00DA3A50 /* EJPath.mm */; };
-		414DBFC517F97CBD00DA3A50 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9317F97CBD00DA3A50 /* EAGLView.m */; };
-		414DBFC617F97CBD00DA3A50 /* EJBindingCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9517F97CBD00DA3A50 /* EJBindingCanvas.m */; };
-		414DBFC717F97CBD00DA3A50 /* EJBindingCanvasStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9717F97CBD00DA3A50 /* EJBindingCanvasStyle.m */; };
-		414DBFC817F97CBD00DA3A50 /* EJBindingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9917F97CBD00DA3A50 /* EJBindingImage.m */; };
-		414DBFC917F97CBD00DA3A50 /* EJCanvasContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9B17F97CBD00DA3A50 /* EJCanvasContext.m */; };
-		414DBFCA17F97CBD00DA3A50 /* EJSharedTextureCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBF9F17F97CBD00DA3A50 /* EJSharedTextureCache.m */; };
-		414DBFCB17F97CBD00DA3A50 /* EJTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFA117F97CBD00DA3A50 /* EJTexture.m */; };
-		414DBFCC17F97CBD00DA3A50 /* EJTextureStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFA317F97CBD00DA3A50 /* EJTextureStorage.m */; };
-		414DBFCD17F97CBD00DA3A50 /* EJBindingCanvasContextWebGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFA617F97CBD00DA3A50 /* EJBindingCanvasContextWebGL.m */; };
-		414DBFCE17F97CBD00DA3A50 /* EJBindingWebGLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFA817F97CBD00DA3A50 /* EJBindingWebGLExtensions.m */; };
-		414DBFCF17F97CBD00DA3A50 /* EJBindingWebGLObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFAA17F97CBD00DA3A50 /* EJBindingWebGLObjects.m */; };
-		414DBFD017F97CBD00DA3A50 /* EJCanvasContextWebGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFAC17F97CBD00DA3A50 /* EJCanvasContextWebGL.m */; };
-		414DBFD117F97CBD00DA3A50 /* EJConvertWebGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 414DBFAE17F97CBD00DA3A50 /* EJConvertWebGL.m */; };
-		41CF5DD1178D008300001BC8 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5DD0178D008300001BC8 /* libstdc++.dylib */; };
-		41CF5E78178D06CF00001BC8 /* EJAudioSourceAVAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DD9178D06CF00001BC8 /* EJAudioSourceAVAudio.m */; };
-		41CF5E79178D06CF00001BC8 /* EJAudioSourceOpenAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DDB178D06CF00001BC8 /* EJAudioSourceOpenAL.m */; };
-		41CF5E7A178D06CF00001BC8 /* EJBindingAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DDD178D06CF00001BC8 /* EJBindingAudio.m */; };
-		41CF5E7B178D06CF00001BC8 /* EJOpenALBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DDF178D06CF00001BC8 /* EJOpenALBuffer.m */; };
-		41CF5E7C178D06CF00001BC8 /* EJSharedOpenALManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DE1178D06CF00001BC8 /* EJSharedOpenALManager.m */; };
-		41CF5E7D178D06CF00001BC8 /* EJBindingBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DE3178D06CF00001BC8 /* EJBindingBase.m */; };
-		41CF5E7E178D06CF00001BC8 /* EJBindingEjectaCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DE5178D06CF00001BC8 /* EJBindingEjectaCore.m */; };
-		41CF5E7F178D06CF00001BC8 /* EJBindingEventedBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DE7178D06CF00001BC8 /* EJBindingEventedBase.m */; };
-		41CF5E80178D06CF00001BC8 /* EJBindingVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5DE9178D06CF00001BC8 /* EJBindingVideo.m */; };
-		41CF5EA4178D06CF00001BC8 /* EJClassLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E32178D06CF00001BC8 /* EJClassLoader.m */; };
-		41CF5EA5178D06CF00001BC8 /* EJConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E34178D06CF00001BC8 /* EJConvert.m */; };
-		41CF5EA7178D06CF00001BC8 /* EJNonRetainingProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E38178D06CF00001BC8 /* EJNonRetainingProxy.m */; };
-		41CF5EA8178D06CF00001BC8 /* EJSharedOpenGLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E3A178D06CF00001BC8 /* EJSharedOpenGLContext.m */; };
-		41CF5EA9178D06CF00001BC8 /* EJTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E3C178D06CF00001BC8 /* EJTimer.m */; };
-		41CF5EAB178D06CF00001BC8 /* EJBindingAdBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E41178D06CF00001BC8 /* EJBindingAdBanner.m */; };
-		41CF5EAC178D06CF00001BC8 /* EJBindingDeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E43178D06CF00001BC8 /* EJBindingDeviceMotion.m */; };
-		41CF5EAD178D06CF00001BC8 /* EJBindingGameCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E45178D06CF00001BC8 /* EJBindingGameCenter.m */; };
-		41CF5EAE178D06CF00001BC8 /* EJBindingHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E47178D06CF00001BC8 /* EJBindingHttpRequest.m */; };
-		41CF5EAF178D06CF00001BC8 /* EJBindingKeyInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E49178D06CF00001BC8 /* EJBindingKeyInput.m */; };
-		41CF5EB0178D06CF00001BC8 /* EJBindingLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E4B178D06CF00001BC8 /* EJBindingLocalStorage.m */; };
-		41CF5EB1178D06CF00001BC8 /* EJBindingTouchInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E4D178D06CF00001BC8 /* EJBindingTouchInput.m */; };
-		41CF5EB3178D06CF00001BC8 /* EJBindingWindowEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E51178D06CF00001BC8 /* EJBindingWindowEvents.m */; };
-		41CF5EB5178D06CF00001BC8 /* EJBindingIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E56178D06CF00001BC8 /* EJBindingIAPManager.m */; };
-		41CF5EB6178D06CF00001BC8 /* EJBindingIAPProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E58178D06CF00001BC8 /* EJBindingIAPProduct.m */; };
-		41CF5EB7178D06CF00001BC8 /* EJBindingIAPTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E5A178D06CF00001BC8 /* EJBindingIAPTransaction.m */; };
-		41CF5EB9178D06CF00001BC8 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E69178D06CF00001BC8 /* base64.c */; };
-		41CF5EBA178D06CF00001BC8 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E6C178D06CF00001BC8 /* NSData+SRB64Additions.m */; };
-		41CF5EBB178D06CF00001BC8 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E6F178D06CF00001BC8 /* SRWebSocket.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		41CF5EBC178D06D000001BC8 /* WizCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E71178D06CF00001BC8 /* WizCanvasView.m */; };
-		41CF5EBD178D06D000001BC8 /* WizCanvasPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CF5E74178D06CF00001BC8 /* WizCanvasPlugin.m */; };
-		41CF5EBF178D07D200001BC8 /* libJavaScriptCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5E67178D06CF00001BC8 /* libJavaScriptCore.a */; };
-		41CF5EC1178D0B3B00001BC8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5EC0178D0B3B00001BC8 /* Security.framework */; };
-		41CF5EC3178D0B6C00001BC8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5EC2178D0B6C00001BC8 /* StoreKit.framework */; };
-		41CF5EC5178D0B8700001BC8 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41CF5EC4178D0B8700001BC8 /* CoreMotion.framework */; };
-		41DC39FD17E30F7A00FB6416 /* Cordova.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DC39FC17E30F7A00FB6416 /* Cordova.framework */; };
-		41DC39FF17E3107E00FB6416 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41DC39FE17E3107E00FB6416 /* AssetsLibrary.framework */; };
-		C6DAF3BD183DE79300F4F624 /* AlphaTexture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8C17F97CBD00DA3A50 /* AlphaTexture.fsh */; };
-		C6DAF3BE183DE79300F4F624 /* Flat.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8D17F97CBD00DA3A50 /* Flat.fsh */; };
-		C6DAF3BF183DE79300F4F624 /* Pattern.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8E17F97CBD00DA3A50 /* Pattern.fsh */; };
-		C6DAF3C0183DE79300F4F624 /* RadialGradient.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF8F17F97CBD00DA3A50 /* RadialGradient.fsh */; };
-		C6DAF3C1183DE79300F4F624 /* Texture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF9017F97CBD00DA3A50 /* Texture.fsh */; };
-		C6DAF3C2183DE79300F4F624 /* Vertex.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 414DBF9117F97CBD00DA3A50 /* Vertex.vsh */; };
+		30A0434814DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434314DC770100060A13 /* Localizable.strings */; };
+		30F3AC99B32045518850AE67 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F72FC2F673A4C43A9ABE313 /* Security.framework */; };
+		30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30FC414816E50CA1004E6F35 /* icon-72@2x.png */; };
+		314099D412864294B73C2194 /* EJSharedOpenGLContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 7007ECE852884A3E90763CA7 /* EJSharedOpenGLContext.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		31425E6DA612457498DE62D6 /* EJBindingGameCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 924F8646F7EC4AE6A981017E /* EJBindingGameCenter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		31DF0D8FCA2845B491DD168B /* EJBindingVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = E31019DDA53644F996ACE9AB /* EJBindingVideo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		32C95FCE6BFB49399A3CCDFE /* EJConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F775063BC1462C81BDEE2B /* EJConvert.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		34B400AD46624B10804EAA58 /* Texture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = D9761219F4044572A774A294 /* Texture.fsh */; };
+		35263611290841B3B341BC56 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F6752544C5419E933FC930 /* StoreKit.framework */; };
+		38D0B65881B545B8B4557A75 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D427E6A5F347FDBFB97AB9 /* libicucore.dylib */; };
+		395E156D548444538D402D58 /* EJBindingTextMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 377751E6744444C187CDBAB6 /* EJBindingTextMetrics.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3F2657CB0A3F427C8F331167 /* EJSharedTextureCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6292093895804F22AF6BF730 /* EJSharedTextureCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		420C129D8E4D455EBF3786CC /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C022E62328DD4AD5B36CC236 /* iAd.framework */; };
+		4414BE661D70482CAC1270D3 /* EJNonRetainingProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C3395D054D646BDA2A236D2 /* EJNonRetainingProxy.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4634BB0DE0F74403BEB58E88 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F775C29C05064D22939E8609 /* Foundation.framework */; };
+		48638E831EC94BC780E2A2FE /* EJBindingCanvasGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2249677104E078F9EBDD9 /* EJBindingCanvasGradient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4915424634D0499E89B205CB /* EJClassLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D218182D032843DFB7165921 /* EJClassLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4B4CB6DDCF5442A696E3F9C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395440451FBB48DFAAE69223 /* UIKit.framework */; };
+		5052DA4925D64281880E3BA4 /* EJBindingWebGLObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = D62D7E60EB81470891DD81F9 /* EJBindingWebGLObjects.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		51A330589DF541118C526837 /* EJBindingTouchInput.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4F955477724251AF106E2C /* EJBindingTouchInput.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		545C97F18AD34E3698FB3498 /* EJBindingWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FDB5EC99D9472E8D4493E0 /* EJBindingWebSocket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		54A30046650E4D6196BBABB6 /* EJCanvasContext2DTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = EF842ACEB8CC4D2285FF82C0 /* EJCanvasContext2DTexture.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		55BB6D8EE48242C09919B2D0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DC8DAC2E31414DBE7C2477 /* QuartzCore.framework */; };
+		59C527051C864205A7707FB8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 731FBCEEEB4B46748E8F26C0 /* AVFoundation.framework */; };
+		5AA06648E19B4C62B9888E5C /* Flat.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 385D7DFF6C8C4E7D8BBE39E1 /* Flat.fsh */; };
+		5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AEE5B34173C68D80009041E /* CoreLocation.framework */; };
+		5AF5E352B80F4F019B552BDD /* EJBindingCanvasContextWebGL.m in Sources */ = {isa = PBXBuildFile; fileRef = E4FA42117E73460CBCD855CA /* EJBindingCanvasContextWebGL.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */; };
+		5BBBFB90EF454C2190468AAB /* EJPath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 451DA2CFD044403197053140 /* EJPath.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		633195B0A11549F78893B50B /* EJCanvasContextWebGL.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D591971EF74FC690C1A44E /* EJCanvasContextWebGL.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		68D392E68B4941A8BC4BE2AD /* EJBindingWizCanvasMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2389B010C38945E7B37DA07B /* EJBindingWizCanvasMessenger.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6A2FC70B268346ABBEE8452E /* EJFont.mm in Sources */ = {isa = PBXBuildFile; fileRef = 83957310A7EC4B41854912B7 /* EJFont.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7082DAC5A92F4CBCA8D6D1AD /* EJBindingCanvasContext2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 1179EA2B052048538650C57F /* EJBindingCanvasContext2D.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		71E091333327424382F09E01 /* WizCanvasPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5507F85FD840338E099AE5 /* WizCanvasPlugin.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		737BB4A9BFEB4F6BA563B1F6 /* EJBindingKeyInput.m in Sources */ = {isa = PBXBuildFile; fileRef = EC653C4F4B634C019584337E /* EJBindingKeyInput.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		73C6CC77479B4D05BD299B9D /* EJAudioSourceOpenAL.m in Sources */ = {isa = PBXBuildFile; fileRef = FA52565B6B9E4C7EAD55E680 /* EJAudioSourceOpenAL.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		744A078314F944EEBDFCE254 /* EJBindingCanvasPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = E14140099DAD4DADBBEFC4CB /* EJBindingCanvasPattern.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		75ABE5B7DDE9469EAF21D578 /* EJCanvasGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A5BBEBBD1248BE8EEB51D0 /* EJCanvasGradient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7647F4F834C64B1B9DCD4A1E /* libJavaScriptCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FCDF35A95A3E45C091DA6E35 /* libJavaScriptCore.a */; };
+		7A2AF45F7D534557956C504D /* AlphaTexture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E388478C285B42CE972FE675 /* AlphaTexture.fsh */; };
+		7CB723DF4B3E41C9A538489F /* libJavaScriptCore.a in Sources */ = {isa = PBXBuildFile; fileRef = 0241E435F82E4EDF944356D6 /* libJavaScriptCore.a */; };
+		7E7966DE1810823500FA85AD /* icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D41810823500FA85AD /* icon-40.png */; };
+		7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D51810823500FA85AD /* icon-40@2x.png */; };
+		7E7966E01810823500FA85AD /* icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D61810823500FA85AD /* icon-50.png */; };
+		7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D71810823500FA85AD /* icon-50@2x.png */; };
+		7E7966E21810823500FA85AD /* icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D81810823500FA85AD /* icon-60.png */; };
+		7E7966E31810823500FA85AD /* icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966D91810823500FA85AD /* icon-60@2x.png */; };
+		7E7966E41810823500FA85AD /* icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DA1810823500FA85AD /* icon-76.png */; };
+		7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DB1810823500FA85AD /* icon-76@2x.png */; };
+		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
+		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
+		7F0F48B885174DB7812F80F5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C84C93F38B4D4BAC9304F1 /* CFNetwork.framework */; };
+		80A418E6DA1F48B6962510BD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D186244A43477EBC9C6808 /* SystemConfiguration.framework */; };
+		814D1F5EC53B4D2697F2236B /* EJBindingCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = E41B7CA84D784AC39BB9D8A1 /* EJBindingCanvas.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		82B8F37A6FB54D318CC236AF /* EJCanvasContext2DScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C6002419A4D488988424A8E /* EJCanvasContext2DScreen.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8378B7DA738A479AA00215E0 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7535B466925B4877A9B604D9 /* NSData+SRB64Additions.m */; };
+		83E3C2DE396446529B39F625 /* EJConvertWebGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C16B698DDA34CA79ABF9AE3 /* EJConvertWebGL.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		852C51FEF04F4804B3CE7FC8 /* EJBindingImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = C518030699D7475F8741DBE3 /* EJBindingImageData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		909459232FFD4AFF8CB59EA2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE53364584E6DB88816B3 /* CoreMotion.framework */; };
+		948EC20F83A34E11BA8EF5E3 /* EJBindingWebGLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D811773CA7E546AE848526C9 /* EJBindingWebGLExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		959840F58C5847F0932B79A0 /* EJBindingHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 178E5083702D422C9928EF5C /* EJBindingHttpRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		960F235668514C30A99EFEFC /* EJGLProgram2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FCF94B113B4E10ABE50CFD /* EJGLProgram2D.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		97F00B0E62964B01B67AFAD9 /* EJImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA28C74B5224708B368DF25 /* EJImageData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		983A3FF9F382481D8C36BC6B /* EJCanvasContext.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F64E63402B46E695814A04 /* EJCanvasContext.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		98A1E97BCBA34DD6A4516839 /* EJBindingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3848EF49AD044658A09A74E0 /* EJBindingImage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BB1F5B1743A4AFDB10C8A41 /* EJTextureStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 981ED683A4F64AB5B7978051 /* EJTextureStorage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A7081EAD6F5C462D9CBE628A /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B443BF7F1F427C9DEF3FD2 /* SRWebSocket.m */; };
+		A7DBBFCC5DC84EBA9B2CD4C4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6664B8D657694CA09C4D5631 /* OpenGLES.framework */; };
+		B5778DCCAAA1445D867CD35C /* EJCanvasContext2D.m in Sources */ = {isa = PBXBuildFile; fileRef = 6200069EFB374E55956D0F2B /* EJCanvasContext2D.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B63B6E95B5CE4391A1A8541F /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF898A5BB854AF8BBB1EF54 /* EAGLView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C036C14043D24B629A5396D0 /* EJBindingIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 609D9AD4EF5A4D8BA761F681 /* EJBindingIAPManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C0B3FB9B61D84EF2B40E5A66 /* SocketRocket-Prefix.pch in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA593E764040E2A097D393 /* SocketRocket-Prefix.pch */; };
+		C29C6DF103534E86950D610C /* EJBindingIAPProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 70E7B465D218432DBB653D93 /* EJBindingIAPProduct.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C2F36C7F76794F189D0776EE /* EJBindingDeviceMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF3CEADA9F94401900C840C /* EJBindingDeviceMotion.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C41528A44805451187928FD0 /* EJBindingLocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEE9220F17453F8EAA3CC6 /* EJBindingLocalStorage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C5C1838517F44941B9EECB15 /* EJTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DA098D46441489E8411B41E /* EJTexture.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CE3D244263124EE2B16CB243 /* EJOpenALBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8FCCA07B8E4349981DFC11 /* EJOpenALBuffer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		F6FA7CDF16AFDEC200AD8974 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FA7CDE16AFDEC200AD8974 /* iAd.framework */; };
-		F6FA7CE116AFDEF000AD8974 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FA7CE016AFDEF000AD8974 /* CoreText.framework */; };
-		F6FA7CE316AFDF0F00AD8974 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FA7CE216AFDF0F00AD8974 /* OpenGLES.framework */; };
-		F6FA7CE516AFDF1C00AD8974 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FA7CE416AFDF1C00AD8974 /* GameKit.framework */; };
-		F6FA7CE716AFDF6200AD8974 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FA7CE616AFDF6200AD8974 /* OpenAL.framework */; };
-		F6FA7CE916AFDFA300AD8974 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F6FA7CE816AFDFA300AD8974 /* libicucore.dylib */; };
+		D6E97C63905E42FEA4DC1B8C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 462F70DE5650453FAF0BC5B2 /* MediaPlayer.framework */; };
+		D71E598F09A34CBCA92BBCF3 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 682DB54D882F4199B68893ED /* base64.c */; };
+		DB326D0A6CDB4F3EA3F1C4E1 /* EJBindingIAPTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = D814A55F7CAE43EAAC4CC126 /* EJBindingIAPTransaction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E318619A476743A8A2D2C263 /* WizCanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E7C066461248AB9C650F2F /* WizCanvasView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E59CB69D248A4F70B2F18078 /* EJAudioSourceAVAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BFD2CF7B834B3DA03EDD61 /* EJAudioSourceAVAudio.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E8B2099CE9EB4099A97CA1DE /* EJCanvasPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C11784CFAE4E8BAB591C53 /* EJCanvasPattern.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E9F57265F783439A80B8F7B7 /* EJBindingCanvasStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AF50D061C148469A504DCF /* EJBindingCanvasStyle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F44745E07801467DA4D62507 /* RadialGradient.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 99D0CB1E9E79447C957BEE30 /* RadialGradient.fsh */; };
+		F4DC23E03D80455E9FE71B66 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6740B370FFA4412AA4E3F1B5 /* AudioToolbox.framework */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
+		FACA0C45E5334496910EB440 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7CC12032D444DBBBA413C4 /* OpenAL.framework */; };
+		FB88009BDD4C431F9222A419 /* Pattern.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 1AEB4314D2A54D60A555A7AE /* Pattern.fsh */; };
+		FEB287BFBA584D6CBDC765E7 /* EJBindingEventedBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E5180589F3014519B59CE6EB /* EJBindingEventedBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		301BF534109A57CC0062928A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = CordovaLib;
+		};
+		301BF550109A68C00062928A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = CordovaLib;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		00CEFDAB3B864E41B2843549 /* EJCanvasContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJCanvasContext.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJCanvasContext.h; sourceTree = "<group>"; };
+		0241E435F82E4EDF944356D6 /* libJavaScriptCore.a */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = archive.ar; name = libJavaScriptCore.a; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/libJavaScriptCore.a; sourceTree = "<group>"; };
+		03F188BC1C2145CAB6798262 /* WizCanvasPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizCanvasPlugin.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/WizCanvas/WizCanvasPlugin.h; sourceTree = "<group>"; };
+		04DB7F51DEF240C8A1F0E4C7 /* EJBindingCanvasContextWebGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingCanvasContextWebGL.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingCanvasContextWebGL.h; sourceTree = "<group>"; };
+		06AF50D061C148469A504DCF /* EJBindingCanvasStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingCanvasStyle.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvasStyle.m; sourceTree = "<group>"; };
+		06C83C75631B40BFB05EF40D /* EJBindingBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingBase.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJBindingBase.m; sourceTree = "<group>"; };
+		0BBEE9220F17453F8EAA3CC6 /* EJBindingLocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingLocalStorage.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingLocalStorage.m; sourceTree = "<group>"; };
+		0DA098D46441489E8411B41E /* EJTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJTexture.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJTexture.m; sourceTree = "<group>"; };
+		0EF02D762A0A477EAC5ACAC2 /* EJBindingBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingBase.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJBindingBase.h; sourceTree = "<group>"; };
+		1179EA2B052048538650C57F /* EJBindingCanvasContext2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingCanvasContext2D.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasContext2D.m; sourceTree = "<group>"; };
+		12860F55785C4DC397487D76 /* EJGLProgram2DRadialGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJGLProgram2DRadialGradient.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2DRadialGradient.h; sourceTree = "<group>"; };
+		178E5083702D422C9928EF5C /* EJBindingHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingHttpRequest.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingHttpRequest.m; sourceTree = "<group>"; };
+		1AEB4314D2A54D60A555A7AE /* Pattern.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; path = Pattern.fsh; sourceTree = "<group>"; };
+		1C1C6C5ADCB643489B2CA9CB /* EJAudioSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJAudioSource.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJAudioSource.h; sourceTree = "<group>"; };
+		1C3395D054D646BDA2A236D2 /* EJNonRetainingProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJNonRetainingProxy.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJNonRetainingProxy.m; sourceTree = "<group>"; };
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* exampleWizCanvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exampleWizCanvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		1F2F18D5B4F7B1507CAC45B7 /* EJBindingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebSocket.m; sourceTree = "<group>"; };
-		1F2F1F2B3D6C0726F921D9C4 /* EJBindingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebSocket.h; sourceTree = "<group>"; };
+		1DFA298F8225464FB12D41B8 /* EJBindingWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingWebSocket.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingWebSocket.h; sourceTree = "<group>"; };
+		1E4110492C9849C784DBB21F /* EJTextureStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJTextureStorage.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJTextureStorage.h; sourceTree = "<group>"; };
 		1F766FDD13BBADB100FB74C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		1F766FE013BBADB100FB74C0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
+		223F277C873942E59000C2A9 /* EJBindingDeviceMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingDeviceMotion.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingDeviceMotion.h; sourceTree = "<group>"; };
+		2389B010C38945E7B37DA07B /* EJBindingWizCanvasMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingWizCanvasMessenger.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingWizCanvasMessenger.m; sourceTree = "<group>"; };
+		259FB00B909E40D590B07B0C /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base64.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/SocketRocket/base64.h; sourceTree = "<group>"; };
+		26C3119F27E545DC93F066B4 /* EJBindingEjectaCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingEjectaCore.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJBindingEjectaCore.m; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		301BF5B4109A6A2B0062928A /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		301BF5B6109A6A2B0062928A /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		301BF5B8109A6A2B0062928A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		301BF5BA109A6A2B0062928A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		301BF5BC109A6A2B0062928A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		301BF5BE109A6A2B0062928A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		301BF5C0109A6A2B0062928A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		301BF5C2109A6A2B0062928A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		301BF5C4109A6A2B0062928A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2C16B698DDA34CA79ABF9AE3 /* EJConvertWebGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJConvertWebGL.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJConvertWebGL.m; sourceTree = "<group>"; };
+		2CA1441DBDF442AAAFEA89EF /* EJBindingCanvasContext2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingCanvasContext2D.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasContext2D.h; sourceTree = "<group>"; };
+		2E1BB55E8E4E4339BE63353B /* EJBindingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingImage.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJBindingImage.h; sourceTree = "<group>"; };
+		2F7CC12032D444DBBBA413C4 /* OpenAL.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CordovaLib.xcodeproj; path = CordovaLib/CordovaLib.xcodeproj; sourceTree = "<group>"; };
+		301BF56E109A69640062928A /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = SOURCE_ROOT; };
 		302D95EE14D2391D003F00A1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		302D95EF14D2391D003F00A1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		302D95F014D2391D003F00A1 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -153,167 +194,163 @@
 		308D052E1370CCF300D202BF /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
 		308D052F1370CCF300D202BF /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		308D05301370CCF300D202BF /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		30E5649113A7FCAF007403D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		30A0434414DC770100060A13 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = Localizable.strings; sourceTree = "<group>"; };
+		30A0434714DC770100060A13 /* se */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = se; path = Localizable.strings; sourceTree = "<group>"; };
+		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
+		31D0326E7C094B7390E8E301 /* EJBindingWindowEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingWindowEvents.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingWindowEvents.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* exampleWizCanvas-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "exampleWizCanvas-Prefix.pch"; sourceTree = "<group>"; };
-		411A32B81822483300940391 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
-		411A32BA1822487600940391 /* EJBindingWizCanvasMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWizCanvasMessenger.h; sourceTree = "<group>"; };
-		411A32BB1822487600940391 /* EJBindingWizCanvasMessenger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWizCanvasMessenger.m; sourceTree = "<group>"; };
-		414DBF6A17F97CBD00DA3A50 /* EJBindingCanvasContext2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasContext2D.h; sourceTree = "<group>"; };
-		414DBF6B17F97CBD00DA3A50 /* EJBindingCanvasContext2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasContext2D.m; sourceTree = "<group>"; };
-		414DBF6C17F97CBD00DA3A50 /* EJBindingCanvasGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasGradient.h; sourceTree = "<group>"; };
-		414DBF6D17F97CBD00DA3A50 /* EJBindingCanvasGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasGradient.m; sourceTree = "<group>"; };
-		414DBF6E17F97CBD00DA3A50 /* EJBindingCanvasPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasPattern.h; sourceTree = "<group>"; };
-		414DBF6F17F97CBD00DA3A50 /* EJBindingCanvasPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasPattern.m; sourceTree = "<group>"; };
-		414DBF7017F97CBD00DA3A50 /* EJBindingImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingImageData.h; sourceTree = "<group>"; };
-		414DBF7117F97CBD00DA3A50 /* EJBindingImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingImageData.m; sourceTree = "<group>"; };
-		414DBF7217F97CBD00DA3A50 /* EJBindingTextMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingTextMetrics.h; sourceTree = "<group>"; };
-		414DBF7317F97CBD00DA3A50 /* EJBindingTextMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingTextMetrics.m; sourceTree = "<group>"; };
-		414DBF7417F97CBD00DA3A50 /* EJCanvas2DTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJCanvas2DTypes.h; sourceTree = "<group>"; };
-		414DBF7517F97CBD00DA3A50 /* EJCanvasContext2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJCanvasContext2D.h; sourceTree = "<group>"; };
-		414DBF7617F97CBD00DA3A50 /* EJCanvasContext2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJCanvasContext2D.m; sourceTree = "<group>"; };
-		414DBF7717F97CBD00DA3A50 /* EJCanvasContext2DScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJCanvasContext2DScreen.h; sourceTree = "<group>"; };
-		414DBF7817F97CBD00DA3A50 /* EJCanvasContext2DScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJCanvasContext2DScreen.m; sourceTree = "<group>"; };
-		414DBF7917F97CBD00DA3A50 /* EJCanvasContext2DTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJCanvasContext2DTexture.h; sourceTree = "<group>"; };
-		414DBF7A17F97CBD00DA3A50 /* EJCanvasContext2DTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJCanvasContext2DTexture.m; sourceTree = "<group>"; };
-		414DBF7B17F97CBD00DA3A50 /* EJCanvasGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJCanvasGradient.h; sourceTree = "<group>"; };
-		414DBF7C17F97CBD00DA3A50 /* EJCanvasGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJCanvasGradient.m; sourceTree = "<group>"; };
-		414DBF7D17F97CBD00DA3A50 /* EJCanvasPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJCanvasPattern.h; sourceTree = "<group>"; };
-		414DBF7E17F97CBD00DA3A50 /* EJCanvasPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJCanvasPattern.m; sourceTree = "<group>"; };
-		414DBF7F17F97CBD00DA3A50 /* EJConvertColorRGBA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJConvertColorRGBA.h; sourceTree = "<group>"; };
-		414DBF8017F97CBD00DA3A50 /* EJConvertColorRGBA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJConvertColorRGBA.m; sourceTree = "<group>"; };
-		414DBF8117F97CBD00DA3A50 /* EJFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJFont.h; sourceTree = "<group>"; };
-		414DBF8217F97CBD00DA3A50 /* EJFont.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EJFont.mm; sourceTree = "<group>"; };
-		414DBF8317F97CBD00DA3A50 /* EJGLProgram2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJGLProgram2D.h; sourceTree = "<group>"; };
-		414DBF8417F97CBD00DA3A50 /* EJGLProgram2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJGLProgram2D.m; sourceTree = "<group>"; };
-		414DBF8517F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJGLProgram2DRadialGradient.h; sourceTree = "<group>"; };
-		414DBF8617F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJGLProgram2DRadialGradient.m; sourceTree = "<group>"; };
-		414DBF8717F97CBD00DA3A50 /* EJImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJImageData.h; sourceTree = "<group>"; };
-		414DBF8817F97CBD00DA3A50 /* EJImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJImageData.m; sourceTree = "<group>"; };
-		414DBF8917F97CBD00DA3A50 /* EJPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJPath.h; sourceTree = "<group>"; };
-		414DBF8A17F97CBD00DA3A50 /* EJPath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EJPath.mm; sourceTree = "<group>"; };
-		414DBF8C17F97CBD00DA3A50 /* AlphaTexture.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = AlphaTexture.fsh; sourceTree = "<group>"; };
-		414DBF8D17F97CBD00DA3A50 /* Flat.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Flat.fsh; sourceTree = "<group>"; };
-		414DBF8E17F97CBD00DA3A50 /* Pattern.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Pattern.fsh; sourceTree = "<group>"; };
-		414DBF8F17F97CBD00DA3A50 /* RadialGradient.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = RadialGradient.fsh; sourceTree = "<group>"; };
-		414DBF9017F97CBD00DA3A50 /* Texture.fsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Texture.fsh; sourceTree = "<group>"; };
-		414DBF9117F97CBD00DA3A50 /* Vertex.vsh */ = {isa = PBXFileReference; explicitFileType = sourcecode.glsl; fileEncoding = 4; path = Vertex.vsh; sourceTree = "<group>"; };
-		414DBF9217F97CBD00DA3A50 /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
-		414DBF9317F97CBD00DA3A50 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
-		414DBF9417F97CBD00DA3A50 /* EJBindingCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvas.h; sourceTree = "<group>"; };
-		414DBF9517F97CBD00DA3A50 /* EJBindingCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvas.m; sourceTree = "<group>"; };
-		414DBF9617F97CBD00DA3A50 /* EJBindingCanvasStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasStyle.h; sourceTree = "<group>"; };
-		414DBF9717F97CBD00DA3A50 /* EJBindingCanvasStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasStyle.m; sourceTree = "<group>"; };
-		414DBF9817F97CBD00DA3A50 /* EJBindingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingImage.h; sourceTree = "<group>"; };
-		414DBF9917F97CBD00DA3A50 /* EJBindingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingImage.m; sourceTree = "<group>"; };
-		414DBF9A17F97CBD00DA3A50 /* EJCanvasContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJCanvasContext.h; sourceTree = "<group>"; };
-		414DBF9B17F97CBD00DA3A50 /* EJCanvasContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJCanvasContext.m; sourceTree = "<group>"; };
-		414DBF9C17F97CBD00DA3A50 /* EJDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJDrawable.h; sourceTree = "<group>"; };
-		414DBF9D17F97CBD00DA3A50 /* EJPresentable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJPresentable.h; sourceTree = "<group>"; };
-		414DBF9E17F97CBD00DA3A50 /* EJSharedTextureCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJSharedTextureCache.h; sourceTree = "<group>"; };
-		414DBF9F17F97CBD00DA3A50 /* EJSharedTextureCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJSharedTextureCache.m; sourceTree = "<group>"; };
-		414DBFA017F97CBD00DA3A50 /* EJTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJTexture.h; sourceTree = "<group>"; };
-		414DBFA117F97CBD00DA3A50 /* EJTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJTexture.m; sourceTree = "<group>"; };
-		414DBFA217F97CBD00DA3A50 /* EJTextureStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJTextureStorage.h; sourceTree = "<group>"; };
-		414DBFA317F97CBD00DA3A50 /* EJTextureStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJTextureStorage.m; sourceTree = "<group>"; };
-		414DBFA517F97CBD00DA3A50 /* EJBindingCanvasContextWebGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingCanvasContextWebGL.h; sourceTree = "<group>"; };
-		414DBFA617F97CBD00DA3A50 /* EJBindingCanvasContextWebGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingCanvasContextWebGL.m; sourceTree = "<group>"; };
-		414DBFA717F97CBD00DA3A50 /* EJBindingWebGLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebGLExtensions.h; sourceTree = "<group>"; };
-		414DBFA817F97CBD00DA3A50 /* EJBindingWebGLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebGLExtensions.m; sourceTree = "<group>"; };
-		414DBFA917F97CBD00DA3A50 /* EJBindingWebGLObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWebGLObjects.h; sourceTree = "<group>"; };
-		414DBFAA17F97CBD00DA3A50 /* EJBindingWebGLObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWebGLObjects.m; sourceTree = "<group>"; };
-		414DBFAB17F97CBD00DA3A50 /* EJCanvasContextWebGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJCanvasContextWebGL.h; sourceTree = "<group>"; };
-		414DBFAC17F97CBD00DA3A50 /* EJCanvasContextWebGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJCanvasContextWebGL.m; sourceTree = "<group>"; };
-		414DBFAD17F97CBD00DA3A50 /* EJConvertWebGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJConvertWebGL.h; sourceTree = "<group>"; };
-		414DBFAE17F97CBD00DA3A50 /* EJConvertWebGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJConvertWebGL.m; sourceTree = "<group>"; };
-		41CF5DD0178D008300001BC8 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
-		41CF5DD7178D06CF00001BC8 /* EJAudioSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJAudioSource.h; sourceTree = "<group>"; };
-		41CF5DD8178D06CF00001BC8 /* EJAudioSourceAVAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJAudioSourceAVAudio.h; sourceTree = "<group>"; };
-		41CF5DD9178D06CF00001BC8 /* EJAudioSourceAVAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJAudioSourceAVAudio.m; sourceTree = "<group>"; };
-		41CF5DDA178D06CF00001BC8 /* EJAudioSourceOpenAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJAudioSourceOpenAL.h; sourceTree = "<group>"; };
-		41CF5DDB178D06CF00001BC8 /* EJAudioSourceOpenAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJAudioSourceOpenAL.m; sourceTree = "<group>"; };
-		41CF5DDC178D06CF00001BC8 /* EJBindingAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingAudio.h; sourceTree = "<group>"; };
-		41CF5DDD178D06CF00001BC8 /* EJBindingAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingAudio.m; sourceTree = "<group>"; };
-		41CF5DDE178D06CF00001BC8 /* EJOpenALBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJOpenALBuffer.h; sourceTree = "<group>"; };
-		41CF5DDF178D06CF00001BC8 /* EJOpenALBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJOpenALBuffer.m; sourceTree = "<group>"; };
-		41CF5DE0178D06CF00001BC8 /* EJSharedOpenALManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJSharedOpenALManager.h; sourceTree = "<group>"; };
-		41CF5DE1178D06CF00001BC8 /* EJSharedOpenALManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJSharedOpenALManager.m; sourceTree = "<group>"; };
-		41CF5DE2178D06CF00001BC8 /* EJBindingBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingBase.h; sourceTree = "<group>"; };
-		41CF5DE3178D06CF00001BC8 /* EJBindingBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingBase.m; sourceTree = "<group>"; };
-		41CF5DE4178D06CF00001BC8 /* EJBindingEjectaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingEjectaCore.h; sourceTree = "<group>"; };
-		41CF5DE5178D06CF00001BC8 /* EJBindingEjectaCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingEjectaCore.m; sourceTree = "<group>"; };
-		41CF5DE6178D06CF00001BC8 /* EJBindingEventedBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingEventedBase.h; sourceTree = "<group>"; };
-		41CF5DE7178D06CF00001BC8 /* EJBindingEventedBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingEventedBase.m; sourceTree = "<group>"; };
-		41CF5DE8178D06CF00001BC8 /* EJBindingVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingVideo.h; sourceTree = "<group>"; };
-		41CF5DE9178D06CF00001BC8 /* EJBindingVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingVideo.m; sourceTree = "<group>"; };
-		41CF5E31178D06CF00001BC8 /* EJClassLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJClassLoader.h; sourceTree = "<group>"; };
-		41CF5E32178D06CF00001BC8 /* EJClassLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJClassLoader.m; sourceTree = "<group>"; };
-		41CF5E33178D06CF00001BC8 /* EJConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJConvert.h; sourceTree = "<group>"; };
-		41CF5E34178D06CF00001BC8 /* EJConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJConvert.m; sourceTree = "<group>"; };
-		41CF5E37178D06CF00001BC8 /* EJNonRetainingProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJNonRetainingProxy.h; sourceTree = "<group>"; };
-		41CF5E38178D06CF00001BC8 /* EJNonRetainingProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJNonRetainingProxy.m; sourceTree = "<group>"; };
-		41CF5E39178D06CF00001BC8 /* EJSharedOpenGLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJSharedOpenGLContext.h; sourceTree = "<group>"; };
-		41CF5E3A178D06CF00001BC8 /* EJSharedOpenGLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJSharedOpenGLContext.m; sourceTree = "<group>"; };
-		41CF5E3B178D06CF00001BC8 /* EJTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJTimer.h; sourceTree = "<group>"; };
-		41CF5E3C178D06CF00001BC8 /* EJTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJTimer.m; sourceTree = "<group>"; };
-		41CF5E40178D06CF00001BC8 /* EJBindingAdBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingAdBanner.h; sourceTree = "<group>"; };
-		41CF5E41178D06CF00001BC8 /* EJBindingAdBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingAdBanner.m; sourceTree = "<group>"; };
-		41CF5E42178D06CF00001BC8 /* EJBindingDeviceMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingDeviceMotion.h; sourceTree = "<group>"; };
-		41CF5E43178D06CF00001BC8 /* EJBindingDeviceMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingDeviceMotion.m; sourceTree = "<group>"; };
-		41CF5E44178D06CF00001BC8 /* EJBindingGameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingGameCenter.h; sourceTree = "<group>"; };
-		41CF5E45178D06CF00001BC8 /* EJBindingGameCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingGameCenter.m; sourceTree = "<group>"; };
-		41CF5E46178D06CF00001BC8 /* EJBindingHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingHttpRequest.h; sourceTree = "<group>"; };
-		41CF5E47178D06CF00001BC8 /* EJBindingHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingHttpRequest.m; sourceTree = "<group>"; };
-		41CF5E48178D06CF00001BC8 /* EJBindingKeyInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingKeyInput.h; sourceTree = "<group>"; };
-		41CF5E49178D06CF00001BC8 /* EJBindingKeyInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingKeyInput.m; sourceTree = "<group>"; };
-		41CF5E4A178D06CF00001BC8 /* EJBindingLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingLocalStorage.h; sourceTree = "<group>"; };
-		41CF5E4B178D06CF00001BC8 /* EJBindingLocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingLocalStorage.m; sourceTree = "<group>"; };
-		41CF5E4C178D06CF00001BC8 /* EJBindingTouchInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingTouchInput.h; sourceTree = "<group>"; };
-		41CF5E4D178D06CF00001BC8 /* EJBindingTouchInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingTouchInput.m; sourceTree = "<group>"; };
-		41CF5E50178D06CF00001BC8 /* EJBindingWindowEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingWindowEvents.h; sourceTree = "<group>"; };
-		41CF5E51178D06CF00001BC8 /* EJBindingWindowEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingWindowEvents.m; sourceTree = "<group>"; };
-		41CF5E55178D06CF00001BC8 /* EJBindingIAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPManager.h; sourceTree = "<group>"; };
-		41CF5E56178D06CF00001BC8 /* EJBindingIAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingIAPManager.m; sourceTree = "<group>"; };
-		41CF5E57178D06CF00001BC8 /* EJBindingIAPProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPProduct.h; sourceTree = "<group>"; };
-		41CF5E58178D06CF00001BC8 /* EJBindingIAPProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingIAPProduct.m; sourceTree = "<group>"; };
-		41CF5E59178D06CF00001BC8 /* EJBindingIAPTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPTransaction.h; sourceTree = "<group>"; };
-		41CF5E5A178D06CF00001BC8 /* EJBindingIAPTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingIAPTransaction.m; sourceTree = "<group>"; };
-		41CF5E5D178D06CF00001BC8 /* JavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScript.h; sourceTree = "<group>"; };
-		41CF5E5E178D06CF00001BC8 /* JavaScriptCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JavaScriptCore.h; sourceTree = "<group>"; };
-		41CF5E5F178D06CF00001BC8 /* JSBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBase.h; sourceTree = "<group>"; };
-		41CF5E60178D06CF00001BC8 /* JSContextRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSContextRef.h; sourceTree = "<group>"; };
-		41CF5E61178D06CF00001BC8 /* JSObjectRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObjectRef.h; sourceTree = "<group>"; };
-		41CF5E62178D06CF00001BC8 /* JSStringRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSStringRef.h; sourceTree = "<group>"; };
-		41CF5E63178D06CF00001BC8 /* JSStringRefCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSStringRefCF.h; sourceTree = "<group>"; };
-		41CF5E64178D06CF00001BC8 /* JSTypedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTypedArray.h; sourceTree = "<group>"; };
-		41CF5E65178D06CF00001BC8 /* JSValueRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSValueRef.h; sourceTree = "<group>"; };
-		41CF5E66178D06CF00001BC8 /* WebKitAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebKitAvailability.h; sourceTree = "<group>"; };
-		41CF5E67178D06CF00001BC8 /* libJavaScriptCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libJavaScriptCore.a; sourceTree = "<group>"; };
-		41CF5E69178D06CF00001BC8 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
-		41CF5E6A178D06CF00001BC8 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
-		41CF5E6B178D06CF00001BC8 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
-		41CF5E6C178D06CF00001BC8 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
-		41CF5E6D178D06CF00001BC8 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
-		41CF5E6E178D06CF00001BC8 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
-		41CF5E6F178D06CF00001BC8 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
-		41CF5E70178D06CF00001BC8 /* WizCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizCanvasView.h; sourceTree = "<group>"; };
-		41CF5E71178D06CF00001BC8 /* WizCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizCanvasView.m; sourceTree = "<group>"; };
-		41CF5E72178D06CF00001BC8 /* WizDebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizDebugLog.h; sourceTree = "<group>"; };
-		41CF5E73178D06CF00001BC8 /* WizCanvasPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizCanvasPlugin.h; sourceTree = "<group>"; };
-		41CF5E74178D06CF00001BC8 /* WizCanvasPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizCanvasPlugin.m; sourceTree = "<group>"; };
-		41CF5EC0178D0B3B00001BC8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		41CF5EC2178D0B6C00001BC8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		41CF5EC4178D0B8700001BC8 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		41DC39FC17E30F7A00FB6416 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cordova.framework; path = CordovaLib/Cordova.framework; sourceTree = "<group>"; };
-		41DC39FE17E3107E00FB6416 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		3464DD97C86D42589CCFDB4B /* EJNonRetainingProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJNonRetainingProxy.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJNonRetainingProxy.h; sourceTree = "<group>"; };
+		377751E6744444C187CDBAB6 /* EJBindingTextMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingTextMetrics.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingTextMetrics.m; sourceTree = "<group>"; };
+		3848EF49AD044658A09A74E0 /* EJBindingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingImage.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJBindingImage.m; sourceTree = "<group>"; };
+		385D7DFF6C8C4E7D8BBE39E1 /* Flat.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; path = Flat.fsh; sourceTree = "<group>"; };
+		38A8C85D702243A0B5BD5A13 /* JSObjectRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSObjectRef.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/JSObjectRef.h; sourceTree = "<group>"; };
+		395440451FBB48DFAAE69223 /* UIKit.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3B5507F85FD840338E099AE5 /* WizCanvasPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizCanvasPlugin.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/WizCanvas/WizCanvasPlugin.m; sourceTree = "<group>"; };
+		3B8082995F434138AC7624AB /* EJCanvas2DTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJCanvas2DTypes.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvas2DTypes.h; sourceTree = "<group>"; };
+		3C9D6125BF8841DC81EBCA6E /* JavaScriptCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JavaScriptCore.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/JavaScriptCore.h; sourceTree = "<group>"; };
+		3EFA593E764040E2A097D393 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; name = "SocketRocket-Prefix.pch"; path = "jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/SocketRocket/SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		3F72FC2F673A4C43A9ABE313 /* Security.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		40EA5906CDA243C2A862C865 /* EJBindingAdBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingAdBanner.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingAdBanner.h; sourceTree = "<group>"; };
+		43179535AF254495BC4046F2 /* EJBindingWindowEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingWindowEvents.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingWindowEvents.h; sourceTree = "<group>"; };
+		43886147011B48DBA3A9C691 /* EJBindingKeyInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingKeyInput.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingKeyInput.h; sourceTree = "<group>"; };
+		44C11784CFAE4E8BAB591C53 /* EJCanvasPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJCanvasPattern.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasPattern.m; sourceTree = "<group>"; };
+		451DA2CFD044403197053140 /* EJPath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; name = EJPath.mm; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJPath.mm; sourceTree = "<group>"; };
+		462F70DE5650453FAF0BC5B2 /* MediaPlayer.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		4CE5EB25B9B14258980D3937 /* EJBindingTextMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingTextMetrics.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingTextMetrics.h; sourceTree = "<group>"; };
+		4CF2249677104E078F9EBDD9 /* EJBindingCanvasGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingCanvasGradient.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasGradient.m; sourceTree = "<group>"; };
+		4D8A98DCCA124BD4B56560F5 /* JSValueRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSValueRef.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/JSValueRef.h; sourceTree = "<group>"; };
+		4F242A11E9B94E939011F568 /* Vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; path = Vertex.vsh; sourceTree = "<group>"; };
+		50423926A3D84055B6D3ED6E /* EJDrawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJDrawable.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJDrawable.h; sourceTree = "<group>"; };
+		5101D7CD77D84C0682E01D5B /* GameKit.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		52E5A4586C4244EEB5DD705C /* EJBindingHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingHttpRequest.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingHttpRequest.h; sourceTree = "<group>"; };
+		5584D5188A2B4D1BAF462CC2 /* EJTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJTimer.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJTimer.h; sourceTree = "<group>"; };
+		5640225E13404FA8A7576D5A /* EJBindingLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingLocalStorage.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingLocalStorage.h; sourceTree = "<group>"; };
+		59C84C93F38B4D4BAC9304F1 /* CFNetwork.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5AEE5B34173C68D80009041E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		5DC1F822EDCD4838A4D30D88 /* EJOpenALBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJOpenALBuffer.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJOpenALBuffer.h; sourceTree = "<group>"; };
+		5E9CF098540648E9BCF125A1 /* EJBindingEjectaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingEjectaCore.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJBindingEjectaCore.h; sourceTree = "<group>"; };
+		5FB97E8CEFFD44FB9F00A431 /* EJSharedOpenALManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJSharedOpenALManager.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJSharedOpenALManager.m; sourceTree = "<group>"; };
+		5FF3CEADA9F94401900C840C /* EJBindingDeviceMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingDeviceMotion.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingDeviceMotion.m; sourceTree = "<group>"; };
+		609D9AD4EF5A4D8BA761F681 /* EJBindingIAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingIAPManager.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPManager.m; sourceTree = "<group>"; };
+		6200069EFB374E55956D0F2B /* EJCanvasContext2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJCanvasContext2D.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2D.m; sourceTree = "<group>"; };
+		6292093895804F22AF6BF730 /* EJSharedTextureCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJSharedTextureCache.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJSharedTextureCache.m; sourceTree = "<group>"; };
+		63513AAA3F1F4D22999F9CB9 /* EJBindingCanvasPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingCanvasPattern.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasPattern.h; sourceTree = "<group>"; };
+		64E7A1CAF6084B0381E23499 /* EJImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJImageData.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJImageData.h; sourceTree = "<group>"; };
+		6664B8D657694CA09C4D5631 /* OpenGLES.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		66FCF94B113B4E10ABE50CFD /* EJGLProgram2D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJGLProgram2D.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2D.m; sourceTree = "<group>"; };
+		6740B370FFA4412AA4E3F1B5 /* AudioToolbox.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		682DB54D882F4199B68893ED /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; name = base64.c; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/SocketRocket/base64.c; sourceTree = "<group>"; };
+		6831F56172744A90A13735C1 /* EJConvertColorRGBA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJConvertColorRGBA.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJConvertColorRGBA.h; sourceTree = "<group>"; };
+		69FDB5EC99D9472E8D4493E0 /* EJBindingWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingWebSocket.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingWebSocket.m; sourceTree = "<group>"; };
+		6C478EDB012D4E9EBA0165E7 /* EJCanvasGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJCanvasGradient.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasGradient.h; sourceTree = "<group>"; };
+		6ED16E14BC2245D2B7386B1F /* EAGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EAGLView.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EAGLView.h; sourceTree = "<group>"; };
+		6FB5ACDCBCE84F468BEB2F9D /* EJBindingEventedBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingEventedBase.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJBindingEventedBase.h; sourceTree = "<group>"; };
+		7007ECE852884A3E90763CA7 /* EJSharedOpenGLContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJSharedOpenGLContext.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJSharedOpenGLContext.m; sourceTree = "<group>"; };
+		70E7B465D218432DBB653D93 /* EJBindingIAPProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingIAPProduct.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPProduct.m; sourceTree = "<group>"; };
+		71E7C066461248AB9C650F2F /* WizCanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizCanvasView.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/WizCanvas/WizCanvasView.m; sourceTree = "<group>"; };
+		729E3D16518C4355B944D94A /* JSStringRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSStringRef.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/JSStringRef.h; sourceTree = "<group>"; };
+		731FBCEEEB4B46748E8F26C0 /* AVFoundation.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		73621B721CAA417292D5C7F2 /* WizCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizCanvasView.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/WizCanvas/WizCanvasView.h; sourceTree = "<group>"; };
+		74A31D7F24F149FA91A3E382 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+SRB64Additions.h"; path = "jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/SocketRocket/NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		7535B466925B4877A9B604D9 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+SRB64Additions.m"; path = "jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/SocketRocket/NSData+SRB64Additions.m"; sourceTree = "<group>"; };
+		765CA683016247ECBC2084BB /* EJPresentable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJPresentable.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJPresentable.h; sourceTree = "<group>"; };
+		7B2FE53364584E6DB88816B3 /* CoreMotion.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		7C6002419A4D488988424A8E /* EJCanvasContext2DScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJCanvasContext2DScreen.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DScreen.m; sourceTree = "<group>"; };
+		7C66A25DDDA74E62A3D10418 /* EJBindingAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingAudio.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJBindingAudio.m; sourceTree = "<group>"; };
+		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
+		7E7966D51810823500FA85AD /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
+		7E7966D61810823500FA85AD /* icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-50.png"; sourceTree = "<group>"; };
+		7E7966D71810823500FA85AD /* icon-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-50@2x.png"; sourceTree = "<group>"; };
+		7E7966D81810823500FA85AD /* icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60.png"; sourceTree = "<group>"; };
+		7E7966D91810823500FA85AD /* icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@2x.png"; sourceTree = "<group>"; };
+		7E7966DA1810823500FA85AD /* icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-76.png"; sourceTree = "<group>"; };
+		7E7966DB1810823500FA85AD /* icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-76@2x.png"; sourceTree = "<group>"; };
+		7E7966DC1810823500FA85AD /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small.png"; sourceTree = "<group>"; };
+		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
+		8145B86D222841C28024F061 /* EJSharedTextureCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJSharedTextureCache.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJSharedTextureCache.h; sourceTree = "<group>"; };
+		82D84C970C2A467EAFD7F00D /* EJBindingIAPTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingIAPTransaction.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPTransaction.h; sourceTree = "<group>"; };
+		83957310A7EC4B41854912B7 /* EJFont.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; name = EJFont.mm; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJFont.mm; sourceTree = "<group>"; };
+		83FC7B75BD8541E99A80FC95 /* EJBindingAdBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingAdBanner.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingAdBanner.m; sourceTree = "<group>"; };
+		8C184FB6A14B4A47B438EADF /* JSContextRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSContextRef.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/JSContextRef.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* exampleWizCanvas-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "exampleWizCanvas-Info.plist"; path = "../exampleWizCanvas-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8DAB2801A9A84953A0D466E6 /* EJSharedOpenGLContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJSharedOpenGLContext.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJSharedOpenGLContext.h; sourceTree = "<group>"; };
+		8DDB70255AEC416FAB0E8DD0 /* EJConvertWebGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJConvertWebGL.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJConvertWebGL.h; sourceTree = "<group>"; };
+		8F80A6ECB29849A98C2124B0 /* EJBindingCanvasGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingCanvasGradient.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasGradient.h; sourceTree = "<group>"; };
+		904004FC525F48E69A7B74EF /* EJBindingWebGLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingWebGLExtensions.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLExtensions.h; sourceTree = "<group>"; };
+		90B23D64DF4C42278BD4364A /* EJConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJConvert.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJConvert.h; sourceTree = "<group>"; };
+		90F6752544C5419E933FC930 /* StoreKit.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		924F8646F7EC4AE6A981017E /* EJBindingGameCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingGameCenter.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingGameCenter.m; sourceTree = "<group>"; };
+		94C791343A1E43F98CA960DA /* EJAudioSourceAVAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJAudioSourceAVAudio.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceAVAudio.h; sourceTree = "<group>"; };
+		981ED683A4F64AB5B7978051 /* EJTextureStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJTextureStorage.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJTextureStorage.m; sourceTree = "<group>"; };
+		99D0CB1E9E79447C957BEE30 /* RadialGradient.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; path = RadialGradient.fsh; sourceTree = "<group>"; };
+		9BA28C74B5224708B368DF25 /* EJImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJImageData.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJImageData.m; sourceTree = "<group>"; };
+		9BBCABAFB25F413E82C9D218 /* EJBindingGameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingGameCenter.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingGameCenter.h; sourceTree = "<group>"; };
+		9C4AA8A6578647D29A58A024 /* EJBindingWebGLObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingWebGLObjects.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLObjects.h; sourceTree = "<group>"; };
+		9D19B736BBCF4486863F0A78 /* EJBindingCanvasStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingCanvasStyle.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvasStyle.h; sourceTree = "<group>"; };
+		9DF5141787E4425B84E91AC7 /* EJFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJFont.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJFont.h; sourceTree = "<group>"; };
+		9EB581D8DA12403DA6C86C50 /* EJBindingAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingAudio.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJBindingAudio.h; sourceTree = "<group>"; };
+		9FF898A5BB854AF8BBB1EF54 /* EAGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EAGLView.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EAGLView.m; sourceTree = "<group>"; };
+		A1D591971EF74FC690C1A44E /* EJCanvasContextWebGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJCanvasContextWebGL.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGL.m; sourceTree = "<group>"; };
+		A1DF7E1D1F8549CAA13B3E55 /* WebKitAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebKitAvailability.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/WebKitAvailability.h; sourceTree = "<group>"; };
+		A26ACA16809A480BA72B1966 /* EJBindingTouchInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingTouchInput.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingTouchInput.h; sourceTree = "<group>"; };
+		A5AD1B7C755F4A9686D2226C /* EJCanvasContext2DTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJCanvasContext2DTexture.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DTexture.h; sourceTree = "<group>"; };
+		AA23D3289FB7494195F6B470 /* EJBindingCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingCanvas.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvas.h; sourceTree = "<group>"; };
+		AC11B299884B4888B0DB1107 /* EJGLProgram2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJGLProgram2D.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2D.h; sourceTree = "<group>"; };
+		B04C368F7AE94DC8BA0B33F5 /* EJCanvasPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJCanvasPattern.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasPattern.h; sourceTree = "<group>"; };
+		B2A5BBEBBD1248BE8EEB51D0 /* EJCanvasGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJCanvasGradient.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasGradient.m; sourceTree = "<group>"; };
+		B4F775063BC1462C81BDEE2B /* EJConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJConvert.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJConvert.m; sourceTree = "<group>"; };
+		B5D427E6A5F347FDBFB97AB9 /* libicucore.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		B5F64E63402B46E695814A04 /* EJCanvasContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJCanvasContext.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJCanvasContext.m; sourceTree = "<group>"; };
+		B653C6A0192344718B4F0612 /* JSBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSBase.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/JSBase.h; sourceTree = "<group>"; };
+		BC8FCCA07B8E4349981DFC11 /* EJOpenALBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJOpenALBuffer.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJOpenALBuffer.m; sourceTree = "<group>"; };
+		C022E62328DD4AD5B36CC236 /* iAd.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		C27AB7150AB040A384A11A8C /* JavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JavaScript.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/JavaScript.h; sourceTree = "<group>"; };
+		C2DA7D10F358445A8886D176 /* EJBindingWizCanvasMessenger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingWizCanvasMessenger.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingWizCanvasMessenger.h; sourceTree = "<group>"; };
+		C518030699D7475F8741DBE3 /* EJBindingImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingImageData.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingImageData.m; sourceTree = "<group>"; };
+		C58FC4D4173E4678A231148A /* EJTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJTimer.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJTimer.m; sourceTree = "<group>"; };
+		C893D6705AA04F40AB151589 /* EJCanvasContext2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJCanvasContext2D.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2D.h; sourceTree = "<group>"; };
+		C8B443BF7F1F427C9DEF3FD2 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRWebSocket.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/SocketRocket/SRWebSocket.m; sourceTree = "<group>"; };
+		CD0211A2CA2A4EF3B394320C /* EJConvertColorRGBA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJConvertColorRGBA.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJConvertColorRGBA.m; sourceTree = "<group>"; };
+		CEFABE4F343D44FD9FD2E5A7 /* JSTypedArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSTypedArray.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/JSTypedArray.h; sourceTree = "<group>"; };
+		CF5FEDD8379641BEA382B8E3 /* EJPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJPath.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJPath.h; sourceTree = "<group>"; };
+		CF6EC8B2923B42C5B3216E5B /* EJBindingIAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingIAPManager.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPManager.h; sourceTree = "<group>"; };
+		CFF8E961A0B84D67B5031EC1 /* EJCanvasContext2DScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJCanvasContext2DScreen.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DScreen.h; sourceTree = "<group>"; };
+		D218182D032843DFB7165921 /* EJClassLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJClassLoader.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJClassLoader.m; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
-		F6FA7CDE16AFDEC200AD8974 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		F6FA7CE016AFDEF000AD8974 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		F6FA7CE216AFDF0F00AD8974 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		F6FA7CE416AFDF1C00AD8974 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		F6FA7CE616AFDF6200AD8974 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
-		F6FA7CE816AFDFA300AD8974 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		D62D7E60EB81470891DD81F9 /* EJBindingWebGLObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingWebGLObjects.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLObjects.m; sourceTree = "<group>"; };
+		D811773CA7E546AE848526C9 /* EJBindingWebGLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingWebGLExtensions.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLExtensions.m; sourceTree = "<group>"; };
+		D814A55F7CAE43EAAC4CC126 /* EJBindingIAPTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingIAPTransaction.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPTransaction.m; sourceTree = "<group>"; };
+		D9761219F4044572A774A294 /* Texture.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; path = Texture.fsh; sourceTree = "<group>"; };
+		DB4F955477724251AF106E2C /* EJBindingTouchInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingTouchInput.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingTouchInput.m; sourceTree = "<group>"; };
+		DE7A837E094A42908C69C71E /* CoreText.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		DF9D574446544D1D81948F40 /* EJBindingVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingVideo.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJBindingVideo.h; sourceTree = "<group>"; };
+		E14140099DAD4DADBBEFC4CB /* EJBindingCanvasPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingCanvasPattern.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasPattern.m; sourceTree = "<group>"; };
+		E31019DDA53644F996ACE9AB /* EJBindingVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingVideo.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJBindingVideo.m; sourceTree = "<group>"; };
+		E388478C285B42CE972FE675 /* AlphaTexture.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; path = AlphaTexture.fsh; sourceTree = "<group>"; };
+		E41B7CA84D784AC39BB9D8A1 /* EJBindingCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingCanvas.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvas.m; sourceTree = "<group>"; };
+		E4FA42117E73460CBCD855CA /* EJBindingCanvasContextWebGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingCanvasContextWebGL.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingCanvasContextWebGL.m; sourceTree = "<group>"; };
+		E513438A341B454BAD1D9C2F /* JSStringRefCF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSStringRefCF.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore/JSStringRefCF.h; sourceTree = "<group>"; };
+		E5180589F3014519B59CE6EB /* EJBindingEventedBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingEventedBase.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJBindingEventedBase.m; sourceTree = "<group>"; };
+		E6BFD2CF7B834B3DA03EDD61 /* EJAudioSourceAVAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJAudioSourceAVAudio.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceAVAudio.m; sourceTree = "<group>"; };
+		E6D186244A43477EBC9C6808 /* SystemConfiguration.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E8B34DD5ED944FB1AACDD878 /* EJGLProgram2DRadialGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJGLProgram2DRadialGradient.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2DRadialGradient.m; sourceTree = "<group>"; };
+		E9E65859A2C4456EA8E56F5A /* EJClassLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJClassLoader.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJClassLoader.h; sourceTree = "<group>"; };
+		EB9F2CF75CEE46878DA62878 /* EJAudioSourceOpenAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJAudioSourceOpenAL.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceOpenAL.h; sourceTree = "<group>"; };
+		EBCB41006D6F4CA49A25FE48 /* EJBindingImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingImageData.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingImageData.h; sourceTree = "<group>"; };
+		EC653C4F4B634C019584337E /* EJBindingKeyInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJBindingKeyInput.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/EJBindingKeyInput.m; sourceTree = "<group>"; };
+		EF4724C597ED45E890A76355 /* EJBindingIAPProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJBindingIAPProduct.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPProduct.h; sourceTree = "<group>"; };
+		EF842ACEB8CC4D2285FF82C0 /* EJCanvasContext2DTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJCanvasContext2DTexture.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DTexture.m; sourceTree = "<group>"; };
+		F3737805DD48449C9501D4BC /* EJSharedOpenALManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJSharedOpenALManager.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJSharedOpenALManager.h; sourceTree = "<group>"; };
+		F3DC8DAC2E31414DBE7C2477 /* QuartzCore.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F407144D99654A8EB2293D46 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRWebSocket.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/SocketRocket/SRWebSocket.h; sourceTree = "<group>"; };
+		F5350E03382D4F09B85DA17F /* EJTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJTexture.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/EJTexture.h; sourceTree = "<group>"; };
+		F775C29C05064D22939E8609 /* Foundation.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = exampleWizCanvas/config.xml; sourceTree = "<group>"; };
+		F8A44761D3094C59859B7D75 /* WizDebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizDebugLog.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/WizCanvas/WizDebugLog.h; sourceTree = "<group>"; };
+		FA52565B6B9E4C7EAD55E680 /* EJAudioSourceOpenAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EJAudioSourceOpenAL.m; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceOpenAL.m; sourceTree = "<group>"; };
+		FCDF35A95A3E45C091DA6E35 /* libJavaScriptCore.a */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = archive.ar; name = libJavaScriptCore.a; path = exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/libJavaScriptCore.a; sourceTree = "<group>"; };
+		FE4C846B0A82462C9BA6FBD5 /* EJCanvasContextWebGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EJCanvasContextWebGL.h; path = jp.wizcorp.phonegap.plugin.wizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGL.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,33 +358,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41DC39FF17E3107E00FB6416 /* AssetsLibrary.framework in Frameworks */,
-				41DC39FD17E30F7A00FB6416 /* Cordova.framework in Frameworks */,
-				41CF5EC5178D0B8700001BC8 /* CoreMotion.framework in Frameworks */,
-				41CF5EC3178D0B6C00001BC8 /* StoreKit.framework in Frameworks */,
-				41CF5EC1178D0B3B00001BC8 /* Security.framework in Frameworks */,
-				41CF5EBF178D07D200001BC8 /* libJavaScriptCore.a in Frameworks */,
-				41CF5DD1178D008300001BC8 /* libstdc++.dylib in Frameworks */,
-				F6FA7CE916AFDFA300AD8974 /* libicucore.dylib in Frameworks */,
-				F6FA7CE716AFDF6200AD8974 /* OpenAL.framework in Frameworks */,
-				F6FA7CE516AFDF1C00AD8974 /* GameKit.framework in Frameworks */,
-				F6FA7CE316AFDF0F00AD8974 /* OpenGLES.framework in Frameworks */,
-				F6FA7CE116AFDEF000AD8974 /* CoreText.framework in Frameworks */,
-				F6FA7CDF16AFDEC200AD8974 /* iAd.framework in Frameworks */,
-				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
-				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */,
+				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				301BF5B5109A6A2B0062928A /* AddressBook.framework in Frameworks */,
-				301BF5B7109A6A2B0062928A /* AddressBookUI.framework in Frameworks */,
-				301BF5B9109A6A2B0062928A /* AudioToolbox.framework in Frameworks */,
-				301BF5BB109A6A2B0062928A /* AVFoundation.framework in Frameworks */,
-				301BF5BD109A6A2B0062928A /* CFNetwork.framework in Frameworks */,
-				301BF5BF109A6A2B0062928A /* CoreLocation.framework in Frameworks */,
-				301BF5C1109A6A2B0062928A /* MediaPlayer.framework in Frameworks */,
-				301BF5C3109A6A2B0062928A /* QuartzCore.framework in Frameworks */,
-				301BF5C5109A6A2B0062928A /* SystemConfiguration.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
-				30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */,
+				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
+				7647F4F834C64B1B9DCD4A1E /* libJavaScriptCore.a in Frameworks */,
+				59C527051C864205A7707FB8 /* AVFoundation.framework in Frameworks */,
+				F4DC23E03D80455E9FE71B66 /* AudioToolbox.framework in Frameworks */,
+				FACA0C45E5334496910EB440 /* OpenAL.framework in Frameworks */,
+				4634BB0DE0F74403BEB58E88 /* Foundation.framework in Frameworks */,
+				4B4CB6DDCF5442A696E3F9C5 /* UIKit.framework in Frameworks */,
+				55BB6D8EE48242C09919B2D0 /* QuartzCore.framework in Frameworks */,
+				80A418E6DA1F48B6962510BD /* SystemConfiguration.framework in Frameworks */,
+				7F0F48B885174DB7812F80F5 /* CFNetwork.framework in Frameworks */,
+				D6E97C63905E42FEA4DC1B8C /* MediaPlayer.framework in Frameworks */,
+				909459232FFD4AFF8CB59EA2 /* CoreMotion.framework in Frameworks */,
+				A7DBBFCC5DC84EBA9B2CD4C4 /* OpenGLES.framework in Frameworks */,
+				420C129D8E4D455EBF3786CC /* iAd.framework in Frameworks */,
+				021C11E4545D483291B4BB93 /* GameKit.framework in Frameworks */,
+				126F736A082A4F7FAE2B37D0 /* CoreText.framework in Frameworks */,
+				30F3AC99B32045518850AE67 /* Security.framework in Frameworks */,
+				35263611290841B3B341BC56 /* StoreKit.framework in Frameworks */,
+				38D0B65881B545B8B4557A75 /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,17 +416,26 @@
 			path = en.lproj;
 			sourceTree = "<group>";
 		};
+		1F766FDE13BBADB100FB74C0 /* es.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				1F766FDF13BBADB100FB74C0 /* Localizable.strings */,
+			);
+			path = es.lproj;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				411A32B81822483300940391 /* www */,
 				F840E1F0165FE0F500CFE078 /* config.xml */,
+				301BF56E109A69640062928A /* www */,
+				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				307C750510C5A3420062BCA9 /* Plugins */,
-				19C28FACFE9D520D11CA2CBB /* Products */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -411,10 +453,19 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				30A0434214DC770100060A13 /* de.lproj */,
+				30A0434514DC770100060A13 /* se.lproj */,
 				1F766FDB13BBADB100FB74C0 /* en.lproj */,
+				1F766FDE13BBADB100FB74C0 /* es.lproj */,
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* exampleWizCanvas-Info.plist */,
+				E388478C285B42CE972FE675 /* AlphaTexture.fsh */,
+				385D7DFF6C8C4E7D8BBE39E1 /* Flat.fsh */,
+				1AEB4314D2A54D60A555A7AE /* Pattern.fsh */,
+				99D0CB1E9E79447C957BEE30 /* RadialGradient.fsh */,
+				D9761219F4044572A774A294 /* Texture.fsh */,
+				4F242A11E9B94E939011F568 /* Vertex.vsh */,
 			);
 			name = Resources;
 			path = exampleWizCanvas/Resources;
@@ -423,48 +474,201 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				41DC39FE17E3107E00FB6416 /* AssetsLibrary.framework */,
-				41DC39FC17E30F7A00FB6416 /* Cordova.framework */,
-				41CF5EC4178D0B8700001BC8 /* CoreMotion.framework */,
-				41CF5EC2178D0B6C00001BC8 /* StoreKit.framework */,
-				41CF5EC0178D0B3B00001BC8 /* Security.framework */,
-				41CF5DD0178D008300001BC8 /* libstdc++.dylib */,
-				301BF5B4109A6A2B0062928A /* AddressBook.framework */,
-				301BF5B6109A6A2B0062928A /* AddressBookUI.framework */,
-				301BF5B8109A6A2B0062928A /* AudioToolbox.framework */,
-				301BF5BA109A6A2B0062928A /* AVFoundation.framework */,
-				301BF5BC109A6A2B0062928A /* CFNetwork.framework */,
+				5AEE5B34173C68D80009041E /* CoreLocation.framework */,
+				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
-				301BF5BE109A6A2B0062928A /* CoreLocation.framework */,
-				30E5649113A7FCAF007403D8 /* CoreMedia.framework */,
-				F6FA7CE016AFDEF000AD8974 /* CoreText.framework */,
-				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				F6FA7CE416AFDF1C00AD8974 /* GameKit.framework */,
-				F6FA7CDE16AFDEC200AD8974 /* iAd.framework */,
-				F6FA7CE816AFDFA300AD8974 /* libicucore.dylib */,
-				301BF5C0109A6A2B0062928A /* MediaPlayer.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
-				F6FA7CE616AFDF6200AD8974 /* OpenAL.framework */,
-				F6FA7CE216AFDF0F00AD8974 /* OpenGLES.framework */,
-				301BF5C2109A6A2B0062928A /* QuartzCore.framework */,
-				301BF5C4109A6A2B0062928A /* SystemConfiguration.framework */,
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				FCDF35A95A3E45C091DA6E35 /* libJavaScriptCore.a */,
+				731FBCEEEB4B46748E8F26C0 /* AVFoundation.framework */,
+				6740B370FFA4412AA4E3F1B5 /* AudioToolbox.framework */,
+				2F7CC12032D444DBBBA413C4 /* OpenAL.framework */,
+				F775C29C05064D22939E8609 /* Foundation.framework */,
+				395440451FBB48DFAAE69223 /* UIKit.framework */,
+				F3DC8DAC2E31414DBE7C2477 /* QuartzCore.framework */,
+				E6D186244A43477EBC9C6808 /* SystemConfiguration.framework */,
+				59C84C93F38B4D4BAC9304F1 /* CFNetwork.framework */,
+				462F70DE5650453FAF0BC5B2 /* MediaPlayer.framework */,
+				7B2FE53364584E6DB88816B3 /* CoreMotion.framework */,
+				6664B8D657694CA09C4D5631 /* OpenGLES.framework */,
+				C022E62328DD4AD5B36CC236 /* iAd.framework */,
+				5101D7CD77D84C0682E01D5B /* GameKit.framework */,
+				DE7A837E094A42908C69C71E /* CoreText.framework */,
+				3F72FC2F673A4C43A9ABE313 /* Security.framework */,
+				90F6752544C5419E933FC930 /* StoreKit.framework */,
+				B5D427E6A5F347FDBFB97AB9 /* libicucore.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		301BF52E109A57CC0062928A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				301BF535109A57CC0062928A /* libCordova.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				41CF5DD2178D06CF00001BC8 /* WizCanvasPlugin */,
+				3B5507F85FD840338E099AE5 /* WizCanvasPlugin.m */,
+				71E7C066461248AB9C650F2F /* WizCanvasView.m */,
+				0241E435F82E4EDF944356D6 /* libJavaScriptCore.a */,
+				E6BFD2CF7B834B3DA03EDD61 /* EJAudioSourceAVAudio.m */,
+				FA52565B6B9E4C7EAD55E680 /* EJAudioSourceOpenAL.m */,
+				7C66A25DDDA74E62A3D10418 /* EJBindingAudio.m */,
+				BC8FCCA07B8E4349981DFC11 /* EJOpenALBuffer.m */,
+				5FB97E8CEFFD44FB9F00A431 /* EJSharedOpenALManager.m */,
+				06C83C75631B40BFB05EF40D /* EJBindingBase.m */,
+				26C3119F27E545DC93F066B4 /* EJBindingEjectaCore.m */,
+				E5180589F3014519B59CE6EB /* EJBindingEventedBase.m */,
+				E31019DDA53644F996ACE9AB /* EJBindingVideo.m */,
+				1179EA2B052048538650C57F /* EJBindingCanvasContext2D.m */,
+				4CF2249677104E078F9EBDD9 /* EJBindingCanvasGradient.m */,
+				E14140099DAD4DADBBEFC4CB /* EJBindingCanvasPattern.m */,
+				C518030699D7475F8741DBE3 /* EJBindingImageData.m */,
+				377751E6744444C187CDBAB6 /* EJBindingTextMetrics.m */,
+				6200069EFB374E55956D0F2B /* EJCanvasContext2D.m */,
+				7C6002419A4D488988424A8E /* EJCanvasContext2DScreen.m */,
+				EF842ACEB8CC4D2285FF82C0 /* EJCanvasContext2DTexture.m */,
+				B2A5BBEBBD1248BE8EEB51D0 /* EJCanvasGradient.m */,
+				44C11784CFAE4E8BAB591C53 /* EJCanvasPattern.m */,
+				CD0211A2CA2A4EF3B394320C /* EJConvertColorRGBA.m */,
+				83957310A7EC4B41854912B7 /* EJFont.mm */,
+				66FCF94B113B4E10ABE50CFD /* EJGLProgram2D.m */,
+				E8B34DD5ED944FB1AACDD878 /* EJGLProgram2DRadialGradient.m */,
+				9BA28C74B5224708B368DF25 /* EJImageData.m */,
+				451DA2CFD044403197053140 /* EJPath.mm */,
+				9FF898A5BB854AF8BBB1EF54 /* EAGLView.m */,
+				E41B7CA84D784AC39BB9D8A1 /* EJBindingCanvas.m */,
+				06AF50D061C148469A504DCF /* EJBindingCanvasStyle.m */,
+				3848EF49AD044658A09A74E0 /* EJBindingImage.m */,
+				B5F64E63402B46E695814A04 /* EJCanvasContext.m */,
+				6292093895804F22AF6BF730 /* EJSharedTextureCache.m */,
+				0DA098D46441489E8411B41E /* EJTexture.m */,
+				981ED683A4F64AB5B7978051 /* EJTextureStorage.m */,
+				E4FA42117E73460CBCD855CA /* EJBindingCanvasContextWebGL.m */,
+				D811773CA7E546AE848526C9 /* EJBindingWebGLExtensions.m */,
+				D62D7E60EB81470891DD81F9 /* EJBindingWebGLObjects.m */,
+				A1D591971EF74FC690C1A44E /* EJCanvasContextWebGL.m */,
+				2C16B698DDA34CA79ABF9AE3 /* EJConvertWebGL.m */,
+				D218182D032843DFB7165921 /* EJClassLoader.m */,
+				B4F775063BC1462C81BDEE2B /* EJConvert.m */,
+				1C3395D054D646BDA2A236D2 /* EJNonRetainingProxy.m */,
+				7007ECE852884A3E90763CA7 /* EJSharedOpenGLContext.m */,
+				C58FC4D4173E4678A231148A /* EJTimer.m */,
+				83FC7B75BD8541E99A80FC95 /* EJBindingAdBanner.m */,
+				5FF3CEADA9F94401900C840C /* EJBindingDeviceMotion.m */,
+				924F8646F7EC4AE6A981017E /* EJBindingGameCenter.m */,
+				178E5083702D422C9928EF5C /* EJBindingHttpRequest.m */,
+				EC653C4F4B634C019584337E /* EJBindingKeyInput.m */,
+				0BBEE9220F17453F8EAA3CC6 /* EJBindingLocalStorage.m */,
+				DB4F955477724251AF106E2C /* EJBindingTouchInput.m */,
+				69FDB5EC99D9472E8D4493E0 /* EJBindingWebSocket.m */,
+				31D0326E7C094B7390E8E301 /* EJBindingWindowEvents.m */,
+				2389B010C38945E7B37DA07B /* EJBindingWizCanvasMessenger.m */,
+				609D9AD4EF5A4D8BA761F681 /* EJBindingIAPManager.m */,
+				70E7B465D218432DBB653D93 /* EJBindingIAPProduct.m */,
+				D814A55F7CAE43EAAC4CC126 /* EJBindingIAPTransaction.m */,
+				682DB54D882F4199B68893ED /* base64.c */,
+				7535B466925B4877A9B604D9 /* NSData+SRB64Additions.m */,
+				3EFA593E764040E2A097D393 /* SocketRocket-Prefix.pch */,
+				C8B443BF7F1F427C9DEF3FD2 /* SRWebSocket.m */,
+				03F188BC1C2145CAB6798262 /* WizCanvasPlugin.h */,
+				73621B721CAA417292D5C7F2 /* WizCanvasView.h */,
+				C27AB7150AB040A384A11A8C /* JavaScript.h */,
+				3C9D6125BF8841DC81EBCA6E /* JavaScriptCore.h */,
+				B653C6A0192344718B4F0612 /* JSBase.h */,
+				8C184FB6A14B4A47B438EADF /* JSContextRef.h */,
+				38A8C85D702243A0B5BD5A13 /* JSObjectRef.h */,
+				729E3D16518C4355B944D94A /* JSStringRef.h */,
+				E513438A341B454BAD1D9C2F /* JSStringRefCF.h */,
+				CEFABE4F343D44FD9FD2E5A7 /* JSTypedArray.h */,
+				4D8A98DCCA124BD4B56560F5 /* JSValueRef.h */,
+				A1DF7E1D1F8549CAA13B3E55 /* WebKitAvailability.h */,
+				1C1C6C5ADCB643489B2CA9CB /* EJAudioSource.h */,
+				94C791343A1E43F98CA960DA /* EJAudioSourceAVAudio.h */,
+				EB9F2CF75CEE46878DA62878 /* EJAudioSourceOpenAL.h */,
+				9EB581D8DA12403DA6C86C50 /* EJBindingAudio.h */,
+				5DC1F822EDCD4838A4D30D88 /* EJOpenALBuffer.h */,
+				F3737805DD48449C9501D4BC /* EJSharedOpenALManager.h */,
+				0EF02D762A0A477EAC5ACAC2 /* EJBindingBase.h */,
+				5E9CF098540648E9BCF125A1 /* EJBindingEjectaCore.h */,
+				6FB5ACDCBCE84F468BEB2F9D /* EJBindingEventedBase.h */,
+				DF9D574446544D1D81948F40 /* EJBindingVideo.h */,
+				2CA1441DBDF442AAAFEA89EF /* EJBindingCanvasContext2D.h */,
+				8F80A6ECB29849A98C2124B0 /* EJBindingCanvasGradient.h */,
+				63513AAA3F1F4D22999F9CB9 /* EJBindingCanvasPattern.h */,
+				EBCB41006D6F4CA49A25FE48 /* EJBindingImageData.h */,
+				4CE5EB25B9B14258980D3937 /* EJBindingTextMetrics.h */,
+				3B8082995F434138AC7624AB /* EJCanvas2DTypes.h */,
+				C893D6705AA04F40AB151589 /* EJCanvasContext2D.h */,
+				CFF8E961A0B84D67B5031EC1 /* EJCanvasContext2DScreen.h */,
+				A5AD1B7C755F4A9686D2226C /* EJCanvasContext2DTexture.h */,
+				6C478EDB012D4E9EBA0165E7 /* EJCanvasGradient.h */,
+				B04C368F7AE94DC8BA0B33F5 /* EJCanvasPattern.h */,
+				6831F56172744A90A13735C1 /* EJConvertColorRGBA.h */,
+				9DF5141787E4425B84E91AC7 /* EJFont.h */,
+				AC11B299884B4888B0DB1107 /* EJGLProgram2D.h */,
+				12860F55785C4DC397487D76 /* EJGLProgram2DRadialGradient.h */,
+				64E7A1CAF6084B0381E23499 /* EJImageData.h */,
+				CF5FEDD8379641BEA382B8E3 /* EJPath.h */,
+				6ED16E14BC2245D2B7386B1F /* EAGLView.h */,
+				AA23D3289FB7494195F6B470 /* EJBindingCanvas.h */,
+				9D19B736BBCF4486863F0A78 /* EJBindingCanvasStyle.h */,
+				2E1BB55E8E4E4339BE63353B /* EJBindingImage.h */,
+				00CEFDAB3B864E41B2843549 /* EJCanvasContext.h */,
+				50423926A3D84055B6D3ED6E /* EJDrawable.h */,
+				765CA683016247ECBC2084BB /* EJPresentable.h */,
+				8145B86D222841C28024F061 /* EJSharedTextureCache.h */,
+				F5350E03382D4F09B85DA17F /* EJTexture.h */,
+				1E4110492C9849C784DBB21F /* EJTextureStorage.h */,
+				04DB7F51DEF240C8A1F0E4C7 /* EJBindingCanvasContextWebGL.h */,
+				904004FC525F48E69A7B74EF /* EJBindingWebGLExtensions.h */,
+				9C4AA8A6578647D29A58A024 /* EJBindingWebGLObjects.h */,
+				FE4C846B0A82462C9BA6FBD5 /* EJCanvasContextWebGL.h */,
+				8DDB70255AEC416FAB0E8DD0 /* EJConvertWebGL.h */,
+				E9E65859A2C4456EA8E56F5A /* EJClassLoader.h */,
+				90B23D64DF4C42278BD4364A /* EJConvert.h */,
+				3464DD97C86D42589CCFDB4B /* EJNonRetainingProxy.h */,
+				8DAB2801A9A84953A0D466E6 /* EJSharedOpenGLContext.h */,
+				5584D5188A2B4D1BAF462CC2 /* EJTimer.h */,
+				40EA5906CDA243C2A862C865 /* EJBindingAdBanner.h */,
+				223F277C873942E59000C2A9 /* EJBindingDeviceMotion.h */,
+				9BBCABAFB25F413E82C9D218 /* EJBindingGameCenter.h */,
+				52E5A4586C4244EEB5DD705C /* EJBindingHttpRequest.h */,
+				43886147011B48DBA3A9C691 /* EJBindingKeyInput.h */,
+				5640225E13404FA8A7576D5A /* EJBindingLocalStorage.h */,
+				A26ACA16809A480BA72B1966 /* EJBindingTouchInput.h */,
+				1DFA298F8225464FB12D41B8 /* EJBindingWebSocket.h */,
+				43179535AF254495BC4046F2 /* EJBindingWindowEvents.h */,
+				C2DA7D10F358445A8886D176 /* EJBindingWizCanvasMessenger.h */,
+				CF6EC8B2923B42C5B3216E5B /* EJBindingIAPManager.h */,
+				EF4724C597ED45E890A76355 /* EJBindingIAPProduct.h */,
+				82D84C970C2A467EAFD7F00D /* EJBindingIAPTransaction.h */,
+				259FB00B909E40D590B07B0C /* base64.h */,
+				74A31D7F24F149FA91A3E382 /* NSData+SRB64Additions.h */,
+				F407144D99654A8EB2293D46 /* SRWebSocket.h */,
+				F8A44761D3094C59859B7D75 /* WizDebugLog.h */,
 			);
 			name = Plugins;
-			path = ../../ios/project/Plugins;
+			path = exampleWizCanvas/Plugins;
 			sourceTree = SOURCE_ROOT;
 		};
 		308D052D1370CCF300D202BF /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				7E7966D41810823500FA85AD /* icon-40.png */,
+				7E7966D51810823500FA85AD /* icon-40@2x.png */,
+				7E7966D61810823500FA85AD /* icon-50.png */,
+				7E7966D71810823500FA85AD /* icon-50@2x.png */,
+				7E7966D81810823500FA85AD /* icon-60.png */,
+				7E7966D91810823500FA85AD /* icon-60@2x.png */,
+				7E7966DA1810823500FA85AD /* icon-76.png */,
+				7E7966DB1810823500FA85AD /* icon-76@2x.png */,
+				7E7966DC1810823500FA85AD /* icon-small.png */,
+				7E7966DD1810823500FA85AD /* icon-small@2x.png */,
+				30FC414816E50CA1004E6F35 /* icon-72@2x.png */,
 				308D052E1370CCF300D202BF /* icon-72.png */,
 				308D052F1370CCF300D202BF /* icon.png */,
 				308D05301370CCF300D202BF /* icon@2x.png */,
@@ -486,244 +690,20 @@
 			path = splash;
 			sourceTree = "<group>";
 		};
-		414DBF6817F97CBD00DA3A50 /* EJCanvas */ = {
+		30A0434214DC770100060A13 /* de.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				414DBF6917F97CBD00DA3A50 /* 2D */,
-				414DBF9217F97CBD00DA3A50 /* EAGLView.h */,
-				414DBF9317F97CBD00DA3A50 /* EAGLView.m */,
-				414DBF9417F97CBD00DA3A50 /* EJBindingCanvas.h */,
-				414DBF9517F97CBD00DA3A50 /* EJBindingCanvas.m */,
-				414DBF9617F97CBD00DA3A50 /* EJBindingCanvasStyle.h */,
-				414DBF9717F97CBD00DA3A50 /* EJBindingCanvasStyle.m */,
-				414DBF9817F97CBD00DA3A50 /* EJBindingImage.h */,
-				414DBF9917F97CBD00DA3A50 /* EJBindingImage.m */,
-				414DBF9A17F97CBD00DA3A50 /* EJCanvasContext.h */,
-				414DBF9B17F97CBD00DA3A50 /* EJCanvasContext.m */,
-				414DBF9C17F97CBD00DA3A50 /* EJDrawable.h */,
-				414DBF9D17F97CBD00DA3A50 /* EJPresentable.h */,
-				414DBF9E17F97CBD00DA3A50 /* EJSharedTextureCache.h */,
-				414DBF9F17F97CBD00DA3A50 /* EJSharedTextureCache.m */,
-				414DBFA017F97CBD00DA3A50 /* EJTexture.h */,
-				414DBFA117F97CBD00DA3A50 /* EJTexture.m */,
-				414DBFA217F97CBD00DA3A50 /* EJTextureStorage.h */,
-				414DBFA317F97CBD00DA3A50 /* EJTextureStorage.m */,
-				414DBFA417F97CBD00DA3A50 /* WebGL */,
+				30A0434314DC770100060A13 /* Localizable.strings */,
 			);
-			path = EJCanvas;
+			path = de.lproj;
 			sourceTree = "<group>";
 		};
-		414DBF6917F97CBD00DA3A50 /* 2D */ = {
+		30A0434514DC770100060A13 /* se.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				414DBF6A17F97CBD00DA3A50 /* EJBindingCanvasContext2D.h */,
-				414DBF6B17F97CBD00DA3A50 /* EJBindingCanvasContext2D.m */,
-				414DBF6C17F97CBD00DA3A50 /* EJBindingCanvasGradient.h */,
-				414DBF6D17F97CBD00DA3A50 /* EJBindingCanvasGradient.m */,
-				414DBF6E17F97CBD00DA3A50 /* EJBindingCanvasPattern.h */,
-				414DBF6F17F97CBD00DA3A50 /* EJBindingCanvasPattern.m */,
-				414DBF7017F97CBD00DA3A50 /* EJBindingImageData.h */,
-				414DBF7117F97CBD00DA3A50 /* EJBindingImageData.m */,
-				414DBF7217F97CBD00DA3A50 /* EJBindingTextMetrics.h */,
-				414DBF7317F97CBD00DA3A50 /* EJBindingTextMetrics.m */,
-				414DBF7417F97CBD00DA3A50 /* EJCanvas2DTypes.h */,
-				414DBF7517F97CBD00DA3A50 /* EJCanvasContext2D.h */,
-				414DBF7617F97CBD00DA3A50 /* EJCanvasContext2D.m */,
-				414DBF7717F97CBD00DA3A50 /* EJCanvasContext2DScreen.h */,
-				414DBF7817F97CBD00DA3A50 /* EJCanvasContext2DScreen.m */,
-				414DBF7917F97CBD00DA3A50 /* EJCanvasContext2DTexture.h */,
-				414DBF7A17F97CBD00DA3A50 /* EJCanvasContext2DTexture.m */,
-				414DBF7B17F97CBD00DA3A50 /* EJCanvasGradient.h */,
-				414DBF7C17F97CBD00DA3A50 /* EJCanvasGradient.m */,
-				414DBF7D17F97CBD00DA3A50 /* EJCanvasPattern.h */,
-				414DBF7E17F97CBD00DA3A50 /* EJCanvasPattern.m */,
-				414DBF7F17F97CBD00DA3A50 /* EJConvertColorRGBA.h */,
-				414DBF8017F97CBD00DA3A50 /* EJConvertColorRGBA.m */,
-				414DBF8117F97CBD00DA3A50 /* EJFont.h */,
-				414DBF8217F97CBD00DA3A50 /* EJFont.mm */,
-				414DBF8317F97CBD00DA3A50 /* EJGLProgram2D.h */,
-				414DBF8417F97CBD00DA3A50 /* EJGLProgram2D.m */,
-				414DBF8517F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.h */,
-				414DBF8617F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.m */,
-				414DBF8717F97CBD00DA3A50 /* EJImageData.h */,
-				414DBF8817F97CBD00DA3A50 /* EJImageData.m */,
-				414DBF8917F97CBD00DA3A50 /* EJPath.h */,
-				414DBF8A17F97CBD00DA3A50 /* EJPath.mm */,
-				414DBF8B17F97CBD00DA3A50 /* Shaders */,
+				30A0434614DC770100060A13 /* Localizable.strings */,
 			);
-			path = 2D;
-			sourceTree = "<group>";
-		};
-		414DBF8B17F97CBD00DA3A50 /* Shaders */ = {
-			isa = PBXGroup;
-			children = (
-				414DBF8C17F97CBD00DA3A50 /* AlphaTexture.fsh */,
-				414DBF8D17F97CBD00DA3A50 /* Flat.fsh */,
-				414DBF8E17F97CBD00DA3A50 /* Pattern.fsh */,
-				414DBF8F17F97CBD00DA3A50 /* RadialGradient.fsh */,
-				414DBF9017F97CBD00DA3A50 /* Texture.fsh */,
-				414DBF9117F97CBD00DA3A50 /* Vertex.vsh */,
-			);
-			path = Shaders;
-			sourceTree = "<group>";
-		};
-		414DBFA417F97CBD00DA3A50 /* WebGL */ = {
-			isa = PBXGroup;
-			children = (
-				414DBFA517F97CBD00DA3A50 /* EJBindingCanvasContextWebGL.h */,
-				414DBFA617F97CBD00DA3A50 /* EJBindingCanvasContextWebGL.m */,
-				414DBFA717F97CBD00DA3A50 /* EJBindingWebGLExtensions.h */,
-				414DBFA817F97CBD00DA3A50 /* EJBindingWebGLExtensions.m */,
-				414DBFA917F97CBD00DA3A50 /* EJBindingWebGLObjects.h */,
-				414DBFAA17F97CBD00DA3A50 /* EJBindingWebGLObjects.m */,
-				414DBFAB17F97CBD00DA3A50 /* EJCanvasContextWebGL.h */,
-				414DBFAC17F97CBD00DA3A50 /* EJCanvasContextWebGL.m */,
-				414DBFAD17F97CBD00DA3A50 /* EJConvertWebGL.h */,
-				414DBFAE17F97CBD00DA3A50 /* EJConvertWebGL.m */,
-			);
-			path = WebGL;
-			sourceTree = "<group>";
-		};
-		41CF5DD2178D06CF00001BC8 /* WizCanvasPlugin */ = {
-			isa = PBXGroup;
-			children = (
-				41CF5DD3178D06CF00001BC8 /* Ejecta */,
-				41CF5E5B178D06CF00001BC8 /* lib */,
-				41CF5E70178D06CF00001BC8 /* WizCanvasView.h */,
-				41CF5E71178D06CF00001BC8 /* WizCanvasView.m */,
-				41CF5E72178D06CF00001BC8 /* WizDebugLog.h */,
-				41CF5E73178D06CF00001BC8 /* WizCanvasPlugin.h */,
-				41CF5E74178D06CF00001BC8 /* WizCanvasPlugin.m */,
-			);
-			path = WizCanvasPlugin;
-			sourceTree = "<group>";
-		};
-		41CF5DD3178D06CF00001BC8 /* Ejecta */ = {
-			isa = PBXGroup;
-			children = (
-				41CF5DD6178D06CF00001BC8 /* EJAudio */,
-				414DBF6817F97CBD00DA3A50 /* EJCanvas */,
-				41CF5DE2178D06CF00001BC8 /* EJBindingBase.h */,
-				41CF5DE3178D06CF00001BC8 /* EJBindingBase.m */,
-				41CF5DE4178D06CF00001BC8 /* EJBindingEjectaCore.h */,
-				41CF5DE5178D06CF00001BC8 /* EJBindingEjectaCore.m */,
-				41CF5DE6178D06CF00001BC8 /* EJBindingEventedBase.h */,
-				41CF5DE7178D06CF00001BC8 /* EJBindingEventedBase.m */,
-				41CF5DE8178D06CF00001BC8 /* EJBindingVideo.h */,
-				41CF5DE9178D06CF00001BC8 /* EJBindingVideo.m */,
-				41CF5E31178D06CF00001BC8 /* EJClassLoader.h */,
-				41CF5E32178D06CF00001BC8 /* EJClassLoader.m */,
-				41CF5E33178D06CF00001BC8 /* EJConvert.h */,
-				41CF5E34178D06CF00001BC8 /* EJConvert.m */,
-				41CF5E37178D06CF00001BC8 /* EJNonRetainingProxy.h */,
-				41CF5E38178D06CF00001BC8 /* EJNonRetainingProxy.m */,
-				41CF5E39178D06CF00001BC8 /* EJSharedOpenGLContext.h */,
-				41CF5E3A178D06CF00001BC8 /* EJSharedOpenGLContext.m */,
-				41CF5E3B178D06CF00001BC8 /* EJTimer.h */,
-				41CF5E3C178D06CF00001BC8 /* EJTimer.m */,
-				41CF5E3D178D06CF00001BC8 /* EJUtils */,
-			);
-			path = Ejecta;
-			sourceTree = "<group>";
-		};
-		41CF5DD6178D06CF00001BC8 /* EJAudio */ = {
-			isa = PBXGroup;
-			children = (
-				41CF5DD7178D06CF00001BC8 /* EJAudioSource.h */,
-				41CF5DD8178D06CF00001BC8 /* EJAudioSourceAVAudio.h */,
-				41CF5DD9178D06CF00001BC8 /* EJAudioSourceAVAudio.m */,
-				41CF5DDA178D06CF00001BC8 /* EJAudioSourceOpenAL.h */,
-				41CF5DDB178D06CF00001BC8 /* EJAudioSourceOpenAL.m */,
-				41CF5DDC178D06CF00001BC8 /* EJBindingAudio.h */,
-				41CF5DDD178D06CF00001BC8 /* EJBindingAudio.m */,
-				41CF5DDE178D06CF00001BC8 /* EJOpenALBuffer.h */,
-				41CF5DDF178D06CF00001BC8 /* EJOpenALBuffer.m */,
-				41CF5DE0178D06CF00001BC8 /* EJSharedOpenALManager.h */,
-				41CF5DE1178D06CF00001BC8 /* EJSharedOpenALManager.m */,
-			);
-			path = EJAudio;
-			sourceTree = "<group>";
-		};
-		41CF5E3D178D06CF00001BC8 /* EJUtils */ = {
-			isa = PBXGroup;
-			children = (
-				41CF5E40178D06CF00001BC8 /* EJBindingAdBanner.h */,
-				41CF5E41178D06CF00001BC8 /* EJBindingAdBanner.m */,
-				41CF5E42178D06CF00001BC8 /* EJBindingDeviceMotion.h */,
-				41CF5E43178D06CF00001BC8 /* EJBindingDeviceMotion.m */,
-				41CF5E44178D06CF00001BC8 /* EJBindingGameCenter.h */,
-				41CF5E45178D06CF00001BC8 /* EJBindingGameCenter.m */,
-				41CF5E46178D06CF00001BC8 /* EJBindingHttpRequest.h */,
-				41CF5E47178D06CF00001BC8 /* EJBindingHttpRequest.m */,
-				41CF5E48178D06CF00001BC8 /* EJBindingKeyInput.h */,
-				41CF5E49178D06CF00001BC8 /* EJBindingKeyInput.m */,
-				41CF5E4A178D06CF00001BC8 /* EJBindingLocalStorage.h */,
-				41CF5E4B178D06CF00001BC8 /* EJBindingLocalStorage.m */,
-				41CF5E4C178D06CF00001BC8 /* EJBindingTouchInput.h */,
-				41CF5E4D178D06CF00001BC8 /* EJBindingTouchInput.m */,
-				41CF5E50178D06CF00001BC8 /* EJBindingWindowEvents.h */,
-				41CF5E51178D06CF00001BC8 /* EJBindingWindowEvents.m */,
-				411A32BA1822487600940391 /* EJBindingWizCanvasMessenger.h */,
-				411A32BB1822487600940391 /* EJBindingWizCanvasMessenger.m */,
-				41CF5E54178D06CF00001BC8 /* IAP */,
-				1F2F18D5B4F7B1507CAC45B7 /* EJBindingWebSocket.m */,
-				1F2F1F2B3D6C0726F921D9C4 /* EJBindingWebSocket.h */,
-			);
-			path = EJUtils;
-			sourceTree = "<group>";
-		};
-		41CF5E54178D06CF00001BC8 /* IAP */ = {
-			isa = PBXGroup;
-			children = (
-				41CF5E55178D06CF00001BC8 /* EJBindingIAPManager.h */,
-				41CF5E56178D06CF00001BC8 /* EJBindingIAPManager.m */,
-				41CF5E57178D06CF00001BC8 /* EJBindingIAPProduct.h */,
-				41CF5E58178D06CF00001BC8 /* EJBindingIAPProduct.m */,
-				41CF5E59178D06CF00001BC8 /* EJBindingIAPTransaction.h */,
-				41CF5E5A178D06CF00001BC8 /* EJBindingIAPTransaction.m */,
-			);
-			path = IAP;
-			sourceTree = "<group>";
-		};
-		41CF5E5B178D06CF00001BC8 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				41CF5E5C178D06CF00001BC8 /* JavaScriptCore */,
-				41CF5E67178D06CF00001BC8 /* libJavaScriptCore.a */,
-				41CF5E68178D06CF00001BC8 /* SocketRocket */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		41CF5E5C178D06CF00001BC8 /* JavaScriptCore */ = {
-			isa = PBXGroup;
-			children = (
-				41CF5E5D178D06CF00001BC8 /* JavaScript.h */,
-				41CF5E5E178D06CF00001BC8 /* JavaScriptCore.h */,
-				41CF5E5F178D06CF00001BC8 /* JSBase.h */,
-				41CF5E60178D06CF00001BC8 /* JSContextRef.h */,
-				41CF5E61178D06CF00001BC8 /* JSObjectRef.h */,
-				41CF5E62178D06CF00001BC8 /* JSStringRef.h */,
-				41CF5E63178D06CF00001BC8 /* JSStringRefCF.h */,
-				41CF5E64178D06CF00001BC8 /* JSTypedArray.h */,
-				41CF5E65178D06CF00001BC8 /* JSValueRef.h */,
-				41CF5E66178D06CF00001BC8 /* WebKitAvailability.h */,
-			);
-			path = JavaScriptCore;
-			sourceTree = "<group>";
-		};
-		41CF5E68178D06CF00001BC8 /* SocketRocket */ = {
-			isa = PBXGroup;
-			children = (
-				41CF5E69178D06CF00001BC8 /* base64.c */,
-				41CF5E6A178D06CF00001BC8 /* base64.h */,
-				41CF5E6B178D06CF00001BC8 /* NSData+SRB64Additions.h */,
-				41CF5E6C178D06CF00001BC8 /* NSData+SRB64Additions.m */,
-				41CF5E6D178D06CF00001BC8 /* SocketRocket-Prefix.pch */,
-				41CF5E6E178D06CF00001BC8 /* SRWebSocket.h */,
-				41CF5E6F178D06CF00001BC8 /* SRWebSocket.m */,
-			);
-			path = SocketRocket;
+			path = se.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -733,8 +713,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "exampleWizCanvas" */;
 			buildPhases = (
-				F6FA7BE416AFD70C00AD8974 /* Copy content to www folder */,
-				304B58A110DAC018002A0835 /* Touch www folder */,
+				304B58A110DAC018002A0835 /* Copy www directory */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
@@ -742,9 +721,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				301BF551109A68C00062928A /* PBXTargetDependency */,
 			);
 			name = exampleWizCanvas;
-			productName = exampleWizViewManager;
+			productName = exampleWizCanvas;
 			productReference = 1D6058910D05DD3D006BFB54 /* exampleWizCanvas.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -754,7 +734,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 500;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "exampleWizCanvas" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -772,6 +752,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 301BF52E109A57CC0062928A /* Products */;
+					ProjectRef = 301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* exampleWizCanvas */,
@@ -779,64 +765,71 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		301BF535109A57CC0062928A /* libCordova.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCordova.a;
+			remoteRef = 301BF534109A57CC0062928A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6DAF3BD183DE79300F4F624 /* AlphaTexture.fsh in Resources */,
-				C6DAF3BE183DE79300F4F624 /* Flat.fsh in Resources */,
-				C6DAF3BF183DE79300F4F624 /* Pattern.fsh in Resources */,
-				C6DAF3C0183DE79300F4F624 /* RadialGradient.fsh in Resources */,
-				C6DAF3C1183DE79300F4F624 /* Texture.fsh in Resources */,
-				C6DAF3C2183DE79300F4F624 /* Vertex.vsh in Resources */,
 				F840E1F1165FE0F500CFE078 /* config.xml in Resources */,
+				7E7966E41810823500FA85AD /* icon-76.png in Resources */,
+				7E7966DF1810823500FA85AD /* icon-40@2x.png in Resources */,
 				308D05371370CCF300D202BF /* icon-72.png in Resources */,
-				411A32B91822483300940391 /* www in Resources */,
 				308D05381370CCF300D202BF /* icon.png in Resources */,
 				308D05391370CCF300D202BF /* icon@2x.png in Resources */,
 				1F766FE113BBADB100FB74C0 /* Localizable.strings in Resources */,
 				302D95F214D2391D003F00A1 /* MainViewController.xib in Resources */,
+				7E7966E01810823500FA85AD /* icon-50.png in Resources */,
+				7E7966E31810823500FA85AD /* icon-60@2x.png in Resources */,
+				30A0434814DC770100060A13 /* Localizable.strings in Resources */,
+				7E7966E61810823500FA85AD /* icon-small.png in Resources */,
 				3088BBBD154F3926009F9C59 /* Default-Landscape@2x~ipad.png in Resources */,
 				3088BBBE154F3926009F9C59 /* Default-Landscape~ipad.png in Resources */,
 				3088BBBF154F3926009F9C59 /* Default-Portrait@2x~ipad.png in Resources */,
+				7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */,
 				3088BBC0154F3926009F9C59 /* Default-Portrait~ipad.png in Resources */,
+				7E7966DE1810823500FA85AD /* icon-40.png in Resources */,
 				3088BBC1154F3926009F9C59 /* Default@2x~iphone.png in Resources */,
+				7E7966E21810823500FA85AD /* icon-60.png in Resources */,
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
+				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
+				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
+				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
+				7A2AF45F7D534557956C504D /* AlphaTexture.fsh in Resources */,
+				5AA06648E19B4C62B9888E5C /* Flat.fsh in Resources */,
+				FB88009BDD4C431F9222A419 /* Pattern.fsh in Resources */,
+				F44745E07801467DA4D62507 /* RadialGradient.fsh in Resources */,
+				34B400AD46624B10804EAA58 /* Texture.fsh in Resources */,
+				094ADE21F47545C1B19AB443 /* Vertex.vsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		304B58A110DAC018002A0835 /* Touch www folder */ = {
+		304B58A110DAC018002A0835 /* Copy www directory */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Touch www folder";
+			name = "Copy www directory";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "touch -cm ${PROJECT_DIR}/www";
-		};
-		F6FA7BE416AFD70C00AD8974 /* Copy content to www folder */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy content to www folder";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cp -r $PROJECT_DIR/../www $PROJECT_DIR\n#cp -r $PROJECT_DIR/../../www/phonegap $PROJECT_DIR/www";
+			shellScript = "cordova/lib/copy-www-build-step.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -845,80 +838,114 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				414DBF6717F94E9100DA3A50 /* main.m in Sources */,
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				41CF5E78178D06CF00001BC8 /* EJAudioSourceAVAudio.m in Sources */,
-				41CF5E79178D06CF00001BC8 /* EJAudioSourceOpenAL.m in Sources */,
-				41CF5E7A178D06CF00001BC8 /* EJBindingAudio.m in Sources */,
-				41CF5E7B178D06CF00001BC8 /* EJOpenALBuffer.m in Sources */,
-				41CF5E7C178D06CF00001BC8 /* EJSharedOpenALManager.m in Sources */,
-				41CF5E7D178D06CF00001BC8 /* EJBindingBase.m in Sources */,
-				41CF5E7E178D06CF00001BC8 /* EJBindingEjectaCore.m in Sources */,
-				41CF5E7F178D06CF00001BC8 /* EJBindingEventedBase.m in Sources */,
-				41CF5E80178D06CF00001BC8 /* EJBindingVideo.m in Sources */,
-				41CF5EA4178D06CF00001BC8 /* EJClassLoader.m in Sources */,
-				41CF5EA5178D06CF00001BC8 /* EJConvert.m in Sources */,
-				41CF5EA7178D06CF00001BC8 /* EJNonRetainingProxy.m in Sources */,
-				41CF5EA8178D06CF00001BC8 /* EJSharedOpenGLContext.m in Sources */,
-				41CF5EA9178D06CF00001BC8 /* EJTimer.m in Sources */,
-				41CF5EAB178D06CF00001BC8 /* EJBindingAdBanner.m in Sources */,
-				41CF5EAC178D06CF00001BC8 /* EJBindingDeviceMotion.m in Sources */,
-				41CF5EAD178D06CF00001BC8 /* EJBindingGameCenter.m in Sources */,
-				41CF5EAE178D06CF00001BC8 /* EJBindingHttpRequest.m in Sources */,
-				41CF5EAF178D06CF00001BC8 /* EJBindingKeyInput.m in Sources */,
-				41CF5EB0178D06CF00001BC8 /* EJBindingLocalStorage.m in Sources */,
-				41CF5EB1178D06CF00001BC8 /* EJBindingTouchInput.m in Sources */,
-				41CF5EB3178D06CF00001BC8 /* EJBindingWindowEvents.m in Sources */,
-				41CF5EB5178D06CF00001BC8 /* EJBindingIAPManager.m in Sources */,
-				41CF5EB6178D06CF00001BC8 /* EJBindingIAPProduct.m in Sources */,
-				41CF5EB7178D06CF00001BC8 /* EJBindingIAPTransaction.m in Sources */,
-				41CF5EB9178D06CF00001BC8 /* base64.c in Sources */,
-				41CF5EBA178D06CF00001BC8 /* NSData+SRB64Additions.m in Sources */,
-				41CF5EBB178D06CF00001BC8 /* SRWebSocket.m in Sources */,
-				41CF5EBC178D06D000001BC8 /* WizCanvasView.m in Sources */,
-				41CF5EBD178D06D000001BC8 /* WizCanvasPlugin.m in Sources */,
-				1F2F1DFA2BE53E56C786DC09 /* EJBindingWebSocket.m in Sources */,
-				414DBFAF17F97CBD00DA3A50 /* EJBindingCanvasContext2D.m in Sources */,
-				414DBFB017F97CBD00DA3A50 /* EJBindingCanvasGradient.m in Sources */,
-				414DBFB117F97CBD00DA3A50 /* EJBindingCanvasPattern.m in Sources */,
-				414DBFB217F97CBD00DA3A50 /* EJBindingImageData.m in Sources */,
-				414DBFB317F97CBD00DA3A50 /* EJBindingTextMetrics.m in Sources */,
-				414DBFB417F97CBD00DA3A50 /* EJCanvasContext2D.m in Sources */,
-				414DBFB517F97CBD00DA3A50 /* EJCanvasContext2DScreen.m in Sources */,
-				414DBFB617F97CBD00DA3A50 /* EJCanvasContext2DTexture.m in Sources */,
-				414DBFB717F97CBD00DA3A50 /* EJCanvasGradient.m in Sources */,
-				414DBFB817F97CBD00DA3A50 /* EJCanvasPattern.m in Sources */,
-				414DBFB917F97CBD00DA3A50 /* EJConvertColorRGBA.m in Sources */,
-				414DBFBA17F97CBD00DA3A50 /* EJFont.mm in Sources */,
-				414DBFBB17F97CBD00DA3A50 /* EJGLProgram2D.m in Sources */,
-				414DBFBC17F97CBD00DA3A50 /* EJGLProgram2DRadialGradient.m in Sources */,
-				414DBFBD17F97CBD00DA3A50 /* EJImageData.m in Sources */,
-				414DBFBE17F97CBD00DA3A50 /* EJPath.mm in Sources */,
-				414DBFC517F97CBD00DA3A50 /* EAGLView.m in Sources */,
-				414DBFC617F97CBD00DA3A50 /* EJBindingCanvas.m in Sources */,
-				414DBFC717F97CBD00DA3A50 /* EJBindingCanvasStyle.m in Sources */,
-				414DBFC817F97CBD00DA3A50 /* EJBindingImage.m in Sources */,
-				414DBFC917F97CBD00DA3A50 /* EJCanvasContext.m in Sources */,
-				414DBFCA17F97CBD00DA3A50 /* EJSharedTextureCache.m in Sources */,
-				414DBFCB17F97CBD00DA3A50 /* EJTexture.m in Sources */,
-				414DBFCC17F97CBD00DA3A50 /* EJTextureStorage.m in Sources */,
-				414DBFCD17F97CBD00DA3A50 /* EJBindingCanvasContextWebGL.m in Sources */,
-				414DBFCE17F97CBD00DA3A50 /* EJBindingWebGLExtensions.m in Sources */,
-				414DBFCF17F97CBD00DA3A50 /* EJBindingWebGLObjects.m in Sources */,
-				411A32BC1822487600940391 /* EJBindingWizCanvasMessenger.m in Sources */,
-				414DBFD017F97CBD00DA3A50 /* EJCanvasContextWebGL.m in Sources */,
-				414DBFD117F97CBD00DA3A50 /* EJConvertWebGL.m in Sources */,
+				71E091333327424382F09E01 /* WizCanvasPlugin.m in Sources */,
+				E318619A476743A8A2D2C263 /* WizCanvasView.m in Sources */,
+				7CB723DF4B3E41C9A538489F /* libJavaScriptCore.a in Sources */,
+				E59CB69D248A4F70B2F18078 /* EJAudioSourceAVAudio.m in Sources */,
+				73C6CC77479B4D05BD299B9D /* EJAudioSourceOpenAL.m in Sources */,
+				2CC6ACA686F843CC8E2A5076 /* EJBindingAudio.m in Sources */,
+				CE3D244263124EE2B16CB243 /* EJOpenALBuffer.m in Sources */,
+				17FEC5CBEAC54D4090AEAE35 /* EJSharedOpenALManager.m in Sources */,
+				0CDDC4B2B574417DAE5CF68F /* EJBindingBase.m in Sources */,
+				09102A6E3E0D4EF691A9CE34 /* EJBindingEjectaCore.m in Sources */,
+				FEB287BFBA584D6CBDC765E7 /* EJBindingEventedBase.m in Sources */,
+				31DF0D8FCA2845B491DD168B /* EJBindingVideo.m in Sources */,
+				7082DAC5A92F4CBCA8D6D1AD /* EJBindingCanvasContext2D.m in Sources */,
+				48638E831EC94BC780E2A2FE /* EJBindingCanvasGradient.m in Sources */,
+				744A078314F944EEBDFCE254 /* EJBindingCanvasPattern.m in Sources */,
+				852C51FEF04F4804B3CE7FC8 /* EJBindingImageData.m in Sources */,
+				395E156D548444538D402D58 /* EJBindingTextMetrics.m in Sources */,
+				B5778DCCAAA1445D867CD35C /* EJCanvasContext2D.m in Sources */,
+				82B8F37A6FB54D318CC236AF /* EJCanvasContext2DScreen.m in Sources */,
+				54A30046650E4D6196BBABB6 /* EJCanvasContext2DTexture.m in Sources */,
+				75ABE5B7DDE9469EAF21D578 /* EJCanvasGradient.m in Sources */,
+				E8B2099CE9EB4099A97CA1DE /* EJCanvasPattern.m in Sources */,
+				0C5BD579A8544639A83ED69E /* EJConvertColorRGBA.m in Sources */,
+				6A2FC70B268346ABBEE8452E /* EJFont.mm in Sources */,
+				960F235668514C30A99EFEFC /* EJGLProgram2D.m in Sources */,
+				2C747E4633D64432B7B6F621 /* EJGLProgram2DRadialGradient.m in Sources */,
+				97F00B0E62964B01B67AFAD9 /* EJImageData.m in Sources */,
+				5BBBFB90EF454C2190468AAB /* EJPath.mm in Sources */,
+				B63B6E95B5CE4391A1A8541F /* EAGLView.m in Sources */,
+				814D1F5EC53B4D2697F2236B /* EJBindingCanvas.m in Sources */,
+				E9F57265F783439A80B8F7B7 /* EJBindingCanvasStyle.m in Sources */,
+				98A1E97BCBA34DD6A4516839 /* EJBindingImage.m in Sources */,
+				983A3FF9F382481D8C36BC6B /* EJCanvasContext.m in Sources */,
+				3F2657CB0A3F427C8F331167 /* EJSharedTextureCache.m in Sources */,
+				C5C1838517F44941B9EECB15 /* EJTexture.m in Sources */,
+				9BB1F5B1743A4AFDB10C8A41 /* EJTextureStorage.m in Sources */,
+				5AF5E352B80F4F019B552BDD /* EJBindingCanvasContextWebGL.m in Sources */,
+				948EC20F83A34E11BA8EF5E3 /* EJBindingWebGLExtensions.m in Sources */,
+				5052DA4925D64281880E3BA4 /* EJBindingWebGLObjects.m in Sources */,
+				633195B0A11549F78893B50B /* EJCanvasContextWebGL.m in Sources */,
+				83E3C2DE396446529B39F625 /* EJConvertWebGL.m in Sources */,
+				4915424634D0499E89B205CB /* EJClassLoader.m in Sources */,
+				32C95FCE6BFB49399A3CCDFE /* EJConvert.m in Sources */,
+				4414BE661D70482CAC1270D3 /* EJNonRetainingProxy.m in Sources */,
+				314099D412864294B73C2194 /* EJSharedOpenGLContext.m in Sources */,
+				272A11CA9D0641F2B3CBFEAF /* EJTimer.m in Sources */,
+				0F74247BEB314466B480F46F /* EJBindingAdBanner.m in Sources */,
+				C2F36C7F76794F189D0776EE /* EJBindingDeviceMotion.m in Sources */,
+				31425E6DA612457498DE62D6 /* EJBindingGameCenter.m in Sources */,
+				959840F58C5847F0932B79A0 /* EJBindingHttpRequest.m in Sources */,
+				737BB4A9BFEB4F6BA563B1F6 /* EJBindingKeyInput.m in Sources */,
+				C41528A44805451187928FD0 /* EJBindingLocalStorage.m in Sources */,
+				51A330589DF541118C526837 /* EJBindingTouchInput.m in Sources */,
+				545C97F18AD34E3698FB3498 /* EJBindingWebSocket.m in Sources */,
+				17888DA91C734644904DAFAD /* EJBindingWindowEvents.m in Sources */,
+				68D392E68B4941A8BC4BE2AD /* EJBindingWizCanvasMessenger.m in Sources */,
+				C036C14043D24B629A5396D0 /* EJBindingIAPManager.m in Sources */,
+				C29C6DF103534E86950D610C /* EJBindingIAPProduct.m in Sources */,
+				DB326D0A6CDB4F3EA3F1C4E1 /* EJBindingIAPTransaction.m in Sources */,
+				D71E598F09A34CBCA92BBCF3 /* base64.c in Sources */,
+				8378B7DA738A479AA00215E0 /* NSData+SRB64Additions.m in Sources */,
+				C0B3FB9B61D84EF2B40E5A66 /* SocketRocket-Prefix.pch in Sources */,
+				A7081EAD6F5C462D9CBE628A /* SRWebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		301BF551109A68C00062928A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CordovaLib;
+			targetProxy = 301BF550109A68C00062928A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1F766FDC13BBADB100FB74C0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				1F766FDD13BBADB100FB74C0 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		1F766FDF13BBADB100FB74C0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1F766FE013BBADB100FB74C0 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		30A0434314DC770100060A13 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30A0434414DC770100060A13 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		30A0434614DC770100060A13 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30A0434714DC770100060A13 /* se */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -930,84 +957,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/CordovaLib\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "exampleWizCanvas/exampleWizCanvas-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUGGER=1";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					"${SOURCE_ROOT}",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/lib",
-				);
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "exampleWizCanvas/exampleWizCanvas-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
-					"\"$(inherited)\"",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/lib",
-				);
-				PRODUCT_NAME = exampleWizCanvas;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = armv7;
-			};
-			name = Debug;
-		};
-		1D6058950D05DD3E006BFB54 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/CordovaLib\"",
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "exampleWizCanvas/exampleWizCanvas-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUGGER=1";
-				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					"${SOURCE_ROOT}",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/lib",
-				);
-				INFOPLIST_FILE = "exampleWizCanvas/exampleWizCanvas-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				LIBRARY_SEARCH_PATHS = (
-					"\"$(inherited)\"",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/Ejecta",
-					"${SOURCE_ROOT}/../../ios/project/Plugins/WizCanvasPlugin/lib",
-				);
-				PRODUCT_NAME = exampleWizCanvas;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = armv7;
-			};
-			name = Release;
-		};
-		C01FCF4F08A954540054247B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUGGER=1";
-				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -1018,8 +981,95 @@
 					"-weak_framework",
 					CoreMedia,
 					"-weak-lSystem",
-					"-all_load",
-					"-Obj-C",
+					"-force_load",
+					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
+					"-ObjC",
+				);
+				PRODUCT_NAME = exampleWizCanvas;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "exampleWizCanvas/exampleWizCanvas-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "exampleWizCanvas/exampleWizCanvas-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib\"",
+				);
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					CoreFoundation,
+					"-weak_framework",
+					UIKit,
+					"-weak_framework",
+					AVFoundation,
+					"-weak_framework",
+					CoreMedia,
+					"-weak-lSystem",
+					"-force_load",
+					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
+					"-ObjC",
+				);
+				PRODUCT_NAME = exampleWizCanvas;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"",
+					"\"$(OBJROOT)/UninstalledProducts/include\"",
+					"\"$(BUILT_PRODUCTS_DIR)\"",
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib\"",
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore\"",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib\"",
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					CoreFoundation,
+					"-weak_framework",
+					UIKit,
+					"-weak_framework",
+					AVFoundation,
+					"-weak_framework",
+					CoreMedia,
+					"-weak-lSystem",
+					"-force_load",
+					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
+					"-ObjC",
 				);
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
@@ -1030,15 +1080,34 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUGGER=1";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"",
+					"\"$(OBJROOT)/UninstalledProducts/include\"",
+					"\"$(BUILT_PRODUCTS_DIR)\"",
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib\"",
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib\"",
+					"\"$(SRCROOT)/exampleWizCanvas/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore\"",
+				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -1049,8 +1118,9 @@
 					"-weak_framework",
 					CoreMedia,
 					"-weak-lSystem",
-					"-all_load",
-					"-Obj-C",
+					"-force_load",
+					"\"$(BUILT_PRODUCTS_DIR)/libCordova.a\"",
+					"-ObjC",
 				);
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;

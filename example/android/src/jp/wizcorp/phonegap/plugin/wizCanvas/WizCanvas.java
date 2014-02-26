@@ -24,7 +24,6 @@ import com.impactjs.ejecta.EjectaGLSurfaceView;
 import com.impactjs.ejecta.EjectaRenderer;
 import com.impactjs.ejecta.Utils;
 import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.PluginResult;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -48,8 +47,6 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.zip.GZIPInputStream;
-
-import static jp.wizcorp.phonegap.plugin.wizCanvas.WizCanvasPlugin.getViews;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class WizCanvas extends View {
@@ -120,7 +117,7 @@ public class WizCanvas extends View {
         ((EjectaGLSurfaceView)mGLView).setEjectaEventListener(new EjectaRenderer.EjectaEventListener() {
             @Override
             public void onCanvasCreated() {
-                Log.d("ejecta", "Canvas created!");
+                Log.d(TAG, "Canvas created");
 
                 // Evaluate script
                 ((EjectaGLSurfaceView) mGLView).loadJavaScriptFile("ejecta.js");
@@ -172,31 +169,19 @@ public class WizCanvas extends View {
 
             @Override
             public void onPostMessageReceived(String target, String message, String type, String source) {
-                final String _target = target;
-                final String _origin = source;
-                final String _message = message;
-                final String _type = type;
+                Log.d(TAG, "To: " + target);
+                Log.d(TAG, "Type: " + type);
+                Log.d(TAG, "Message: " + message);
+                Log.d(TAG, "From: " + source);
 
-                if (target.equalsIgnoreCase("mainView")) {
-                    // WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, data, type) {
-                    _act.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            JSONObject viewList = getViews();
-                            if (viewList.has(_target)) {
-                                if (_target.equalsIgnoreCase("mainView")) {
-                                    try {
-                                        CordovaWebView wv = (CordovaWebView) viewList.get(_target);
-                                        wv.loadUrl("javascript:(function () { wizCanvasMessenger.__triggerMessageEvent('" + _origin + "', '" + _target + "', '" + _message + "', '" + _type + "'); })()");
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
-                        }
-                    });
-                }
+                // Send message to Cordova Plugin
+                Intent i = new Intent("android.intent.action.MESSAGE");
+                i.putExtra("COMMAND", "postMessage");
+                i.putExtra("TARGET", target);
+                i.putExtra("TYPE", type);
+                i.putExtra("POSTMESSAGE", message);
+                i.putExtra("SOURCE", source);
+                _act.sendBroadcast(i);
             }
         });
 
@@ -217,6 +202,7 @@ public class WizCanvas extends View {
             // Apply Defaults
             mGLView.setLayoutParams(COVER_SCREEN_GRAVITY_CENTER);
         }
+
     } // ************ END CONSTRUCTOR **************
 
     public void load(Activity act, String source) {
@@ -442,7 +428,7 @@ public class WizCanvas extends View {
                 filename = new File(this.url.toURI().getPath()).getName();
 
             } catch (URISyntaxException e) {
-                Log.e("ejecta", "URL ERROR");
+                Log.e(TAG, "URL ERROR");
                 return "";
             }
 
@@ -503,9 +489,9 @@ public class WizCanvas extends View {
                 load(activity, filename);
 
             } catch (MalformedURLException e) {
-                Log.e("ejecta", "Bad url : ", e);
+                Log.e(TAG, "Bad url : ", e);
             } catch (Exception e) {
-                Log.e("ejecta", "Error : " + e);
+                Log.e(TAG, "Error : " + e);
             }
             return null;
         }
