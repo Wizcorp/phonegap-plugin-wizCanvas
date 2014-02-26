@@ -1,7 +1,7 @@
 # phonegap-plugin-wizCanvas
 
-- PhoneGap Version : 3.0
-- last update : 5/11/2013
+- PhoneGap Version : 3.3
+- last update : 26/02/2014
 
 ## Description
 
