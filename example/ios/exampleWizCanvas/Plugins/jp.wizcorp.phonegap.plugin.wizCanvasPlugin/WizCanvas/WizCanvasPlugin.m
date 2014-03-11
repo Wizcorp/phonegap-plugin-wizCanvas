@@ -238,13 +238,13 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
             // Assign new hide callback
             self.hideViewCallbackId = command.callbackId;
 
-            NSDictionary *options;
+            NSDictionary *options = NULL;
             if ([command.arguments count] > 0) {
                 // Assign options
                 options = [command.arguments objectAtIndex:1];
             }
 
-            if (options) {
+            if (![options isKindOfClass:[NSNull class]]) {
                 NSDictionary *animationDict = [options objectForKey:@"animation"];
                 if (animationDict) {
                     NSString *type               = [animationDict objectForKey:@"type"];
@@ -356,12 +356,12 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
             // Assign new show callback
             self.showViewCallbackId = command.callbackId;
 
-            NSDictionary *options;
+            NSDictionary *options = NULL;
             if ([command.arguments count] > 0) {
                 // Assign options
                 options = [command.arguments objectAtIndex:1];
             }
-            if (options) {
+            if (![options isKindOfClass:[NSNull class]]) {
                 NSDictionary* animationDict = [options objectForKey:@"animation"];
                 if (animationDict) {
 
@@ -453,14 +453,14 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     // assign arguments
     NSString *viewName    = [command.arguments objectAtIndex:0];
 
-    NSDictionary* options;
+    NSDictionary *options = NULL;
     if ([command.arguments count] > 0) {
         options = [command.arguments objectAtIndex:1];
     }
 
     WizLog(@"[WizCanvasPlugin] ******* Load into canvas : %@ - viewlist -> %@ options %@", viewName, wizViewList, options);
 
-    if (options) {
+    if (![options isKindOfClass:[NSNull class]]) {
         // Find the correct view
         if ([wizViewList objectForKey:viewName]) {
 
