@@ -56,7 +56,7 @@ Options list;
 	    left: 0, [pixels or percent - default: 0]    
 	    right: 0, [string, pixels or percent - default: 0]
 	    backgroundColor: [Colour as hex RGB/ARGB/RRGGBB or "transparent"]
-	    onTop: false [Default: true. Transparency can only be used when onTop is true][Andorid Only]
+	    onTop: false [Default: true. Transparency can only be used when onTop is true][Android Only]
 	}; 
 
 ** Note - Android does not yet support String " px" values or " %" values ** 
