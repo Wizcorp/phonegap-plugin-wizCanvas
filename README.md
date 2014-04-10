@@ -1,7 +1,6 @@
 # phonegap-plugin-wizCanvas
 
 - PhoneGap Version : 3.3
-- last update : 26/02/2014
 
 ## Description
 
@@ -48,15 +47,16 @@ Options list;
 
 	{
 	    src: "my/local/script.js" [relative to www/]
-	    height: 300, [accepts "300px", "30%" - default : fills height] 
-	    width: 300, [accepts "300px", "30%" - default : fills width] 
+	    height: 300, [accepts "300px", "30%" - default: fills height] 
+	    width: 300, [accepts "300px", "30%" - default: fills width] 
 	    x: 0,
 	    y: 0, 
-	    top: 0, [string, pixels or percent - default : 0]
-	    bottom: 0, [string, pixels or percent - default : 0]
-	    left: 0, [pixels or percent - default : 0]    
-	    right:0, [string, pixels or percent - default : 0]
+	    top: 0, [string, pixels or percent - default: 0]
+	    bottom: 0, [string, pixels or percent - default: 0]
+	    left: 0, [pixels or percent - default: 0]    
+	    right: 0, [string, pixels or percent - default: 0]
 	    backgroundColor: [Colour as hex RGB/ARGB/RRGGBB or "transparent"]
+	    onTop: false [Default: true. Transparency can only be used when onTop is true][Android Only]
 	}; 
 
 ** Note - Android does not yet support String " px" values or " %" values ** 
