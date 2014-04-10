@@ -21,81 +21,79 @@ public class EjectaGLSurfaceView extends GLSurfaceView {
 	EjectaRenderer mRenderer;
 	public EjectaGLSurfaceView(Context context, int width, int height, String backgroundColor, Boolean onTop) {
 		super(context);
-		//Sets OpenGLES 2.0 to be used
+		// Sets OpenGLES 2.0 to be used
         setEGLContextClientVersion(2);
-		// TODO Auto-generated constructor stub
-		mRenderer = new EjectaRenderer(context, width, height);
-        if (backgroundColor != null) {
-            if (onTop && backgroundColor.equalsIgnoreCase("transparent")) {
-                // To get transparent we must set ZOrderOnTop.
-                setZOrderOnTop(true);
-                setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-                getHolder().setFormat(PixelFormat.RGBA_8888);
-            } else {
-                if (onTop) {
-                    // If we are on top we can use alpha if set with rgba
-                    setZOrderOnTop(true);
-                    setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-                    getHolder().setFormat(PixelFormat.RGBA_8888);
 
-                    // Set new background colour
-                    String hash = backgroundColor.substring(0,1);
-                    String color = backgroundColor.substring(1);
-                    if (hash.equalsIgnoreCase("#")) {
-                        String a, r, g, b;
-                        switch (color.length()) {
-                            case 8:
-                                // #AARRGGBB
-                                setBackgroundColor(Color.parseColor(backgroundColor));
-                                int argb8 = Color.parseColor(backgroundColor);
-                                float alpha8 = argb8 >>> 24;
-                                if (Build.VERSION.SDK_INT >= 11) {
-                                    // Safe for Honeycomb only
-                                    setAlpha(alpha8);
-                                }
-                                break;
-                            case 6:
-                                // #RRGGBB
-                                setBackgroundColor(Color.parseColor(backgroundColor));
-                                break;
-                            case 4:
-                                // #ARGB
-                                a = color.substring(0, 1);
-                                r = color.substring(1, 2);
-                                g = color.substring(2, 3);
-                                b = color.substring(3, 4);
-                                setBackgroundColor(Color.parseColor("#" + r + r + g + g + b + b));
-                                // Set alpha
-                                int argb4 = Color.parseColor("#" + a + a + r + r + g + g + b + b);
-                                float alpha4 = argb4 >>> 24;
-                                if (Build.VERSION.SDK_INT >= 11) {
-                                    // Safe for Honeycomb only
-                                    setAlpha(alpha4);
-                                }
-                                break;
-                            case 3:
-                                // #RGB
-                                r = color.substring(0, 1);
-                                g = color.substring(1, 2);
-                                b = color.substring(2, 3);
-                                setBackgroundColor(Color.parseColor("#" + r + r + g + g + b + b));
-                                break;
-                            default:
-                                // Unknown hex length
-                                Log.e(TAG, "Unknown colour hex length");
-                        }
-                    } else {
-                        Log.e(TAG, "Unknown colour hex. Forget '#'?");
-                        // else invalid colour hex
+        mRenderer = new EjectaRenderer(context, width, height);
+        if (onTop) {
+            // To get transparent we must set ZOrderOnTop.
+            setZOrderOnTop(true);
+            setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+            getHolder().setFormat(PixelFormat.RGBA_8888);
+
+            // If backgroundColor is not "transparent" set it
+            // Default is white
+            if (!backgroundColor.equalsIgnoreCase("transparent")) {
+                // Set new background colour
+                String hash = backgroundColor.substring(0,1);
+                String color = backgroundColor.substring(1);
+                if (hash.equalsIgnoreCase("#")) {
+                    String a, r, g, b;
+                    switch (color.length()) {
+                        case 8:
+                            // #AARRGGBB
+                            setBackgroundColor(Color.parseColor(backgroundColor));
+                            int argb8 = Color.parseColor(backgroundColor);
+                            float alpha8 = argb8 >>> 24;
+                            if (Build.VERSION.SDK_INT >= 11) {
+                                // Safe for Honeycomb only
+                                setAlpha(alpha8);
+                            }
+                            break;
+                        case 6:
+                            // #RRGGBB
+                            setBackgroundColor(Color.parseColor(backgroundColor));
+                            break;
+                        case 4:
+                            // #ARGB
+                            a = color.substring(0, 1);
+                            r = color.substring(1, 2);
+                            g = color.substring(2, 3);
+                            b = color.substring(3, 4);
+                            setBackgroundColor(Color.parseColor("#" + r + r + g + g + b + b));
+                            // Set alpha
+                            int argb4 = Color.parseColor("#" + a + a + r + r + g + g + b + b);
+                            float alpha4 = argb4 >>> 24;
+                            if (Build.VERSION.SDK_INT >= 11) {
+                                // Safe for Honeycomb only
+                                setAlpha(alpha4);
+                            }
+                            break;
+                        case 3:
+                            // #RGB
+                            r = color.substring(0, 1);
+                            g = color.substring(1, 2);
+                            b = color.substring(2, 3);
+                            setBackgroundColor(Color.parseColor("#" + r + r + g + g + b + b));
+                            break;
+                        default:
+                            // Unknown hex length
+                            Log.e(TAG, "Unknown colour hex length");
                     }
                 } else {
-                    // We cannot have transparency when onTop is false
-                    setZOrderOnTop(false);
-                    // Throw a developer warning if transparency has been asked for
-                    if (backgroundColor.equalsIgnoreCase("transparent")) {
-                        Log.w(TAG, "GLSurface view cannot be transparent when set ZOrderOnTop is set. This is a limitation of Android's OpenGL implementation.");
-                    }
+                    Log.e(TAG, "Unknown colour hex. Forget '#'?");
+                    // else invalid colour hex
                 }
+            }
+        } else {
+            // We cannot have transparency when onTop is false
+            setZOrderOnTop(false);
+            // Default GLSurfaceView chooses a EGLConfig that has an RGB_888 pixel
+            // format, with at least a 16-bit depth buffer and no stencil
+
+            // Throw a developer warning if transparency has been asked for
+            if (backgroundColor.equalsIgnoreCase("transparent")) {
+                Log.w(TAG, "GLSurface view cannot be transparent when set ZOrderOnTop is set. This is a limitation of Android's OpenGL implementation.");
             }
         }
 
