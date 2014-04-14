@@ -4,20 +4,23 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.opengl.GLSurfaceView.Renderer;
 
 public class EjectaRenderer implements Renderer {
 	
-    public static String mainBundle;
+    public static String dataBundle;
+    // Declaring AssetManager prevents garbage collector from freeing once the native callback is called
+    public static AssetManager assetManager;
+    private Context mContext;
     private int screen_width;
     private int screen_height;
     private EjectaEventListener ejectaEventListener = null;
 
     public EjectaRenderer(Context ctx, int width, int height) {
-        mainBundle = "/data/data/" + ctx.getPackageName();
-        // Copy app files
-        Utils.copyDatFiles(ctx, mainBundle + "/cache/", "www");
-
+        dataBundle = "/data/data/" + ctx.getPackageName();
+        assetManager = ctx.getResources().getAssets();
+        mContext = ctx;
         screen_width = width;
         screen_height = height;
 	}
@@ -36,13 +39,13 @@ public class EjectaRenderer implements Renderer {
 
 	@Override
 	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-		nativeCreated(mainBundle, screen_width, screen_height);
+        nativeCreated(assetManager, dataBundle, screen_width, screen_height);
         onCanvasCreated();
 	}
 
 	private native void nativeRender();
 
-	private native void nativeCreated(String mainBundle, int width, int height);
+	private native void nativeCreated(AssetManager mgr, String mainBundle, int width, int height);
 	
 	private native void nativeChanged(int width, int height);
 	
