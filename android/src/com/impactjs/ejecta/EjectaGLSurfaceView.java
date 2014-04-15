@@ -12,33 +12,32 @@ import android.view.MotionEvent;
 import android.view.View;
 
 public class EjectaGLSurfaceView extends GLSurfaceView {
-	
+	private static String TAG = "ejecta";
 	public EjectaGLSurfaceView(Context context) {
 		// TODO Auto-generated constructor stub
 		super(context);
 	}
 	
 	EjectaRenderer mRenderer;
-	public EjectaGLSurfaceView(Context context, int width, int height, String backgroundColor) {
+	public EjectaGLSurfaceView(Context context, int width, int height, String backgroundColor, Boolean onTop) {
 		super(context);
-		//Sets OpenGLES 2.0 to be used
+		// Sets OpenGLES 2.0 to be used
         setEGLContextClientVersion(2);
-		// TODO Auto-generated constructor stub
-		mRenderer = new EjectaRenderer(context, width, height);
-        if (backgroundColor != null) {
-            if (backgroundColor.equalsIgnoreCase("transparent")) {
-                setZOrderOnTop(true);
-                setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-                getHolder().setFormat(PixelFormat.RGBA_8888);
-            } else {
+
+        mRenderer = new EjectaRenderer(context, width, height);
+        if (onTop) {
+            // To get transparent we must set ZOrderOnTop.
+            setZOrderOnTop(true);
+            setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+            getHolder().setFormat(PixelFormat.RGBA_8888);
+
+            // If backgroundColor is not "transparent" set it
+            // Default is white
+            if (!backgroundColor.equalsIgnoreCase("transparent")) {
                 // Set new background colour
                 String hash = backgroundColor.substring(0,1);
                 String color = backgroundColor.substring(1);
                 if (hash.equalsIgnoreCase("#")) {
-                    setZOrderOnTop(true);
-                    setEGLConfigChooser(8, 8, 8, 8, 16, 0);
-                    getHolder().setFormat(PixelFormat.RGBA_8888);
-
                     String a, r, g, b;
                     switch (color.length()) {
                         case 8:
@@ -79,12 +78,22 @@ public class EjectaGLSurfaceView extends GLSurfaceView {
                             break;
                         default:
                             // Unknown hex length
-                            Log.e("ejecta", "Unknown colour hex length");
+                            Log.e(TAG, "Unknown colour hex length");
                     }
                 } else {
-                    Log.e("ejecta", "Unknown colour hex. Forget '#'?");
+                    Log.e(TAG, "Unknown colour hex. Forget '#'?");
                     // else invalid colour hex
                 }
+            }
+        } else {
+            // We cannot have transparency when onTop is false
+            setZOrderOnTop(false);
+            // Default GLSurfaceView chooses a EGLConfig that has an RGB_888 pixel
+            // format, with at least a 16-bit depth buffer and no stencil
+
+            // Throw a developer warning if transparency has been asked for
+            if (backgroundColor.equalsIgnoreCase("transparent")) {
+                Log.w(TAG, "GLSurface view cannot be transparent when set ZOrderOnTop is set. This is a limitation of Android's OpenGL implementation.");
             }
         }
 
