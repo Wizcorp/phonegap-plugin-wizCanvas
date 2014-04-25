@@ -159,11 +159,11 @@ EJ_BIND_GET(devicePixelRatio, ctx ) {
 }
 
 EJ_BIND_GET(screenWidth, ctx ) {
-	return JSValueMakeNumber( ctx, scriptView.view.bounds.size.width );
+	return JSValueMakeNumber( ctx, scriptView.bounds.size.width );
 }
 
 EJ_BIND_GET(screenHeight, ctx ) {
-	return JSValueMakeNumber( ctx, scriptView.view.bounds.size.height );
+	return JSValueMakeNumber( ctx, scriptView.bounds.size.height );
 }
 
 EJ_BIND_GET(userAgent, ctx ) {	

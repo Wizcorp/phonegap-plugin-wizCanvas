@@ -95,11 +95,9 @@ function init() {
 
 	//
 
-	renderer = new THREE.WebGLRenderer();
+	renderer = new THREE.WebGLRenderer({canvas:canvas});
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.autoClear = false;
-	container.appendChild( renderer.domElement );
-	console.log('zooomg', renderer.domElement, canvas);
 
 	//
 
@@ -158,10 +156,9 @@ function createScene( geometry, m1, m2, m3 ) {
 	mesh.position.z = - 100;
 	mesh.scale.x = mesh.scale.y = mesh.scale.z = s;
 	scene.add( mesh );
-/*
-ERROR HERE
+
 	loader.statusDomElement.style.display = "none";
-*/
+
 }
 
 function onDocumentMouseMove(event) {

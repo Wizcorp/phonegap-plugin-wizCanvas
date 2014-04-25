@@ -1,7 +1,7 @@
 /* WizCanvasView - Setup and deploy an Ejecta canvas.
  *
  * @author Ally Ogilvie 
- * @copyright WizCorp Inc. [ Incorporated Wizards ] 2013
+ * @copyright Wizcorp Inc. [ Incorporated Wizards ] 2013
  * @file WizCanvasView.m for PhoneGap
  *
  */ 
@@ -49,21 +49,19 @@ void EJBlockFunctionFinalize(JSObjectRef object) {
 @synthesize backgroundQueue;
 @synthesize classLoader;
 
-static WizCanvasView * ejectaInstance = NULL;
-
-
-+ (WizCanvasView *)instance {
-	return ejectaInstance;
+- (id)initWithFrame:(CGRect)frame {
+	return [self initWithFrame:frame appFolder:EJECTA_APP_FOLDER];
 }
 
-- (id)initWithWindow:(UIView *)windowp name:(NSString*)viewName sourceToLoad:(NSString*)src {
-	if( self = [super init] ) {
-        NSLog(@"frame of canvas window: %f", [windowp bounds].size.height);
+- (id)initWithFrame:(CGRect)frame appFolder:(NSString *)folder {
+// - (id)initWithWindow:(UIView *)windowp name:(NSString*)viewName sourceToLoad:(NSString*)src {
+	if( self = [super initWithFrame:frame] ) {
+        NSLog(@"frame of canvas window h: %f w: %f", frame.size.height, frame.size.width);
 
         landscapeMode = [[[NSBundle mainBundle] infoDictionary][@"UIInterfaceOrientation"]
                 hasPrefix:@"UIInterfaceOrientationLandscape"];
 
-        oldSize = [windowp bounds].size;
+        oldSize = frame.size;
         appFolder = EJECTA_APP_FOLDER;
 
         isPaused = false;
@@ -106,74 +104,11 @@ static WizCanvasView * ejectaInstance = NULL;
         glCurrentContext = openGLContext.glContext2D;
         [EAGLContext setCurrentContext:glCurrentContext];
 
-
-		ejectaInstance = self;
-		window = windowp;
-        self.view = window;
-
-        // [self.window makeKeyAndVisible];
-        [UIApplication sharedApplication].idleTimerDisabled = YES;
-		
-
-        // Register for application lifecycle notifications
-        
-        // Register the instance to observe willResignActive notifications
-/*
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(pauseNotification:)
-                                                     name:UIApplicationWillResignActiveNotification
-                                                   object:nil];
-
-        // Register the instance to observe didEnterBackground notifications
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(pauseNotification:)
-                                                     name:UIApplicationDidEnterBackgroundNotification
-                                                   object:nil];
-        
-        // Register the instance to observe didEnterForeground notifications
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(resumeNotification:)
-                                                     name:UIApplicationWillEnterForegroundNotification
-                                                   object:nil];
-
-        // Register the instance to observe didBecomeActive notifications
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(resumeNotification:)
-                                                     name:UIApplicationDidBecomeActiveNotification
-                                                   object:nil];
-
-        // Register the instance to observe willTerminate notifications
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(pauseNotification:)
-                                                     name:UIApplicationWillTerminateNotification
-                                                   object:nil];
-        
-        // Register the instance to observe didReceiveMemoryWarning notifications
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(clearCachesNotification:)
-                                                     name:UIApplicationDidReceiveMemoryWarningNotification
-                                                   object:nil];
-*/
         // Load the initial JavaScript source files
 	    [self loadScriptAtPath:EJECTA_BOOT_JS];
         
         // Load wizViewMessenger
-	    [self evaluateScript:[NSString stringWithFormat:@"wizCanvasMessenger = new Ejecta.WizCanvasMessenger(\"%@\");", viewName]];
-
-        // Additional boot file
-        if (![src isEqualToString:@""]) {
-            if ([self validateUrl:src]) {
-                if ([self loadRequest:src]) {
-                    NSLog(@"Loaded source");
-                    
-                } else {
-                    NSLog(@"FAILED to load source on create");
-                }
-            } else {
-                [self loadScriptAtPath:src];
-            }
-        }
-        
+	    [self evaluateScript:[NSString stringWithFormat:@"wizCanvasMessenger = new Ejecta.WizCanvasMessenger(\"%@\");", @"newCanvas"]];
 	}
 	return self;
 }
@@ -263,16 +198,16 @@ static WizCanvasView * ejectaInstance = NULL;
 
 - (void)layoutSubviews {
 
-    // [super layoutSubviews];
+    [super layoutSubviews];
 
     // Check if we did resize
-    CGSize newSize = self.view.bounds.size;
+    CGSize newSize = self.bounds.size;
     if( newSize.width != oldSize.width || newSize.height != oldSize.height ) {
         [windowEventsDelegate resize];
         oldSize = newSize;
     }
 }
-
+/*
 - (NSUInteger)supportedInterfaceOrientations {
     if (landscapeMode) {
         // Allow Landscape Left and Right
@@ -297,6 +232,175 @@ static WizCanvasView * ejectaInstance = NULL;
     // this particular orientation is allowed.
     return (self.supportedInterfaceOrientations & (1 << orientation));
 }
+*/
+
+#pragma mark -
+#pragma mark Script loading and execution
+
+- (BOOL)loadRequest:(NSString *)url {
+    NSLog(@"Loading Script: %@", url );
+
+    NSError *error;
+    NSData *urlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url] options:0 error:&error];
+
+    if (!urlData || error) {
+        NSLog(@"Error: Can't Find Script %@", url );
+        return NO;
+    }
+
+    NSString *script = [NSString stringWithCString:[urlData bytes] encoding:NSUTF8StringEncoding];
+
+    [self evaluateScript:script sourceURL:url];
+    return YES;
+}
+
+- (NSString *)pathForResource:(NSString *)path {
+    // Path to cache
+    NSArray  *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *gameDir = [[[NSBundle mainBundle] infoDictionary]   objectForKey:@"CFBundleName"];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", documentsDirectory, gameDir, path];
+    
+    // Check if there is a file at this path
+    BOOL isFileInCache = [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:NO];
+    
+    if(isFileInCache) {
+        return filePath;
+    }
+    
+    // Returns the path to local resources if the file is not in the cache
+	return [NSString stringWithFormat:@"%@/" EJECTA_APP_FOLDER "%@", [[NSBundle mainBundle] resourcePath], path];
+}
+
+- (void)loadScriptAtPath:(NSString *)path {
+	NSString *script = [NSString stringWithContentsOfFile:[self pathForResource:path] encoding:NSUTF8StringEncoding error:NULL];
+    
+	if(!script) {
+		NSLog(@"[loadScriptAtPath] Error: Can't Find Script %@", path );
+		return;
+	}
+	
+	NSLog(@"Loading Script: %@", path );
+	JSStringRef scriptJS = JSStringCreateWithCFString((CFStringRef)script);
+	JSStringRef pathJS = JSStringCreateWithCFString((CFStringRef)path);
+    
+	JSValueRef exception = NULL;
+	JSEvaluateScript( jsGlobalContext, scriptJS, NULL, pathJS, 0, &exception );
+	[self logException:exception ctx:jsGlobalContext];
+    
+	JSStringRelease( scriptJS );
+}
+
+- (JSValueRef)evaluateScript:(NSString *)script {
+	return [self evaluateScript:script sourceURL:NULL];
+}
+
+- (JSValueRef)evaluateScript:(NSString *)script sourceURL:(NSString *)sourceURL {
+	if( !script || script.length == 0 ) {
+		NSLog(
+              @"Error: The script %@ does not exist or appears to be empty.",
+              sourceURL ? sourceURL : @"[Anonymous]"
+              );
+		return NULL;
+	}
+    
+	JSStringRef scriptJS = JSStringCreateWithCFString((CFStringRef)script);
+	JSStringRef sourceURLJS = NULL;
+    
+	if( [sourceURL length] > 0 ) {
+		sourceURLJS = JSStringCreateWithCFString((CFStringRef)sourceURL);
+	}
+    
+	JSValueRef exception = NULL;
+	JSValueRef ret = JSEvaluateScript(jsGlobalContext, scriptJS, NULL, sourceURLJS, 0, &exception );
+	[self logException:exception ctx:jsGlobalContext];
+	
+	JSStringRelease( scriptJS );
+    
+	if ( sourceURLJS ) {
+		JSStringRelease( sourceURLJS );
+	}
+	return ret;
+}
+
+- (JSValueRef)loadModuleWithId:(NSString *)moduleId module:(JSValueRef)module exports:(JSValueRef)exports {
+	NSString *path = [moduleId stringByAppendingString:@".js"];
+	NSString *script = [NSString stringWithContentsOfFile:[self pathForResource:path]
+                                                 encoding:NSUTF8StringEncoding error:NULL];
+	
+	if( !script ) {
+		NSLog(@"Error: Can't Find Module %@", moduleId );
+		return NULL;
+	}
+	
+	NSLog(@"Loading Module: %@", moduleId );
+	
+	JSStringRef scriptJS = JSStringCreateWithCFString((CFStringRef)script);
+	JSStringRef pathJS = JSStringCreateWithCFString((CFStringRef)path);
+	JSStringRef parameterNames[] = {
+		JSStringCreateWithUTF8CString("module"),
+		JSStringCreateWithUTF8CString("exports"),
+	};
+	
+	JSValueRef exception = NULL;
+	JSObjectRef func = JSObjectMakeFunction(jsGlobalContext, NULL, 2, parameterNames, scriptJS, pathJS, 0, &exception );
+	
+	JSStringRelease( scriptJS );
+	JSStringRelease( pathJS );
+	JSStringRelease(parameterNames[0]);
+	JSStringRelease(parameterNames[1]);
+	
+	if( exception ) {
+		[self logException:exception ctx:jsGlobalContext];
+		return NULL;
+	}
+	
+	JSValueRef params[] = { module, exports };
+	return [self invokeCallback:func thisObject:NULL argc:2 argv:params];
+}
+
+- (JSValueRef)invokeCallback:(JSObjectRef)callback thisObject:(JSObjectRef)thisObject argc:(size_t)argc argv:(const JSValueRef [])argv {
+	if( !jsGlobalContext ) { return NULL; } // May already have been released
+	
+	JSValueRef exception = NULL;
+	JSValueRef result = JSObjectCallAsFunction(jsGlobalContext, callback, thisObject, argc, argv, &exception );
+	[self logException:exception ctx:jsGlobalContext];
+	return result;
+}
+
+- (void)logException:(JSValueRef)exception ctx:(JSContextRef)ctxp {
+	if( !exception ) return;
+	
+	JSStringRef jsLinePropertyName = JSStringCreateWithUTF8CString("line");
+	JSStringRef jsFilePropertyName = JSStringCreateWithUTF8CString("sourceURL");
+	
+	JSObjectRef exObject = JSValueToObject( ctxp, exception, NULL );
+	JSValueRef line = JSObjectGetProperty( ctxp, exObject, jsLinePropertyName, NULL );
+	JSValueRef file = JSObjectGetProperty( ctxp, exObject, jsFilePropertyName, NULL );
+	
+	NSLog(
+          @"%@ at line %@ in %@",
+          JSValueToNSString( ctxp, exception ),
+          JSValueToNSString( ctxp, line ),
+          JSValueToNSString( ctxp, file )
+          );
+	
+	JSStringRelease( jsLinePropertyName );
+	JSStringRelease( jsFilePropertyName );
+}
+
+- (JSValueRef)jsValueForPath:(NSString *)objectPath {
+	JSValueRef obj = JSContextGetGlobalObject( jsGlobalContext  );
+	
+	NSArray *pathComponents = [objectPath componentsSeparatedByString:@"."];
+	for( NSString *p in pathComponents) {
+		JSStringRef name = JSStringCreateWithCFString((CFStringRef)p);
+		obj = JSObjectGetProperty( jsGlobalContext, (JSObjectRef)obj, name, NULL);
+		JSStringRelease(name);
+		
+		if( !obj ) { break; }
+	}
+	return obj;
+}
 
 
 #pragma mark -
@@ -319,7 +423,6 @@ static WizCanvasView * ejectaInstance = NULL;
 
 
 - (void)pause {
-    NSLog(@"pause");
     if( isPaused ) { return; }
 
     [windowEventsDelegate pause];
@@ -356,170 +459,6 @@ static WizCanvasView * ejectaInstance = NULL;
         [renderingContext prepare];
         currentRenderingContext = [renderingContext retain];
     }
-}
-
-- (void)hideLoadingScreen {
-	//[loadingScreen removeFromSuperview];
-	//[loadingScreen release];
-	//loadingScreen = nil;
-}
-
-- (NSString *)pathForResource:(NSString *)path {
-    // Path to cache
-    NSArray  *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *gameDir = [[[NSBundle mainBundle] infoDictionary]   objectForKey:@"CFBundleName"];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@", documentsDirectory, gameDir, path];
-
-    // Check if there is a file at this path
-    BOOL isFileInCache = [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:NO];
-
-    if(isFileInCache) {
-        return filePath;
-    }
-
-    // Returns the path to local resources if the file is not in the cache
-	return [NSString stringWithFormat:@"%@/" EJECTA_APP_FOLDER "%@", [[NSBundle mainBundle] resourcePath], path];
-}
-
-#pragma mark -
-#pragma mark Script loading and execution
-
-- (BOOL)loadCommonScript:(NSString *)script withPath:(NSString *)path {
-	if( !script ) {
-		NSLog(@"Error: Can't Find Script %@", path );
-		return NO;
-	}
-    
-    JSStringRef scriptJS = JSStringCreateWithCFString((CFStringRef)script);
-	JSStringRef pathJS = JSStringCreateWithCFString((CFStringRef)path);
-    
-	JSValueRef exception = NULL;
-	JSEvaluateScript( jsGlobalContext, scriptJS, NULL, pathJS, 0, &exception );
-	[self logException:exception ctx:jsGlobalContext];
-    
-	JSStringRelease( scriptJS );
-    
-    return YES;
-}
-
-- (void)evaluateScript:(NSString *)script {
-
-	if( !script ) {
-		NSLog(@"[evaluateScript] Error: Can't Find Script" );
-		return;
-	}
-	
-	// NSLog(@"Loading Script: %@", script );
-	
-    JSStringRef scriptJS = JSStringCreateWithCFString((CFStringRef)script);
-	JSStringRef pathJS = JSStringCreateWithCFString((CFStringRef)@"");
-	
-	JSValueRef exception = NULL;
-	JSEvaluateScript( jsGlobalContext, scriptJS, NULL, pathJS, 0, &exception );
-	[self logException:exception ctx:jsGlobalContext];
-    
-	JSStringRelease( scriptJS );
-}
-
-- (void)loadScriptAtPath:(NSString *)path {
-	NSString * script = [NSString stringWithContentsOfFile:[self pathForResource:path] encoding:NSUTF8StringEncoding error:NULL];
-
-	if( !script ) {
-		NSLog(@"[loadScriptAtPath] Error: Can't Find Script %@", path );
-		return;
-	}
-	
-	NSLog(@"Loading Script: %@", path );
-	JSStringRef scriptJS = JSStringCreateWithCFString((CFStringRef)script);
-	JSStringRef pathJS = JSStringCreateWithCFString((CFStringRef)path);
-
-	JSValueRef exception = NULL;
-	JSEvaluateScript( jsGlobalContext, scriptJS, NULL, pathJS, 0, &exception );
-	[self logException:exception ctx:jsGlobalContext];
-    
-	JSStringRelease( scriptJS );
-}
-
-- (BOOL)loadRequest:(NSString *)url {
-	NSLog(@"Loading Script: %@", url );
-    
-    NSError *error;
-    NSData *urlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url] options:0 error:&error];
-    
-	if( !urlData ) {
-		NSLog(@"Error: Can't Find Script %@", url );
-		return NO;
-	}
-    
-    NSString *script = [NSString stringWithCString:[urlData bytes] encoding:NSUTF8StringEncoding];
-    
-    return [self loadCommonScript:script withPath:url];
-}
-
-- (JSValueRef)loadModuleWithId:(NSString *)moduleId module:(JSValueRef)module exports:(JSValueRef)exports {
-    NSString *path = [moduleId stringByAppendingString:@".js"];
-    NSString *script = [NSString stringWithContentsOfFile:[self pathForResource:path]
-                                                 encoding:NSUTF8StringEncoding error:NULL];
-
-    if( !script ) {
-        NSLog(@"Error: Can't Find Module %@", moduleId );
-        return NULL;
-    }
-
-    NSLog(@"Loading Module: %@", moduleId );
-
-    JSStringRef scriptJS = JSStringCreateWithCFString((CFStringRef)script);
-    JSStringRef pathJS = JSStringCreateWithCFString((CFStringRef)path);
-    JSStringRef parameterNames[] = {
-            JSStringCreateWithUTF8CString("module"),
-            JSStringCreateWithUTF8CString("exports"),
-    };
-
-    JSValueRef exception = NULL;
-    JSObjectRef func = JSObjectMakeFunction(jsGlobalContext, NULL, 2, parameterNames, scriptJS, pathJS, 0, &exception );
-
-    JSStringRelease( scriptJS );
-    JSStringRelease( pathJS );
-    JSStringRelease(parameterNames[0]);
-    JSStringRelease(parameterNames[1]);
-
-    if( exception ) {
-        [self logException:exception ctx:jsGlobalContext];
-        return NULL;
-    }
-
-    JSValueRef params[] = { module, exports };
-    return [self invokeCallback:func thisObject:NULL argc:2 argv:params];
-}
-
-- (JSValueRef)invokeCallback:(JSObjectRef)callback thisObject:(JSObjectRef)thisObject argc:(size_t)argc argv:(const JSValueRef [])argv {
-    if( !jsGlobalContext ) { return NULL; } // May already have been released
-
-    JSValueRef exception = NULL;
-    JSValueRef result = JSObjectCallAsFunction(jsGlobalContext, callback, thisObject, argc, argv, &exception );
-    [self logException:exception ctx:jsGlobalContext];
-    return result;
-}
-
-- (void)logException:(JSValueRef)exception ctx:(JSContextRef)ctxp {
-    if( !exception ) return;
-
-    JSStringRef jsLinePropertyName = JSStringCreateWithUTF8CString("line");
-    JSStringRef jsFilePropertyName = JSStringCreateWithUTF8CString("sourceURL");
-
-    JSObjectRef exObject = JSValueToObject( ctxp, exception, NULL );
-    JSValueRef line = JSObjectGetProperty( ctxp, exObject, jsLinePropertyName, NULL );
-    JSValueRef file = JSObjectGetProperty( ctxp, exObject, jsFilePropertyName, NULL );
-
-    NSLog(
-            @"%@ at line %@ in %@",
-            JSValueToNSString( ctxp, exception ),
-            JSValueToNSString( ctxp, line ),
-            JSValueToNSString( ctxp, file )
-    );
-
-    JSStringRelease( jsLinePropertyName );
-    JSStringRelease( jsFilePropertyName );
 }
 
 #pragma mark -
@@ -582,11 +521,6 @@ static WizCanvasView * ejectaInstance = NULL;
     }
 
     return JSObjectMake( jsGlobalContext, jsBlockFunctionClass, (void *)Block_copy(block) );
-}
-
-- (BOOL)validateUrl:(NSString *)candidate {
-    NSString* lowerCased = [candidate lowercaseString];
-    return [lowerCased hasPrefix:@"http://"] || [lowerCased hasPrefix:@"https://"];
 }
 
 @end

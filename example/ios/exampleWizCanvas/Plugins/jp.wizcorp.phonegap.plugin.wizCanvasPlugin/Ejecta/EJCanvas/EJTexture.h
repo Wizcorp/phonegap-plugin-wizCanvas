@@ -5,14 +5,9 @@
 
 #import "EJTextureStorage.h"
 
-
-typedef enum {
-	kEJTextureOwningContextCanvas2D,
-	kEJTextureOwningContextWebGL
-} EJTextureOwningContext;
-
 @interface EJTexture : NSObject <NSCopying> {
 	BOOL cached;
+	BOOL drawFlippedY;
 	BOOL isCompressed;
 	short width, height;
 	NSString *fullPath;
@@ -21,7 +16,6 @@ typedef enum {
 	GLuint fbo;
 	float contentScale;
 	
-	EJTextureOwningContext owningContext;
 	EJTextureParams params;
 	NSBlockOperation *loadCallback;
 }
@@ -34,6 +28,7 @@ typedef enum {
 - (id)initWithWidth:(int)widthp height:(int)heightp format:(GLenum) format;
 - (id)initWithWidth:(int)widthp height:(int)heightp pixels:(NSData *)pixels;
 - (id)initAsRenderTargetWithWidth:(int)widthp height:(int)heightp fbo:(GLuint)fbo contentScale:(float)contentScalep;
+- (id)initWithUIImage:(UIImage *)image;
 
 - (void)ensureMutableKeepPixels:(BOOL)keepPixels forTarget:(GLenum)target;
 
@@ -44,6 +39,7 @@ typedef enum {
 - (void)updateWithPixels:(NSData *)pixels atX:(int)x y:(int)y width:(int)subWidth height:(int)subHeight;
 
 - (NSMutableData *)loadPixelsFromPath:(NSString *)path;
+- (NSMutableData *)loadPixelsFromUIImage:(UIImage *)image;
 
 - (GLint)getParam:(GLenum)pname;
 - (void)setParam:(GLenum)pname param:(GLenum)param;
@@ -58,6 +54,7 @@ typedef enum {
 + (void)unPremultiplyPixels:(const GLubyte *)inPixels to:(GLubyte *)outPixels byteLength:(int)byteLength format:(GLenum)format;
 + (void)flipPixelsY:(GLubyte *)pixels bytesPerRow:(int)bytesPerRow rows:(int)rows;
 
+@property (readwrite, nonatomic) BOOL drawFlippedY;
 @property (readonly, nonatomic) BOOL isDynamic;
 @property (readonly, nonatomic) NSMutableData *pixels;
 @property (readwrite, nonatomic) float contentScale;

@@ -44,7 +44,7 @@
 @class EJTimerCollection;
 @class EJClassLoader;
 
-@interface WizCanvasView : UIViewController {
+@interface WizCanvasView : UIView {
     CGSize oldSize;
     NSString *appFolder;
 
@@ -78,8 +78,6 @@
     NSOperationQueue *backgroundQueue;
     JSClassRef jsBlockFunctionClass;
 
-	UIView *window;
-
     // Public for fast access in bound functions
     @public JSValueRef jsUndefined;
 }
@@ -103,17 +101,13 @@
 @property (nonatomic, retain) NSOperationQueue *backgroundQueue;
 @property (nonatomic, retain) EJClassLoader *classLoader;
 
-@property (nonatomic, readonly) UIView * window;
-
 - (id)initWithFrame:(CGRect)frame;
-- (id)initWithWindow:(UIView *)window name:(NSString*)viewName sourceToLoad:(NSString*)src;
+// - (id)initWithWindow:(UIView *)windowp name:(NSString*)viewName sourceToLoad:(NSString*)src;
 
 - (BOOL)loadRequest:(NSString *)url;
 - (void)loadScriptAtPath:(NSString *)path;
 - (JSValueRef)evaluateScript:(NSString *)script;
-- (JSValueRef)evaluateScript:(NSString *)script sourceURL:(NSString *)sourceURL;
-
-- (void)postMessage:(id)message;
+// - (JSValueRef)evaluateScript:(NSString *)script sourceURL:(NSString *)sourceURL;
 
 - (void)clearCaches;
 
@@ -123,13 +117,6 @@
 - (JSValueRef)loadModuleWithId:(NSString *)moduleId module:(JSValueRef)module exports:(JSValueRef)exports;
 - (JSValueRef)createTimer:(JSContextRef)ctxp argc:(size_t)argc argv:(const JSValueRef [])argv repeat:(BOOL)repeat;
 - (JSObjectRef)createFunctionWithBlock:(JSValueRef (^)(JSContextRef ctx, size_t argc, const JSValueRef argv[]))block;
-
-
-// Added for pure script injection wizardry - ao.
-// - (void)evaluateScript:(NSString *)path;
-// - (void)loadScriptAtPath:(NSString *)path;
-
-+ (WizCanvasView *)instance;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event;

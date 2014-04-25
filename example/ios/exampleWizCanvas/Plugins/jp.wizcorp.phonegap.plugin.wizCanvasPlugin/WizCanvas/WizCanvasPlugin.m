@@ -13,7 +13,7 @@
 
 @implementation WizCanvasPlugin
 
-@synthesize showViewCallbackId, hideViewCallbackId, webviewDelegate, canvasView;
+@synthesize showViewCallbackId, hideViewCallbackId, webviewDelegate;
 
 
 static NSMutableDictionary *wizViewList = nil;
@@ -52,9 +52,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     // init at nil
     self.showViewCallbackId = nil;
     self.hideViewCallbackId = nil;
-    
-    [self updateViewList];
-    
+
     return self;
 }
 
@@ -70,37 +68,6 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
 
 + (WizCanvasPlugin *)instance {
 	return wizViewManagerInstance;
-}
-
-- (void)updateViewList {
-    
-    // Turn view dictionary into an array of view names
-    NSArray *viewNames = [[NSArray alloc] initWithArray:[wizViewList allKeys]];
-    NSString *viewNamesString = [NSString stringWithFormat:@"'%@'", [viewNames componentsJoinedByString:@"','"]];
-    // Inject Javascript to all views
-    for (NSString *key in wizViewList) {
-        // Found view send message
-
-        NSString* viewType = [self checkView:[wizViewList objectForKey:key]];
-
-        // Currently we only keep a view list in the webview
-        if ([viewType isEqualToString:@"webview"]) {
-            // Treat as UIWebView
-            // UIWebView *targetWebView = [wizViewList objectForKey:key];
-            // NSString *js = [NSString stringWithFormat:@"wizViewMessenger.__triggerMessageEvent( '%@', '%@', '%@', '%@' );", originView, targetView, message, type];
-            // [targetWebView stringByEvaluatingJavaScriptFromString:js];
-
-        }
-        /*
-        // updated wizViewManager.views in type canvas
-        UIView *targetCanvasView = [wizViewList objectForKey:key];
-        WizCanvasView *canvasController = targetCanvasView.nextResponder;
-        [canvasController evaluateScript:
-              [NSString stringWithFormat:@"window.wizViewManager.updateViewList([%@]);", viewNamesString]];
-        */
-    }
-    [viewNames release];
-    
 }
 
 - (void)createView:(CDVInvokedUrlCommand *)command {
@@ -119,8 +86,8 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     // For the canvasView creation is so fast we don't need to stack callbackId.
 
     // Create a new wizCanvasView with options (if specified)
-    NSString *src               = [options objectForKey:@"src"];
-    CGRect newRect              = [self frameWithOptions:options];
+    NSString *src           = [options objectForKey:@"src"];
+    CGRect newRect          = [self frameWithOptions:options];
 
     // Check view already exists?
     if ([wizViewList objectForKey:viewName]) {
@@ -143,56 +110,65 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         */
     }
 
-    canvasView = [[UIView alloc] initWithFrame:newRect];
-    WizCanvasView *canvas = [[WizCanvasView alloc] initWithWindow:canvasView name:viewName sourceToLoad:src];
+    //canvasView = [[UIView alloc] initWithFrame:newRect];
+    //WizCanvasView *canvas = [[WizCanvasView alloc] initWithWindow:canvasView name:viewName sourceToLoad:src];
+    WizCanvasView *canvas = [[WizCanvasView alloc] initWithFrame:newRect];
+
+    // Additional boot file
+    if (![src isEqualToString:@""]) {
+        if ([self validateUrl:src]) {
+            if ([canvas loadRequest:src]) {
+                NSLog(@"Loaded source");
+            } else {
+                NSLog(@"FAILED to load source on create");
+            }
+        } else {
+            [canvas loadScriptAtPath:src];
+        }
+    }
 
     // Defaults
-    canvasView.backgroundColor          = [UIColor blackColor];
-    canvasView.opaque                   = YES; // Default to YES, this makes for faster rendering
-    // canvasView.autoresizesSubviews    = YES;
-    // canvasView.alpha                  = 1;
-    // canvasView.multipleTouchEnabled   = YES;
-    // canvasView.userInteractionEnabled = YES;
+    canvas.backgroundColor          = [UIColor blackColor];
+    canvas.opaque                   = YES; // Default to YES, this makes for faster rendering
+    canvas.autoresizesSubviews      = YES;
+
     NSString *backgroundColor = [options objectForKey:@"backgroundColor"];
     if (![backgroundColor isKindOfClass:[NSNull class]] && backgroundColor != nil) {
 
-        for(id view in canvasView.subviews){
+        for (id view in canvas.subviews){
             if([view isKindOfClass:NSClassFromString(@"EAGLView")]){
                 // Turn off opaque property on GL view
                 CAEAGLLayer *eaglLayer = (CAEAGLLayer *)view;
                 if ([backgroundColor isEqualToString:@"transparent"]) {
-                    canvasView.opaque                 = NO;
-                    canvasView.backgroundColor        = [UIColor clearColor];
-                    eaglLayer.opaque = FALSE;
+                    canvas.opaque          = NO;
+                    canvas.backgroundColor = [UIColor clearColor];
+                    eaglLayer.opaque       = FALSE;
                 } else {
-                    canvasView.backgroundColor        = [UIColor clearColor];
+                    canvas.backgroundColor = [UIColor clearColor];
                     // Get out the colour calculator
-                    eaglLayer.backgroundColor        = [self colorWithHexString:backgroundColor];
+                    eaglLayer.backgroundColor = (struct CGColor *)[self colorWithHexString:backgroundColor];
                 }
             }
         }
     }
 
     // move view out of display
-    [canvasView setFrame:CGRectMake(
-            canvasView.frame.origin.x + viewPadder,
-            canvasView.frame.origin.y,
-            canvasView.frame.size.width,
-            canvasView.frame.size.height
+    [canvas setFrame:CGRectMake(
+            canvas.frame.origin.x + viewPadder,
+            canvas.frame.origin.y,
+            canvas.frame.size.width,
+            canvas.frame.size.height
     )];
 
-    [canvasView setHidden:TRUE];
-
-    // add view name to our wizard view list
-    // [wizViewList setObject:canvas forKey:viewName];
-    [wizViewList setObject:canvasView forKey:viewName];
+    [canvas setHidden:TRUE];
+    
+    // add WizViewCanvas class to our wizard view list
+    [wizViewList setObject:canvas forKey:viewName];
 
     // add view to parent UIWebView
-    [self.webView.superview addSubview:canvasView];
+    [self.webView addSubview:canvas];
 
-    [self updateViewList];
-
-    CDVPluginResult* pluginResultSuccess = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    CDVPluginResult *pluginResultSuccess = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self writeJavascript: [pluginResultSuccess toSuccessCallbackString:command.callbackId]];
 
 }
@@ -208,7 +184,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         // Hide the canvas view
         WizLog(@"START hideCanvasView with callback :  %@", command.callbackId);
         NSString *viewName = [command.arguments objectAtIndex:0];
-        UIView* targetCanvasView = [wizViewList objectForKey:viewName];
+        UIView *targetCanvasView = (UIView *)[wizViewList objectForKey:viewName];
 
         WizLog(@"START hideCanvasView hidden:  %i animating: %i", targetCanvasView.isHidden, [isAnimating objectForKey:viewName]);
         if (!targetCanvasView.isHidden || [isAnimating objectForKey:viewName]) {
@@ -328,7 +304,6 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         
         // Show the web view
         WizLog(@"START showCanvasView with callback :  %@", command.callbackId);
-        NSString *viewName = [command.arguments objectAtIndex:0];
 
         UIView *targetCanvasView = [wizViewList objectForKey:viewName];
         WizLog(@"START showCanvasView with view :  %@", targetCanvasView);
@@ -475,11 +450,10 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
                 return;
             }
 
-            UIView *targetCanvasView = [wizViewList objectForKey:viewName];
-            WizCanvasView *canvasController = targetCanvasView.nextResponder;
+            WizCanvasView *canvas = [wizViewList objectForKey:viewName];
             if ([self validateUrl:src]) {
                 // Source is url
-                if ([canvasController loadRequest:src]) {
+                if ([canvas loadRequest:src]) {
                     
                     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
                     [self writeJavascript: [pluginResult toSuccessCallbackString:command.callbackId]];
@@ -491,7 +465,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
                 }
              
             } else {
-                [canvasController loadScriptAtPath:src];
+                [canvas loadScriptAtPath:src];
 
                 CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
                 [self writeJavascript: [pluginResult toSuccessCallbackString:command.callbackId]];
@@ -508,26 +482,21 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
 
 - (void)removeView:(CDVInvokedUrlCommand *)command {
     // assign arguments
-    NSString *viewName    = [command.arguments objectAtIndex:0];
+    NSString *viewName = [command.arguments objectAtIndex:0];
     WizLog(@"[WizCanvasPlugin] ******* removeView name : %@ ", viewName);
     
     // search for view
     if ([wizViewList objectForKey:viewName]) {
 
         // Get the view from the view list
-        UIView *targetCanvasView = [wizViewList objectForKey:viewName];
+        WizCanvasView *canvas = (WizCanvasView *)[wizViewList objectForKey:viewName];
+        [canvas removeFromSuperview];
+        [canvas release];
+        canvas = nil;
 
-        // remove the view!
-        [targetCanvasView removeFromSuperview];
-        [targetCanvasView release];
-        // targetCanvasView.window.delegate = nil;
-        targetCanvasView = nil;
-
-            // remove the view from wizViewList
+        // remove the view from wizViewList
         [wizViewList removeObjectForKey:viewName];
-        
-        [self updateViewList];
-        
+
         CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self writeJavascript: [pluginResult toSuccessCallbackString:command.callbackId]];
 
@@ -630,9 +599,9 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     if ([wizViewList objectForKey:viewName]) {
 
         // SetLayout canvas view
-        UIView *targetCanvasView = [wizViewList objectForKey:viewName];
+        UIView *targetCanvasView = (UIView *)[wizViewList objectForKey:viewName];
         CGRect newRect = [self frameWithOptions:options];
-        if (targetCanvasView.window.isHidden) {
+        if (targetCanvasView.isHidden) {
             // if hidden add padding
             newRect.origin = CGPointMake(newRect.origin.x + viewPadder, newRect.origin.y);
         }
@@ -668,7 +637,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         if ([viewType isEqualToString:@"canvas"]) {
 
             UIView *targetCanvasView = [wizViewList objectForKey:targetView];
-            WizCanvasView *canvasController = targetCanvasView.nextResponder;
+            WizCanvasView *canvasController = (WizCanvasView *)targetCanvasView.nextResponder;
             [canvasController evaluateScript:js];
 
         } else if ([viewType isEqualToString:@"webview"]) {
@@ -1251,7 +1220,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     if ([(NSString*)[prefixer objectAtIndex:0] caseInsensitiveCompare:@"rebootapp"] == 0) {
         
         // perform restart a second later
-        [self performSelector:@selector(timedRestart) withObject:theWebView afterDelay:1.0f];
+        [self performSelector:@selector(timedRestart:) withObject:theWebView afterDelay:1.0f];
         
         return NO;
 		
@@ -1272,10 +1241,9 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
             NSString *type = [[NSString alloc] initWithString:(NSString*)[messageComponents objectAtIndex:3]];
             NSString *postDataEscaped = [data stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
 
-            UIView *targetCanvasView = [viewList objectForKey:targetView];
-            WizCanvasView *canvasController = targetCanvasView.nextResponder;
+            WizCanvasView *targetCanvasView = (WizCanvasView *)[viewList objectForKey:targetView];
             NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent( window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), '%@' );", originView, targetView, postDataEscaped, type];
-            [canvasController evaluateScript:js];
+            [targetCanvasView evaluateScript:js];
 
             [data release];
         }

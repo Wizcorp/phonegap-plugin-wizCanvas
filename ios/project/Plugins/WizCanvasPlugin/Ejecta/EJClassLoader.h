@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
-@class EJJavaScriptView;
+@class WizCanvasView;
 @interface EJClassLoader : NSObject {
 	JSClassRef jsConstructorClass;
 	NSMutableDictionary *classCache;
@@ -10,7 +10,7 @@
 - (JSClassRef)getJSClass:(id)class;
 - (JSClassRef)createJSClass:(id)class;
 
-- (id)initWithScriptView:(EJJavaScriptView *)scriptView name:(NSString *)name;
+- (id)initWithScriptView:(WizCanvasView *)scriptView name:(NSString *)name;
 
 @property (nonatomic, readonly) JSClassRef jsConstructorClass;
 

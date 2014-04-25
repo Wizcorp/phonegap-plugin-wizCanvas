@@ -4,7 +4,8 @@
 #import "EJConvertWebGL.h"
 
 #import "EJSharedTextureCache.h"
-
+#import "WizCanvasView.h"
+#import "NSString+Hashes.h"
 
 #define PVR_TEXTURE_FLAG_TYPE_MASK 0xff
 
@@ -34,13 +35,13 @@ typedef struct {
 @synthesize contentScale;
 @synthesize format;
 @synthesize width, height;
+@synthesize drawFlippedY;
 
 - (id)initEmptyForWebGL {
 	// For WebGL textures; this will not create a textureStorage
 	
 	if( self = [super init] ) {
 		contentScale = 1;
-		owningContext = kEJTextureOwningContextWebGL;
 		
 		params[kEJTextureParamMinFilter] = GL_LINEAR;
 		params[kEJTextureParamMagFilter] = GL_LINEAR;
@@ -56,21 +57,25 @@ typedef struct {
 	if( self = [super init] ) {
 		contentScale = 1;
 		fullPath = [path retain];
-		owningContext = kEJTextureOwningContextCanvas2D;
 		
 		NSMutableData *pixels = [self loadPixelsFromPath:path];
 		if( pixels ) {
 			[self createWithPixels:pixels format:GL_RGBA];
 		}
 	}
-
+    
 	return self;
 }
 
 + (id)cachedTextureWithPath:(NSString *)path loadOnQueue:(NSOperationQueue *)queue callback:(NSOperation *)callback {
 	// For loading on a background thread (non-blocking), but tries the cache first
 	
-	EJTexture *texture = [EJSharedTextureCache instance].textures[path];
+	// If path is a Data URI the string size may be very huge. In this case we don't want to use
+	// it as cache key (even if it works it would be a waste of memory), we use a hash instead.
+	NSString *cacheKey = [path hasPrefix:@"data:"] ? path.md5 : path;
+	
+	EJTexture *texture = [EJSharedTextureCache instance].textures[cacheKey];
+	
 	if( texture ) {
 		// We already have a texture, but it may hasn't finished loading yet. If
 		// the texture's loadCallback is still present, add it as an dependency
@@ -85,7 +90,7 @@ typedef struct {
 		// Create a new texture and add it to the cache
 		texture = [[EJTexture alloc] initWithPath:path loadOnQueue:queue callback:callback];
 		
-		[EJSharedTextureCache instance].textures[path] = texture;
+		[EJSharedTextureCache instance].textures[cacheKey] = texture;
 		[texture autorelease];
 		texture->cached = true;
 	}
@@ -97,7 +102,6 @@ typedef struct {
 	if( self = [super init] ) {
 		contentScale = 1;
 		fullPath = [path retain];
-		owningContext = kEJTextureOwningContextCanvas2D;
 		
 		loadCallback = [[NSBlockOperation alloc] init];
 		
@@ -134,7 +138,6 @@ typedef struct {
 	
 	if( self = [super init] ) {
 		contentScale = 1;
-		owningContext = kEJTextureOwningContextCanvas2D;
 		
 		width = widthp;
 		height = heightp;
@@ -148,7 +151,6 @@ typedef struct {
 	
 	if( self = [super init] ) {
 		contentScale = 1;
-		owningContext = kEJTextureOwningContextCanvas2D;
 		
 		width = widthp;
 		height = heightp;
@@ -161,6 +163,23 @@ typedef struct {
 	if( self = [self initWithWidth:widthp*contentScalep height:heightp*contentScalep] ) {
 		fbo = fbop;
 		contentScale = contentScalep;
+	}
+	return self;
+}
+
+- (id)initWithUIImage:(UIImage *)image {
+	if( self = [super init] ) {
+		if( [UIScreen mainScreen].scale == 2 ) {
+			contentScale = 2;
+		}
+		else {
+			contentScale = 1;
+		}
+        
+		NSMutableData *pixels = [self loadPixelsFromUIImage:image];
+		if( pixels ) {
+			[self createWithPixels:pixels format:GL_RGBA];
+		}
 	}
 	return self;
 }
@@ -207,7 +226,7 @@ typedef struct {
 }
 
 - (BOOL)isDynamic {
-	return !fullPath;
+	return !!fbo;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -216,10 +235,8 @@ typedef struct {
 	// This retains the textureStorage object and sets the associated properties
 	[copy createWithTexture:self];
 	
-	// Copy texture parameters and owningContext, not handled
-	// by createWithTexture
+	// Copy texture parameters not handled by createWithTexture
 	memcpy(copy->params, params, sizeof(EJTextureParams));
-	copy->owningContext = owningContext;
 	copy->isCompressed = isCompressed;
 	
 	if( self.isDynamic && !isCompressed ) {
@@ -268,6 +285,7 @@ typedef struct {
 	
 	if( width > maxTextureSize || height > maxTextureSize ) {
 		NSLog(@"Warning: Image %@ larger than MAX_TEXTURE_SIZE (%d)", fullPath ? fullPath : @"[Dynamic]", maxTextureSize);
+		return;
 	}
 	format = formatp;
 	
@@ -304,6 +322,10 @@ typedef struct {
 	else if( formatFlags == kPVRTextureFlagTypePVRTC_2 ) {
 		internalFormat = GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG;
 		bpp = 2;
+	}
+	else {
+		NSLog(@"Warning: PVRTC Compressed Image %@ neither 2 nor 4 bits per pixel", fullPath);
+		return;
 	}
 	
 	
@@ -346,30 +368,43 @@ typedef struct {
 }
 
 - (NSMutableData *)pixels {
-	if( fullPath ) {
-		return [self loadPixelsFromPath:fullPath];
+	GLint boundFrameBuffer;
+	GLuint tempFramebuffer;
+	glGetIntegerv( GL_FRAMEBUFFER_BINDING, &boundFrameBuffer );
+	
+	// If this texture doesn't have an FBO (i.e. its not used as the backing store
+	// for an offscreen canvas2d), we have to create a new, temporary framebuffer
+	// containing the texture. We can then read the pixel data using glReadPixels
+	// as usual
+	if( !fbo ) {
+		glGenFramebuffers(1, &tempFramebuffer);
+		glBindFramebuffer(GL_FRAMEBUFFER_OES, tempFramebuffer);
+		glFramebufferTexture2D(GL_FRAMEBUFFER_OES, GL_COLOR_ATTACHMENT0_OES, GL_TEXTURE_2D, textureStorage.textureId, 0);
 	}
-	else if( fbo ) {
-		GLint boundFrameBuffer;
-		glGetIntegerv( GL_FRAMEBUFFER_BINDING, &boundFrameBuffer );
-		
+	else {
 		glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-		
-		int size = width * height * EJGetBytesPerPixel(GL_UNSIGNED_BYTE, format);
-		NSMutableData *data = [NSMutableData dataWithLength:size];
-		glReadPixels(0, 0, width, height, format, GL_UNSIGNED_BYTE, data.mutableBytes);
-		
-		glBindFramebuffer(GL_FRAMEBUFFER, boundFrameBuffer);
-		return data;
 	}
 
-	NSLog(@"Warning: Can't get pixels from texture - dynamicly created but not attached to an FBO.");
-	return NULL;
+	int size = width * height * EJGetBytesPerPixel(GL_UNSIGNED_BYTE, format);
+	NSMutableData *data = [NSMutableData dataWithLength:size];
+	glReadPixels(0, 0, width, height, format, GL_UNSIGNED_BYTE, data.mutableBytes);
+	
+	glBindFramebuffer(GL_FRAMEBUFFER, boundFrameBuffer);
+	
+	
+	if( !fbo ) {
+		glDeleteFramebuffers(1, &tempFramebuffer);
+	}
+	
+	return data;
 }
 
 - (NSMutableData *)loadPixelsFromPath:(NSString *)path {
+	BOOL isURL = [path hasPrefix:@"http:"] || [path hasPrefix:@"https:"];
+	BOOL isDataURI = !isURL && [path hasPrefix:@"data:"];
+	
 	// Try @2x texture?
-	if( [UIScreen mainScreen].scale == 2 ) {
+	if( !isURL && !isDataURI && [UIScreen mainScreen].scale == 2 ) {
 		NSString *path2x = [[[path stringByDeletingPathExtension]
 			stringByAppendingString:@"@2x"]
 			stringByAppendingPathExtension:[path pathExtension]];
@@ -382,7 +417,25 @@ typedef struct {
 	
 	
 	NSMutableData *pixels;
-	if( [path.pathExtension isEqualToString:@"pvr"] ) {
+	if( isDataURI || isURL ) {
+		// Load directly from a Data URI string or an URL
+		UIImage *tmpImage = [[UIImage alloc] initWithData:
+			[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
+		
+		if( !tmpImage ) {
+			if( isDataURI ) {
+				NSLog(@"Error Loading image from Data URI.");
+			}
+			if( isURL ) {
+				NSLog(@"Error Loading image from URL: %@", path);
+			}
+			return NULL;
+		}
+		pixels = [self loadPixelsFromUIImage:tmpImage];
+		[tmpImage release];
+	}
+	
+	else if( [path.pathExtension isEqualToString:@"pvr"] ) {
 		// Compressed PVRTC? Only load raw data bytes
 		pixels = [NSMutableData dataWithContentsOfFile:path];
 		if( !pixels ) {
@@ -397,25 +450,31 @@ typedef struct {
 	else {
 		// Use UIImage for PNG, JPG and everything else
 		UIImage *tmpImage = [[UIImage alloc] initWithContentsOfFile:path];
+		
 		if( !tmpImage ) {
 			NSLog(@"Error Loading image %@ - not found.", path);
 			return NULL;
 		}
 		
-		CGImageRef image = tmpImage.CGImage;
-		
-		width = CGImageGetWidth(image);
-		height = CGImageGetHeight(image);
-		
-		pixels = [NSMutableData dataWithLength:width*height*4];
-		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-		CGContextRef context = CGBitmapContextCreate(pixels.mutableBytes, width, height, 8, width * 4, colorSpace, kCGImageAlphaPremultipliedLast);
-		CGContextDrawImage(context, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), image);
-		CGContextRelease(context);
-		CGColorSpaceRelease(colorSpace);
+		pixels = [self loadPixelsFromUIImage:tmpImage];
 		[tmpImage release];
-		tmpImage = NULL;
 	}
+	
+	return pixels;
+}
+
+- (NSMutableData *)loadPixelsFromUIImage:(UIImage *)image {
+	CGImageRef cgImage = image.CGImage;
+	
+	width = CGImageGetWidth(cgImage);
+	height = CGImageGetHeight(cgImage);
+	
+	NSMutableData *pixels = [NSMutableData dataWithLength:width*height*4];
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+	CGContextRef context = CGBitmapContextCreate(pixels.mutableBytes, width, height, 8, width * 4, colorSpace, kCGImageAlphaPremultipliedLast);
+	CGContextDrawImage(context, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), cgImage);
+	CGContextRelease(context);
+	CGColorSpaceRelease(colorSpace);
 	
 	return pixels;
 }

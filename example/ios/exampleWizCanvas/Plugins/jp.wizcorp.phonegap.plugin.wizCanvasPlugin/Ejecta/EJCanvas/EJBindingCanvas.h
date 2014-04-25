@@ -8,7 +8,7 @@
 #define EJ_CANVAS_DATA_URL_PREFIX_JPEG "data:image/jpeg;base64,"
 #define EJ_CANVAS_DATA_URL_PREFIX_PNG "data:image/png;base64,"
 
-@class EJJavaScriptView;
+@class WizCanvasView;
 
 typedef enum {
 	kEJCanvasContextModeInvalid,

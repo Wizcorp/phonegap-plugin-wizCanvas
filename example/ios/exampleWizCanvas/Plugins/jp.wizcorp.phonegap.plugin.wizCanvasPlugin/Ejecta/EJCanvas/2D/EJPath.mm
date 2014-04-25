@@ -22,12 +22,12 @@ typedef std::vector<subpath_t> path_t;
 @implementation EJPath
 
 @synthesize transform;
+@synthesize fillRule;
 
 - (id)init {
 	self = [super init];
 	if(self) {
 		transform = CGAffineTransformIdentity;
-		stencilMask = 0x1;
 		[self reset];
 	}
 	return self;
@@ -74,15 +74,17 @@ typedef std::vector<subpath_t> path_t;
 
 - (void)close {
 	currentPath.isClosed = true;
-	currentPos = currentPath.points.front();
-	[self push:currentPos];
+    if (currentPath.points.size()) {
+        currentPos = currentPath.points.front();
+        [self push:currentPos];
+    }
 	[self endSubPath];
 }
 
 - (void)endSubPath {
 	if( currentPath.points.size() > 1 ) {
 		paths.push_back(currentPath);
-		longestSubpath = MAX( longestSubpath, currentPath.points.size() );
+		longestSubpath = MAX( longestSubpath, (unsigned int)currentPath.points.size() );
 	}
 	currentPath.points.clear();
 	currentPath.isClosed = false;
@@ -113,10 +115,10 @@ typedef std::vector<subpath_t> path_t;
 }
 
 - (void)recursiveBezierX1:(float)x1 y1:(float)y1
-	x2:(float)x2 y2:(float)y2
-	x3:(float)x3 y3:(float)y3
-	x4:(float)x4 y4:(float)y4
-	level:(int)level
+                       x2:(float)x2 y2:(float)y2
+                       x3:(float)x3 y3:(float)y3
+                       x4:(float)x4 y4:(float)y4
+                    level:(int)level
 {
 	// Based on http://www.antigrain.com/research/adaptive_bezier/index.html
 	
@@ -199,9 +201,9 @@ typedef std::vector<subpath_t> path_t;
 }
 
 - (void)recursiveQuadraticX1:(float)x1 y1:(float)y1
-	x2:(float)x2 y2:(float)y2
-	x3:(float)x3 y3:(float)y3
-	level:(int)level
+                          x2:(float)x2 y2:(float)y2
+                          x3:(float)x3 y3:(float)y3
+                       level:(int)level
 {
 	// Based on http://www.antigrain.com/research/adaptive_bezier/index.html
 	
@@ -254,7 +256,7 @@ typedef std::vector<subpath_t> path_t;
 	float a2 = y2 - y1;
 	float b2 = x2 - x1;
 	float mm = fabsf(a1 * b2 - b1 * a2);
-
+    
 	if( mm < 1.0e-8 || radius == 0 ) {
 		[self lineToX:x1 y:y1];
 	}
@@ -280,23 +282,23 @@ typedef std::vector<subpath_t> path_t;
 }
 
 - (void)arcX:(float)x y:(float)y
-	radius:(float)radius
-	startAngle:(float)startAngle endAngle:(float)endAngle
-	antiClockwise:(BOOL)antiClockwise
+      radius:(float)radius
+  startAngle:(float)startAngle endAngle:(float)endAngle
+antiClockwise:(BOOL)antiClockwise
 {
 	startAngle = fmodf(startAngle, 2 * M_PI);
 	endAngle = fmodf(endAngle, 2 * M_PI);
-
+    
 	if( !antiClockwise && endAngle <= startAngle ) {
 		endAngle += 2 * M_PI;
 	}
 	else if( antiClockwise && startAngle <= endAngle ) {
 		startAngle += 2 * M_PI;
 	}
-
+    
 	float span = antiClockwise
-		? (startAngle - endAngle) *-1
-		: (endAngle - startAngle);
+    ? (startAngle - endAngle) *-1
+    : (endAngle - startAngle);
 	
 	// Calculate the number of steps, based on the radius, scaling and the span
 	float size = radius * CGAffineTransformGetScale(transform) * 5;
@@ -316,8 +318,11 @@ typedef std::vector<subpath_t> path_t;
 	[self push:currentPos];
 }
 
-- (void)drawPolygonsToContext:(EJCanvasContext2D *)context target:(EJPathPolygonTarget)target {
-	//[self endSubPath];
+- (void)drawPolygonsToContext:(EJCanvasContext2D *)context
+                     fillRule:(EJPathFillRule)rule
+                       target:(EJPathPolygonTarget)target
+{
+	fillRule = rule;
 	if( longestSubpath < 3 && currentPath.points.size()<3) { return; }
 	
 	EJCanvasState *state = context.state;
@@ -348,32 +353,52 @@ typedef std::vector<subpath_t> path_t;
 	
 	glStencilOp(GL_ZERO, GL_ZERO, GL_ZERO);
 	[context
-		pushRectX:minPos.x y:minPos.y w:maxPos.x-minPos.x h:maxPos.y-minPos.y
-		color:white withTransform:CGAffineTransformIdentity];
+     pushRectX:minPos.x y:minPos.y w:maxPos.x-minPos.x h:maxPos.y-minPos.y
+     color:white withTransform:CGAffineTransformIdentity];
 	[context flushBuffers];
 	
 	
-	// For each subpath, draw to the stencil buffer twice:
-	// 1) for all back-facing polygons, increase the stencil value
-	// 2) for all front-facing polygons, decrease the stencil value
+	if( fillRule == kEJPathFillRuleNonZero ) {
+		// If we use the Non-Zero fill rule, draw to the stencil buffer twice
+		// for each sub path:
+		// 1) for all back-facing polygons, increase the stencil value
+		// 2) for all front-facing polygons, decrease the stencil value
+		
+		// We need to enable face culling for this and alternate the stencil
+		// ops in the draw loop.
+		glEnable(GL_CULL_FACE);
+	}
+	else if( fillRule == kEJPathFillRuleEvenOdd ) {
+		// For the Even-Odd fill rule, simply invert the stencil buffer with
+		// each overdraw/
+		glStencilOp(GL_KEEP, GL_KEEP, GL_INVERT);
+	}
 	
-	glEnable(GL_CULL_FACE);
 	for( path_t::iterator sp = paths.begin(); ; ++sp ) {
 		subpath_t &path = sp==paths.end()?currentPath:*sp;
 		
 		glVertexAttribPointer(kEJGLProgram2DAttributePos, 2, GL_FLOAT, GL_FALSE, 0, &(path.points).front());
 		
-		glCullFace(GL_BACK);
-		glStencilOp(GL_INCR_WRAP, GL_KEEP, GL_INCR_WRAP);
-		glDrawArrays(GL_TRIANGLE_FAN, 0, path.points.size());
-		
-		glCullFace(GL_FRONT);
-		glStencilOp(GL_DECR_WRAP, GL_KEEP, GL_DECR_WRAP);
-		glDrawArrays(GL_TRIANGLE_FAN, 0, path.points.size());
+		if( fillRule == kEJPathFillRuleNonZero ) {
+			glCullFace(GL_BACK);
+			glStencilOp(GL_INCR_WRAP, GL_KEEP, GL_INCR_WRAP);
+			glDrawArrays(GL_TRIANGLE_FAN, 0, (int)path.points.size());
+            
+			glCullFace(GL_FRONT);
+			glStencilOp(GL_DECR_WRAP, GL_KEEP, GL_DECR_WRAP);
+			glDrawArrays(GL_TRIANGLE_FAN, 0, (int)path.points.size());
+		}
+		else if( fillRule == kEJPathFillRuleEvenOdd ) {
+			glDrawArrays(GL_TRIANGLE_FAN, 0, (int)path.points.size());
+		}
 		
 		if(sp==paths.end()) break;
 	}
-	glDisable(GL_CULL_FACE);
+	
+	if( fillRule == kEJPathFillRuleNonZero ) {
+		glDisable(GL_CULL_FACE);
+	}
+	
 	[context bindVertexBuffer];
 	
 	
@@ -393,7 +418,7 @@ typedef std::vector<subpath_t> path_t;
 	
 	glStencilFunc(GL_NOTEQUAL, 0x00, 0xff);
 	glStencilOp(GL_ZERO, GL_ZERO, GL_ZERO);
-
+    
 	if( state->fillObject && target == kEJPathPolygonTargetColor ) {
 		// If we have a fill pattern or gradient, we have to do some extra work to unproject the
 		// Quad we're drawing, so we can then project it _with_ the pattern/gradient again
@@ -409,14 +434,14 @@ typedef std::vector<subpath_t> path_t;
 		EJVector2 tmax = { MAX(p1.x, MAX(p2.x,MAX(p3.x, p4.x))), MAX(p1.y, MAX(p2.y,MAX(p3.y, p4.y))) };
 		
 		[context
-			pushFilledRectX:tmin.x y:tmin.y w:tmax.x-tmin.x h:tmax.y-tmin.y
-			fillable:state->fillObject
-			color:EJCanvasBlendWhiteColor(state) withTransform:transform];
+         pushFilledRectX:tmin.x y:tmin.y w:tmax.x-tmin.x h:tmax.y-tmin.y
+         fillable:state->fillObject
+         color:EJCanvasBlendWhiteColor(state) withTransform:transform];
 	}
 	else {
 		[context
-			pushRectX:minPos.x y:minPos.y w:maxPos.x-minPos.x h:maxPos.y-minPos.y
-			color:EJCanvasBlendFillColor(state) withTransform:CGAffineTransformIdentity];
+         pushRectX:minPos.x y:minPos.y w:maxPos.x-minPos.x h:maxPos.y-minPos.y
+         color:EJCanvasBlendFillColor(state) withTransform:CGAffineTransformIdentity];
 	}
 	
 	[context flushBuffers];
@@ -432,13 +457,13 @@ typedef std::vector<subpath_t> path_t;
 }
 
 - (void)drawArcToContext:(EJCanvasContext2D *)context atPoint:(EJVector2)point v1:(EJVector2)p1 v2:(EJVector2)p2 color:(EJColorRGBA)color {
-
+    
 	EJCanvasState *state = context.state;
 	float width2 = state->lineWidth/2;
 	
 	EJVector2
-		v1 = EJVector2Normalize(EJVector2Sub(p1, point)),
-		v2 = EJVector2Normalize(EJVector2Sub(p2, point));
+    v1 = EJVector2Normalize(EJVector2Sub(p1, point)),
+    v2 = EJVector2Normalize(EJVector2Sub(p2, point));
 	
 	// calculate starting angle for arc
 	float angle1 = atan2(1,0) - atan2(v1.x,-v1.y);
@@ -459,8 +484,8 @@ typedef std::vector<subpath_t> path_t;
 	
 	if( numSteps == 1 ) {
 		[context
-			pushTriX1:p1.x	y1:p1.y x2:point.x y2:point.y x3:p2.x y3:p2.y
-			color:color withTransform:transform];
+         pushTriX1:p1.x	y1:p1.y x2:point.x y2:point.y x3:p2.x y3:p2.y
+         color:color withTransform:transform];
 		return;
 	}
 	// avoid "triangular" look
@@ -485,17 +510,16 @@ typedef std::vector<subpath_t> path_t;
 		arcP2 = EJVector2Make( point.x + cosf(angle) * width2, point.y - sinf(angle) * width2 );
 		
 		[context
-			pushTriX1:arcP1.x y1:arcP1.y x2:point.x y2:point.y x3:arcP2.x y3:arcP2.y
-			color:color withTransform:transform];
+         pushTriX1:arcP1.x y1:arcP1.y x2:point.x y2:point.y x3:arcP2.x y3:arcP2.y
+         color:color withTransform:transform];
 		
 		arcP1 = arcP2;
 	}
 }
 
 - (void)drawLinesToContext:(EJCanvasContext2D *)context {
-	//[self endSubPath];
-	
 	EJCanvasState *state = context.state;
+	GLubyte stencilMask;
 	
 	// Find the width of the line as it is projected onto the screen.
 	float projectedLineWidth = CGAffineTransformGetScale( state->transform ) * state->lineWidth;
@@ -517,6 +541,7 @@ typedef std::vector<subpath_t> path_t;
 	if( useStencil ) {
 		[context flushBuffers];
 		[context createStencilBufferOnce];
+		stencilMask = context.stencilMask;
 		
 		glEnable(GL_STENCIL_TEST);
 		
@@ -528,7 +553,7 @@ typedef std::vector<subpath_t> path_t;
 	
 	// To draw the line correctly with transformations, we need to construct the line
 	// vertices from the untransformed points and only apply the transformation in
-	// the last step (pushQuad) again.	
+	// the last step (pushQuad) again.
 	CGAffineTransform inverseTransform = CGAffineTransformInvert(transform);
 	
 	
@@ -536,15 +561,15 @@ typedef std::vector<subpath_t> path_t;
 	// will understand what I've written in 3 days :/
 	// Calculating line miters for potentially closed paths is serious business!
 	// And it doesn't even handle all the edge cases.
-			
+    
 	EJVector2
-		*transCurrent, *transNext,	// Pointers to current and next vertices on the line
-		current, next,				// Untransformed current and next points
-		firstMiter1, firstMiter2,	// First miter vertices (left, right) needed for closed paths
-		miter11, miter12,			// Current miter vertices (left, right)
-		miter21, miter22,			// Next miter vertices (left, right)
-		currentEdge, currentExt,	// Current edge and its normal * width/2
-		nextEdge, nextExt;			// Next edge and its normal * width/2
+    *transCurrent, *transNext,	// Pointers to current and next vertices on the line
+    current, next,				// Untransformed current and next points
+    firstMiter1, firstMiter2,	// First miter vertices (left, right) needed for closed paths
+    miter11, miter12,			// Current miter vertices (left, right)
+    miter21, miter22,			// Next miter vertices (left, right)
+    currentEdge, currentExt,	// Current edge and its normal * width/2
+    nextEdge, nextExt;			// Next edge and its normal * width/2
 	
 	
 	
@@ -567,7 +592,7 @@ typedef std::vector<subpath_t> path_t;
 			transNext = &path.points.at(path.points.size()-2);
 			next = EJVector2ApplyTransform( *transNext, inverseTransform );
 		}
-
+        
 		for( points_t::iterator vertex = path.points.begin(); vertex != path.points.end(); ++vertex) {
 			transCurrent = transNext;
 			transNext = &(*vertex);
@@ -595,8 +620,8 @@ typedef std::vector<subpath_t> path_t;
 						EJVector2 cap12 = EJVector2Add( miter22, capExt );
 						
 						[context
-							 pushQuadV1:cap11 v2:cap12 v3:miter21 v4:miter22
-							 color:color withTransform:transform];
+                         pushQuadV1:cap11 v2:cap12 v3:miter21 v4:miter22
+                         color:color withTransform:transform];
 					}
 					else {
 						[self drawArcToContext:context atPoint:current v1:miter22 v2:miter21 color:color];
@@ -655,7 +680,7 @@ typedef std::vector<subpath_t> path_t;
 				EJVector2 prev = EJVector2Sub(current, currentEdge);
 				EJVector2 p1, p2;
 				float d1, d2;
-					
+                
 				// calculate points to use for bevel
 				// two points are possible for each edge - the one farthest away from the other line has to be used
 				
@@ -678,11 +703,11 @@ typedef std::vector<subpath_t> path_t;
 					 color:color withTransform:transform];
 				}
 			}
-
+            
 			[context
-				pushQuadV1:miter11 v2:miter12 v3:miter21 v4:miter22
-				color:color withTransform:transform];
-
+             pushQuadV1:miter11 v2:miter12 v3:miter21 v4:miter22
+             color:color withTransform:transform];
+            
 			// No miter added? The "miter" for the next segment needs to be the butt for the next segment,
 			// not the butt for the current one.
 			if( !miterAdded ) {
@@ -731,11 +756,11 @@ typedef std::vector<subpath_t> path_t;
 				 color:color withTransform:transform];
 			}
 		}
-
+        
 		[context
-			pushQuadV1:miter11 v2:miter12 v3:miter21 v4:miter22
-			color:color withTransform:transform];		
-
+         pushQuadV1:miter11 v2:miter12 v3:miter21 v4:miter22
+         color:color withTransform:transform];
+        
 		// End cap
 		if( addCaps && !subPathIsClosed ) {
 			if( state->lineCap == kEJLineCapSquare ) {
@@ -744,8 +769,8 @@ typedef std::vector<subpath_t> path_t;
 				EJVector2 cap12 = EJVector2Add( miter12, capExt );
 				
 				[context
-					pushQuadV1:cap11 v2:cap12 v3:miter11 v4:miter12
-					color:color withTransform:transform];
+                 pushQuadV1:cap11 v2:cap12 v3:miter11 v4:miter12
+                 color:color withTransform:transform];
 			}
 			else {
 				[self drawArcToContext:context atPoint:next v1:miter11 v2:miter12 color:color];
@@ -761,14 +786,14 @@ typedef std::vector<subpath_t> path_t;
 		glDisable(GL_STENCIL_TEST);
 		
 		if( stencilMask == (1<<7) ) {
-			stencilMask = (1<<0);
+			context.stencilMask = (1<<0);
 			
 			glStencilMask(0xff);
 			glClearStencil(0x0);
 			glClear(GL_STENCIL_BUFFER_BIT);
 		}
 		else {
-			stencilMask <<= 1;
+			context.stencilMask = (stencilMask << 1);
 		}
 	}
 }

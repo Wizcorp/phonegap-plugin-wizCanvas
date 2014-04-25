@@ -55,11 +55,22 @@
 	
 	[textures release];
 	
-	for( NSValue *v in extensions ) { JSValueUnprotectSafe(scriptView.jsGlobalContext, v.pointerValue); }
+	for ( NSValue *v in extensions ) {
+        // WizCanvas Modification - jsGlobalContext can be 0x0
+        if (scriptView.jsGlobalContext) {
+            JSValueUnprotectSafe(scriptView.jsGlobalContext, v.pointerValue);
+        }
+    }
 	[extensions release];
     
 	for( NSNumber *n in vertexArrays ) { GLuint array = n.intValue; glDeleteVertexArraysOES(1, &array); }
 	[vertexArrays release];
+	
+	// Unprotect all texture units
+	for( int i = 0; i < EJ_CANVAS_MAX_TEXTURE_UNITS; i++ ) {
+		JSValueUnprotectSafe(scriptView.jsGlobalContext, textureUnits[i].jsTexture);
+		JSValueUnprotectSafe(scriptView.jsGlobalContext, textureUnits[i].jsCubeMap);
+	}
     
 	[EAGLContext setCurrentContext:oldContext];
 	
@@ -80,21 +91,7 @@
 - (void)deleteTexture:(GLuint)texture {
 	// This just deletes the pointer to the JSObject; the texture itself
 	// is retained and released by the binding
-	NSNumber *key = @(texture);
-	JSObjectRef obj = [textures[key] pointerValue];
-	[textures removeObjectForKey:key];
-	
-	// See if it's bound in any of the texture units
-	for( int i = 0; i < EJ_CANVAS_MAX_TEXTURE_UNITS; i++ ) {
-		if( textureUnits[i].jsTexture == obj ) {
-			textureUnits[i].jsTexture = NULL;
-			textureUnits[i].texture = NULL;
-		}
-		else if( textureUnits[i].jsCubeMap == obj ) {
-			textureUnits[i].jsCubeMap = NULL;
-			textureUnits[i].cubeMap = NULL;
-		}
-	}
+	[textures removeObjectForKey:@(texture)];
 }
 
 - (void)deleteProgram:(GLuint)program {
@@ -319,15 +316,19 @@ EJ_BIND_FUNCTION(bindBuffer, ctx, argc, argv) {
 
 EJ_BIND_FUNCTION(bindTexture, ctx, argc, argv) {
 	if( argc < 2 ) { return NULL; }
-	
+
 	scriptView.currentRenderingContext = renderingContext;
 	
 	GLenum target = JSValueToNumberFast(ctx, argv[0]);
 	EJTexture *texture = [EJBindingWebGLTexture textureFromJSValue:argv[1]];
 	
 	if( target == GL_TEXTURE_2D ) {
+		JSValueUnprotectSafe(ctx, activeTexture->jsTexture);
+		
 		if( texture ) {
 			[texture bindToTarget:target];
+			JSValueProtect(ctx, argv[1]);
+ 			        
 			activeTexture->jsTexture = (JSObjectRef)argv[1];
 			activeTexture->texture = texture;
 		}
@@ -338,8 +339,12 @@ EJ_BIND_FUNCTION(bindTexture, ctx, argc, argv) {
 		}
 	}
 	else if( target == GL_TEXTURE_CUBE_MAP ) {
+		JSValueUnprotectSafe(ctx, activeTexture->jsCubeMap);
+
 		if( texture ) {
 			[texture bindToTarget:target];
+			JSValueProtect(ctx, argv[1]);
+
 			activeTexture->jsCubeMap = (JSObjectRef)argv[1];
 			activeTexture->cubeMap = texture;
 		}
@@ -540,8 +545,7 @@ EJ_BIND_FUNCTION_DIRECT(cullFace, glCullFace, mode);
 #define EJ_BIND_DELETE_OBJECT(I, NAME) \
 	EJ_BIND_FUNCTION(delete##NAME, ctx, argc, argv) { \
 		if( argc < 1 ) { return NULL; } \
-		GLuint index = [EJBindingWebGL##NAME indexFromJSValue:argv[0]]; \
-		[self delete##NAME:index]; \
+		[[EJBindingWebGLObject webGLObjectFromJSValue:argv[0]] invalidate]; \
 		return NULL; \
 	}
 
@@ -1181,13 +1185,17 @@ EJ_BIND_FUNCTION(getUniform, ctx, argc, argv) {
 
 EJ_BIND_FUNCTION(getUniformLocation, ctx, argc, argv) {
 	if( argc < 2 ) { return NULL; }
-	
+    
 	scriptView.currentRenderingContext = renderingContext;
-	
+    
 	GLuint program = [EJBindingWebGLProgram indexFromJSValue:argv[0]];
 	NSString *name = JSValueToNSString(ctx, argv[1]);
-	
-	GLuint uniform = glGetUniformLocation(program, [name UTF8String]);
+    
+	GLint uniform = glGetUniformLocation(program, [name UTF8String]);
+	if( uniform == -1 ) {
+		return JSValueMakeNull(ctx);
+	}
+    
 	return [EJBindingWebGLUniformLocation createJSObjectWithContext:ctx
 		scriptView:scriptView webglContext:self index:uniform];
 }
@@ -1399,8 +1407,13 @@ EJ_BIND_FUNCTION(texImage2D, ctx, argc, argv) {
 	if( argc == 6) {
 		EJ_UNPACK_ARGV_OFFSET(3, GLenum format, GLenum type);
 		
-		NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSObjectGetPrivate((JSObjectRef)argv[5]);
-		EJTexture *sourceTexture = drawable.texture;		
+		NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSValueGetPrivate(argv[5]);
+		if( !drawable || ![drawable conformsToProtocol:@protocol(EJDrawable)] ) {
+			NSLog(@"ERROR: texImage2D image is not an Image, ImageData or Canvas element");
+			return NULL;
+		}
+		
+		EJTexture *sourceTexture = drawable.texture;
 		
 		// We don't care about internalFormat, format or type params here; the source image will
 		// always be GL_RGBA and loaded as GL_UNSIGNED_BYTE
@@ -1535,8 +1548,13 @@ EJ_BIND_FUNCTION(texSubImage2D, ctx, argc, argv) {
 	if( argc == 7) {
 		EJ_UNPACK_ARGV_OFFSET(4, GLenum format, GLenum type);
 		
-		NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSObjectGetPrivate((JSObjectRef)argv[5]);
-		EJTexture *sourceTexture = drawable.texture;		
+		NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSValueGetPrivate(argv[5]);
+		if( !drawable || ![drawable conformsToProtocol:@protocol(EJDrawable)] ) {
+			NSLog(@"ERROR: texSubImage2D image is not an Image, ImageData or Canvas element");
+			return NULL;
+		}
+		
+		EJTexture *sourceTexture = drawable.texture;
 		
 		// We don't care about internalFormat, format or type params here; the source image will
 		// always be GL_RGBA and loaded as GL_UNSIGNED_BYTE

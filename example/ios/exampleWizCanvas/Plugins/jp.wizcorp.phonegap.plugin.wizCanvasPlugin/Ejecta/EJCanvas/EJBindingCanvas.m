@@ -4,7 +4,8 @@
 #import "EJCanvasContext2DTexture.h"
 #import "EJBindingCanvasContext2D.h"
 
-#import "EJCanvasContextWebGL.h"
+#import "EJCanvasContextWebGLScreen.h"
+#import "EJCanvasContextWebGLTexture.h"
 #import "EJBindingCanvasContextWebGL.h"
 
 #import "base64.h"
@@ -29,7 +30,7 @@
 
     // Modification for WizCanvasView
 	// CGSize screen = scriptView.bounds.size;
-    CGSize screen = scriptView.view.bounds.size;
+    CGSize screen = scriptView.bounds.size;
 
     width = screen.width;
 	height = screen.height;
@@ -219,18 +220,28 @@ EJ_BIND_FUNCTION(getContext, ctx, argc, argv) {
 		[binding release];
 		JSValueProtect(ctx, jsCanvasContext);
 	}
-	
+
+	// WebGL Screen or Texture
 	else if( newContextMode == kEJCanvasContextModeWebGL ) {
-		EJCanvasContextWebGL *sc = [[EJCanvasContextWebGL alloc]
-			initWithScriptView:scriptView width:width height:height style:style];
-		sc.useRetinaResolution = useRetinaResolution;
-		
-		scriptView.screenRenderingContext = sc;
-		renderingContext = sc;
-		
+		if( isScreenCanvas ) {
+			EJCanvasContextWebGLScreen *sc = [[EJCanvasContextWebGLScreen alloc]
+                                              initWithScriptView:scriptView width:width height:height style:style];
+			sc.useRetinaResolution = useRetinaResolution;
+			
+			scriptView.screenRenderingContext = sc;
+			renderingContext = sc;
+		}
+		else {
+			EJCanvasContextWebGLTexture *tc = [[EJCanvasContextWebGLTexture alloc]
+                                               initWithScriptView:scriptView width:width height:height];
+			tc.useRetinaResolution = useRetinaResolution;
+
+			renderingContext = tc;
+		}
+
 		// Create the JS object
 		EJBindingCanvasContextWebGL *binding = [[EJBindingCanvasContextWebGL alloc]
-			initWithCanvas:jsObject renderingContext:(EJCanvasContextWebGL *)renderingContext];
+                                                initWithCanvas:jsObject renderingContext:(EJCanvasContextWebGL *)renderingContext];
 		jsCanvasContext = [EJBindingCanvasContextWebGL createJSObjectWithContext:ctx scriptView:scriptView instance:binding];
 		[binding release];
 		JSValueProtect(ctx, jsCanvasContext);
