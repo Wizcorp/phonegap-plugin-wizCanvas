@@ -80,6 +80,7 @@ public class WizCanvas extends View {
         int width = screenWidth;
         int height = screenHeight;
         String backgroundColor = "#fff";
+        Boolean onTop = true;
         String source = null;
 
         // Get extra layout (optional) settings
@@ -92,6 +93,9 @@ public class WizCanvas extends View {
             }
             if (settings.has("backgroundColor")) {
                 backgroundColor = settings.getString("backgroundColor");
+            }
+            if (settings.has("onTop")) {
+                onTop = settings.getBoolean("onTop");
             }
             if (settings.has("src")) {
                 source = settings.getString("src");
@@ -113,7 +117,7 @@ public class WizCanvas extends View {
         final Activity _act = act;
         final CallbackContext _callbackContext = callbackContext;
 
-        mGLView = new EjectaGLSurfaceView(act, width, height, backgroundColor);
+        mGLView = new EjectaGLSurfaceView(act, width, height, backgroundColor, onTop);
         ((EjectaGLSurfaceView)mGLView).setEjectaEventListener(new EjectaRenderer.EjectaEventListener() {
             @Override
             public void onCanvasCreated() {
