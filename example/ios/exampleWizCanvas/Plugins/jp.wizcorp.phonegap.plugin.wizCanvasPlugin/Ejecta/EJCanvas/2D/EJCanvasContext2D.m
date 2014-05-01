@@ -14,7 +14,12 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 	[kEJCompositeOperationDestinationOut] = {GL_ZERO, GL_ONE_MINUS_SRC_ALPHA, 1},
 	[kEJCompositeOperationDestinationOver] = {GL_ONE_MINUS_DST_ALPHA, GL_ONE, 1},
 	[kEJCompositeOperationSourceAtop] = {GL_DST_ALPHA, GL_ONE_MINUS_SRC_ALPHA, 1},
-	[kEJCompositeOperationXOR] = {GL_ONE_MINUS_DST_ALPHA, GL_ONE_MINUS_SRC_ALPHA, 1}
+	[kEJCompositeOperationXOR] = {GL_ONE_MINUS_DST_ALPHA, GL_ONE_MINUS_SRC_ALPHA, 1},
+	[kEJCompositeOperationCopy] = {GL_ONE, GL_ZERO, 1},
+	[kEJCompositeOperationSourceIn] = {GL_DST_ALPHA, GL_ZERO, 1},
+	[kEJCompositeOperationDestinationIn] = {GL_ZERO, GL_SRC_ALPHA, 1},
+	[kEJCompositeOperationSourceOut] = {GL_ONE_MINUS_DST_ALPHA, GL_ZERO, 1},
+	[kEJCompositeOperationDestinationAtop] = {GL_ONE_MINUS_DST_ALPHA, GL_SRC_ALPHA, 1}
 };
 
 
@@ -22,7 +27,7 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 @synthesize backingStoreRatio;
 @synthesize useRetinaResolution;
 @synthesize imageSmoothingEnabled;
-@synthesize temp;
+@synthesize stencilMask;
 
 - (id)initWithScriptView:(WizCanvasView *)scriptViewp width:(short)widthp height:(short)heightp {
 	if( self = [super init] ) {
@@ -30,7 +35,7 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 		sharedGLContext = scriptView.openGLContext;
 		glContext = sharedGLContext.glContext2D;
 		vertexBuffer = (EJVertex *)(sharedGLContext.vertexBuffer.mutableBytes);
-		vertexBufferSize = sharedGLContext.vertexBuffer.length / sizeof(EJVertex);
+		vertexBufferSize = (int)(sharedGLContext.vertexBuffer.length / sizeof(EJVertex));
 	
 		memset(stateStack, 0, sizeof(stateStack));
 		stateIndex = 0;
@@ -53,12 +58,12 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 		path = [[EJPath alloc] init];
 		backingStoreRatio = 1;
 		
-		fontCache = [[NSCache alloc] init];
-		fontCache.countLimit = 8;
+		fontCache = [[EJFontCache instance] retain];
 		
 		textureFilter = GL_LINEAR;
 		msaaEnabled = NO;
 		msaaSamples = 2;
+		stencilMask = 0x1;
 	}
 	return self;
 }
@@ -481,6 +486,14 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 		[self flushBuffers];
 	}
 	
+	// Textures from offscreen WebGL contexts have to be draw upside down.
+	// They're actually right-side up in memory, but everything else has
+	// flipped y
+	if( currentTexture.drawFlippedY ) {
+		ty = 1 - ty;
+		th *= -1;
+	}
+	
 	EJVector2 d11 = {x, y};
 	EJVector2 d21 = {x+w, y};
 	EJVector2 d12 = {x, y+h};
@@ -606,7 +619,7 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 	// Render clip path, if present and different
 	if( state->clipPath && state->clipPath != oldClipPath ) {
 		[self setProgram:sharedGLContext.glProgram2DFlat];
-		[state->clipPath drawPolygonsToContext:self target:kEJPathPolygonTargetDepth];
+		[state->clipPath drawPolygonsToContext:self fillRule:state->clipPath.fillRule target:kEJPathPolygonTargetDepth];
 	}
 }
 
@@ -698,7 +711,7 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 	
 	// Fast case - no scaling, no flipping
 	if( scale == 1 && !flipped ) {
-		pixels = [[NSMutableData alloc] initWithLength:sw * sh * 4 * sizeof(GLubyte)];
+		pixels = [NSMutableData dataWithLength:sw * sh * 4 * sizeof(GLubyte)];
 		glReadPixels(sx, sy, sw, sh, GL_RGBA, GL_UNSIGNED_BYTE, pixels.mutableBytes);
 	}
 	
@@ -723,26 +736,12 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 				index++;
 			}
 		}
-	
-		pixels = [[NSMutableData alloc] initWithBytesNoCopy:scaledPixels length:size];
+		free(internalPixels);
         
-        free(internalPixels);
-        // free(scaledPixels);
+		pixels = [NSMutableData dataWithBytesNoCopy:scaledPixels length:size];
 	}
 	
-    if (temp) {
-        [temp release];
-        temp = nil;
-    }
-    
-	temp = [[EJImageData alloc] initWithWidth:sw height:sh pixels:pixels];
-    if ([pixels length] > 0) {
-        [pixels setLength:0];
-        [pixels release];
-        pixels = nil;
-    }
-    
-    return temp;
+	return [[[EJImageData alloc] initWithWidth:sw height:sh pixels:pixels] autorelease];
 }
 
 - (EJImageData*)getImageDataSx:(short)sx sy:(short)sy sw:(short)sw sh:(short)sh {
@@ -763,8 +762,13 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 	
 	static EJColorRGBA white = {.hex = 0xffffffff};
 	
+	EJCompositeOperation oldOp = state->globalCompositeOperation;
+	self.globalCompositeOperation = kEJCompositeOperationCopy;
+	
 	[self pushTexturedRectX:dx y:dy w:tw h:th tx:0 ty:0 tw:1 th:1 color:white withTransform:CGAffineTransformIdentity];
 	[self flushBuffers];
+	
+	self.globalCompositeOperation = oldOp;
 }
 
 - (void)putImageData:(EJImageData*)imageData dx:(float)dx dy:(float)dy {
@@ -783,9 +787,9 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 	[path close];
 }
 
-- (void)fill {
+- (void)fill:(EJPathFillRule)fillRule {
 	[self setProgram:sharedGLContext.glProgram2DFlat];
-	[path drawPolygonsToContext:self target:kEJPathPolygonTargetColor];
+	[path drawPolygonsToContext:self fillRule:fillRule target:kEJPathPolygonTargetColor];
 }
 
 - (void)stroke {
@@ -830,47 +834,36 @@ const EJCompositeOperationFunc EJCompositeOperationFuncs[] = {
 	[path arcX:x y:y radius:radius startAngle:startAngle endAngle:endAngle antiClockwise:antiClockwise];
 }
 
-- (EJFont *)getFontWithDescriptor:(EJFontDescriptor *)desc filled:(BOOL)filled {
-	NSString *cacheKey = (filled)
-		? [desc identFilled]
-		: [desc identOutlinedWithWidth:state->lineWidth];
-		
-	EJFont *font = [fontCache objectForKey:cacheKey];
-	if( !font ) {
-		font = [[EJFont alloc] initWithDescriptor:desc fill:filled lineWidth:state->lineWidth contentScale:backingStoreRatio];
-		[fontCache setObject:font forKey:cacheKey];
-		[font autorelease];
-	}
-	return font;
-}
-
 - (void)fillText:(NSString *)text x:(float)x y:(float)y {
-	EJFont *font = [self getFontWithDescriptor:state->font filled:YES];
+	float scale = CGAffineTransformGetScale( state->transform ) * backingStoreRatio;
+	EJFont *font = [fontCache fontWithDescriptor:state->font contentScale:scale];
 	
 	[self setProgram:sharedGLContext.glProgram2DAlphaTexture];
 	[font drawString:text toContext:self x:x y:y];
 }
 
 - (void)strokeText:(NSString *)text x:(float)x y:(float)y {
-	EJFont *font = [self getFontWithDescriptor:state->font filled:NO];
+	float scale = CGAffineTransformGetScale( state->transform ) * backingStoreRatio;
+	EJFont *font = [fontCache outlineFontWithDescriptor:state->font lineWidth:state->lineWidth contentScale:scale];
 	
 	[self setProgram:sharedGLContext.glProgram2DAlphaTexture];
 	[font drawString:text toContext:self x:x y:y];
 }
 
 - (EJTextMetrics)measureText:(NSString *)text {
-	EJFont *font = [self getFontWithDescriptor:state->font filled:YES];
+	float scale = CGAffineTransformGetScale( state->transform ) * backingStoreRatio;
+	EJFont *font = [fontCache fontWithDescriptor:state->font contentScale:scale];
 	return [font measureString:text forContext:self];
 }
 
-- (void)clip {
+- (void)clip:(EJPathFillRule)fillRule {
 	[self flushBuffers];
 	[state->clipPath release];
 	state->clipPath = nil;
 	
 	state->clipPath = path.copy;
 	[self setProgram:sharedGLContext.glProgram2DFlat];
-	[state->clipPath drawPolygonsToContext:self target:kEJPathPolygonTargetDepth];
+	[state->clipPath drawPolygonsToContext:self fillRule:fillRule target:kEJPathPolygonTargetDepth];
 }
 
 - (void)resetClip {

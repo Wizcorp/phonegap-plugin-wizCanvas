@@ -25,7 +25,7 @@
 - (EJTexture *)texture {
     // Texture has to be created in case pixels has changed
     // TODO: Flag when pixels changes in order to avoid creation at each texture access
-    if(texture) {
+    if (texture) {
         [texture release];
         texture = nil;
     }

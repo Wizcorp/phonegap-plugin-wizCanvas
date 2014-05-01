@@ -72,22 +72,7 @@
         
         <header-file src="ios/project/Plugins/WizCanvasPlugin/WizCanvasView.h" target-dir="WizCanvas" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/WizCanvasView.m" compiler-flags="-fno-objc-arc" target-dir="WizCanvas" />
-        	
-        <!-- Ejecta lib -->
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/libJavaScriptCore.a" framework="true" target-dir="lib" />
-        	
-        <!-- Ejecta lib headers -->
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JavaScript.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JavaScriptCore.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSBase.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSContextRef.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSObjectRef.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSStringRef.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSStringRefCF.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSTypedArray.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/JSValueRef.h" target-dir="lib/JavaScriptCore" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore/WebKitAvailability.h" target-dir="lib/JavaScriptCore" />
-               
+        	               
         <!-- Ejecta files -->
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSource.h" target-dir="Ejecta/EJAudio" />
                 
@@ -156,6 +141,9 @@
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFont.h" target-dir="Ejecta/EJCanvas/2D" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFont.mm" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
+        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFontCache.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFontCache.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2D.h" target-dir="Ejecta/EJCanvas/2D" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2D.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
@@ -205,6 +193,9 @@
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingCanvasContextWebGL.h" target-dir="Ejecta/EJCanvas/WebGL" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingCanvasContextWebGL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
+        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLScreen.h" target-dir="Ejecta/EJCanvas/WebGL" />
+        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLScreen.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
+        
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLExtensions.h" target-dir="Ejecta/EJCanvas/WebGL" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLExtensions.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
@@ -216,6 +207,9 @@
         
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJConvertWebGL.h" target-dir="Ejecta/EJCanvas/WebGL" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJConvertWebGL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
+        
+        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLTexture.h" target-dir="Ejecta/EJCanvas/WebGL" />
+        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLTexture.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJClassLoader.h" target-dir="Ejecta" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJClassLoader.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
@@ -237,6 +231,9 @@
         
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingDeviceMotion.h" target-dir="Ejecta/EJUtils" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingDeviceMotion.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        
+        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGeolocation.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGeolocation.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGameCenter.h" target-dir="Ejecta/EJUtils" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGameCenter.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
@@ -275,8 +272,8 @@
         <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/base64.h" target-dir="lib/SocketRocket" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/base64.c" target-dir="lib/SocketRocket" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/NSData+SRB64Additions.h" target-dir="lib/SocketRocket" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/NSData+SRB64Additions.m" target-dir="lib/SocketRocket" />
+        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/NSString+Hashes.h" target-dir="lib/SocketRocket" />
+        <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/NSString+Hashes.m" target-dir="lib/SocketRocket" />
         
         <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/SocketRocket-Prefix.pch" target-dir="lib/SocketRocket" />
         
@@ -286,18 +283,19 @@
         <header-file src="ios/project/Plugins/WizCanvasPlugin/WizDebugLog.h"
         	target-dir="WizCanvas" />
         
+        <framework src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore.framework" custom="true" />
 
         <!-- iOS Frameworks -->
         <framework src="AVFoundation.framework" />
-	<framework src="AudioToolbox.framework" />
-	<framework src="OpenAL.framework" />
-	<framework src="Foundation.framework" />
-	<framework src="UIKit.framework" />
-	<framework src="QuartzCore.framework" />
-	<framework src="SystemConfiguration.framework" />
-	<framework src="CFNetwork.framework" />
-	<framework src="CoreGraphics.framework" />
-	<framework src="MediaPlayer.framework" />
+        <framework src="AudioToolbox.framework" />
+        <framework src="OpenAL.framework" />
+        <framework src="Foundation.framework" />
+        <framework src="UIKit.framework" />
+        <framework src="QuartzCore.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="CFNetwork.framework" />
+        <framework src="CoreGraphics.framework" />
+        <framework src="MediaPlayer.framework" />
         <framework src="CoreMotion.framework" />
         <framework src="OpenGLES.framework" />
         <framework src="iAd.framework" />
@@ -306,6 +304,7 @@
         <framework src="Security.framework" />
         <framework src="StoreKit.framework" />
         <framework src="libicucore.dylib" />
+        <framework src="libc++.dylib" />
 
     </platform>
     

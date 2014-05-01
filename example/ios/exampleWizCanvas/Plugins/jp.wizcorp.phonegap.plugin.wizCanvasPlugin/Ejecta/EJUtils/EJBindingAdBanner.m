@@ -24,7 +24,7 @@
 		nil];
 
     // Modification for WizCanvasView
-	[scriptView.view addSubview:banner];
+	[scriptView addSubview:banner];
 	NSLog(@"AdBanner: init at y %f", banner.frame.origin.y);
 }
 
@@ -39,7 +39,7 @@
 	isReady = YES;
 	if( wantsToShow ) {
         // Modification for WizCanvasView
-		[scriptView.view bringSubviewToFront:banner];
+		[scriptView bringSubviewToFront:banner];
 		banner.hidden = NO;
 	}
 	[self triggerEvent:@"load"];
@@ -62,7 +62,7 @@ EJ_BIND_SET( isAtBottom, ctx, value ) {
 	CGRect frame = banner.frame;
     // Modification for WizCanvasView
 	frame.origin.y = isAtBottom
-		? scriptView.view.bounds.size.height - frame.size.height
+		? scriptView.bounds.size.height - frame.size.height
 		: 0;
 		
 	banner.frame = frame;
@@ -78,7 +78,7 @@ EJ_BIND_FUNCTION(show, ctx, argc, argv ) {
 	wantsToShow = YES;
 	if( isReady ) {
         // Modification for WizCanvasView
-		[scriptView.view bringSubviewToFront:banner];
+		[scriptView bringSubviewToFront:banner];
 		banner.hidden = NO;
 	}
 	return NULL;

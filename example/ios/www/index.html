@@ -390,17 +390,19 @@
         function () { console.log("Hide canvas failure") });
     }
     
-    function loadIntoCanvasView() {
-        wizCanvas.load("newCanvas",
-                            "assets/canvas/webgl_demo.js",
-                            function() {
-                                console.log("Load into canvas success");
-                            },
-                            function(e) {
-                                console.log("Load into canvas fail. " + e);
-                            });
+    function loadWebGLDemo() {
+        removeCanvasView();
+        wizCanvas.create("newCanvas", { height: 300, width: 320, y: 0 }, onCanvasSuccess, onFail);
+        wizCanvas.load("newCanvas", "assets/canvas/webgl_demo.js",
+            function() {
+                console.log("Load into canvas success");
+            },
+            function(e) {
+                console.log("Load into canvas fail. " + e);
+            }
+        );
     }
-           
+
     function messageCanvasView() {
         var params = { color: "blue :)" };
         // params = "string test";
@@ -449,8 +451,8 @@
 	            <p>Change the layout of the canvas, can be clicked multiple times...</p>
 	            <button onclick="layoutCanvasView();">New Layout Canvas</button>
 	            <p>Load a WebGL demo into the canvas view...</p>
-	            <button onclick="loadIntoCanvasView();">Load into Canvas</button>
-	            <p>Hide the canvas view from the user...</p>
+	            <button onclick="loadWebGLDemo();">WebGL demo</button>
+	            <p>Load a WebGL demo...(iOS ONLY)</p>
 	            <button onclick="hideCanvasView();">Hide Canvas</button>
 	            <p>Make the canvas view visible to the user...</p>
 	            <button onclick="showCanvasView();">Show Canvas</button>

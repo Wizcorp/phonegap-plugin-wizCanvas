@@ -131,7 +131,7 @@ EJ_BIND_FUNCTION( showLeaderboard, ctx, argc, argv ) {
         leaderboard.category = JSValueToNSString(ctx, argv[0]);
 
         // Modification for WizCanvasView
-        [scriptView.view.window.rootViewController presentModalViewController:leaderboard animated:YES];
+        [scriptView.window.window.rootViewController presentModalViewController:leaderboard animated:YES];
     }
 
     return NULL;
@@ -219,7 +219,7 @@ EJ_BIND_FUNCTION( showAchievements, ctx, argc, argv ) {
         viewIsActive = true;
         achievementView.achievementDelegate = self;
         // Modification for WizCanvasView
-        [scriptView.view.window.rootViewController presentModalViewController:achievementView animated:YES];
+        [scriptView.window.window.rootViewController presentModalViewController:achievementView animated:YES];
     }
     return NULL;
 }

@@ -18,39 +18,23 @@
 @property (nonatomic, retain) NSString *showViewCallbackId;
 @property (nonatomic, retain) NSString *hideViewCallbackId;
 @property (nonatomic, readwrite, assign) id<UIWebViewDelegate> webviewDelegate;
-@property (nonatomic, retain) UIView *canvasView;
 
 + (NSMutableDictionary *)getViews;
 + (NSMutableDictionary *)getViewLoadedCallbackId;
 + (WizCanvasPlugin *)instance;
 
-/**
- 
- PHONEGAP HOOKS
- 
- **/
+// PhoneGap APIs
 - (void)createView:(CDVInvokedUrlCommand *)command;
 - (void)hideView:(CDVInvokedUrlCommand *)command;
 - (void)showView:(CDVInvokedUrlCommand *)command;
-- (void)updateView:(CDVInvokedUrlCommand *)command;
 - (void)load:(CDVInvokedUrlCommand *)command;;
 - (void)removeView:(CDVInvokedUrlCommand *)command;
 - (void)setLayout:(CDVInvokedUrlCommand *)command;
 
-
-/**
- 
- INTERNALS
- 
- **/
+// Post Message
 - (void)postMessage:(NSString *)targetView withMessage:(NSString *)message andMessageType:(NSString *)type fromView:(NSString *)originView;
-- (void)updateViewList;
 
-/**
- 
- ANIMATION METHODS
- 
- **/
+// Animations
 - (void)hideWithNoAnimation:(UIView *)view;
 - (void)showWithNoAnimation:(UIView *)view;
 

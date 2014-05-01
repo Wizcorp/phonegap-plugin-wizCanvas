@@ -5,6 +5,7 @@
 #import "EJCanvas2DTypes.h"
 #import "EJCanvasContext.h"
 #import "EJFont.h"
+#import "EJFontCache.h"
 #import "EJSharedOpenGLContext.h"
 
 #define EJ_CANVAS_STATE_STACK_SIZE 16
@@ -45,7 +46,12 @@ typedef enum {
 	kEJCompositeOperationDestinationOut,
 	kEJCompositeOperationDestinationOver,
 	kEJCompositeOperationSourceAtop,
-	kEJCompositeOperationXOR
+	kEJCompositeOperationXOR,
+	kEJCompositeOperationCopy,
+	kEJCompositeOperationSourceIn,
+	kEJCompositeOperationDestinationIn,
+	kEJCompositeOperationSourceOut,
+	kEJCompositeOperationDestinationAtop
 } EJCompositeOperation;
 
 typedef struct { GLenum source; GLenum destination; float alphaFactor; } EJCompositeOperationFunc;
@@ -108,7 +114,8 @@ static inline EJColorRGBA EJCanvasBlendStrokeColor( EJCanvasState *state ) {
 	GLuint viewFrameBuffer, viewRenderBuffer;
 	GLuint msaaFrameBuffer, msaaRenderBuffer;
 	GLuint stencilBuffer;
-	
+	GLubyte stencilMask;
+    
 	short bufferWidth, bufferHeight;
 	
 	GLenum textureFilter;
@@ -127,9 +134,9 @@ static inline EJColorRGBA EJCanvasBlendStrokeColor( EJCanvasState *state ) {
 	BOOL useRetinaResolution;
 	float backingStoreRatio;
 	
-	NSCache *fontCache;
+	EJFontCache *fontCache;
 
-    WizCanvasView *scriptView;
+	WizCanvasView *scriptView;
 	EJGLProgram2D *currentProgram;
 	EJSharedOpenGLContext *sharedGLContext;
 }
@@ -190,7 +197,7 @@ static inline EJColorRGBA EJCanvasBlendStrokeColor( EJCanvasState *state ) {
 - (void)putImageData:(EJImageData*)imageData scaled:(float)scale dx:(float)dx dy:(float)dy;
 - (void)beginPath;
 - (void)closePath;
-- (void)fill;
+- (void)fill:(EJPathFillRule)fillRule;
 - (void)stroke;
 - (void)moveToX:(float)x y:(float)y;
 - (void)lineToX:(float)x y:(float)y;
@@ -204,17 +211,17 @@ static inline EJColorRGBA EJCanvasBlendStrokeColor( EJCanvasState *state ) {
 - (void)strokeText:(NSString *)text x:(float)x y:(float)y;
 - (EJTextMetrics)measureText:(NSString *)text;
 
-- (void)clip;
+- (void)clip:(EJPathFillRule)fillRule;
 - (void)resetClip;
 
 @property (nonatomic) EJCanvasState *state;
 @property (nonatomic) EJCompositeOperation globalCompositeOperation;
-@property (nonatomic, retain) EJImageData *temp;
 @property (nonatomic, retain) EJFontDescriptor *font;
 @property (nonatomic, retain) NSObject<EJFillable> *fillObject;
 @property (nonatomic, assign) float backingStoreRatio;
 @property (nonatomic) BOOL useRetinaResolution;
 @property (nonatomic) BOOL imageSmoothingEnabled;
+@property (nonatomic) GLubyte stencilMask;
 
 /* TODO: not yet implemented:
 	shadowOffsetX

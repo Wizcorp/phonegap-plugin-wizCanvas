@@ -169,8 +169,8 @@ EJ_BIND_FUNCTION(play, ctx, argc, argv) {
 	// player.view.frame = scriptView.bounds;
 	// [scriptView addSubview:player.view];
 
-    player.view.frame = scriptView.view.bounds;
-    [scriptView.view addSubview:player.view];
+    player.view.frame = scriptView.bounds;
+    [scriptView addSubview:player.view];
 
 	player.scalingMode = EJVideoToMPMovieScalingMode[scalingMode];
 	player.controlStyle = showControls ? MPMovieControlStyleEmbedded : MPMovieControlStyleNone;

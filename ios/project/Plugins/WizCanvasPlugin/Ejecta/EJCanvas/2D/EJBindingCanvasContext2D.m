@@ -38,7 +38,12 @@ EJ_BIND_ENUM(globalCompositeOperation, renderingContext.globalCompositeOperation
 	"destination-out",	// kEJCompositeOperationDestinationOut
 	"destination-over",	// kEJCompositeOperationDestinationOver
 	"source-atop",		// kEJCompositeOperationSourceAtop
-	"xor"				// kEJCompositeOperationXOR
+	"xor",				// kEJCompositeOperationXOR
+	"copy",				// kEJCompositeOperationCopy
+	"source-in",		// kEJCompositeOperationSourceIn
+	"destination-in",	// kEJCompositeOperationDestinationIn
+	"source-out",		// kEJCompositeOperationSourceOut
+	"destination-atop"	// kEJCompositeOperationDestinationAtop
 );
 
 EJ_BIND_ENUM(lineCap, renderingContext.state->lineCap,
@@ -166,8 +171,9 @@ EJ_BIND_SET(font, ctx, value) {
 	if( font ) {
 		renderingContext.font = font;
 	}
-	else {
-		NSLog(@"Warning: No font with name %s", name);
+	else if (size) {
+        // Font name not found, but we have a size? Use the current font and just change the size
+        renderingContext.font = [EJFontDescriptor descriptorWithName:renderingContext.font.name size:size];
 	}
 	
 	JSStringRelease(jsString);
@@ -234,10 +240,10 @@ EJ_BIND_FUNCTION(drawImage, ctx, argc, argv) {
 	// as the image being drawn; i.e. a texture canvas drawing into itself.
 	scriptView.currentRenderingContext = renderingContext;
 	
-	NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSObjectGetPrivate((JSObjectRef)argv[0]);
+	NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSValueGetPrivate(argv[0]);
 	EJTexture *image = drawable.texture;
 	
-	if( !image ) { return NULL; }
+	if( !image.textureId ) { return NULL; }
 	
 	float scale = image.contentScale;
 	
@@ -320,10 +326,8 @@ EJ_BIND_FUNCTION(createImageData, ctx, argc, argv) {
 }
 
 EJ_BIND_FUNCTION(putImageData, ctx, argc, argv) {
-	if( argc < 3 ) { return NULL; }
-	
-	EJBindingImageData *jsImageData = (EJBindingImageData *)JSObjectGetPrivate((JSObjectRef)argv[0]);
 	EJ_UNPACK_ARGV_OFFSET(1, float dx, float dy);
+    EJBindingImageData *jsImageData = (EJBindingImageData *)JSValueGetPrivate(argv[0]);
 	
 	scriptView.currentRenderingContext = renderingContext;
 
@@ -391,10 +395,10 @@ EJ_BIND_FUNCTION(createRadialGradient, ctx, argc, argv) {
 
 EJ_BIND_FUNCTION(createPattern, ctx, argc, argv) {
 	if( argc < 1 ) { return NULL; }
-	NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSObjectGetPrivate((JSObjectRef)argv[0]);
+	NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSValueGetPrivate(argv[0]);
 	EJTexture *image = drawable.texture;
 	
-	if( !image ) { return NULL; }
+	if( !image.textureId ) { return NULL; }
 	
 	EJCanvasPatternRepeat repeat = kEJCanvasPatternRepeat;
 	if( argc > 1 ) {
@@ -424,8 +428,12 @@ EJ_BIND_FUNCTION( closePath, ctx, argc, argv ) {
 }
 
 EJ_BIND_FUNCTION( fill, ctx, argc, argv ) {
+    EJPathFillRule fillRule = (argc > 0 && [JSValueToNSString(ctx, argv[0]) isEqualToString:@"evenodd"])
+        ? kEJPathFillRuleEvenOdd
+        : kEJPathFillRuleNonZero;
+    
 	scriptView.currentRenderingContext = renderingContext;
-	[renderingContext fill];
+	[renderingContext fill:fillRule];
 	return NULL;
 }
 
@@ -490,10 +498,8 @@ EJ_BIND_FUNCTION( measureText, ctx, argc, argv ) {
 }
 
 EJ_BIND_FUNCTION( fillText, ctx, argc, argv ) {
-	if( argc < 3 ) { return NULL; }
-	
+    EJ_UNPACK_ARGV_OFFSET(1, float x, float y);
 	NSString *string = JSValueToNSString(ctx, argv[0]);
-	EJ_UNPACK_ARGV_OFFSET(1, float x, float y);
 	
 	scriptView.currentRenderingContext = renderingContext;
 	[renderingContext fillText:string x:x y:y];
@@ -501,10 +507,8 @@ EJ_BIND_FUNCTION( fillText, ctx, argc, argv ) {
 }
 
 EJ_BIND_FUNCTION( strokeText, ctx, argc, argv ) {
-	if( argc < 3 ) { return NULL; }
-	
+    EJ_UNPACK_ARGV_OFFSET(1, float x, float y);
 	NSString *string = JSValueToNSString(ctx, argv[0]);
-	EJ_UNPACK_ARGV_OFFSET(1, float x, float y);
 	
 	scriptView.currentRenderingContext = renderingContext;
 	[renderingContext strokeText:string x:x y:y];
@@ -512,8 +516,12 @@ EJ_BIND_FUNCTION( strokeText, ctx, argc, argv ) {
 }
 
 EJ_BIND_FUNCTION( clip, ctx, argc, argv ) {
+	EJPathFillRule fillRule = (argc > 0 && [JSValueToNSString(ctx, argv[0]) isEqualToString:@"evenodd"])
+    ? kEJPathFillRuleEvenOdd
+    : kEJPathFillRuleNonZero;
+    
 	scriptView.currentRenderingContext = renderingContext;
-	[renderingContext clip];
+	[renderingContext clip:fillRule];
 	return NULL;
 }
 

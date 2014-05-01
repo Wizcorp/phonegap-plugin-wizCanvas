@@ -8239,8 +8239,7 @@ THREE.Loader.prototype = {
 	addStatusElement: function () {
 
 		var e = document.createElement( "div" );
-/*
-ERROR HERE
+
 		e.style.position = "absolute";
 		e.style.right = "0px";
 		e.style.top = "0px";
@@ -8251,7 +8250,7 @@ ERROR HERE
 		e.style.width = "120px";
 		e.style.padding = "0.5em 0.5em 0.5em 0.5em";
 		e.style.zIndex = 1000;
-*/
+
 		e.innerHTML = "Loading ...";
 
 		return e;

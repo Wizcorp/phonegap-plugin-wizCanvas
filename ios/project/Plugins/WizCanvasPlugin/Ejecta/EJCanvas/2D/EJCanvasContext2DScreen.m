@@ -82,7 +82,7 @@
 		
 		// Append the OpenGL view to Ejecta's main view
         // Modification for WizCanvasView
-		[scriptView.view addSubview:glview];
+		[scriptView addSubview:glview];
 	}
 	else {
 		// Resize an existing view
