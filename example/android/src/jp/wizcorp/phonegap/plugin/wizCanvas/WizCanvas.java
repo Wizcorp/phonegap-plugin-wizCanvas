@@ -43,9 +43,11 @@ import android.widget.FrameLayout;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.zip.GZIPInputStream;
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -130,9 +132,7 @@ public class WizCanvas extends View {
                         "if (!wizCanvasMessenger) {" +
                         "wizCanvasMessenger = new Ejecta.WizCanvasMessenger('" + _viewName + "');" +
                         "wizCanvasMessenger.onmessage = function (origin, target, data, type) {" +
-                        "origin = decodeURIComponent(origin);" +
-                        "target = decodeURIComponent(target);" +
-                        "data = decodeURIComponent(data);" +
+                        "data = window.decodeURIComponent(data.replace(/%27/g, \"'\"));" +
                         "if (type === 'Array') {" +
                         "data = JSON.parse(data);" +
                         "} else if (type === 'String') {" +

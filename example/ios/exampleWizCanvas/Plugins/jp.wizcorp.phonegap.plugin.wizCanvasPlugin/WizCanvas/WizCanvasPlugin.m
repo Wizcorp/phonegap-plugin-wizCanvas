@@ -10,6 +10,7 @@
 #import "WizCanvasView.h"
 #import "WizDebugLog.h"
 #import "EAGLView.h"
+#import "NSString+URLEncoding.h"
 
 @implementation WizCanvasPlugin
 
@@ -628,7 +629,9 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
         NSString *viewType = [self checkView:[wizViewList objectForKey:targetView]];
         NSLog(@"Sending message: %@ targetView: %@", viewType, targetView);
 
-        NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent( '%@', '%@', '%@', '%@' );",
+        message = [message urlEncodeUsingEncoding:NSUTF8StringEncoding];
+
+        NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent('%@', '%@', '%@', '%@');",
                         originView,
                         targetView,
                         message,
@@ -1239,10 +1242,9 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
 
             NSString *data = [[NSString alloc] initWithString:(NSString*)[messageComponents objectAtIndex:2]];
             NSString *type = [[NSString alloc] initWithString:(NSString*)[messageComponents objectAtIndex:3]];
-            NSString *postDataEscaped = [data stringByReplacingOccurrencesOfString:@"'" withString:@"\\'"];
 
             WizCanvasView *targetCanvasView = (WizCanvasView *)[viewList objectForKey:targetView];
-            NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent( window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), window.decodeURIComponent('%@'), '%@' );", originView, targetView, postDataEscaped, type];
+            NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent('%@', '%@', '%@', '%@');", originView, targetView, data, type];
             [targetCanvasView evaluateScript:js];
 
             [data release];
