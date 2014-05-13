@@ -167,7 +167,7 @@ WizCanvasMessenger.prototype.postMessage = function (message, targetView) {
     }
     
 	var iframe = document.createElement('IFRAME');
-	iframe.setAttribute('src', 'wizPostMessage://'+ window.encodeURIComponent(window.name) + '?' + window.encodeURIComponent(targetView) + '?' + window.encodeURIComponent(message) + '?' + type );
+	iframe.setAttribute('src', 'wizPostMessage://'+ window.name + '?' + targetView + '?' + this._encodeMessage(message) + '?' + type);
 	// In case of heavy load or multiple views add a setTimeout
 	setTimeout(function () {
         document.documentElement.appendChild(iframe);
@@ -180,6 +180,7 @@ WizCanvasMessenger.prototype.postMessage = function (message, targetView) {
 WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, data, type) { 
 	// Trigger message event
 	// Check message type
+    data = this._decodeMessage(data);
     if (type === "Array") {
         data = JSON.parse(data);
     } else if (type === "String") {
@@ -206,5 +207,13 @@ WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, d
 	event.data = data;
 	dispatchEvent(event);
 };
-	
+
+WizCanvasMessenger.prototype._encodeMessage = function (message) {
+    return window.encodeURIComponent(message).replace(/'/g, "%27");
+};
+
+WizCanvasMessenger.prototype._decodeMessage = function (message) {
+    return window.decodeURIComponent(message.replace(/%27/g, "'"));
+};
+
 window.wizCanvasMessenger = new WizCanvasMessenger();

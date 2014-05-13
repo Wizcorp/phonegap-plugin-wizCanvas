@@ -1,6 +1,7 @@
 #import <JavaScriptCore/JSTypedArray.h>
 #import "EJBindingWizCanvasMessenger.h"
 #import "WizCanvasPlugin.h"
+#import "NSString+URLEncoding.h"
 
 @implementation EJBindingWizCanvasMessenger {
 
@@ -38,6 +39,7 @@ EJ_BIND_FUNCTION(__triggerMessageEvent, ctx, argc, argv) {
         origin = JSValueToNSString(ctx, argv[0]);
         targetView = JSValueToNSString(ctx, argv[1]);
         data = JSValueToNSString(ctx, argv[2]);
+        data = [data urlDecodeUsingEncoding:NSUTF8StringEncoding];
         type = JSValueToNSString(ctx, argv[3]);
         NSLog(@"type: %@", type);
     } else {
