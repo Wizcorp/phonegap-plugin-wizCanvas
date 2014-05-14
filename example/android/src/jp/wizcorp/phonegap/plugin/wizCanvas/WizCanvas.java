@@ -132,11 +132,13 @@ public class WizCanvas extends View {
                         "if (!wizCanvasMessenger) {" +
                         "wizCanvasMessenger = new Ejecta.WizCanvasMessenger('" + _viewName + "');" +
                         "wizCanvasMessenger.onmessage = function (origin, target, data, type) {" +
-                        "data = window.decodeURIComponent(data.replace(/%27/g, \"'\"));" +
+                        "origin = decodeURIComponent(origin);" +
+                        "target = decodeURIComponent(target);" +
+                        "data = decodeURIComponent(data);" +
                         "if (type === 'Array') {" +
                         "data = JSON.parse(data);" +
                         "} else if (type === 'String') {" +
-                        "/* Stringy String String */" +
+                        "/* Nothing to see here */" +
                         "} else if (type === 'Number') {" +
                         "data = JSON.parse(data);" +
                         "} else if (type === 'Boolean') {" +

@@ -12,9 +12,6 @@
 */
 package jp.wizcorp.phonegap.plugin.wizCanvas;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -75,17 +72,12 @@ public class WizCanvasPlugin extends CordovaPlugin {
                             String type = intent.getStringExtra("TYPE");
                             String source = intent.getStringExtra("SOURCE");
 
-                            message = encodeMessage(message);
-                            
                             try {
                                 final CordovaWebView _targetView = (CordovaWebView) viewList.get(targetView);
                                 // __triggerMessageEvent: function(origin, target, data, type) { }
-                                final String js = String.format(
-                                        "javascript:(function () { window.wizCanvasMessenger.__triggerMessageEvent('%s', '%s', '%s', '%s'); })()",
-                                        source,
-                                        targetView,
-                                        message,
-                                        type);
+                                final String js = 
+                                    "javascript:(function () { window.wizCanvasMessenger.__triggerMessageEvent(\"" + source + "\", \"" + targetView + "\", " + message + ", \"" + type + "\"); })()";
+
                                 Log.d(TAG, "Sending message into: " + targetView);
                                 cordova.getActivity().runOnUiThread(
                                         new Runnable() {
@@ -101,25 +93,6 @@ public class WizCanvasPlugin extends CordovaPlugin {
                         }
                     }
                 }
-            }
-            
-            private String encodeMessage(String message) {
-            	String encodedMessage = null;
-            	try {
-                    // URLEncoder behaviour differs from JavaScript encodeURLComponent
-                    // For more info, see: http://stackoverflow.com/a/607403
-                    encodedMessage = URLEncoder.encode(message, "UTF-8")
-                                    .replace("+", "%20")
-                                    .replace("%21", "!")
-                                    .replace("%28", "(")
-                                    .replace("%29", ")")
-                                    .replace("%7E", "~");
-                                    // .replace("%27", "'") We don't want quotes to be turned back
-                                    // .replace("\\", "%5C"); Backslash should be handled by URLEncoder
-                } catch (UnsupportedEncodingException e1) {
-                    Log.e(TAG, "Encoding message failed.");
-                }
-                return encodedMessage;
             }
         };
 
