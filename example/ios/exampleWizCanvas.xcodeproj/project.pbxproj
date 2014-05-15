@@ -122,6 +122,7 @@
 		80A418E6DA1F48B6962510BD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D186244A43477EBC9C6808 /* SystemConfiguration.framework */; };
 		909459232FFD4AFF8CB59EA2 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B2FE53364584E6DB88816B3 /* CoreMotion.framework */; };
 		A7DBBFCC5DC84EBA9B2CD4C4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6664B8D657694CA09C4D5631 /* OpenGLES.framework */; };
+		C6DE697D1922136500537807 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DE697C1922136500537807 /* NSString+URLEncoding.m */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		D6E97C63905E42FEA4DC1B8C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 462F70DE5650453FAF0BC5B2 /* MediaPlayer.framework */; };
 		F44745E07801467DA4D62507 /* RadialGradient.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 99D0CB1E9E79447C957BEE30 /* RadialGradient.fsh */; };
@@ -343,6 +344,8 @@
 		99D0CB1E9E79447C957BEE30 /* RadialGradient.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; path = RadialGradient.fsh; sourceTree = "<group>"; };
 		B5D427E6A5F347FDBFB97AB9 /* libicucore.dylib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		C022E62328DD4AD5B36CC236 /* iAd.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		C6DE697B1922136500537807 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		C6DE697C1922136500537807 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		D9761219F4044572A774A294 /* Texture.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = unknown; path = Texture.fsh; sourceTree = "<group>"; };
 		DE7A837E094A42908C69C71E /* CoreText.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -740,6 +743,8 @@
 		414592D71907AD1F00A18B62 /* WizCanvas */ = {
 			isa = PBXGroup;
 			children = (
+				C6DE697B1922136500537807 /* NSString+URLEncoding.h */,
+				C6DE697C1922136500537807 /* NSString+URLEncoding.m */,
 				414592D81907AD1F00A18B62 /* WizCanvasPlugin.h */,
 				414592D91907AD1F00A18B62 /* WizCanvasPlugin.m */,
 				414592DA1907AD1F00A18B62 /* WizCanvasView.h */,
@@ -990,6 +995,7 @@
 				414592F01907AD2000A18B62 /* EJConvertColorRGBA.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				414592F21907AD2000A18B62 /* EJGLProgram2D.m in Sources */,
+				C6DE697D1922136500537807 /* NSString+URLEncoding.m in Sources */,
 				414592FE1907AD2000A18B62 /* EJBindingCanvasContextWebGL.m in Sources */,
 				414592EA1907AD2000A18B62 /* EJBindingTextMetrics.m in Sources */,
 			);

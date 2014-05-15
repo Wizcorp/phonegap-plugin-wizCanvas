@@ -75,18 +75,15 @@ public class WizCanvasPlugin extends CordovaPlugin {
                             try {
                                 final CordovaWebView _targetView = (CordovaWebView) viewList.get(targetView);
                                 // __triggerMessageEvent: function(origin, target, data, type) { }
-                                final String js = String.format(
-                                        "window.wizCanvasMessenger.__triggerMessageEvent('%s', '%s', '%s', '%s');",
-                                        source,
-                                        targetView,
-                                        message,
-                                        type);
+                                final String js = 
+                                    "javascript:(function () { window.wizCanvasMessenger.__triggerMessageEvent(\"" + source + "\", \"" + targetView + "\", " + message + ", \"" + type + "\"); })()";
+
                                 Log.d(TAG, "Sending message into: " + targetView);
                                 cordova.getActivity().runOnUiThread(
                                         new Runnable() {
                                             @Override
                                             public void run() {
-                                                _targetView.sendJavascript(js);
+                                                _targetView.loadUrl(js);
                                             }
                                         }
                                 );
@@ -136,7 +133,6 @@ public class WizCanvasPlugin extends CordovaPlugin {
                     // Send message to canvas
                     Log.d(TAG, "sending to canvas...");
                     String data2send = msgData[2];
-                    data2send = data2send.replace("'", "\\'");
 
                     if (canvas != null) {
                         canvas.postMessage(msgData[1], String.format("%s", data2send), msgData[3]);

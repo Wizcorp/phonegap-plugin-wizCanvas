@@ -167,7 +167,7 @@ WizCanvasMessenger.prototype.postMessage = function (message, targetView) {
     }
     
 	var iframe = document.createElement('IFRAME');
-	iframe.setAttribute('src', 'wizPostMessage://'+ window.encodeURIComponent(window.name) + '?' + window.encodeURIComponent(targetView) + '?' + window.encodeURIComponent(message) + '?' + type );
+	iframe.setAttribute('src', "wizPostMessage://" + window.encodeURIComponent(window.name) + "?" + window.encodeURIComponent(targetView) + "?" + window.encodeURIComponent(message) + "?" + type);
 	// In case of heavy load or multiple views add a setTimeout
 	setTimeout(function () {
         document.documentElement.appendChild(iframe);
@@ -179,24 +179,7 @@ WizCanvasMessenger.prototype.postMessage = function (message, targetView) {
     
 WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, data, type) { 
 	// Trigger message event
-	// Check message type
-    if (type === "Array") {
-        data = JSON.parse(data);
-    } else if (type === "String") {
-        // Stringy String String
-    } else if (type === "Number") {
-        data = JSON.parse(data);
-    } else if (type === "Boolean") {
-        data = Boolean(data);
-    } else if (type === "Function") {
-        // W3C says nothing about functions, will be returned as string.
-    } else if (type === "Object") {
-        data = JSON.parse(data);
-    } else {
-        console.error("Message Event received unknown type!");
-        return;
-    }
-	
+
 	var event = document.createEvent("HTMLEvents");
 	event.initEvent("message", true, true);
 	event.eventName = "message";
@@ -206,5 +189,5 @@ WizCanvasMessenger.prototype.__triggerMessageEvent = function (origin, target, d
 	event.data = data;
 	dispatchEvent(event);
 };
-	
+
 window.wizCanvasMessenger = new WizCanvasMessenger();});

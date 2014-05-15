@@ -136,7 +136,7 @@ public class WizCanvas extends View {
                         "if (type === 'Array') {" +
                         "data = JSON.parse(data);" +
                         "} else if (type === 'String') {" +
-                        "/* Stringy String String */" +
+                        "/* Nothing to see here */" +
                         "} else if (type === 'Number') {" +
                         "data = JSON.parse(data);" +
                         "} else if (type === 'Boolean') {" +

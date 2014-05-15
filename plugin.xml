@@ -72,7 +72,10 @@
         
         <header-file src="ios/project/Plugins/WizCanvasPlugin/WizCanvasView.h" target-dir="WizCanvas" />
         <source-file src="ios/project/Plugins/WizCanvasPlugin/WizCanvasView.m" compiler-flags="-fno-objc-arc" target-dir="WizCanvas" />
-        	               
+        
+        <header-file src="ios/project/Plugins/WizCanvasPlugin/NSString+URLEncoding.h" target-dir="WizCanvas" />
+        <source-file src="ios/project/Plugins/WizCanvasPlugin/NSString+URLEncoding.m" target-dir="WizCanvas" />
+                           
         <!-- Ejecta files -->
         <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSource.h" target-dir="Ejecta/EJAudio" />
                 
