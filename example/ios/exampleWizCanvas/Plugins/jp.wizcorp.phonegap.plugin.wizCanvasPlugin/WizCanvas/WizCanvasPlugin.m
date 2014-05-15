@@ -10,7 +10,6 @@
 #import "WizCanvasView.h"
 #import "WizDebugLog.h"
 #import "EAGLView.h"
-#import "NSString+URLEncoding.h"
 
 @implementation WizCanvasPlugin
 
