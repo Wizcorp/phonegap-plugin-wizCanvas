@@ -31,21 +31,21 @@
 			</feature>
 		</config-file>
 	    
-	    <source-file src="android/src/jp/wizcorp/phonegap/plugin/wizCanvas/WizCanvasPlugin.java" 
+	    <source-file src="platforms/android/src/jp/wizcorp/phonegap/plugin/wizCanvas/WizCanvasPlugin.java" 
             target-dir="src/jp/wizcorp/phonegap/plugin/wizCanvas"/>
-        <source-file src="android/src/jp/wizcorp/phonegap/plugin/wizCanvas/WizCanvas.java" 
+        <source-file src="platforms/android/src/jp/wizcorp/phonegap/plugin/wizCanvas/WizCanvas.java" 
             target-dir="src/jp/wizcorp/phonegap/plugin/wizCanvas"/>
             
-        <source-file src="android/src/com/impactjs/ejecta/EjectaGLSurfaceView.java" 
+        <source-file src="platforms/android/src/com/impactjs/ejecta/EjectaGLSurfaceView.java" 
             target-dir="src/com/impactjs/ejecta"/>
-        <source-file src="android/src/com/impactjs/ejecta/EjectaRenderer.java" 
+        <source-file src="platforms/android/src/com/impactjs/ejecta/EjectaRenderer.java" 
             target-dir="src/com/impactjs/ejecta"/>
-        <source-file src="android/src/com/impactjs/ejecta/Utils.java" 
+        <source-file src="platforms/android/src/com/impactjs/ejecta/Utils.java" 
             target-dir="src/com/impactjs/ejecta"/>
             
-        <source-file src="android/libs/armeabi/" 
+        <source-file src="platforms/android/libs/armeabi/" 
             target-dir="libs"/>
-        <source-file src="android/libs/armeabi-v7a/" 
+        <source-file src="platforms/android/libs/armeabi-v7a/" 
             target-dir="libs"/>
              
         <asset src="www/phonegap/plugin/wizCanvas/android/ejecta.js" target="ejecta.js" />
@@ -67,226 +67,226 @@
         </config-file>
                
         <!-- Plugin files -->
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/WizCanvasPlugin.h" target-dir="WizCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/WizCanvasPlugin.m" compiler-flags="-fno-objc-arc" target-dir="WizCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/WizCanvasPlugin.h" target-dir="WizCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/WizCanvasPlugin.m" compiler-flags="-fno-objc-arc" target-dir="WizCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/WizCanvasView.h" target-dir="WizCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/WizCanvasView.m" compiler-flags="-fno-objc-arc" target-dir="WizCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/WizCanvasView.h" target-dir="WizCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/WizCanvasView.m" compiler-flags="-fno-objc-arc" target-dir="WizCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/NSString+URLEncoding.h" target-dir="WizCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/NSString+URLEncoding.m" target-dir="WizCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/NSString+URLEncoding.h" target-dir="WizCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/NSString+URLEncoding.m" target-dir="WizCanvas" />
                            
         <!-- Ejecta files -->
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSource.h" target-dir="Ejecta/EJAudio" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSource.h" target-dir="Ejecta/EJAudio" />
                 
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceAVAudio.h" target-dir="Ejecta/EJAudio" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceAVAudio.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceAVAudio.h" target-dir="Ejecta/EJAudio" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceAVAudio.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceOpenAL.h" target-dir="Ejecta/EJAudio" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceOpenAL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceOpenAL.h" target-dir="Ejecta/EJAudio" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJAudioSourceOpenAL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJBindingAudio.h" target-dir="Ejecta/EJAudio" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJBindingAudio.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJBindingAudio.h" target-dir="Ejecta/EJAudio" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJBindingAudio.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJOpenALBuffer.h" target-dir="Ejecta/EJAudio" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJOpenALBuffer.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJOpenALBuffer.h" target-dir="Ejecta/EJAudio" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJOpenALBuffer.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJSharedOpenALManager.h" target-dir="Ejecta/EJAudio" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJSharedOpenALManager.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJSharedOpenALManager.h" target-dir="Ejecta/EJAudio" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJAudio/EJSharedOpenALManager.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJAudio" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJBindingBase.h" target-dir="Ejecta" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJBindingBase.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJBindingBase.h" target-dir="Ejecta" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJBindingBase.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJBindingEjectaCore.h" target-dir="Ejecta" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJBindingEjectaCore.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJBindingEjectaCore.h" target-dir="Ejecta" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJBindingEjectaCore.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJBindingEventedBase.h" target-dir="Ejecta" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJBindingEventedBase.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJBindingEventedBase.h" target-dir="Ejecta" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJBindingEventedBase.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJBindingVideo.h" target-dir="Ejecta" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJBindingVideo.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJBindingVideo.h" target-dir="Ejecta" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJBindingVideo.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasContext2D.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasContext2D.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasContext2D.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasContext2D.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasGradient.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasGradient.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasGradient.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasGradient.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasPattern.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasPattern.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasPattern.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingCanvasPattern.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingImageData.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingImageData.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingImageData.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingImageData.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingTextMetrics.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingTextMetrics.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingTextMetrics.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJBindingTextMetrics.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvas2DTypes.h" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvas2DTypes.h" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2D.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2D.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2D.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2D.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DScreen.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DScreen.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DScreen.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DScreen.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DTexture.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DTexture.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DTexture.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasContext2DTexture.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasGradient.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasGradient.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasGradient.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasGradient.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasPattern.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasPattern.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasPattern.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJCanvasPattern.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJConvertColorRGBA.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJConvertColorRGBA.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJConvertColorRGBA.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJConvertColorRGBA.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFont.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFont.mm" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFont.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFont.mm" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFontCache.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFontCache.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFontCache.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJFontCache.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2D.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2D.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2D.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2D.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2DRadialGradient.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2DRadialGradient.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2DRadialGradient.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJGLProgram2DRadialGradient.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJImageData.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJImageData.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJImageData.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJImageData.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJPath.h" target-dir="Ejecta/EJCanvas/2D" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJPath.mm" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJPath.h" target-dir="Ejecta/EJCanvas/2D" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/EJPath.mm" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/2D" />
         
-        <resource-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/AlphaTexture.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
-        <resource-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Flat.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
-        <resource-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Pattern.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
-        <resource-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/RadialGradient.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
-        <resource-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Texture.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
-        <resource-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Vertex.vsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
+        <resource-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/AlphaTexture.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
+        <resource-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Flat.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
+        <resource-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Pattern.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
+        <resource-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/RadialGradient.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
+        <resource-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Texture.fsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
+        <resource-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/2D/Shaders/Vertex.vsh" target-dir="Ejecta/EJCanvas/2D/Shaders" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EAGLView.h" target-dir="Ejecta/EJCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EAGLView.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EAGLView.h" target-dir="Ejecta/EJCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EAGLView.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvas.h" target-dir="Ejecta/EJCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvas.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvas.h" target-dir="Ejecta/EJCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvas.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvasStyle.h" target-dir="Ejecta/EJCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvasStyle.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvasStyle.h" target-dir="Ejecta/EJCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingCanvasStyle.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingImage.h" target-dir="Ejecta/EJCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingImage.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingImage.h" target-dir="Ejecta/EJCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJBindingImage.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJCanvasContext.h" target-dir="Ejecta/EJCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJCanvasContext.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJCanvasContext.h" target-dir="Ejecta/EJCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJCanvasContext.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJDrawable.h" target-dir="Ejecta/EJCanvas" />
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJPresentable.h" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJDrawable.h" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJPresentable.h" target-dir="Ejecta/EJCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJSharedTextureCache.h" target-dir="Ejecta/EJCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJSharedTextureCache.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJSharedTextureCache.h" target-dir="Ejecta/EJCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJSharedTextureCache.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJTexture.h" target-dir="Ejecta/EJCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJTexture.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJTexture.h" target-dir="Ejecta/EJCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJTexture.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJTextureStorage.h" target-dir="Ejecta/EJCanvas" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJTextureStorage.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJTextureStorage.h" target-dir="Ejecta/EJCanvas" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/EJTextureStorage.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingCanvasContextWebGL.h" target-dir="Ejecta/EJCanvas/WebGL" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingCanvasContextWebGL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingCanvasContextWebGL.h" target-dir="Ejecta/EJCanvas/WebGL" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingCanvasContextWebGL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLScreen.h" target-dir="Ejecta/EJCanvas/WebGL" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLScreen.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLScreen.h" target-dir="Ejecta/EJCanvas/WebGL" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLScreen.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLExtensions.h" target-dir="Ejecta/EJCanvas/WebGL" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLExtensions.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLExtensions.h" target-dir="Ejecta/EJCanvas/WebGL" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLExtensions.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLObjects.h" target-dir="Ejecta/EJCanvas/WebGL" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLObjects.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLObjects.h" target-dir="Ejecta/EJCanvas/WebGL" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJBindingWebGLObjects.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGL.h" target-dir="Ejecta/EJCanvas/WebGL" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGL.h" target-dir="Ejecta/EJCanvas/WebGL" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJConvertWebGL.h" target-dir="Ejecta/EJCanvas/WebGL" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJConvertWebGL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJConvertWebGL.h" target-dir="Ejecta/EJCanvas/WebGL" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJConvertWebGL.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLTexture.h" target-dir="Ejecta/EJCanvas/WebGL" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLTexture.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLTexture.h" target-dir="Ejecta/EJCanvas/WebGL" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJCanvas/WebGL/EJCanvasContextWebGLTexture.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJCanvas/WebGL" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJClassLoader.h" target-dir="Ejecta" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJClassLoader.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJClassLoader.h" target-dir="Ejecta" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJClassLoader.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJConvert.h" target-dir="Ejecta" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJConvert.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJConvert.h" target-dir="Ejecta" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJConvert.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJNonRetainingProxy.h" target-dir="Ejecta" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJNonRetainingProxy.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJNonRetainingProxy.h" target-dir="Ejecta" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJNonRetainingProxy.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJSharedOpenGLContext.h" target-dir="Ejecta" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJSharedOpenGLContext.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJSharedOpenGLContext.h" target-dir="Ejecta" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJSharedOpenGLContext.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJTimer.h" target-dir="Ejecta" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJTimer.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJTimer.h" target-dir="Ejecta" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJTimer.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingAdBanner.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingAdBanner.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingAdBanner.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingAdBanner.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingDeviceMotion.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingDeviceMotion.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingDeviceMotion.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingDeviceMotion.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGeolocation.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGeolocation.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGeolocation.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGeolocation.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGameCenter.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGameCenter.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGameCenter.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingGameCenter.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingHttpRequest.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingHttpRequest.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingHttpRequest.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingHttpRequest.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingKeyInput.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingKeyInput.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingKeyInput.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingKeyInput.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingLocalStorage.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingLocalStorage.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingLocalStorage.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingLocalStorage.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingTouchInput.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingTouchInput.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingTouchInput.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingTouchInput.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWebSocket.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWebSocket.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWebSocket.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWebSocket.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWindowEvents.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWindowEvents.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWindowEvents.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWindowEvents.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWizCanvasMessenger.h" target-dir="Ejecta/EJUtils" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWizCanvasMessenger.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWizCanvasMessenger.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingWizCanvasMessenger.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPManager.h" target-dir="Ejecta/EJUtils/IAP" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPManager.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils/IAP" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPManager.h" target-dir="Ejecta/EJUtils/IAP" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPManager.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils/IAP" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPProduct.h" target-dir="Ejecta/EJUtils/IAP" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPProduct.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils/IAP" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPProduct.h" target-dir="Ejecta/EJUtils/IAP" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPProduct.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils/IAP" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPTransaction.h" target-dir="Ejecta/EJUtils/IAP" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPTransaction.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils/IAP" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPTransaction.h" target-dir="Ejecta/EJUtils/IAP" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPTransaction.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils/IAP" />
 
         <!-- SocketRocket files -->
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/base64.h" target-dir="lib/SocketRocket" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/base64.c" target-dir="lib/SocketRocket" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/base64.h" target-dir="lib/SocketRocket" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/base64.c" target-dir="lib/SocketRocket" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/NSString+Hashes.h" target-dir="lib/SocketRocket" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/NSString+Hashes.m" target-dir="lib/SocketRocket" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/NSString+Hashes.h" target-dir="lib/SocketRocket" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/NSString+Hashes.m" target-dir="lib/SocketRocket" />
         
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/SocketRocket-Prefix.pch" target-dir="lib/SocketRocket" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/SocketRocket-Prefix.pch" target-dir="lib/SocketRocket" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/SRWebSocket.h" target-dir="lib/SocketRocket" />
-        <source-file src="ios/project/Plugins/WizCanvasPlugin/lib/SocketRocket/SRWebSocket.m" target-dir="lib/SocketRocket" />
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/SRWebSocket.h" target-dir="lib/SocketRocket" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/SRWebSocket.m" target-dir="lib/SocketRocket" />
         
-        <header-file src="ios/project/Plugins/WizCanvasPlugin/WizDebugLog.h"
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/WizDebugLog.h"
         	target-dir="WizCanvas" />
         
-        <framework src="ios/project/Plugins/WizCanvasPlugin/lib/JavaScriptCore.framework" custom="true" />
+        <framework src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/JavaScriptCore.framework" custom="true" />
 
         <!-- iOS Frameworks -->
         <framework src="AVFoundation.framework" />
