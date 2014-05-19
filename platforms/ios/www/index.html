@@ -1,43 +1,464 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+<!--
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#  KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+#
+-->
+  <head>
+  <title></title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<meta charset="utf-8">
+
+    <style>
+        
+        /*********************************************
+        * GLOBAL STYLES
+        *********************************************/
+        
+        * { -webkit-touch-callout: none; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-text-size-adjust: none; -webkit-user-drag: none; }
+        
+        html, body {
+            margin: 0;
+            min-height: 100%;
+        }
+        
+        body {
+            background: #393939;
+            color: #000;
+            font-family: Arial, sans-serif;
+            font-size: medium;
+            line-height: 22px;
+        }
+        
+        .spacer {
+	        margin-top: 20px;
+        }
+        
+        .floatRight {
+	        float: right;
+        }
+        
+        #container {
+        	width: 320px;
+	        margin: 0 auto;
+        }
+        
+        /*********************************************
+        * HEADERS
+        *********************************************/
+                
+        h1 {
+            color: #42679C;
+            font-size: xx-large;
+            margin: 24px 0;
+        }
+        
+        h2 {
+            color: #42679C;
+            font-size: x-large;
+            margin: 32px 0 18px;
+        }
+        
+        h3 {
+            color: #42679C;
+            font-size: large;
+            margin: 30px 0 16px;
+        }
+        
+        h4, h5, h6 {
+            color: #000;
+            font-size: 16px;
+            margin: 20px 0 14px;
+        }
+        
+        /*********************************************
+        * LINKS
+        *********************************************/
+        
+        a {
+            color: #42679C;
+        }
+
+        /*********************************************
+        * BUTTONS
+        *********************************************/
+        
+        .controls {
+            display: block;
+            padding: 15px 0;
+        }
+        
+        button {
+            border: 1px solid #cfcfcf;
+            background: #eee;
+            display: inline-block;
+            line-height: 22px;
+            padding: 5px 20px;
+            color: #333;
+            font-size: large;
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+        }
+        
+        button:not(:disabled):hover {
+            background: #fff;
+            color: #ef4327;
+        }
+        
+        button.small {
+            color: #43679B;
+            font-weight: bold;
+            background: none;
+            line-height: inherit;
+            padding: 2px 5px;
+        }
+        
+        /*********************************************
+        * RADIO BUTTON, INPUT BOXES, CHECK BOXES
+        *********************************************/
+               
+        input[type="checkbox"],
+        input[type="radio"] {
+            display: none;
+        }
+        
+        label + br + input[type="text"]  {
+	    	display: inline-block;
+            margin: 0 2px 2px 0;
+            padding: 2px 4px;
+            border: 1px solid #cfcfcf;
+            color: #000;
+            background: #eee;
+            font-size: larger;  
+            border-radius: 0;
+        }
+        
+        label + br + input[type="password"]  {
+	    	display: inline-block;
+            margin: 0 2px 2px 0;
+            padding: 2px 4px;
+            border: 1px solid #cfcfcf;
+            color: #000;
+            background: #eee;
+            font-size: larger; 
+            border-radius: 0; 
+        }
+        
+        input[type="checkbox"] + label,
+        input[type="radio"] + label {
+            display: inline-block;
+            margin: 0 2px 2px 0;
+            padding: 2px 4px;
+            border: 1px solid #cfcfcf;
+            color: #000;
+            background: #eee;
+            font-size: larger;
+        }
+        
+        input[type="checkbox"] + label:hover,
+        input[type="radio"] + label:hover,
+        input[type="text"] + label:hover {
+            background: #fff;
+            border-color: #ef4327;
+            color: #ef4327;
+        }
+        
+        input[type="checkbox"]:checked + label,
+        input[type="radio"]:checked + label,
+        input[type="text"]:checked + label {
+            background: #ef4327;
+            color: #fff;
+            border-color: #ef4327;
+        }
+        
+        input[type="radio"] + label:before {
+            content: '○';
+            font-size: 16px;
+            margin-right: 3px;
+        }
+        
+        input[type="radio"]:checked + label:before {
+            content: '●';
+        }
+        
+        input[type="checkbox"] + label:before {
+            content: '□';
+            font-size: 15px;
+            margin-right: 4px;
+        }
+        
+        input[type="checkbox"]:checked + label:before {
+            content: '■';
+        }
+        
+        /*********************************************
+        * CODE & SYNTAX
+        *********************************************/
+        
+        code, samp {
+            display: block;
+            background: #393939;
+            color: #fff;
+            padding: 12px;
+            border: 1px solid #000;
+            font-family: 'Lucida Console', Monaco, monospace;
+            font-size: larger;
+            white-space: pre-wrap;
+            position: relative;
+        }
+        
+        code:hover:before, samp:hover:before {
+            display: inline-block;
+            white-space: nowrap;
+            position: absolute;
+            top: -20px;
+            right: -10px;
+            background: #FFD;
+            color: #330;
+            content: 'Click to copy';
+            padding: 2px 4px;
+            font-family: sans-serif;
+            font-size: larger;
+            opacity: 0.9;
+            font-weight: bold;
+        }
+        
+        /*********************************************
+        * SECTION DIVIDERS
+        *********************************************/
+
+		section {
+			margin-bottom: 20px;
+		}
+		
+		/*********************************************
+        * DIALOGS
+        *********************************************/
+		
+		section.dialog {
+			border: 1px solid #999;
+			background: #fff;
+			padding: 12px;
+			margin: 0;
+			position: relative;
+		}
+		
+		section.dialog h1 {
+			display: block;
+			margin: -12px -12px 12px -12px;
+			padding: 10px 4px;
+			background: #eee;
+			text-align: center;
+			font-size: 13px;
+			font-weight: normal;
+			color: #000;
+		}
+		
+		section.dialog section {
+			padding: 20px;
+			margin: 20px -12px;
+			border-top: 1px solid #999;
+			border-bottom: 1px solid #999;
+			border-left: 10px solid #999;
+			border-right: 10px solid #999;
+		}
+		
+		section.dialog section h1 {
+			text-align: center;
+			padding: 0;
+			background: none;
+			color: #42679C;
+			font-size: 13px;
+			margin: 0 0 10px 0;
+		}
+    </style>
+
+
+	<!-- iPad/iPhone specific css below, add after your main css >
+	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
+	<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
+	-->
+	<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    
+    <script type="text/javascript">
+
+
+	// If you want to prevent dragging, uncomment this section
+	/*
+	function preventBehavior(e) 
+	{ 
+      e.preventDefault(); 
+    };
+	document.addEventListener("touchmove", preventBehavior, false);
+	*/
+	
+	/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+	see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+	for more details -jm */
+	/*
+	function handleOpenURL(url)
+	{
+		// TODO: do something with the url passed in.
+	}
+	*/
+	
+	function onBodyLoad()
+	{		
+		document.addEventListener("deviceready", onDeviceReady, false);
+	}
+	
+	/* When this function is called, Cordova has been initialized and is ready to roll */
+	/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+	see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+	for more details -jm */
+	function onDeviceReady()
+	{
+        if (!window.wizCanvas) {
+            alert("Could not find wizCanvas");
+        }
+
+        if (!window.wizCanvasMessenger) {
+            alert("Could not find wizCanvasMessenger");
+        }
+        
+    }
+        
+    function createCanvasView() {
+        wizCanvas.create("newCanvas", { src: "assets/canvas/index.js", height: 300, width: 320, y: 0 }, onCanvasSuccess, onFail);
+    }
+    
+    var onCanvasSuccess = function() {
+        console.log("Created canvas!");
+        
+        // Show the canvas
+        showCanvasView();
+    }
+    
+    function removeCanvasView() {
+        wizCanvas.remove("newCanvas",
+        function () { console.log("Remove canvas success") }, 
+        function () { console.log("Remove canvas failure") });
+    }
+    
+    function showCanvasView() {
+        wizCanvas.show("newCanvas",
+         { animation: { type: "fadeIn", duration: 500 } }, 
+         function () { console.log("Show canvas success") }, 
+         function () { console.log("Show canvas failure") });
+    }
+    
+	var currentLayout = 1; 
+    function layoutCanvasView() {
+		var i = currentLayout;
+		while (i == currentLayout) {
+		   i = Math.floor(Math.random()*4);
+		}
+		currentLayout = i;
+        var params = [
+        	{ height: 300, width: 320, y: 0 },
+        	{ height: 200, width: 320, y: 50 }, 
+        	{ height: 250, width: 320, y: -100 }, 
+        	{ height: 350, width: 320, y: 20 }
+        ];
+        wizCanvas.setLayout("newCanvas", params[i], null, null);
+    }
+    
+    function hideCanvasView() {
+        wizCanvas.hide("newCanvas",
+        { animation: { type: "fadeOut", duration: 500 } }, 
+        function () { console.log("Hide canvas success") }, 
+        function () { console.log("Hide canvas failure") });
+    }
+    
+    function loadWebGLDemo() {
+        removeCanvasView();
+        wizCanvas.create("newCanvas", { height: 300, width: 320, y: 0 }, onCanvasSuccess, onFail);
+        wizCanvas.load("newCanvas", "assets/canvas/webgl_demo.js",
+            function() {
+                console.log("Load into canvas success");
+            },
+            function(e) {
+                console.log("Load into canvas fail. " + e);
+            }
+        );
+    }
+
+    function messageCanvasView() {
+        var params = { color: "blue :)" };
+        // params = "string test";
+        // params = true;
+        // params = 1;
+        // params = function () { console.log("I am a function"); };
+        // params = ["l", 3, 3, 7];
+        wizCanvasMessenger.postMessage(params, "newCanvas");
+    }
+    
+    window.addEventListener('message', wizMessageReceiver, false);
+    
+     
+    function wizMessageReceiver(e) {
+        alert("Sent a message and received a reply from " + e.origin);
+        alert(e.data.message[0]);
+    }
+    
+    window.addEventListener('message', handleMessageFromNewView, false);
+    
+    function handleMessageFromNewView(e) {
+        if (e.origin == 'newView' && e.data == 'hide') {
+            hideView();
+        }
+    }
+    
+    var onSuccess = function (data) {
+        alert("success " + data);
+    }
+    
+    var onFail = function (e) {
+        alert("error = "+e);
+    }
+    
+	</script>
     </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+    <body onload="onBodyLoad()">
+    	<div id="container">
+			<h1>WizCanvas Plugin</h1>
+			<section class="dialog">
+		        <p>Experiment by pressing the buttons to test the create/show/hide/remove/load APIs with wizCanvas.</p>
+		        <p>Create a new canvas...</p>
+	            <button onclick="createCanvasView();">Create Canvas</button>
+	            <p>Send a message to our canvas from this webview...</p>
+	            <button onclick="messageCanvasView();">Message Canvas</button>
+	            <p>Change the layout of the canvas, can be clicked multiple times...</p>
+	            <button onclick="layoutCanvasView();">New Layout Canvas</button>
+	            <p>Load a WebGL demo into the canvas view...</p>
+	            <button onclick="loadWebGLDemo();">WebGL demo</button>
+	            <p>Load a WebGL demo...(iOS ONLY)</p>
+	            <button onclick="hideCanvasView();">Hide Canvas</button>
+	            <p>Make the canvas view visible to the user...</p>
+	            <button onclick="showCanvasView();">Show Canvas</button>
+	            <p>Remove the canvas view...</p>
+	            <button onclick="removeCanvasView();">Remove Canvas</button>
+			</section>
+	    </div>
     </body>
 </html>
