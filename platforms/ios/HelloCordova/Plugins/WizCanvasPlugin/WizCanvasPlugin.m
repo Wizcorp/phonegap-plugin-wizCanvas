@@ -114,6 +114,9 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
     //WizCanvasView *canvas = [[WizCanvasView alloc] initWithWindow:canvasView name:viewName sourceToLoad:src];
     WizCanvasView *canvas = [[WizCanvasView alloc] initWithFrame:newRect];
 
+    // Boot canvasViewMessenger in Ejecta
+    [canvas evaluateScript:[NSString stringWithFormat:@"wizCanvasMessenger = new Ejecta.WizCanvasMessenger(\"%@\");", viewName]];
+
     // Additional boot file
     if (![src isEqualToString:@""]) {
         if ([self validateUrl:src]) {
