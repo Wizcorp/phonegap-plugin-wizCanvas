@@ -106,9 +106,6 @@ void EJBlockFunctionFinalize(JSObjectRef object) {
 
         // Load the initial JavaScript source files
 	    [self loadScriptAtPath:EJECTA_BOOT_JS];
-        
-        // Load wizViewMessenger
-	    [self evaluateScript:[NSString stringWithFormat:@"wizCanvasMessenger = new Ejecta.WizCanvasMessenger(\"%@\");", @"newCanvas"]];
 	}
 	return self;
 }
