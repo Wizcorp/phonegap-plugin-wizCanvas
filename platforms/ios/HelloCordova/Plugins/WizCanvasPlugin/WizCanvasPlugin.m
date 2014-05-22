@@ -1244,7 +1244,7 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
             NSString *type = [[NSString alloc] initWithString:(NSString*)[messageComponents objectAtIndex:3]];
 
             WizCanvasView *targetCanvasView = (WizCanvasView *)[viewList objectForKey:targetView];
-            NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent('%@', '%@', '%@', '%@');", originView, targetView, data, type];
+            NSString *js = [NSString stringWithFormat:@"wizCanvasMessenger.__triggerMessageEvent(\"%@\", \"%@\", \"%@\", \"%@\");", originView, targetView, data, type];
             [targetCanvasView evaluateScript:js];
 
             [data release];
