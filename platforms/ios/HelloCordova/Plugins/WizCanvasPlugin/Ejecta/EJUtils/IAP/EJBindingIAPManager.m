@@ -21,12 +21,12 @@
 }
 
 - (void)dealloc {
-	for( NSValue *v in productRequestCallbacks ) {
+	for( NSValue *v in productRequestCallbacks.allValues ) {
 		JSValueUnprotectSafe(scriptView.jsGlobalContext, v.pointerValue);
 	}
 	[productRequestCallbacks release];
 	
-	for( NSValue *v in products ) {
+	for( NSValue *v in products.allValues ) {
 		JSValueUnprotectSafe(scriptView.jsGlobalContext, v.pointerValue);
 	}
 	[products release];
@@ -39,8 +39,8 @@
 
 - (JSObjectRef)getJSProductWithProduct:(SKProduct *)product {
 	// Create a new IAPProduct or return it straight if it was created previously
-	if( [products objectForKey:product.productIdentifier] ) {
-		return [[products objectForKey:product.productIdentifier] pointerValue];
+	if( products[product.productIdentifier] ) {
+		return [products[product.productIdentifier] pointerValue];
 	}
 	
 	JSGlobalContextRef ctx = scriptView.jsGlobalContext;
@@ -48,14 +48,14 @@
 		createJSObjectWithContext:ctx scriptView:scriptView product:product];
 
 	JSValueProtect(ctx, jsProduct);
-	[products setObject:[NSValue valueWithPointer:jsProduct] forKey:product.productIdentifier];
+	products[product.productIdentifier] = [NSValue valueWithPointer:jsProduct];
 	
 	return jsProduct;
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
 	NSValue *requestKey = [NSValue valueWithPointer:(void *)request];
-	NSValue *callback = [productRequestCallbacks objectForKey:requestKey];
+	NSValue *callback = productRequestCallbacks[requestKey];
 	
 	if( !callback ) {
 		NSLog(@"IAP: Error: product request finished, but no callback set.");
@@ -105,7 +105,7 @@
 			transaction.transactionState == SKPaymentTransactionStatePurchased ||
 			transaction.transactionState == SKPaymentTransactionStateFailed
 		) {
-			JSObjectRef jsProduct = [[products objectForKey:transaction.payment.productIdentifier] pointerValue];
+			JSObjectRef jsProduct = [products[transaction.payment.productIdentifier] pointerValue];
 			EJBindingIAPProduct *binding = [EJBindingIAPProduct bindingFromJSValue:jsProduct];
 			[binding finishPurchaseWithTransaction:transaction];
 			
@@ -167,29 +167,22 @@ EJ_BIND_FUNCTION(getProducts, ctx, argc, argv) {
 		return NULL;
 	}
 	
-	// Gather all product ids from the js array into an NSSet
-	JSObjectRef jsProductIds = (JSObjectRef)argv[0];
-	
-	JSStringRef jsLengthName = JSStringCreateWithUTF8CString("length");
-	GLsizei count = JSValueToNumberFast(ctx, JSObjectGetProperty(ctx, jsProductIds, jsLengthName, NULL));
-	JSStringRelease(jsLengthName);
-	
-	NSMutableSet *productIds = [NSMutableSet new];
-	for( int i = 0; i < count; i++ ) {
-		[productIds addObject:JSValueToNSString(ctx, JSObjectGetPropertyAtIndex(ctx, jsProductIds, i, NULL))];
+	NSArray *productIds = (NSArray *)JSValueToNSObject(ctx, argv[0]);
+	if( ![productIds isKindOfClass:NSArray.class] ) {
+		return NULL;
 	}
-	
-	NSLog(@"IAP: Requesting product info: %@", [[productIds allObjects] componentsJoinedByString:@", "]);
+	NSLog(@"IAP: Requesting product info: %@", [productIds componentsJoinedByString:@", "]);
 	
 	// Construct the request and insert it together with the callback into the
 	// productRequestCallbacks dict
-	SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productIds];
+	SKProductsRequest *request = [[SKProductsRequest alloc]
+		initWithProductIdentifiers:[NSSet setWithArray:productIds]];
 	request.delegate = self;
 	
 	JSValueProtect(ctx, argv[1]);
 	NSValue *callback = [NSValue valueWithPointer:argv[1]];
 	NSValue *requestKey = [NSValue valueWithPointer:(void *)request];
-	[productRequestCallbacks setObject:callback forKey:requestKey];
+	productRequestCallbacks[requestKey] = callback;
 	
 	[request start];
 	return NULL;

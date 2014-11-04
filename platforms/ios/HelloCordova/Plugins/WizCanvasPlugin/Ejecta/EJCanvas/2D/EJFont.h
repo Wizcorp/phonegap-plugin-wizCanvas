@@ -29,14 +29,11 @@ typedef struct {
 
 
 @interface EJFontDescriptor : NSObject {
-	NSString *identFilled;
 	NSString *name;
-	float size, contentScale;
+	float size;
+	NSUInteger hash;
 }
 + (id)descriptorWithName:(NSString *)name size:(float)size;
-
-- (NSString *)identFilled;
-- (NSString *)identOutlinedWithWidth:(float)width;
 
 @property (readonly, nonatomic) NSString *name;
 @property (readonly, nonatomic) float size;
@@ -48,12 +45,12 @@ typedef struct {
 @interface EJFontLayout : NSObject {
 	NSData *glyphLayout;
 	EJTextMetrics metrics;
-	int glyphCount;
+	NSInteger glyphCount;
 }
 
-- (id)initWithGlyphLayout:(NSData *)layoutp glyphCount:(int)count metrics:(EJTextMetrics)metrics;
+- (id)initWithGlyphLayout:(NSData *)layoutp glyphCount:(NSInteger)count metrics:(EJTextMetrics)metrics;
 @property (readonly, nonatomic) EJFontGlyphLayout *layout;
-@property (readonly, nonatomic) int glyphCount;
+@property (readonly, nonatomic) NSInteger glyphCount;
 @property (readonly, nonatomic) EJTextMetrics metrics;
 
 @end
@@ -66,6 +63,7 @@ int EJFontGlyphLayoutSortByTextureIndex(const void *a, const void *b);
 @interface EJFont : NSObject {
 	NSMutableArray *textures;
 	float txLineX, txLineY, txLineH;
+	BOOL useSingleGlyphTextures;
 	
 	// Font preferences
 	float pointSize, ascent, descent, leading, contentScale, glyphPadding;

@@ -49,7 +49,7 @@
 
 - (void)create {
 	// Create the frame- and renderbuffers
-	glGenFramebuffers(1, &viewFrameBuffer);
+	glGenFramebuffers(1, &viewFrameBuffer);	
 	glGenRenderbuffers(1, &viewRenderBuffer);
 	glGenRenderbuffers(1, &depthStencilBuffer);
 	

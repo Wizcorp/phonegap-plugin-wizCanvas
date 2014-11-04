@@ -26,45 +26,45 @@ JSValueRef NSStringToJSValue( JSContextRef ctx, NSString *string ) {
 // of the taggging refer to JSC/runtime/JSCJSValue.h
 
 #if __LP64__ // arm64 version
-double JSValueToNumberFast(JSContextRef ctx, JSValueRef v) {
-    union {
-        int64_t asInt64;
-        double asDouble;
-        struct { int32_t asInt; int32_t tag; } asBits;
-    } taggedValue = { .asInt64 = (int64_t)v };
-    
-#define DoubleEncodeOffset 0x1000000000000ll
-#define TagTypeNumber 0xffff0000
-#define ValueTrue 0x7
-    
-    if( (taggedValue.asBits.tag & TagTypeNumber) == TagTypeNumber ) {
-        return taggedValue.asBits.asInt;
-    }
-    else if( taggedValue.asBits.tag & TagTypeNumber ) {
-        taggedValue.asInt64 -= DoubleEncodeOffset;
-        return taggedValue.asDouble;
-    }
-    else if( taggedValue.asBits.asInt == ValueTrue ) {
-        return 1.0;
-    }
-    else {
-        return 0; // false, undefined, null, object
-    }
-}
+	double JSValueToNumberFast(JSContextRef ctx, JSValueRef v) {
+		union {
+			int64_t asInt64;
+			double asDouble;
+			struct { int32_t asInt; int32_t tag; } asBits;
+		} taggedValue = { .asInt64 = (int64_t)v };
+		
+		#define DoubleEncodeOffset 0x1000000000000ll
+		#define TagTypeNumber 0xffff0000
+		#define ValueTrue 0x7
+		
+		if( (taggedValue.asBits.tag & TagTypeNumber) == TagTypeNumber ) {
+			return taggedValue.asBits.asInt;
+		}
+		else if( taggedValue.asBits.tag & TagTypeNumber ) {
+			taggedValue.asInt64 -= DoubleEncodeOffset;
+			return taggedValue.asDouble;
+		}
+		else if( taggedValue.asBits.asInt == ValueTrue ) {
+			return 1.0;
+		}
+		else {
+			return 0; // false, undefined, null, object
+		}
+	}
 #else // armv7 version
-double JSValueToNumberFast( JSContextRef ctx, JSValueRef v ) {
-    struct {
-        unsigned char cppClassData[4];
-        union {
-            double asDouble;
-            struct { int32_t asInt; int32_t tag; } asBits;
-        } payload;
-    } *decoded = (void *)v;
-    
-    return decoded->payload.asBits.tag < 0xfffffff9
-    ? decoded->payload.asDouble
-    : decoded->payload.asBits.asInt;
-}
+	double JSValueToNumberFast( JSContextRef ctx, JSValueRef v ) {
+		struct {
+			unsigned char cppClassData[4];
+			union {
+				double asDouble;
+				struct { int32_t asInt; int32_t tag; } asBits;
+			} payload;
+		} *decoded = (void *)v;
+		
+		return decoded->payload.asBits.tag < 0xfffffff9
+			? decoded->payload.asDouble
+			: decoded->payload.asBits.asInt;
+	}
 #endif
 
 void JSValueUnprotectSafe( JSContextRef ctx, JSValueRef v ) {
@@ -144,7 +144,7 @@ NSObject *JSValueToNSObject( JSContextRef ctx, JSValueRef value ) {
 		JSStringRef arrayName = JSStringCreateWithUTF8CString("Array");
 		JSObjectRef arrayConstructor = (JSObjectRef)JSObjectGetProperty(ctx, JSContextGetGlobalObject(ctx), arrayName, NULL);
 		JSStringRelease(arrayName);
-        
+			
 		if( JSValueIsInstanceOfConstructor(ctx, jsObj, arrayConstructor, NULL) ) {
 			// Array
 			JSStringRef lengthName = JSStringCreateWithUTF8CString("length");

@@ -14,12 +14,20 @@ typedef enum {
 	kEJAudioPreloadAuto
 } EJAudioPreload;
 
+typedef enum {
+	kEJAudioHaveNothing = 0,
+	kEJAudioHaveMetadata = 1,
+	kEJAudioHaveCurrentData = 2,
+	kEJAudioHaveFutureData = 3,
+	kEJAudioHaveEnoughData = 4
+} EJAudioReadyState;
+
 @interface EJBindingAudio : EJBindingEventedBase <EJAudioSourceDelegate> {
 	NSString *path;
 	EJAudioPreload preload;
 	NSObject<EJAudioSource> *source;
 	
-	BOOL loop, ended, paused;
+	BOOL loop, ended, paused, muted;
 	BOOL loading, playAfterLoad;
 	float volume;
 	NSOperation *loadCallback;

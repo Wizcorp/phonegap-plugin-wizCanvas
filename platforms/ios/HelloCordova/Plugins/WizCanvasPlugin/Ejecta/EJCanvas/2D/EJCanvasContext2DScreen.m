@@ -1,6 +1,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "EJCanvasContext2DScreen.h"
 #import "WizCanvasView.h"
+#import "WizCanvasView.h"
 
 @implementation EJCanvasContext2DScreen
 @synthesize style;
@@ -81,7 +82,6 @@
 		glview = [[EAGLView alloc] initWithFrame:frame contentScale:contentScale retainedBacking:YES];
 		
 		// Append the OpenGL view to Ejecta's main view
-        // Modification for WizCanvasView
 		[scriptView addSubview:glview];
 	}
 	else {

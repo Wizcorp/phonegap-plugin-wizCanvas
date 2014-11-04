@@ -22,7 +22,7 @@
 	return self;
 }
 
-- (void)dealloc {	
+- (void)dealloc {
 	[renderingContext release];
 	[super dealloc];
 }
@@ -171,9 +171,9 @@ EJ_BIND_SET(font, ctx, value) {
 	if( font ) {
 		renderingContext.font = font;
 	}
-	else if (size) {
-        // Font name not found, but we have a size? Use the current font and just change the size
-        renderingContext.font = [EJFontDescriptor descriptorWithName:renderingContext.font.name size:size];
+	else if( size ) {
+		// Font name not found, but we have a size? Use the current font and just change the size
+		renderingContext.font = [EJFontDescriptor descriptorWithName:renderingContext.font.name size:size];
 	}
 	
 	JSStringRelease(jsString);
@@ -327,14 +327,9 @@ EJ_BIND_FUNCTION(createImageData, ctx, argc, argv) {
 
 EJ_BIND_FUNCTION(putImageData, ctx, argc, argv) {
 	EJ_UNPACK_ARGV_OFFSET(1, float dx, float dy);
-    EJBindingImageData *jsImageData = (EJBindingImageData *)JSValueGetPrivate(argv[0]);
+	EJBindingImageData *jsImageData = (EJBindingImageData *)JSValueGetPrivate(argv[0]);
 	
 	scriptView.currentRenderingContext = renderingContext;
-
-	// Fix a graphic glitch when there is consecutive calls to image data and canvas drawing on itself
-	// A better solution may exist
-	[renderingContext setTexture:NULL];
-    
 	[renderingContext putImageData:jsImageData.imageData dx:dx dy:dy];
 	return NULL;
 }
@@ -361,17 +356,10 @@ EJ_BIND_FUNCTION(createImageDataHD, ctx, argc, argv) {
 }
 
 EJ_BIND_FUNCTION(putImageDataHD, ctx, argc, argv) {
-	if( argc < 3 ) { return NULL; }
-	
-	EJBindingImageData *jsImageData = (EJBindingImageData *)JSObjectGetPrivate((JSObjectRef)argv[0]);
 	EJ_UNPACK_ARGV_OFFSET(1, float dx, float dy);
+	EJBindingImageData *jsImageData = (EJBindingImageData *)JSValueGetPrivate(argv[0]);
 	
 	scriptView.currentRenderingContext = renderingContext;
-
-	// Fix a graphic glitch when there is consecutive calls to image data and canvas drawing on itself
-	// A better solution may exist
-	[renderingContext setTexture:NULL];
-
 	[renderingContext putImageDataHD:jsImageData.imageData dx:dx dy:dy];
 	return NULL;
 }
@@ -398,7 +386,7 @@ EJ_BIND_FUNCTION(createPattern, ctx, argc, argv) {
 	NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSValueGetPrivate(argv[0]);
 	EJTexture *image = drawable.texture;
 	
-	if( !image.textureId ) { return NULL; }
+	if( !image ) { return NULL; }
 	
 	EJCanvasPatternRepeat repeat = kEJCanvasPatternRepeat;
 	if( argc > 1 ) {
@@ -428,10 +416,10 @@ EJ_BIND_FUNCTION( closePath, ctx, argc, argv ) {
 }
 
 EJ_BIND_FUNCTION( fill, ctx, argc, argv ) {
-    EJPathFillRule fillRule = (argc > 0 && [JSValueToNSString(ctx, argv[0]) isEqualToString:@"evenodd"])
-        ? kEJPathFillRuleEvenOdd
-        : kEJPathFillRuleNonZero;
-    
+	EJPathFillRule fillRule = (argc > 0 && [JSValueToNSString(ctx, argv[0]) isEqualToString:@"evenodd"])
+		? kEJPathFillRuleEvenOdd
+		: kEJPathFillRuleNonZero;
+	
 	scriptView.currentRenderingContext = renderingContext;
 	[renderingContext fill:fillRule];
 	return NULL;
@@ -498,7 +486,7 @@ EJ_BIND_FUNCTION( measureText, ctx, argc, argv ) {
 }
 
 EJ_BIND_FUNCTION( fillText, ctx, argc, argv ) {
-    EJ_UNPACK_ARGV_OFFSET(1, float x, float y);
+	EJ_UNPACK_ARGV_OFFSET(1, float x, float y);
 	NSString *string = JSValueToNSString(ctx, argv[0]);
 	
 	scriptView.currentRenderingContext = renderingContext;
@@ -507,7 +495,7 @@ EJ_BIND_FUNCTION( fillText, ctx, argc, argv ) {
 }
 
 EJ_BIND_FUNCTION( strokeText, ctx, argc, argv ) {
-    EJ_UNPACK_ARGV_OFFSET(1, float x, float y);
+	EJ_UNPACK_ARGV_OFFSET(1, float x, float y);
 	NSString *string = JSValueToNSString(ctx, argv[0]);
 	
 	scriptView.currentRenderingContext = renderingContext;
@@ -517,9 +505,9 @@ EJ_BIND_FUNCTION( strokeText, ctx, argc, argv ) {
 
 EJ_BIND_FUNCTION( clip, ctx, argc, argv ) {
 	EJPathFillRule fillRule = (argc > 0 && [JSValueToNSString(ctx, argv[0]) isEqualToString:@"evenodd"])
-    ? kEJPathFillRuleEvenOdd
-    : kEJPathFillRuleNonZero;
-    
+		? kEJPathFillRuleEvenOdd
+		: kEJPathFillRuleNonZero;
+		
 	scriptView.currentRenderingContext = renderingContext;
 	[renderingContext clip:fillRule];
 	return NULL;

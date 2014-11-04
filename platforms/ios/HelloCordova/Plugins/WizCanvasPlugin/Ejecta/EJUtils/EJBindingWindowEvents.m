@@ -1,10 +1,9 @@
-#import <JavaScriptCore/JSTypedArray.h>
 #import "EJBindingWindowEvents.h"
+#import "WizCanvasView.h"
 
 @implementation EJBindingWindowEvents
 
 - (void)createWithJSObject:(JSObjectRef)obj scriptView:(WizCanvasView *)view {
-    NSLog(@"create Window Event Delegate");
 	[super createWithJSObject:obj scriptView:view];
 	scriptView.windowEventsDelegate = self;
 }

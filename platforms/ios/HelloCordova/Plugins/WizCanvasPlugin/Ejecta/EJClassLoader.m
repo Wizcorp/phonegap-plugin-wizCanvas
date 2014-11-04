@@ -54,7 +54,7 @@ bool EJConstructorHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValue
 
 	// Unpack the class and instance from private data
 	EJClassWithScriptView *classWithScriptView = (EJClassWithScriptView *)JSObjectGetPrivate(constructor);
-	id instance = JSObjectGetPrivate((JSObjectRef)possibleInstance);
+	id instance = JSValueGetPrivate(possibleInstance);
 	
 	if( !classWithScriptView || !instance ) {
 		return false;
@@ -74,6 +74,7 @@ bool EJConstructorHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValue
 		// Create the constructor class
 		JSClassDefinition constructorClassDef = kJSClassDefinitionEmpty;
 		constructorClassDef.callAsConstructor = EJCallAsConstructor;
+		constructorClassDef.hasInstance = EJConstructorHasInstance;
 		constructorClassDef.finalize = EJConstructorFinalize;
 		jsConstructorClass = JSClassCreate(&constructorClassDef);
 		
@@ -107,23 +108,25 @@ bool EJConstructorHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValue
 	[super dealloc];
 }
 
-- (JSClassRef)getJSClass:(id)class {	
+- (EJLoadedJSClass *)getJSClass:(id)class {
 	// Try the cache first
-	JSClassRef jsClass = [classCache[class] pointerValue];
-	if( jsClass ) {
-		return jsClass;
+	EJLoadedJSClass *loadedClass = classCache[class];
+	if( loadedClass ) {
+		return loadedClass;
 	}
 	
-	// Still here? Create and insert into cache
-	jsClass = [self createJSClass:class];
-	classCache[class] = [NSValue valueWithPointer:jsClass];
-	return jsClass;
+	// Still here? Load and insert into cache
+	loadedClass = [self loadJSClass:class];
+	classCache[class] = loadedClass;
+	
+	return loadedClass;
 }
 
-- (JSClassRef)createJSClass:(id)class {
+- (EJLoadedJSClass *)loadJSClass:(id)class {
 	// Gather all class methods that return C callbacks for this class or it's parents
 	NSMutableArray *methods = [[NSMutableArray alloc] init];
 	NSMutableArray *properties = [[NSMutableArray alloc] init];
+	NSMutableDictionary *constantValues = [[NSMutableDictionary alloc] init];
 		
 	// Traverse this class and all its super classes
 	Class base = EJBindingBase.class;
@@ -138,11 +141,15 @@ bool EJConstructorHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValue
 			NSString *name = NSStringFromSelector(selector);
 			
 			if( [name hasPrefix:@"_ptr_to_func_"] ) {
-				[methods addObject: [name substringFromIndex:sizeof("_ptr_to_func_")-1] ];
+				[methods addObject:[name substringFromIndex:sizeof("_ptr_to_func_")-1] ];
 			}
 			else if( [name hasPrefix:@"_ptr_to_get_"] ) {
 				// We only look for getters - a property that has a setter, but no getter will be ignored
-				[properties addObject: [name substringFromIndex:sizeof("_ptr_to_get_")-1] ];
+				[properties addObject:[name substringFromIndex:sizeof("_ptr_to_get_")-1] ];
+			}
+			else if( [name hasPrefix:@"_const_"] ) {
+				NSObject *constant = [class performSelector:NSSelectorFromString(name)];
+				[constantValues setObject:constant forKey:[name substringFromIndex:sizeof("_const_")-1]];
 			}
 		}
 		free(methodList);
@@ -195,8 +202,35 @@ bool EJConstructorHasInstance(JSContextRef ctx, JSObjectRef constructor, JSValue
 	[properties release];
 	[methods release];
 	
-	return jsClass;
+	EJLoadedJSClass *loadedClass = [[EJLoadedJSClass alloc] initWithJSClass:jsClass constantValues:constantValues];
+	
+	// The JSClass and constantValues dict are now retained by the loadedClass instance
+	JSClassRelease(jsClass);
+	[constantValues release];
+	
+	return [loadedClass autorelease];
 }
 
 @end
+
+
+@implementation EJLoadedJSClass
+@synthesize jsClass, constantValues;
+
+- (id)initWithJSClass:(JSClassRef)jsClassp constantValues:(NSDictionary *)constantValuesp {
+	if( self = [super init] ) {
+		jsClass = JSClassRetain(jsClassp);
+		constantValues = [constantValuesp retain];
+	}
+	return self;
+}
+
+- (void)dealloc {
+	JSClassRelease(jsClass);
+	[constantValues release];
+	[super dealloc];
+}
+
+@end
+
 

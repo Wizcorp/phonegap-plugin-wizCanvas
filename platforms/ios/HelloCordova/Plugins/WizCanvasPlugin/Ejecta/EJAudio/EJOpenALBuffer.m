@@ -50,7 +50,7 @@
 	ExtAudioFileRef	file = NULL;
 	OSStatus error = ExtAudioFileOpenURL((CFURLRef)url, &file);
 	if( error ) {
-		NSLog(@"OpenALSource: ExtAudioFileOpenURL FAILED, Error = %ld", error);
+		NSLog(@"OpenALSource: ExtAudioFileOpenURL FAILED, Error = %d", (int)error);
 		goto Exit; 
 	}
 	
@@ -59,7 +59,7 @@
 	UInt32 propertySize = sizeof(inputFormat);
 	error = ExtAudioFileGetProperty(file, kExtAudioFileProperty_FileDataFormat, &propertySize, &inputFormat);
 	if( error ) {
-		NSLog(@"OpenALSource: ExtAudioFileGetProperty(kExtAudioFileProperty_FileDataFormat) FAILED, Error = %ld", error);
+		NSLog(@"OpenALSource: ExtAudioFileGetProperty(kExtAudioFileProperty_FileDataFormat) FAILED, Error = %d", (int)error);
 		goto Exit;
 	}
 	if( inputFormat.mChannelsPerFrame > 2 ) { 
@@ -84,7 +84,7 @@
 	// Set the desired client (output) data format
 	error = ExtAudioFileSetProperty(file, kExtAudioFileProperty_ClientDataFormat, sizeof(outputFormat), &outputFormat);
 	if( error ) {
-		NSLog(@"OpenALSource: ExtAudioFileSetProperty(kExtAudioFileProperty_ClientDataFormat) FAILED, Error = %ld", error);
+		NSLog(@"OpenALSource: ExtAudioFileSetProperty(kExtAudioFileProperty_ClientDataFormat) FAILED, Error = %d", (int)error);
 		goto Exit; 
 	}
 	
@@ -93,12 +93,12 @@
 	propertySize = sizeof(frameCount);
 	error = ExtAudioFileGetProperty(file, kExtAudioFileProperty_FileLengthFrames, &propertySize, &frameCount);
 	if( error ) {
-		NSLog(@"OpenALSource: ExtAudioFileGetProperty(kExtAudioFileProperty_FileLengthFrames) FAILED, Error = %ld", error);
+		NSLog(@"OpenALSource: ExtAudioFileGetProperty(kExtAudioFileProperty_FileLengthFrames) FAILED, Error = %d", (int)error);
 		goto Exit; 
 	}
 	
 	// Read all the data into memory
-	int dataSize = frameCount * outputFormat.mBytesPerFrame;
+	UInt32 dataSize = (UInt32)frameCount * outputFormat.mBytesPerFrame;
 	data = malloc(dataSize);
 
 	AudioBufferList	bufferList;
@@ -121,7 +121,7 @@
 		// failure
 		free(data);
 		data = NULL;
-		NSLog(@"OpenALSource: ExtAudioFileRead FAILED, Error = %ld", error);
+		NSLog(@"OpenALSource: ExtAudioFileRead FAILED, Error = %d", (int)error);
 		goto Exit;
 	}
 	

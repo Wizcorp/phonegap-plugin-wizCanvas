@@ -18,29 +18,29 @@
 	for( NSString *type	in eventListeners ) {
 		NSArray *listeners = eventListeners[type];
 		for( NSValue *callbackValue in listeners ) {
-			JSValueUnprotectSafe(ctx, [callbackValue pointerValue]);
+			JSValueUnprotectSafe(ctx, callbackValue.pointerValue);
 		}
 	}
 	[eventListeners release];
 	
 	// Unprotect all event callbacks
 	for( NSString *type in onCallbacks ) {
-		NSValue *listener = onCallbacks[type];
-		JSValueUnprotectSafe(ctx, [(NSValue *)listener pointerValue]);
+		NSValue *callbackValue = onCallbacks[type];
+		JSValueUnprotectSafe(ctx, callbackValue.pointerValue);
 	}
 	[onCallbacks release];
 	
 	[super dealloc];
 }
 
-- (JSObjectRef)getCallbackWith:(NSString *)type ctx:(JSContextRef)ctx {
+- (JSObjectRef)getCallbackWithType:(NSString *)type ctx:(JSContextRef)ctx {
 	NSValue *listener = onCallbacks[type];
 	return listener ? [listener pointerValue] : NULL;
 }
 
-- (void)setCallbackWith:(NSString *)type ctx:(JSContextRef)ctx callback:(JSValueRef)callbackValue {
+- (void)setCallbackWithType:(NSString *)type ctx:(JSContextRef)ctx callback:(JSValueRef)callbackValue {
 	// remove old event listener?
-	JSObjectRef oldCallback = [self getCallbackWith:type ctx:ctx];
+	JSObjectRef oldCallback = [self getCallbackWithType:type ctx:ctx];
 	if( oldCallback ) {
 		JSValueUnprotectSafe(ctx, oldCallback);
 		[onCallbacks removeObjectForKey:type];
@@ -160,7 +160,9 @@ EJ_BIND_FUNCTION(removeEventListener, ctx, argc, argv) {
 	event->jsTarget = target;
 	event->type = [type retain];
 	
-	return [self createJSObjectWithContext:ctx scriptView:scriptView instance:event];
+	JSObjectRef jsEvent = [self createJSObjectWithContext:ctx scriptView:scriptView instance:event];
+	[event release];
+	return jsEvent;
 }
 
 - (void)dealloc {

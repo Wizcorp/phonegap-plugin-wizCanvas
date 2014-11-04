@@ -115,7 +115,7 @@ static inline EJColorRGBA EJCanvasBlendStrokeColor( EJCanvasState *state ) {
 	GLuint msaaFrameBuffer, msaaRenderBuffer;
 	GLuint stencilBuffer;
 	GLubyte stencilMask;
-    
+	
 	short bufferWidth, bufferHeight;
 	
 	GLenum textureFilter;
@@ -135,7 +135,7 @@ static inline EJColorRGBA EJCanvasBlendStrokeColor( EJCanvasState *state ) {
 	float backingStoreRatio;
 	
 	EJFontCache *fontCache;
-
+	
 	WizCanvasView *scriptView;
 	EJGLProgram2D *currentProgram;
 	EJSharedOpenGLContext *sharedGLContext;
