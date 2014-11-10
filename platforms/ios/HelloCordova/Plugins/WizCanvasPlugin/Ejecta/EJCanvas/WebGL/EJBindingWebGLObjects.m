@@ -24,20 +24,20 @@
 	if( !value ) { return 0; }
 	
 	EJBindingWebGLObject *binding = (EJBindingWebGLObject *)JSValueGetPrivate(value);
-	return (binding && [binding isMemberOfClass:[self class]]) ? binding->index : 0;
+	return (binding && [binding isKindOfClass:[self class]]) ? binding->index : 0;
 }
 
 + (EJBindingWebGLObject *)webGLObjectFromJSValue:(JSValueRef)value {
 	if( !value ) { return nil; }
 	
 	EJBindingWebGLObject *binding = (EJBindingWebGLObject *)JSValueGetPrivate(value);
-	return (binding && [binding isMemberOfClass:[self class]]) ? binding : nil;
+	return (binding && [binding isKindOfClass:[self class]]) ? binding : nil;
 }
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-                              scriptView:(WizCanvasView *)view
-                            webglContext:(EJBindingCanvasContextWebGL *)webglContext
-                                   index:(GLuint)index
+	scriptView:(WizCanvasView *)view
+	webglContext:(EJBindingCanvasContextWebGL *)webglContext
+	index:(GLuint)index
 {
 	id native = [[self alloc] initWithWebGLContext:webglContext index:index];
 	
@@ -95,12 +95,12 @@
 	if( !value ) { return NULL; }
 	
 	EJBindingWebGLTexture *binding = (EJBindingWebGLTexture *)JSValueGetPrivate(value);
-	return (binding && [binding isMemberOfClass:[self class]]) ? binding->texture : NULL;
+	return (binding && [binding isKindOfClass:[self class]]) ? binding->texture : NULL;
 }
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-                              scriptView:(WizCanvasView *)view
-                            webglContext:(EJBindingCanvasContextWebGL *)webglContext
+	scriptView:(WizCanvasView *)view
+	webglContext:(EJBindingCanvasContextWebGL *)webglContext
 {
 	id native = [[self alloc] initWithWebGLContext:webglContext];
 	
@@ -187,8 +187,8 @@ EJ_BIND_GET(rangeMax, ctx) { return JSValueMakeNumber(ctx, rangeMax); }
 EJ_BIND_GET(precision, ctx) { return JSValueMakeNumber(ctx, precision); }
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-                              scriptView:(WizCanvasView *)view
-                                rangeMin:(GLint)rangeMin rangeMax:(GLint)rangeMax precision:(GLint)precision
+	scriptView:(WizCanvasView *)view
+	rangeMin:(GLint)rangeMin rangeMax:(GLint)rangeMax precision:(GLint)precision
 {
 	id native = [[self alloc] initWithRangeMin:rangeMin rangeMax:rangeMax precision:precision];
 	

@@ -243,6 +243,9 @@
         
         <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingHttpRequest.h" target-dir="Ejecta/EJUtils" />
         <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingHttpRequest.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
+
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingImagePicker.h" target-dir="Ejecta/EJUtils" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingImagePicker.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
         
         <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingKeyInput.h" target-dir="Ejecta/EJUtils" />
         <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/EJBindingKeyInput.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils" />
@@ -272,12 +275,6 @@
         <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/Ejecta/EJUtils/IAP/EJBindingIAPTransaction.m" compiler-flags="-fno-objc-arc" target-dir="Ejecta/EJUtils/IAP" />
 
         <!-- SocketRocket files -->
-        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/base64.h" target-dir="lib/SocketRocket" />
-        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/base64.c" target-dir="lib/SocketRocket" />
-        
-        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/NSString+Hashes.h" target-dir="lib/SocketRocket" />
-        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/NSString+Hashes.m" target-dir="lib/SocketRocket" />
-        
         <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/SocketRocket-Prefix.pch" target-dir="lib/SocketRocket" />
         
         <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/SocketRocket/SRWebSocket.h" target-dir="lib/SocketRocket" />
@@ -286,6 +283,9 @@
         <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/WizDebugLog.h"
         	target-dir="WizCanvas" />
         
+        <header-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/base64.h" target-dir="lib" />
+        <source-file src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/base64.c" target-dir="lib" />
+
         <framework src="platforms/ios/HelloCordova/Plugins/WizCanvasPlugin/lib/JavaScriptCore.framework" custom="true" />
 
         <!-- iOS Frameworks -->

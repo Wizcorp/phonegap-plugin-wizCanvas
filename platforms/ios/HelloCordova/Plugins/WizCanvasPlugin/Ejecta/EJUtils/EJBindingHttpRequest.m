@@ -5,7 +5,6 @@
 @implementation EJBindingHttpRequest
 
 - (id)initWithContext:(JSContextRef)ctxp argc:(size_t)argc argv:(const JSValueRef [])argv {
-    NSLog(@"create HTTP Request");
 	if( self = [super initWithContext:ctxp argc:argc argv:argv] ) {
 		requestHeaders = [[NSMutableDictionary alloc] init];
 	}
@@ -39,7 +38,7 @@
 	[password release]; password = NULL;
 }
 
-- (int)getStatusCode {
+- (NSInteger)getStatusCode {
 	if( !response ) {
 		return 0;
 	}
@@ -91,6 +90,7 @@
 	[self triggerEvent:@"load"];
 	[self triggerEvent:@"loadend"];
 	[self triggerEvent:@"readystatechange"];
+	JSValueUnprotectSafe(scriptView.jsGlobalContext, jsObject);
 }
 
 - (void)connection:(NSURLConnection *)connectionp didFailWithError:(NSError *)error {
@@ -105,6 +105,7 @@
 	}
 	[self triggerEvent:@"loadend"];
 	[self triggerEvent:@"readystatechange"];
+	JSValueUnprotectSafe(scriptView.jsGlobalContext, jsObject);
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)responsep {
@@ -267,6 +268,10 @@ EJ_BIND_FUNCTION(send, ctx, argc, argv) {
 	}
 	[request release];
 	
+	// Protect this request object from garbage collection, as its callback functions
+	// may be the only thing holding on to it
+	JSValueProtect(scriptView.jsGlobalContext, jsObject);
+	
 	return NULL;
 }
 
@@ -309,7 +314,7 @@ EJ_BIND_GET(status, ctx) {
 
 EJ_BIND_GET(statusText, ctx) {
 	// FIXME: should be "200 OK" instead of just "200"
-	NSString *code = [NSString stringWithFormat:@"%d", [self getStatusCode]];	
+	NSString *code = [NSString stringWithFormat:@"%ld", (long)[self getStatusCode]];	
 	return NSStringToJSValue(ctx, code);
 }
 

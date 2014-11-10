@@ -4,7 +4,6 @@
 @implementation EJBindingWebSocket
 
 - (id)initWithContext:(JSContextRef)ctx argc:(size_t)argc argv:(const JSValueRef [])argv {
-    NSLog(@"init WebSocket Delegate");
 	if (self = [super initWithContext:ctx argc:argc argv:argv]) {
 		if( argc > 0 ) {
 			url = [JSValueToNSString(ctx, argv[0]) retain];
@@ -23,16 +22,11 @@
 		// FIXME: we don't support the 'blob' type yet, but the spec dictates this should
 		// be the default
 		binaryType = kEJWebSocketBinaryTypeBlob;
-		
-		jsEvent = JSObjectMake(ctx, NULL, NULL);
-		JSValueProtect(ctx, jsEvent);
-		jsDataName = JSStringCreateWithUTF8CString("data");
 	}
 	return self;
 }
 
 - (void)createWithJSObject:(JSObjectRef)obj scriptView:(WizCanvasView *)view {
-    NSLog(@"create WebSocket Delegate");
 	[super createWithJSObject:obj scriptView:view];
 	
 	if( readyState != kEJWebSocketReadyStateClosed ) {
@@ -50,9 +44,6 @@
 }
 
 - (void) dealloc {
-	JSValueUnprotectSafe(scriptView.jsGlobalContext, jsEvent);
-	JSStringRelease(jsDataName);
-	
 	[url release];
 	[socket release];
 	[super dealloc];
@@ -97,7 +88,6 @@
 		}
 	}
 	
-	JSObjectSetProperty(ctx, jsEvent, jsDataName, jsMessage, kJSPropertyAttributeNone, NULL);
 	[self triggerEvent:@"message" properties:(JSEventProperty[]){
 		{"data", jsMessage},
 		{NULL, NULL}

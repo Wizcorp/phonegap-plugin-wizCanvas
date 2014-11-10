@@ -55,12 +55,7 @@
 	
 	[textures release];
 	
-	for ( NSValue *v in extensions ) {
-        // WizCanvas Modification - jsGlobalContext can be 0x0
-        if (scriptView.jsGlobalContext) {
-            JSValueUnprotectSafe(scriptView.jsGlobalContext, v.pointerValue);
-        }
-    }
+	for( NSValue *v in extensions.allValues ) { JSValueUnprotectSafe(scriptView.jsGlobalContext, v.pointerValue); }
 	[extensions release];
     
 	for( NSNumber *n in vertexArrays ) { GLuint array = n.intValue; glDeleteVertexArraysOES(1, &array); }
@@ -316,7 +311,7 @@ EJ_BIND_FUNCTION(bindBuffer, ctx, argc, argv) {
 
 EJ_BIND_FUNCTION(bindTexture, ctx, argc, argv) {
 	if( argc < 2 ) { return NULL; }
-
+	
 	scriptView.currentRenderingContext = renderingContext;
 	
 	GLenum target = JSValueToNumberFast(ctx, argv[0]);
@@ -328,7 +323,7 @@ EJ_BIND_FUNCTION(bindTexture, ctx, argc, argv) {
 		if( texture ) {
 			[texture bindToTarget:target];
 			JSValueProtect(ctx, argv[1]);
- 			        
+			
 			activeTexture->jsTexture = (JSObjectRef)argv[1];
 			activeTexture->texture = texture;
 		}
@@ -340,11 +335,11 @@ EJ_BIND_FUNCTION(bindTexture, ctx, argc, argv) {
 	}
 	else if( target == GL_TEXTURE_CUBE_MAP ) {
 		JSValueUnprotectSafe(ctx, activeTexture->jsCubeMap);
-
+		
 		if( texture ) {
 			[texture bindToTarget:target];
 			JSValueProtect(ctx, argv[1]);
-
+			
 			activeTexture->jsCubeMap = (JSObjectRef)argv[1];
 			activeTexture->cubeMap = texture;
 		}
@@ -1185,17 +1180,17 @@ EJ_BIND_FUNCTION(getUniform, ctx, argc, argv) {
 
 EJ_BIND_FUNCTION(getUniformLocation, ctx, argc, argv) {
 	if( argc < 2 ) { return NULL; }
-    
+	
 	scriptView.currentRenderingContext = renderingContext;
-    
+	
 	GLuint program = [EJBindingWebGLProgram indexFromJSValue:argv[0]];
 	NSString *name = JSValueToNSString(ctx, argv[1]);
-    
+	
 	GLint uniform = glGetUniformLocation(program, [name UTF8String]);
 	if( uniform == -1 ) {
 		return JSValueMakeNull(ctx);
 	}
-    
+	
 	return [EJBindingWebGLUniformLocation createJSObjectWithContext:ctx
 		scriptView:scriptView webglContext:self index:uniform];
 }
@@ -1453,6 +1448,8 @@ EJ_BIND_FUNCTION(texImage2D, ctx, argc, argv) {
 				}
 			}
 		}
+		
+		[sourceTexture maybeReleaseStorage];
 	}
 	
 	// With ArrayBufferView
@@ -1548,7 +1545,7 @@ EJ_BIND_FUNCTION(texSubImage2D, ctx, argc, argv) {
 	if( argc == 7) {
 		EJ_UNPACK_ARGV_OFFSET(4, GLenum format, GLenum type);
 		
-		NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSValueGetPrivate(argv[5]);
+		NSObject<EJDrawable> *drawable = (NSObject<EJDrawable> *)JSValueGetPrivate(argv[6]);
 		if( !drawable || ![drawable conformsToProtocol:@protocol(EJDrawable)] ) {
 			NSLog(@"ERROR: texSubImage2D image is not an Image, ImageData or Canvas element");
 			return NULL;
@@ -1582,6 +1579,8 @@ EJ_BIND_FUNCTION(texSubImage2D, ctx, argc, argv) {
 				glTexSubImage2D(target, level, xoffset, yoffset, width, height, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
 			}
 		}
+		
+		[sourceTexture maybeReleaseStorage];
 	}
 	
 	// With ArrayBufferView

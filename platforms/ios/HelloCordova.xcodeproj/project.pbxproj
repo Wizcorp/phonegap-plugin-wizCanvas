@@ -93,8 +93,6 @@
 		41FAC9321926044600C7A185 /* EJBindingIAPProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FAC8DE1926044600C7A185 /* EJBindingIAPProduct.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		41FAC9331926044600C7A185 /* EJBindingIAPTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FAC8E01926044600C7A185 /* EJBindingIAPTransaction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		41FAC9341926044600C7A185 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41FAC8E21926044600C7A185 /* JavaScriptCore.framework */; };
-		41FAC9351926044600C7A185 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 41FAC8E41926044600C7A185 /* base64.c */; };
-		41FAC9361926044600C7A185 /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FAC8E71926044600C7A185 /* NSString+Hashes.m */; };
 		41FAC9371926044600C7A185 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FAC8EA1926044600C7A185 /* SRWebSocket.m */; };
 		41FAC9381926044600C7A185 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FAC8EC1926044600C7A185 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		41FAC9391926044600C7A185 /* WizCanvasPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 41FAC8EE1926044600C7A185 /* WizCanvasPlugin.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -129,6 +127,8 @@
 		7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DB1810823500FA85AD /* icon-76@2x.png */; };
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
+		C6E5C23C1A08CE2D009121C9 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C23A1A08CE2D009121C9 /* base64.c */; };
+		C6E5C2421A08D004009121C9 /* EJBindingImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C2411A08D004009121C9 /* EJBindingImagePicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		F840E1F1165FE0F500CFE078 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = F840E1F0165FE0F500CFE078 /* config.xml */; };
 /* End PBXBuildFile section */
@@ -308,10 +308,6 @@
 		41FAC8DF1926044600C7A185 /* EJBindingIAPTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingIAPTransaction.h; sourceTree = "<group>"; };
 		41FAC8E01926044600C7A185 /* EJBindingIAPTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingIAPTransaction.m; sourceTree = "<group>"; };
 		41FAC8E21926044600C7A185 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JavaScriptCore.framework; sourceTree = "<group>"; };
-		41FAC8E41926044600C7A185 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
-		41FAC8E51926044600C7A185 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
-		41FAC8E61926044600C7A185 /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
-		41FAC8E71926044600C7A185 /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		41FAC8E81926044600C7A185 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
 		41FAC8E91926044600C7A185 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
 		41FAC8EA1926044600C7A185 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
@@ -353,6 +349,10 @@
 		7E7966DC1810823500FA85AD /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small.png"; sourceTree = "<group>"; };
 		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* HelloCordova-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "HelloCordova-Info.plist"; path = "../HelloCordova-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C6E5C23A1A08CE2D009121C9 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		C6E5C23B1A08CE2D009121C9 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		C6E5C2401A08D004009121C9 /* EJBindingImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EJBindingImagePicker.h; sourceTree = "<group>"; };
+		C6E5C2411A08D004009121C9 /* EJBindingImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EJBindingImagePicker.m; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = HelloCordova/config.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -746,6 +746,8 @@
 				41FAC8CB1926044600C7A185 /* EJBindingGeolocation.m */,
 				41FAC8CC1926044600C7A185 /* EJBindingHttpRequest.h */,
 				41FAC8CD1926044600C7A185 /* EJBindingHttpRequest.m */,
+				C6E5C2401A08D004009121C9 /* EJBindingImagePicker.h */,
+				C6E5C2411A08D004009121C9 /* EJBindingImagePicker.m */,
 				41FAC8CE1926044600C7A185 /* EJBindingKeyInput.h */,
 				41FAC8CF1926044600C7A185 /* EJBindingKeyInput.m */,
 				41FAC8D01926044600C7A185 /* EJBindingLocalStorage.h */,
@@ -779,6 +781,8 @@
 		41FAC8E11926044600C7A185 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				C6E5C23A1A08CE2D009121C9 /* base64.c */,
+				C6E5C23B1A08CE2D009121C9 /* base64.h */,
 				41FAC8E21926044600C7A185 /* JavaScriptCore.framework */,
 				41FAC8E31926044600C7A185 /* SocketRocket */,
 			);
@@ -788,10 +792,6 @@
 		41FAC8E31926044600C7A185 /* SocketRocket */ = {
 			isa = PBXGroup;
 			children = (
-				41FAC8E41926044600C7A185 /* base64.c */,
-				41FAC8E51926044600C7A185 /* base64.h */,
-				41FAC8E61926044600C7A185 /* NSString+Hashes.h */,
-				41FAC8E71926044600C7A185 /* NSString+Hashes.m */,
 				41FAC8E81926044600C7A185 /* SocketRocket-Prefix.pch */,
 				41FAC8E91926044600C7A185 /* SRWebSocket.h */,
 				41FAC8EA1926044600C7A185 /* SRWebSocket.m */,
@@ -827,7 +827,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "HelloCordova" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -935,6 +935,7 @@
 				41FAC9161926044600C7A185 /* EJCanvasContext.m in Sources */,
 				41FAC9281926044600C7A185 /* EJBindingGameCenter.m in Sources */,
 				41FAC9381926044600C7A185 /* NSString+URLEncoding.m in Sources */,
+				C6E5C2421A08D004009121C9 /* EJBindingImagePicker.m in Sources */,
 				41FAC8F21926044600C7A185 /* EJAudioSourceAVAudio.m in Sources */,
 				41FAC8F91926044600C7A185 /* EJBindingEventedBase.m in Sources */,
 				41FAC8F31926044600C7A185 /* EJAudioSourceOpenAL.m in Sources */,
@@ -961,6 +962,7 @@
 				41FAC9251926044600C7A185 /* EJTimer.m in Sources */,
 				41FAC8FE1926044600C7A185 /* EJBindingImageData.m in Sources */,
 				41FAC8F51926044600C7A185 /* EJOpenALBuffer.m in Sources */,
+				C6E5C23C1A08CE2D009121C9 /* base64.c in Sources */,
 				41FAC91B1926044600C7A185 /* EJBindingWebGLExtensions.m in Sources */,
 				41FAC8F71926044600C7A185 /* EJBindingBase.m in Sources */,
 				41FAC93A1926044600C7A185 /* WizCanvasView.m in Sources */,
@@ -969,9 +971,7 @@
 				41FAC8FA1926044600C7A185 /* EJBindingVideo.m in Sources */,
 				41FAC9041926044600C7A185 /* EJCanvasPattern.m in Sources */,
 				41FAC92A1926044600C7A185 /* EJBindingHttpRequest.m in Sources */,
-				41FAC9351926044600C7A185 /* base64.c in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				41FAC9361926044600C7A185 /* NSString+Hashes.m in Sources */,
 				41FAC9151926044600C7A185 /* EJBindingImage.m in Sources */,
 				41FAC8FB1926044600C7A185 /* EJBindingCanvasContext2D.m in Sources */,
 				41FAC9081926044600C7A185 /* EJGLProgram2D.m in Sources */,
@@ -1053,13 +1053,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HelloCordova/Plugins/WizCanvasPlugin/lib",
-					"\"$(SRCROOT)/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib\"",
-					"\"$(SRCROOT)/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1075,7 +1074,7 @@
 					"\"$(SRCROOT)/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore\"",
 				);
 				INFOPLIST_FILE = "HelloCordova/HelloCordova-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,
@@ -1099,13 +1098,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HelloCordova/Plugins/WizCanvasPlugin/lib",
-					"\"$(SRCROOT)/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib\"",
-					"\"$(SRCROOT)/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloCordova/HelloCordova-Prefix.pch";
@@ -1119,7 +1117,7 @@
 					"\"$(SRCROOT)/HelloCordova/Plugins/jp.wizcorp.phonegap.plugin.wizCanvasPlugin/lib/JavaScriptCore\"",
 				);
 				INFOPLIST_FILE = "HelloCordova/HelloCordova-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					CoreFoundation,

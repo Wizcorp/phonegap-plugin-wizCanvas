@@ -94,10 +94,11 @@
 		
 	source.delegate = self;
 	[source setLooping:loop];
-	[source setVolume:volume];
+	[source setVolume:(muted ? 0.0 : volume)];
 	
 	if( playAfterLoad ) {
 		[source play];
+		paused = false;
 	}
 	
 	loading = NO;
@@ -201,7 +202,7 @@ EJ_BIND_GET(volume, ctx) {
 
 EJ_BIND_SET(volume, ctx, value) {
 	volume = MIN(1,MAX(JSValueToNumberFast(ctx, value),0));
-	[source setVolume:volume];
+	[source setVolume:(muted ? 0.0 : volume)];
 }
 
 EJ_BIND_GET(currentTime, ctx) {
@@ -224,6 +225,15 @@ EJ_BIND_SET(src, ctx, value) {
 	}
 }
 
+EJ_BIND_GET(muted, ctx) {
+	return JSValueMakeBoolean(ctx, muted);
+}
+
+EJ_BIND_SET(muted, ctx, value) {
+	muted = JSValueToBoolean(ctx, value);
+	[source setVolume:(muted ? 0.0 : volume)];
+}
+
 EJ_BIND_GET(ended, ctx) {
 	return JSValueMakeBoolean(ctx, ended);
 }
@@ -238,8 +248,25 @@ EJ_BIND_ENUM(preload, self.preload,
 	"auto"		// kEJAudioPreloadAuto
 );
 
+EJ_BIND_GET(readyState, ctx) {
+	EJAudioReadyState state = kEJAudioHaveNothing;
+	if( source ) {
+		state = ended ? kEJAudioHaveCurrentData : kEJAudioHaveEnoughData;
+	}
+	return JSValueMakeNumber(ctx, state);
+}
+
+
 EJ_BIND_EVENT(loadedmetadata);
 EJ_BIND_EVENT(canplaythrough);
 EJ_BIND_EVENT(ended);
+
+EJ_BIND_CONST(nodeName, "AUDIO");
+
+EJ_BIND_CONST(HAVE_NOTHING, kEJAudioHaveNothing);
+EJ_BIND_CONST(HAVE_METADATA, kEJAudioHaveMetadata);
+EJ_BIND_CONST(HAVE_CURRENT_DATA, kEJAudioHaveCurrentData);
+EJ_BIND_CONST(HAVE_FUTURE_DATA, kEJAudioHaveFutureData);
+EJ_BIND_CONST(HAVE_ENOUGH_DATA, kEJAudioHaveEnoughData);
 
 @end

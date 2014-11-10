@@ -163,15 +163,9 @@ EJ_BIND_FUNCTION(play, ctx, argc, argv) {
 		// Already playing. Nothing to do here.
 		return NULL;
 	}
-
-    // Modification for WizCanvasView
-
-	// player.view.frame = scriptView.bounds;
-	// [scriptView addSubview:player.view];
-
-    player.view.frame = scriptView.bounds;
-    [scriptView addSubview:player.view];
-
+	
+	player.view.frame = scriptView.bounds;
+	[scriptView addSubview:player.view];
 	player.scalingMode = EJVideoToMPMovieScalingMode[scalingMode];
 	player.controlStyle = showControls ? MPMovieControlStyleEmbedded : MPMovieControlStyleNone;
 	[player play];
@@ -205,5 +199,7 @@ EJ_BIND_EVENT(canplaythrough);
 EJ_BIND_EVENT(loadedmetadata);
 EJ_BIND_EVENT(ended);
 EJ_BIND_EVENT(click);
+
+EJ_BIND_CONST(nodeName, "VIDEO");
 
 @end

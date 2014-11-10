@@ -1,11 +1,7 @@
-#import <Foundation/Foundation.h>
 #import "EJBindingEventedBase.h"
 #import "WizCanvasView.h"
 
-@interface EJBindingWindowEvents : EJBindingEventedBase <EJWindowEventsDelegate> {
-    JSObjectRef jsDataObject;
-    JSStringRef jsDataName;
-}
+@interface EJBindingWindowEvents : EJBindingEventedBase <EJWindowEventsDelegate>
 
 - (void)pause;
 - (void)resume;

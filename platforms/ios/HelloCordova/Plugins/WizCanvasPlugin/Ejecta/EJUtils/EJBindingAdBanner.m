@@ -22,8 +22,10 @@
 			? ADBannerContentSizeIdentifierLandscape
 			: ADBannerContentSizeIdentifierPortrait),
 		nil];
-
-    // Modification for WizCanvasView
+ 	if( landscape ) {
+ 		banner.currentContentSizeIdentifier = ADBannerContentSizeIdentifierLandscape;
+ 	}
+	
 	[scriptView addSubview:banner];
 	NSLog(@"AdBanner: init at y %f", banner.frame.origin.y);
 }
@@ -38,7 +40,6 @@
 	NSLog(@"AdBanner: Ad loaded");
 	isReady = YES;
 	if( wantsToShow ) {
-        // Modification for WizCanvasView
 		[scriptView bringSubviewToFront:banner];
 		banner.hidden = NO;
 	}
@@ -46,11 +47,14 @@
 }
 
 - (void)bannerView:(ADBannerView *)theBanner didFailToReceiveAdWithError:(NSError *)error {
-	NSLog(@"AdBanner: Failed to receive Ad. Error: %d - %@", error.code, error.localizedDescription);
+	NSLog(@"AdBanner: Failed to receive Ad. Error: %ld - %@", (long)error.code, error.localizedDescription);
 	[self triggerEvent:@"error"];
 	banner.hidden = YES;
 }
 
+EJ_BIND_GET( isReady, ctx ) {
+	return JSValueMakeBoolean(ctx, isReady);
+}
 
 EJ_BIND_GET( isAtBottom, ctx ) {
 	return JSValueMakeBoolean(ctx, isAtBottom);
@@ -60,7 +64,6 @@ EJ_BIND_SET( isAtBottom, ctx, value ) {
 	isAtBottom = JSValueToBoolean(ctx, value);
 	
 	CGRect frame = banner.frame;
-    // Modification for WizCanvasView
 	frame.origin.y = isAtBottom
 		? scriptView.bounds.size.height - frame.size.height
 		: 0;
@@ -77,7 +80,6 @@ EJ_BIND_FUNCTION(hide, ctx, argc, argv ) {
 EJ_BIND_FUNCTION(show, ctx, argc, argv ) {
 	wantsToShow = YES;
 	if( isReady ) {
-        // Modification for WizCanvasView
 		[scriptView bringSubviewToFront:banner];
 		banner.hidden = NO;
 	}

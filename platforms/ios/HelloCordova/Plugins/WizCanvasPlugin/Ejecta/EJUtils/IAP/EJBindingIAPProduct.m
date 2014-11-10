@@ -54,8 +54,8 @@
 + (EJBindingIAPProduct *)bindingFromJSValue:(JSValueRef)value {
 	if( !value ) { return 0; }
 	
-	EJBindingIAPProduct *binding = (EJBindingIAPProduct *)JSObjectGetPrivate((JSObjectRef)value);
-	return (binding && [binding isMemberOfClass:[self class]]) ? binding : NULL;
+	EJBindingIAPProduct *binding = (EJBindingIAPProduct *)JSValueGetPrivate(value);
+	return (binding && [binding isKindOfClass:[self class]]) ? binding : NULL;
 }
 
 EJ_BIND_GET(id, ctx) {

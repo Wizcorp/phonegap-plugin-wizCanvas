@@ -1,5 +1,7 @@
 #import "EJBindingImage.h"
+#import "WizCanvasView.h"
 #import "EJNonRetainingProxy.h"
+#import "EJTexture.h"
 
 @implementation EJBindingImage
 @synthesize texture;
@@ -13,65 +15,30 @@
 	// may be the only thing holding on to it
 	JSValueProtect(scriptView.jsGlobalContext, jsObject);
 	
-    NSString *fullPath = @"";
-    
-	NSLog(@"Loading Image: %@", path);
+	NSString *fullPath;
 
-    NSURL *url = [NSURL URLWithString:path];
-
-    if ([url.scheme isEqualToString:@"http"] || [url.scheme isEqualToString:@"https"]) {
-        // Is likely to be a remote source
-
-        NSData *urlData = [NSData dataWithContentsOfURL:url];
-        if ( urlData ) {
-            
-            // Split the path string
-            NSMutableArray *pathSpliter = [[NSMutableArray alloc] initWithArray:[url.path componentsSeparatedByString:@"/"] copyItems:YES];
-            NSString *fileName = [pathSpliter lastObject];
-            // Remove last object (filename)
-            [pathSpliter removeLastObject];
-            // Join all dir(s)
-            NSString *storePath = @"";
-            if ([pathSpliter count] > 1) {
-                storePath = [pathSpliter componentsJoinedByString:@"/"];
-            }
-            [pathSpliter release];
-            
-            NSFileManager *filemgr;
-            filemgr =[NSFileManager defaultManager];
-            
-            // Path to library caches
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-            
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *appNameDir = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
-            NSString *fullDir = [NSString stringWithFormat:@"%@/%@/%@", documentsDirectory, appNameDir, storePath];
-            NSString *filePath = [fullDir stringByAppendingPathComponent:fileName];
-            
-            if ([filemgr createDirectoryAtPath:fullDir withIntermediateDirectories:YES attributes:nil error: NULL] == YES) {
-                // Success to create directory download data to temp and move to library/cache when complete
-                [urlData writeToFile:filePath atomically:YES];
-                fullPath = filePath;
-                
-            } else {
-                // Fail to download
-                NSLog(@"Error downloading image file");
-                // returnString = @"error - failed download";
-            }
-        }
-    } else {
-        fullPath = [scriptView pathForResource:path];
-    }
-
+	// If path is a Data URI or remote URL we don't want to prepend resource paths
+	if( [path hasPrefix:@"data:"] ) {
+		NSLog(@"Loading Image from Data URI");
+		fullPath = path;
+	}
+	else if( [path hasPrefix:@"http:"] || [path hasPrefix:@"https:"] ) {
+		NSLog(@"Loading Image from URL: %@", path);
+		fullPath = path;
+	}
+	else {
+		NSLog(@"Loading Image (lazy): %@", path);
+		fullPath = [scriptView pathForResource:path];
+	}
+	
 	// Use a non-retaining proxy for the callback operation and take care that the
 	// loadCallback is always cancelled when dealloc'ing
 	loadCallback = [[NSInvocationOperation alloc]
-                    initWithTarget:[EJNonRetainingProxy proxyWithTarget:self]
-                    selector:@selector(endLoad) object:nil];
+		initWithTarget:[EJNonRetainingProxy proxyWithTarget:self]
+		selector:@selector(endLoad) object:nil];
 	
 	texture = [[EJTexture cachedTextureWithPath:fullPath
-                                    loadOnQueue:scriptView.backgroundQueue callback:loadCallback] retain];
-    
+		loadOnQueue:scriptView.backgroundQueue callback:loadCallback] retain];
 }
 
 - (void)prepareGarbageCollection {
@@ -85,6 +52,7 @@
 	[loadCallback release];
 	
 	[texture release];
+	
 	[path release];
 	[super dealloc];
 }
@@ -94,15 +62,23 @@
 	[loadCallback release];
 	loadCallback = nil;
 	
-	[self triggerEvent:(texture.textureId ? @"load" : @"error")];
+	if( texture.lazyLoaded || texture.textureId ) {
+		[self triggerEvent:@"load"];
+	}
+	else {
+		[self triggerEvent:@"error"];
+	}
+	
 	JSValueUnprotect(scriptView.jsGlobalContext, jsObject);
 }
 
-EJ_BIND_GET(src, ctx ) { 
-	JSStringRef src = JSStringCreateWithUTF8CString( [path UTF8String] );
-	JSValueRef ret = JSValueMakeString(ctx, src);
-	JSStringRelease(src);
-	return ret;
+- (void)setTexture:(EJTexture *)texturep path:(NSString *)pathp {
+	texture = [texturep retain];
+	path = [pathp retain];
+}
+
+EJ_BIND_GET(src, ctx ) {
+	return NSStringToJSValue(ctx, path ? path : @"");
 }
 
 EJ_BIND_SET(src, ctx, value) {
@@ -120,31 +96,34 @@ EJ_BIND_SET(src, ctx, value) {
 	if( path ) {
 		[path release];
 		path = nil;
-		
+	}
+	
+	if( texture ) {
 		[texture release];
 		texture = nil;
 	}
 	
-	if( !JSValueIsNull(ctx, value) && [newPath length] ) {
+	if( !JSValueIsNull(ctx, value) && newPath.length ) {
 		path = [newPath retain];
 		[self beginLoad];
 	}
 }
 
 EJ_BIND_GET(width, ctx ) {
-	return JSValueMakeNumber( ctx, texture ? (texture.width / texture.contentScale) : 0);
+	return JSValueMakeNumber( ctx, texture.width / texture.contentScale );
 }
 
-EJ_BIND_GET(height, ctx ) { 
-	return JSValueMakeNumber( ctx, texture ? (texture.height / texture.contentScale) : 0 );
+EJ_BIND_GET(height, ctx ) {
+	return JSValueMakeNumber( ctx, texture.height / texture.contentScale );
 }
 
 EJ_BIND_GET(complete, ctx ) {
-	return JSValueMakeBoolean(ctx, (texture && texture.textureId) );
+	return JSValueMakeBoolean(ctx, (texture && (texture.lazyLoaded || texture.textureId)) );
 }
 
 EJ_BIND_EVENT(load);
 EJ_BIND_EVENT(error);
 
+EJ_BIND_CONST(nodeName, "IMG");
 
 @end

@@ -27,6 +27,7 @@ static const EJColorRGBA ColorNames[] = {
 	{.hex = 0xff8b8b00}, // darkcyan
 	{.hex = 0xff0b86b8}, // darkgoldenrod
 	{.hex = 0xffa9a9a9}, // darkgray
+	{.hex = 0xffa9a9a9}, // darkgrey
 	{.hex = 0xff006400}, // darkgreen
 	{.hex = 0xff6bb7bd}, // darkkhaki
 	{.hex = 0xff8b008b}, // darkmagenta
@@ -38,11 +39,13 @@ static const EJColorRGBA ColorNames[] = {
 	{.hex = 0xff8fbc8f}, // darkseagreen
 	{.hex = 0xff8b3d48}, // darkslateblue
 	{.hex = 0xff4f4f2f}, // darkslategray
+	{.hex = 0xff4f4f2f}, // darkslategrey
 	{.hex = 0xffd1ce00}, // darkturquoise
 	{.hex = 0xffd30094}, // darkviolet
 	{.hex = 0xff9314ff}, // deeppink
 	{.hex = 0xffffbf00}, // deepskyblue
 	{.hex = 0xff696969}, // dimgray
+	{.hex = 0xff696969}, // dimgrey
 	{.hex = 0xffff901e}, // dodgerblue
 	{.hex = 0xff2222b2}, // firebrick
 	{.hex = 0xfff0faff}, // floralwhite
@@ -53,6 +56,7 @@ static const EJColorRGBA ColorNames[] = {
 	{.hex = 0xff00d7ff}, // gold
 	{.hex = 0xff20a5da}, // goldenrod
 	{.hex = 0xff808080}, // gray
+	{.hex = 0xff808080}, // grey
 	{.hex = 0xff008000}, // green
 	{.hex = 0xff2fffad}, // greenyellow
 	{.hex = 0xfff0fff0}, // honeydew
@@ -70,12 +74,14 @@ static const EJColorRGBA ColorNames[] = {
 	{.hex = 0xffffffe0}, // lightcyan
 	{.hex = 0xffd2fafa}, // lightgoldenrodyellow
 	{.hex = 0xffd3d3d3}, // lightgray
+	{.hex = 0xffd3d3d3}, // lightgrey
 	{.hex = 0xff90ee90}, // lightgreen
 	{.hex = 0xffc1b6ff}, // lightpink
 	{.hex = 0xff7aa0ff}, // lightsalmon
 	{.hex = 0xffaab220}, // lightseagreen
 	{.hex = 0xffface87}, // lightskyblue
 	{.hex = 0xff998877}, // lightslategray
+	{.hex = 0xff998877}, // lightslategrey
 	{.hex = 0xffdec4b0}, // lightsteelblue
 	{.hex = 0xffe0ffff}, // lightyellow
 	{.hex = 0xff00ff00}, // lime
@@ -128,6 +134,7 @@ static const EJColorRGBA ColorNames[] = {
 	{.hex = 0xffebce87}, // skyblue
 	{.hex = 0xffcd5a6a}, // slateblue
 	{.hex = 0xff908070}, // slategray
+	{.hex = 0xff908070}, // slategrey
 	{.hex = 0xfffafaff}, // snow
 	{.hex = 0xff7fff00}, // springgreen
 	{.hex = 0xffb48246}, // steelblue
@@ -146,7 +153,7 @@ static const EJColorRGBA ColorNames[] = {
 };
 
 // This is a bit wild. ColorHashForString returns a hash of the input string in the range
-// of [0 -- 497] (the smallest range I could find with such a simple hash function). This
+// of [0 -- 544] (the smallest range I could find with such a simple hash function). This
 // hash can then be used as an index into the ColorHashesToColorNames table, which in turn
 // points to the actual color in the ColorNames array. It's totally over the top, considering
 // that nobody actually uses those names anymore.

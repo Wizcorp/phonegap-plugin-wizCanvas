@@ -15,8 +15,8 @@
 }
 
 + (JSObjectRef)createJSObjectWithContext:(JSContextRef)ctx
-                              scriptView:(WizCanvasView *)view
-                             transaction:(SKPaymentTransaction *)transaction
+	scriptView:(WizCanvasView *)view
+	transaction:(SKPaymentTransaction *)transaction
 {
 	id native = [[self alloc] initWithTransaction:transaction];
 	

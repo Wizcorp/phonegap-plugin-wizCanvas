@@ -8,6 +8,7 @@
 #import "EJCanvasContextWebGLTexture.h"
 #import "EJBindingCanvasContextWebGL.h"
 
+#import "WizCanvasView.h"
 #import "base64.h"
 
 
@@ -27,12 +28,9 @@
 		isScreenCanvas = YES;
 		scriptView.hasScreenCanvas = YES;
 	}
-
-    // Modification for WizCanvasView
-	// CGSize screen = scriptView.bounds.size;
-    CGSize screen = scriptView.bounds.size;
-
-    width = screen.width;
+	
+	CGSize screen = scriptView.bounds.size;
+	width = screen.width;
 	height = screen.height;
 	
 	JSContextRef ctx = scriptView.jsGlobalContext;
@@ -196,6 +194,7 @@ EJ_BIND_FUNCTION(getContext, ctx, argc, argv) {
 	// Create the requested CanvasContext
 	scriptView.currentRenderingContext = nil;
 	
+	// 2D Screen or Texture
 	if( newContextMode == kEJCanvasContextMode2D ) {
 		if( isScreenCanvas ) {
 			EJCanvasContext2DScreen *sc = [[EJCanvasContext2DScreen alloc]
@@ -220,12 +219,12 @@ EJ_BIND_FUNCTION(getContext, ctx, argc, argv) {
 		[binding release];
 		JSValueProtect(ctx, jsCanvasContext);
 	}
-
+	
 	// WebGL Screen or Texture
 	else if( newContextMode == kEJCanvasContextModeWebGL ) {
 		if( isScreenCanvas ) {
 			EJCanvasContextWebGLScreen *sc = [[EJCanvasContextWebGLScreen alloc]
-                                              initWithScriptView:scriptView width:width height:height style:style];
+				initWithScriptView:scriptView width:width height:height style:style];
 			sc.useRetinaResolution = useRetinaResolution;
 			
 			scriptView.screenRenderingContext = sc;
@@ -233,15 +232,15 @@ EJ_BIND_FUNCTION(getContext, ctx, argc, argv) {
 		}
 		else {
 			EJCanvasContextWebGLTexture *tc = [[EJCanvasContextWebGLTexture alloc]
-                                               initWithScriptView:scriptView width:width height:height];
+				initWithScriptView:scriptView width:width height:height];
 			tc.useRetinaResolution = useRetinaResolution;
-
+			
 			renderingContext = tc;
 		}
-
+		
 		// Create the JS object
 		EJBindingCanvasContextWebGL *binding = [[EJBindingCanvasContextWebGL alloc]
-                                                initWithCanvas:jsObject renderingContext:(EJCanvasContextWebGL *)renderingContext];
+			initWithCanvas:jsObject renderingContext:(EJCanvasContextWebGL *)renderingContext];
 		jsCanvasContext = [EJBindingCanvasContextWebGL createJSObjectWithContext:ctx scriptView:scriptView instance:binding];
 		[binding release];
 		JSValueProtect(ctx, jsCanvasContext);
@@ -308,7 +307,7 @@ EJ_BIND_FUNCTION(getContext, ctx, argc, argv) {
 	// There's a lot of heavy data lifting going on here: getting the pixel data from the canvas,
 	// converting to a UIImage, converting to JPG or PNG representation and converting to Base64.
 	
-	// autorelease bytes our ass here, causing all the data to be only released at the end of the
+	// autorelease bites our ass here, causing all the data to be only released at the end of the
 	// frame. So we try to be at least conservative with the final Base64 encoded string: it's
 	// created with the right prefix and the encoder writes directly into it.
 	
@@ -320,7 +319,7 @@ EJ_BIND_FUNCTION(getContext, ctx, argc, argv) {
 	memcpy(encoded.mutableBytes, prefix, prefixLength);
 	
 	// Write base64 encoded data into the url string; start after the prefix
-	int len = b64_ntop(raw.bytes, raw.length, (encoded.mutableBytes + prefixLength), encoded.length - prefixLength);
+	size_t len = b64_ntop(raw.bytes, raw.length, (encoded.mutableBytes + prefixLength), encoded.length - prefixLength);
 	
 	if( len <= 0 ) {
 		return nil;
@@ -339,5 +338,7 @@ EJ_BIND_FUNCTION(toDataURL, ctx, argc, argv) {
 EJ_BIND_FUNCTION(toDataURLHD, ctx, argc, argv) {
 	return [self toDataURLWithCtx:ctx argc:argc argv:argv hd:YES];
 }
+
+EJ_BIND_CONST(nodeName, "CANVAS");
 
 @end
