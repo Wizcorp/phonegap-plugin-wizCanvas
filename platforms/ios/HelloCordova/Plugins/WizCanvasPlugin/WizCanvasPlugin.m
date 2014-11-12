@@ -512,10 +512,22 @@ static WizCanvasPlugin * wizViewManagerInstance = NULL;
 }
 
 - (CGRect)frameWithOptions:(NSDictionary *)options {
-    // get Device width and height
+    // Get Device width and height
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    int screenHeight = (int) screenRect.size.height;
-    int screenWidth = (int) screenRect.size.width;
+    int screenHeight;
+    int screenWidth;
+    if (UIDeviceOrientationIsLandscape(self.viewController.interfaceOrientation)) {
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_7_1) {
+            screenHeight = (int) screenRect.size.height;
+            screenWidth = (int) screenRect.size.width;
+        } else {
+            screenHeight = (int) screenRect.size.width;
+            screenWidth = (int) screenRect.size.height;
+        }
+    } else {
+        screenHeight = (int) screenRect.size.height;
+        screenWidth = (int) screenRect.size.width;
+    }
     
     // define vars
     int top;
