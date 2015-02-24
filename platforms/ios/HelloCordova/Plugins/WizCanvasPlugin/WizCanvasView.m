@@ -237,7 +237,7 @@ void EJBlockFunctionFinalize(JSObjectRef object) {
 - (BOOL)loadRequest:(NSString *)url {
     NSLog(@"Loading Script: %@", url );
 
-    NSError *error;
+    NSError *error = nil;
     NSData *urlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url] options:0 error:&error];
 
     if (!urlData || error) {
