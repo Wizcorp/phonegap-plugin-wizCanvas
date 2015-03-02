@@ -235,13 +235,18 @@ void EJBlockFunctionFinalize(JSObjectRef object) {
 #pragma mark Script loading and execution
 
 - (BOOL)loadRequest:(NSString *)url {
-    NSLog(@"Loading Script: %@", url );
+    NSLog(@"Loading Script: %@", url);
 
-    NSError *error;
+    NSError *error = nil;
     NSData *urlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url] options:0 error:&error];
 
-    if (!urlData || error) {
-        NSLog(@"Error: Can't Find Script %@", url );
+    if (error) {
+        NSLog(@"Error: Could not load the requested url %@: %@", url, [error localizedDescription]);
+        return NO;
+    }
+    
+    if (!urlData) {
+        NSLog(@"Error: No data loaded from %@", url);
         return NO;
     }
 
